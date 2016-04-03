@@ -10,7 +10,7 @@ System.register(CS, ['Events', 'ErrorPage']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound']);
 
 $(function () {
-    System.setUpCollections().then(main);
+    System.setUpCollections().then(main)
     
     function main () {
         app.mediator = new Mediator();

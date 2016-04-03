@@ -23,6 +23,8 @@ gulp.task('test', function () {
 gulp.task('minimize', function () {
     return gulp.src('client/home.html')
         .pipe($.useref())
+		.pipe($.if('app.js', $.eslint(), $.eslint.format()))
+        .pipe($.eslint.failOnError())
         .pipe($.if('*.js', $.uglify()))
         .pipe($.if('*.css', $.htmlmin({collapseWhitespace: true, removeComments: true})))
         .pipe(gulp.dest('server/public'));
