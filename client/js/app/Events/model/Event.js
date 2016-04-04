@@ -5,7 +5,7 @@
         defaults: function () {
             return {
                 name: '',
-                type: '',
+                type: ''
             }
         },
 
