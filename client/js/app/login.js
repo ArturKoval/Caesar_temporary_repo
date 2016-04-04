@@ -42,24 +42,24 @@ function ready () {
             messageEl.innerText = 'Incorrect login or password. Please, try again';
             passwordField.value = '';
         }
-        document.removeEventListener('click', login, true);
+        submitBtn.removeEventListener('click', login, true);
+        document.removeEventListener('keydown', keyEvent, true);
     }
 
     function clear () {
         loginField.value = '';
         passwordField.value = '';
-        document.removeEventListener('click', clear, true);
+        submitBtn.removeEventListener('click', clear, true);
+        document.removeEventListener('keydown', keyEvent, true);
     }
 
     function sendRequest () {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                //login-> post {login, password}
-                //мне приходит {error:'', {login:'',token:''}}
-               // request on home.html loading
+                window.location = '/home.html';
             } else if (xhr.readyState === 4) {
-               messageEl.innerHTML = 'Incorrect login or password. Please, try again';
+                messageEl.innerHTML = 'Incorrect login or password. Please, try again';
             }
         });
         xhr.open('POST', '/login', true);
