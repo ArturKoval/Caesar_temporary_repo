@@ -21,13 +21,19 @@ gulp.task('test', function () {
 });
 
 gulp.task('minimize', function () {
-    return gulp.src('client/home.html')
+    return gulp.src('client/*.html')
         .pipe($.useref())
-		.pipe($.if('app.js', $.eslint(), $.eslint.format()))
-        .pipe($.eslint.failOnError())
+        //.pipe($.if('*.js', $.eslint(), $.eslint.format(), $.eslint.failOnError()))
         .pipe($.if('*.js', $.uglify()))
         .pipe($.if('*.css', $.htmlmin({collapseWhitespace: true, removeComments: true})))
         .pipe(gulp.dest('server/public'));
+});
+
+gulp.task('lint', function () {
+    return gulp.src('client/js/app/**/*.js')
+        .pipe($.eslint())
+        .pipe($.eslint.format())
+        .pipe($.eslint.failOnError())
 });
 
 gulp.task('resources:build', function () {
@@ -41,8 +47,9 @@ gulp.task('clean:build', function () {
 });
 
 gulp.task('minimize-for-debug', function () {
-    return gulp.src('client/home.html')
+    return gulp.src('client/*.html')
         .pipe($.useref({}, lazypipe().pipe($.sourcemaps.init, {loadMaps: true})))
+        .pipe($.if('*.js', $.uglify()))
         .pipe($.if('*.css', $.htmlmin({collapseWhitespace: true, removeComments: true})))
         .pipe($.sourcemaps.write())
         .pipe(gulp.dest('server/debug'));
