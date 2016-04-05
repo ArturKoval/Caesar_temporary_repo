@@ -3,9 +3,10 @@
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            '': 'events',
-            'Events*path': 'events',
-            '*path': 'errorPage'
+            '': 'groups',
+            '*home.html':'groups',
+            'Events*path': 'events'
+            //'*path': 'errorPage'
         },
 
         initialize: function () {
@@ -14,6 +15,10 @@
 		
         events: function () {
             app.subRouters['Events'] || (app.subRouters['Events'] = new CS.Events.Router());
+        },
+
+        groups: function () {
+            app.subRouters['Groups'] || (app.subRouters['Groups'] = new CS.Groups.Router());
         },
 
         errorPage: function () {

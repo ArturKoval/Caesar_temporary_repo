@@ -1,0 +1,11 @@
+.locationsWindow {
+	width: 100%;
+    background: #003366;
+}
+
+.location {
+	width: 170px;
+    height: 100px;
+    background: #3C78B5;
+    display: inline-block;
+}

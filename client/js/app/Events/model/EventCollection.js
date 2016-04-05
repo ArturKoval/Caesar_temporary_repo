@@ -3,7 +3,7 @@
 (function (This) {
     This.EventCollection = Backbone.Collection.extend({
         model: This.Event,
-        url: '/events'
+        url: '/events',      
     });
 
 })(CS.Events);

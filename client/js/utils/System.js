@@ -7,19 +7,28 @@ var System = (function () {
         });
 	}
 
-    function _setUpCollections () {
-		// bulk load from server
-		// init for requiered collections
+    function _preload () {
         return this;
 	}
 	
     function _then (callback) {
-		// call callback after readyState 4
+    	console.log('**');
+		var ajax = new XMLHttpRequest();
+
+		ajax.addEventListener('readystatechange', function () {
+			if (ajax.readyState === 4 && ajax.status === 200) {
+				app.store = JSON.parse(ajax.responseText);
+				callback();
+			}
+		}.bind(this), false);
+
+		ajax.open("GET", '/preload', true);
+		ajax.send();
 	}
 	
     return {
 		register: _register,
-		setUpCollections: setUpCollections,
+		preload: _preload,
 		then: _then
 	};
 })();
