@@ -1,22 +1,18 @@
 {
-  "name": "locations",
-  "version": "1.0.0",
-  "description": "locations Backbone",
-  "main": "server/index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Anna",
-  "license": "ISC",
-<<<<<<< HEAD
-  "devDependencies": {},
-  "dependencies": {
-    "mongodb": "^2.1.14"
-=======
-  "devDependencies": {
-  },
-  "dependencies": {
-    "mongodb": "^2.1.11"
->>>>>>> 0d5267c6905bebcbbe0b1d2c4198e68067fab77a
-  }
+    "name": "locations",
+    "version": "1.0.0",
+    "description": "locations Backbone",
+    "main": "server/index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Anna",
+    "license": "ISC",
+
+    "devDependencies": {
+
+    },
+    "dependencies": {
+        "mongodb": "^2.1.14"
+    }
 }

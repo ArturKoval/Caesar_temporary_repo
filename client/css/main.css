@@ -150,7 +150,14 @@ html, body {height:100%;}
 .right-menu {
     position: absolute;
     top : 0;
-    right: -15%;
+    left: 100%;
+    width: 15%;
+    transition: 0.4s;
+}
+
+.right-menu.open {
+  transition: 0.4s;
+  left: 85%;
 }
 
 .page {
