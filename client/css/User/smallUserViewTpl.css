@@ -1,0 +1,11 @@
+#icon .user-photo {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+}
+
+    #icon .user-photo img {
+        display: inline-block;
+        height: 60px;
+        width: 60px;
+    }
