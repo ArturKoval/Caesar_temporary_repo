@@ -1,5 +1,6 @@
 .group-list-view {
     position: relative;
+    height: 100%;
 }
 
 .group-list-header {
@@ -26,36 +27,46 @@
     rigth: 40px;
 }
 
-.group-collection {
+/*.group-collection {
     margin-left: 80px;
     margin-right: auto;
+}*/
+.group-collection {
+    margin-left:10px;
+    margin-right:10px;
 }
 
 .group-list-footer {
     display: inline-block;
+    width: 100%;
+    position: absolute;
+    bottom: 20px;
 }
 
 .stage-toggle {
-    margin-left: 400px;
-    margin-bottom: 70px;
+    float: right;
+    margin-right: 49px;
+    display: inline-block;
 }
 
 .small-group-view {
-    font-size: 2em;
+    font-size: 1.7em;
     text-align: center;
     display: inline-block;
-    margin: 10px;
+    margin: 13px;
+    vertical-align: top;
     padding: 10px;
     background: #3C78B5;
-    height: 120px;
+    height: 100px;
     width: 150px;
+    text-align: left;
     color: white;
 }
 
 .myGroups {
     background: #3C78B5;
     color: white;
-    margin-left: 40px;
+    margin-left: 15px;
 }
 
 .chosen {
