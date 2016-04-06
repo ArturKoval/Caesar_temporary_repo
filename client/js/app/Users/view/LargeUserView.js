@@ -2,14 +2,11 @@
 
 (function (This, app) {
     This.LargeUserView = Backbone.View.extend({
-        tagName: 'div',
-        className: 'profile-container',
 	    template: templates.largeUserViewTpl,
-	    $documentEl: $(document),
 	    events: {
-	    	'click': 'onElementClick',
 	        'click .btn-edit': 'showEditDialog',
-	        'click .btn-logout': 'logout'
+	        'click .btn-logout': 'logout',
+	        'mouseleave': 'hide'
 	    },
 
 	    initialize: function () {
@@ -17,8 +14,8 @@
 	    },
 
 	    render: function () {
+	    	this.$el.empty();
 	        this.$el.html(this.template(this.model.toJSON()));
-	        this.$documentEl.bind('click', this.onGlobalClick);
 
 	        return this;
 	    },
@@ -29,20 +26,14 @@
 
 	    logout: function () {
 	        app.mediator.publish('User: LoggedOut', this.model);
-	        this.hide();
 	    }, 
+	    
+	    show: function () {
+	    	this.$el.animate({right: '0%'});
+	    },
 
 	    hide: function (e) {
-	    	this.$documentEl.unbind('click', this.onGlobalClick);
-	    	this.remove();
-	    },
-
-	    onElementClick: function (e) {
-	    	e.stopPropagation();
-	    },
-
-	    onGlobalClick: function (e) {
-	    	this.hide();
+	    	this.$el.animate({right: '-15%'});
 	    }
     });
 })(CS.User, app);

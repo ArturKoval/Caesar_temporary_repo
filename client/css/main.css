@@ -118,7 +118,7 @@ html, body {height:100%;}
 .right-menu {
     position: absolute;
     top : 0;
-    right: 0;
+    right: -15%;
 }
 
 .page {

@@ -1,8 +1,8 @@
 var collections = {
         'users': [
 
-            {"name": "John Doe",role: "ITA Teacher","location": "Dnipro", "photo": "default-photo.png"},
-            {"name": "Dmytro Petin",role: "ITA Coordinator","location": "Dnipro", "photo": "default-photo.png"}
+            {"firstName": "John", "lastName": "Doe", role: "ITA Teacher","location": "Dnipro", "photo": "default-photo.png"},
+            {"firstName": "Dmytro", "lastName": "Petin", role: "ITA Coordinator","location": "Dnipro", "photo": "default-photo.png"}
         ],
         'locations': [
             {"city": "Dnipro"},

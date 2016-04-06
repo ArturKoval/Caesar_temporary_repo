@@ -33,6 +33,7 @@
 
     #right-menu .user-info {
         margin: auto;
+        text-align: center;
     }
     
     #right-menu .name {
