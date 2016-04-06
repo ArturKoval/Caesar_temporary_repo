@@ -23,7 +23,6 @@ gulp.task('test', function () {
 gulp.task('minimize', function () {
     return gulp.src('client/*.html')
         .pipe($.useref())
-        //.pipe($.if('*.js', $.eslint(), $.eslint.format(), $.eslint.failOnError()))
         .pipe($.if('*.js', $.uglify()))
         .pipe($.if('*.css', $.htmlmin({collapseWhitespace: true, removeComments: true})))
         .pipe(gulp.dest('server/public'));
@@ -32,8 +31,7 @@ gulp.task('minimize', function () {
 gulp.task('lint', function () {
     return gulp.src('client/js/app/**/*.js')
         .pipe($.eslint())
-        .pipe($.eslint.format())
-        .pipe($.eslint.failOnError())
+        .pipe($.eslint.format());
 });
 
 gulp.task('resources:build', function () {
