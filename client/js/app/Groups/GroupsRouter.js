@@ -12,8 +12,8 @@
         initialize: function () {
             console.log('*');
             this.controller = new This.Controller();
-            //this.controller.start();
             this.navToGroups();
+            //this.controller.start();
             //CS.mediator.subscribe('RouteToEvents', this.navToEvents, null, this);
             //CS.mediator.subscribe('ShowEventById', this.navToEventById, null, this);
             

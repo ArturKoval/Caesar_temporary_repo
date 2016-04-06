@@ -1,6 +1,7 @@
 'use strict';
 
 var System = (function () {
+	var ajax = new XMLHttpRequest();
     function _register (parent, modules) {
         modules.forEach(function (module) {
             parent[module] = {};
@@ -8,22 +9,18 @@ var System = (function () {
 	}
 
     function _preload () {
+    	ajax.open("GET", '/preload', true);
+		ajax.send();
         return this;
 	}
 	
     function _then (callback) {
-    	console.log('**');
-		var ajax = new XMLHttpRequest();
-
 		ajax.addEventListener('readystatechange', function () {
 			if (ajax.readyState === 4 && ajax.status === 200) {
 				app.store = JSON.parse(ajax.responseText);
 				callback();
 			}
 		}.bind(this), false);
-
-		ajax.open("GET", '/preload', true);
-		ajax.send();
 	}
 	
     return {

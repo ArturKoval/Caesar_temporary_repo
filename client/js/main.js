@@ -25,9 +25,3 @@ $(function () {
         
     }
 });
-app.store.user = {
-    name: 'John Doe',
-    role: 'ITA Teacher',
-    location: 'Dnipro',
-    photo: 'default-photo.png'
-};

@@ -13,7 +13,7 @@
             this.$modalEl = $('#modal-window');
             this.$menuEl = $('#right-menu');
             this.mediator = app.mediator;
-            var u = new This.User(app.store.user);
+            var u = new This.User(app.store.users[1]);
             this.smallUserView = new This.SmallUserView({
                 model: u // user should be here
             });

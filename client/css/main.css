@@ -64,7 +64,7 @@
     background-color: transparent;
     color: #191970;
 }
-#groupInfo{
+.groupContainer{
     width: 85%;
     height: 300px;
     border-color: #191970;
