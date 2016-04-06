@@ -1,6 +1,7 @@
 .locationsWindow {
 	width: 100%;
     background: #003366;
+
 }
 
 .location {
@@ -8,4 +9,36 @@
     height: 100px;
     background: #3C78B5;
     display: inline-block;
+    margin-right: 25px;
+   	cursor: pointer;
+    box-shadow: 0 0 2px rgba(0,0,0,0.5);
+}
+
+.active-location {
+	border: 2px solid #323232;
+	box-shadow: none;
+
+}
+
+.locationsWindow .submit:hover {
+    opacity: 0.9;
+    cursor: pointer;
+    background-color: #3C78B5;
+}
+
+.locationsWindow .submit {
+    float: right;
+    margin-bottom: 20px;
+    background: url('../img/submit_arrow.png') no-repeat -2px;
+    width: 30px;
+    height: 30px;
+    border: 0;
+    border: 2px solid #ffffff;
+    border-radius: 50%;
+    outline: 0;
+}
+
+.location-buttons {
+    height: 50px;
+    padding-right: 20px;
 }

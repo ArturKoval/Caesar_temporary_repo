@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This, app) {
+(function (This, app, i) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'CurrentGroup': 'createView'
@@ -19,6 +19,12 @@
             $('#groupInfo').append(groupInfoView.render().$el);
 			$('#content-footer').append(contentView.renderFooter().$el);
 
+            // var preloadView = new app.PreloadView();        // PreloadView Circle
+            // $('#modal-window').append(preloadView.render().$el);// PreloadView Circle
+
+            // var locationsView = new i.locations.LocationListView(); //All available LocationsView
+            // $('#modal-window').append(locationsView.render().$el);
+
             /* this.collection = new This.GroupList(app.store.groups);
             console.log(this.collection); */
 
@@ -29,4 +35,4 @@
 			console.log(a);
 		}
     });
-})(CS.Groups, app);
+})(CS.Groups, app, i);

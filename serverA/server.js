@@ -16,7 +16,13 @@ function start (request, response) {
             'css': 'text/css',
             'json': 'application/json',
             'ico': 'image/ico',
-            'png': 'image/png'
+            'png': 'image/png',
+            'svg':"image/svg+xml",
+            'ttf': "application/x-font-ttf",
+            'otf': "application/x-font-opentype",
+            'woff': "application/font-woff",
+            'woff2': "application/font-woff2",
+            'eot': "application/vnd.ms-fontobject"
         },
         dir = getDir(),
         contentType,

@@ -23,8 +23,40 @@
    vertical-align: top;
    text-align: center;
 }*/
+
 .groupView{
-	margin-top: 20px;
+    margin-top: 20px;
+}
+
+.locationsWindow {
+    width: 100%;
+    background: #003366;
+    padding-top: 25px;
+
+}
+
+.wrapper-location {
+    width:755px;
+    margin: 0 auto;
+}
+
+.location {
+    width: 170px;
+    height: 100px;
+    background: #3C78B5;
+    display: inline-block;
+    margin-bottom: 40px;
+    font-size: 26px;
+    color: #fff;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding-left: 15px;
+    padding-top: 8px;
+    margin-right: 20px;
+}
+
+.location:nth-child(5) {
+    margin-right: 0px;
 }
 .editBtn,.infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn{
 	margin-top: 10px;
@@ -169,3 +201,30 @@ html, body {height:100%;}
     float: right;
     box-sizing: border-box;
 }
+
+@font-face {
+  font-family: 'fontello';
+  src: url('../font/fontello.eot');
+  src: url('../font/fontello.eot') format('embedded-opentype'),
+       url('../font/fontello.woff2') format('woff2'),
+       url('../font/fontello.woff') format('woff'),
+       url('../font/fontello.ttf') format('truetype'),
+       url('../font/fontello.svg') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+.demo-icon
+    {
+      font-family: "fontello";
+      font-style: normal;
+      font-weight: normal;
+      speak: none;
+     
+      display: inline-block;
+      text-decoration: inherit;
+      width: 1em;
+      margin-right: .2em;
+      text-align: center;
+      /* opacity: .8; */
+      }
