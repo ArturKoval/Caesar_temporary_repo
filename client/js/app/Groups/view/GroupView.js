@@ -2,8 +2,8 @@
 
 (function (This) {
     This.GroupView = Backbone.View.extend({
-    	tagName: 'div',
-    	className: 'groupView',
+        tagName: 'div',
+        className: 'groupView',
         events: {
             'click .editBtn': 'debug',
             'click .infoBtn': function(e){this.whichClicked('infoBtn'); this.debug(e)},
@@ -13,16 +13,16 @@
         },
         $groupContainer: null,
         initialize: function () {
-        	this.model.on('change', this.render, this);
-			this.model.on('destroy', this.remove, this);
+            this.model.on('change', this.render, this);
+            this.model.on('destroy', this.remove, this);
             $('#main-section').append(this.render().$el);
             this.$groupContainer = $('.groupContainer');
             this.showInfo();
             this.mediator = app.mediator;
         },
         render: function () {
-        	this.$el.append(templates.groupTpl());
-        	return this;
+            this.$el.append(templates.groupTpl());
+            return this;
         },
         debug: function (e) {
             var $el;

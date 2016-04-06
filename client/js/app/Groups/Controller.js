@@ -14,7 +14,7 @@
                 groupListView = new This.GroupListView({collection: new This.GroupList(app.store.groups)});
                 
             $('#content-header').append(contentView.renderHeader().$el);
-			$('#content-footer').append(contentView.renderFooter().$el);
+            $('#content-footer').append(contentView.renderFooter().$el);
             $('#left-side-bar').append(groupListView.$el)
                 .append(groupListView.render());
 
@@ -56,9 +56,9 @@
         destroyCurrentView: function () {
            $('.info').empty();
         },
-		
-		createView: function (a) {
-			console.log(a);
-		}
+        
+        createView: function (a) {
+            console.log(a);
+        }
     });
 })(CS.Groups, app);

@@ -8,8 +8,15 @@
   },
   "author": "Anna",
   "license": "ISC",
+<<<<<<< HEAD
   "devDependencies": {},
   "dependencies": {
     "mongodb": "^2.1.14"
+=======
+  "devDependencies": {
+  },
+  "dependencies": {
+    "mongodb": "^2.1.11"
+>>>>>>> 0d5267c6905bebcbbe0b1d2c4198e68067fab77a
   }
 }
