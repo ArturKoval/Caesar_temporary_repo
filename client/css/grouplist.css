@@ -1,0 +1,68 @@
+.group-list-view {
+    position: relative;
+}
+
+.group-list-header {
+    display: block;
+}
+
+.search {
+    margin-left: 40px;
+    margin-top:20px;
+    font-size: 2em;
+    display: inline-block;
+    color: black;
+}
+
+.groups-nav {
+    text-align: center;
+    white-space: pre;
+    width:150px;
+    display:inline-block;
+    border: 2px solid darkblue;
+    padding: 5px;
+    float: right;
+    margin: 20px;
+    rigth: 40px;
+}
+
+.group-collection {
+    margin-left: 80px;
+    margin-right: auto;
+}
+
+.group-list-footer {
+    display: inline-block;
+}
+
+.stage-toggle {
+    margin-left: 400px;
+    margin-bottom: 70px;
+}
+
+.small-group-view {
+    font-size: 2em;
+    text-align: center;
+    display: inline-block;
+    margin: 10px;
+    padding: 10px;
+    background: #3C78B5;
+    height: 120px;
+    width: 150px;
+    color: white;
+}
+
+.myGroups {
+    background: #3C78B5;
+    color: white;
+    margin-left: 40px;
+}
+
+.chosen {
+    background: #003366;
+    color: white;
+}
+
+/*.group-list-view .hidden {*/
+/*display: none;*/
+/*}*/
