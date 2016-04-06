@@ -10,7 +10,6 @@
         },
 
         initialize: function () {
-            console.log('*');
             this.controller = new This.Controller();
             this.navToGroups();
             //this.controller.start();

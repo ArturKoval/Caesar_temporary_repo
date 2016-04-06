@@ -7,8 +7,8 @@
 
         render: function() {
             this.$el.html('<span>You have no messages...</span>');
+            
             return this;
         }
     });
-
 })(CS.Groups);

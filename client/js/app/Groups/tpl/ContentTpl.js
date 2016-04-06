@@ -4,5 +4,5 @@ templates.contentHeaderTpl = _.template([
 ].join(''));
 
 templates.contentFooterTpl = _.template([
-		'<p class = "groupStageTitle">Stage: </p> <p class = "groupStage"><%= stage %></p> '
+	'<p class = "groupStageTitle">Stage: </p> <p class = "groupStage"><%= stage %></p> '
 ].join(''));

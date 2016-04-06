@@ -4,7 +4,6 @@
     This.LocationListView = Backbone.View.extend({
     	tagName: 'div',
     	className: 'locationsWindow',
-
         events: {
             'click .submit':'removeModal'
         },
@@ -16,12 +15,14 @@
 
         render: function () {
             var $wrapper = $('<div><div>').addClass('wrapper-location');
+
             _.each(this.collection, function (location, i) { 
                 var locationView = new This.LocationView();
                 $wrapper.append(locationView.$el.append(location));
             }, this); 
 
-            this.$el.append($wrapper.append(templates.locationTpl));   
+            this.$el.append($wrapper.append(templates.locationTpl));  
+
         	return this;
         },
 
@@ -30,5 +31,4 @@
             $('#modal-window').removeClass('modal-window');
         }
     });
-
 })(i.locations);
