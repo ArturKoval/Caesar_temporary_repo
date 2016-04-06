@@ -1,112 +1,8 @@
-var http = require('http'),
-    path = require('path'),
-    fs = require('fs'),
-    router = require('./router'),
-    mode = process.argv[2];
-    collections = {};
-
-http.createServer(start).listen(3000);
-
-console.log('server started...');
-
-function start (request, response) {
-    var types = {
-            'html': 'text/html',
-            'js': 'application/javascript',
-            'css': 'text/css',
-            'json': 'application/json',
-            'ico': 'image/ico',
-            'png': 'image/png',
-            'svg':"image/svg+xml",
-            'ttf': "application/x-font-ttf",
-            'otf': "application/x-font-opentype",
-            'woff': "application/font-woff",
-            'woff2': "application/font-woff2",
-            'eot': "application/vnd.ms-fontobject"
-        },
-        dir = getDir(),
-        contentType,
-        extention,
-        filePath,
-        urlData,
-        action,
-        route;
-
-    urlData = request.url.substr(1, request.url.length).split('/');
-    route = urlData[0];
-    action = urlData[1];
-    
-    if (router.routes[route]){
-        router.init(request, response, action, route);
-    } else {
-        filePath = dir + request.url;
-
-        if (filePath === (dir + '/')) {
-            filePath = dir + '/home.html';
-        }
-
-        extention = path.extname(filePath);
-        contentType = types[extention.substr(1, extention.length)];
-
-        if (urlData[0] !== 'preload') {
-            sendFile(response, contentType, filePath);
-        }
-        
-    }
-    //* delete this
-    if (urlData[0] === 'preload') {
-        response.writeHead(200, {'Content-Type': contentType});
-        response.write(JSON.stringify(collections));
-        response.end();
-    }
-    //*
-}
-
-function getDir () {
-    var dir;
-
-    if (mode === '-pro') {
-        dir = './public';
-    } else {
-        dir = '../client';
-    }
-
-    return dir;
-}
-
-function sendFile (response, contentType, filePath) {
-    fs.stat(filePath, function (err, stats) {
-        if (stats) {
-            fs.readFile(filePath, function(error, data) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                } else {
-                    response.writeHead(200, {'Content-Type': contentType});
-                    response.write(data);
-                    response.end();
-                }
-            });
-        } else {
-            fs.readFile('../client/home.html', function(error, data) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                } else {
-                    response.writeHead(200, {'Content-Type': contentType});
-                    response.write(data);
-                    response.end();
-                }
-            });
-        }
-    });
-}
-
-collections = {
+var collections = {
         'users': [
 
-            {"name": "John Doe",role: "ITA Teacher","location": "Dnipro", "photo": "default-photo.png"},
-            {"name": "Dmytro Petin",role: "ITA Coordinator","location": "Dnipro", "photo": "default-photo.png"}
+            {"firstName": "John", "lastName": "Doe", role: "ITA Teacher","location": "Dnipro", "photo": "default-photo.png"},
+            {"firstName": "Dmytro", "lastName": "Petin", role: "ITA Coordinator","location": "Dnipro", "photo": "default-photo.png"}
         ],
         'locations': [
             {"city": "Dnipro"},
@@ -235,7 +131,7 @@ collections = {
               stage: 'finished'
             },
             {
-              name: 'Lv-023a-MQC',
+              name: 'Lv-023-MQC',
               location: 'Lviv',
               budgetOwner: 'SoftServe',
               direction: 'Manual Control Quality Systems',

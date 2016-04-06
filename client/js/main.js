@@ -27,6 +27,7 @@ $(function () {
         
     }
 });
+
 app.store.user = {
     name: 'John Doe',
     role: 'ITA Teacher',
@@ -37,3 +38,4 @@ app.store.user = {
 i.locations = [
   'Chernivtsy','Ivano-Frankivsk', 'Dnipro', 'Rivne', 'Kyiv', 'Sofia', 'Lviv'
 ];
+

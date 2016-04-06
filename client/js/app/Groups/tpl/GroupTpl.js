@@ -4,5 +4,5 @@ templates.groupTpl = _.template([
 	'<div class=studentsBtn><i class="fa fa-users fa-2x"></i></i></div>',
 	'<div class=sheduleBtn><i class="fa fa-calendar-o fa-2x"></i></div>',
 	'<div class=messageBtn><i class="fa fa-envelope-o fa-2x"></i></div>',
-	'<div id=groupInfo></div>'
+	'<div class=groupContainer></div>'
 ].join(''));

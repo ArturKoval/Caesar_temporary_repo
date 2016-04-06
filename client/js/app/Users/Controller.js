@@ -5,7 +5,6 @@
         subscribes: {
             'User: EditDialogCalled': 'showEditDialog',
             'User: userProfileCalled': 'showUserProfile',
-            'User: ProfileUnfocused': 'hideUserProfile' 
         },
 
         initialize: function () {
@@ -13,30 +12,24 @@
             this.$modalEl = $('#modal-window');
             this.$menuEl = $('#right-menu');
             this.mediator = app.mediator;
-            var u = new This.User(app.store.user);
+            this.user = new This.User(app.store.users[1]);
             this.smallUserView = new This.SmallUserView({
-                model: u // user should be here
+                model: this.user
+            });
+            this.largeUserView =  new This.LargeUserView({
+                model: this.user,
+                el: this.$menuEl
             });
             this.$photoEl.append(this.smallUserView.render().el);
+            this.largeUserView.render();
         },
 
         showEditDialog: function () {
-            // var editView = new This.editView();
-
-            // this.$modalEl.append(editView.render().el);
-            console.log('EditView should be here');
+            //add editView here
         },
 
         showUserProfile: function (user) {
-            this.largeUserView = new This.LargeUserView({
-                model: user
-            });
-
-            this.$menuEl.append(this.largeUserView.render().el);
-        },
-
-        hideUserProfile: function () {
-            this.largeUserView && this.largeUserView.hide();
+            this.largeUserView.show();
         }
     });
 })(CS.User, app);
