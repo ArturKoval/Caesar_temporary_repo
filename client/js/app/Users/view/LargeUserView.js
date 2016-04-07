@@ -29,11 +29,11 @@
 	    }, 
 	    
 	    show: function () {
-	    	this.$el.animate({right: '0%'});
+	    	this.$el.addClass('open');
 	    },
 
 	    hide: function (e) {
-	    	this.$el.animate({right: '-15%'});
+	    	this.$el.removeClass('open');
 	    }
     });
 })(CS.User, app);

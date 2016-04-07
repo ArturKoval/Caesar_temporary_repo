@@ -25,7 +25,7 @@
                 directions = ['MQC', 'UI'];
 
 
-            this.$el.html(this.template(_.extend({directions: directions, locations: locations, teachers: app.store.users[1].name}, this.model)));
+            this.$el.html(this.template(_.extend({directions: directions, locations: locations, teachers: app.user.lastName}, this.model)));
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {

@@ -2,7 +2,6 @@
 
 (function (This) {
     This.GroupListView = Backbone.View.extend({
-
         userName: 'Dmytro Petin', //hard code
         tagName: 'div',
         className: 'group-list-view',
@@ -51,14 +50,18 @@
             } else {
                 $('.groups-nav').removeClass('hidden');
             }
+
             $('.page-nav').html(this.currentNavPage + '   /   ' + this.lastNavPage);    //will be in template
             this.groupsArray[this.shownCollection].forEach(this.renderOne, this);
+
             return this;
         },
 
         renderOne: function (group) {
             var groupView = new This.SmallGroupView({model: group});
+
             $('.group-collection').append(groupView.render().el);
+
             return this;
         },
 
@@ -67,10 +70,12 @@
 
             this.tmp = this.groupsArray.slice();
             this.groupsArray = [];
+
             while (this.tmp.length > 0) {
                 chunk = this.tmp.splice(0, 10);
                 this.groupsArray.push(chunk);
             }
+
             this.lastNavPage = this.groupsArray.length;
         },
 
@@ -97,6 +102,5 @@
             this.stage = stage;
             this.render();
         }
-
     });
 })(CS.Groups);

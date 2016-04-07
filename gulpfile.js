@@ -6,13 +6,13 @@ var runSequence = require('run-sequence');
 gulp.task('build', function () {
     runSequence(['clean:build', 'test'],
         'minimize',
-        'resources:build')
+        'resources:build');
 });
 
 gulp.task('debug', function () {
     runSequence(['clean:debug', 'test'],
         'minimize-for-debug',
-        'resources:debug')
+        'resources:debug');
 });
 
 gulp.task('test', function () {
@@ -41,7 +41,7 @@ gulp.task('resources:build', function () {
 
 gulp.task('clean:build', function () {
     return gulp.src('server/public')
-        .pipe($.clean())
+        .pipe($.clean());
 });
 
 gulp.task('minimize-for-debug', function () {
@@ -60,5 +60,5 @@ gulp.task('resources:debug', function () {
 
 gulp.task('clean:debug', function () {
     return gulp.src('server/debug')
-        .pipe($.clean())
+        .pipe($.clean());
 });

@@ -3,12 +3,15 @@
 (function (This) {
     This.User = Backbone.Model.extend({
         urlRoot: '/users',
-        defaults: {
-            firstName: 'John',
-            lastName: 'Hankock',
-            location: 'Unknown',
-            role: 'ITA Teacher',
-            photo: '/img/default-photo.png'
+        
+        defaults: function () {
+            return {
+                firstName: 'John',
+                lastName: 'Hankock',
+                location: 'Unknown',
+                role: 'ITA Teacher',
+                photo: '/img/default-photo.png'
+            };
         },
         
         validation: {

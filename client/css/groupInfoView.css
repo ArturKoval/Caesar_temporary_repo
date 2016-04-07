@@ -1,29 +1,26 @@
-.group_coordination, .group_info {
+.groupInfoView .group_coordination, .groupInfoView  .group_info {
 	display: inline-block;
 }
 
-.group_coordination {
+.groupInfoView .group_coordination {
 	margin-right: 20%;
 }
 
-.info {
-    font-family: Arial, sans-serif;
-    font-size: 13px;
-}
-
-.info h3 {
+.groupInfoView h3 {
     margin: 12px 0px;
 	text-align: left;
+    font-size: 16px;
+
 }
 
-.tg {
+.groupInfoView .tg {
     border-collapse: collapse;
     border-spacing: 0;
     color: #333333;
     font-size: 14px;
 }
 
-.tg td {
+.groupInfoView .tg td {
     border-style: solid;
     border-width: 1px;
     overflow: hidden;
@@ -32,7 +29,7 @@
     padding: 9px 10px;
 }
 
-.tg th {
+.groupInfoView .tg th {
     border-color: #dedede;
     height: 14px;
     padding: 10px 5px;
@@ -43,10 +40,10 @@
     background-color: #f0f0f0;
 }
 
-td:nth-child(2) {
+.groupInfoView td:nth-child(2) {
     font-style: italic; 
 }
 
-.group_info td:nth-child(2) {
+.groupInfoView .group_info td:nth-child(2) {
     font-style: normal; 
 }
