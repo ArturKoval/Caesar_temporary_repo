@@ -4,7 +4,8 @@ templates.groupEditCreate = _.template([
                     '<div class="row">',
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="groupName" class="control-label">Group name</label>',
-                            '<input type="text" class="form-control" id="groupName" name="name">',
+                            '<input type="text" class="form-control" id="groupName" name="name" required="required">',
+                        '<span class="help-block hidden"></span>',
                        ' </div>',
 
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
@@ -30,6 +31,7 @@ templates.groupEditCreate = _.template([
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="startDate" class="control-label">Start date</label>',
                             '<input type="date" class="form-control" id="startDate" name="startDate">',
+    '<span class="help-block hidden"></span>',
                        '</div>',
                     '</div>',
 
@@ -47,6 +49,7 @@ templates.groupEditCreate = _.template([
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="finishDate" class="control-label">Finish date</label>',
                             '<input type="date" class="form-control" id="finishDate" name="finishDate">',
+                        '<span class="help-block hidden"></span>',
                         '</div>',
                     '</div>',
 
@@ -56,12 +59,15 @@ templates.groupEditCreate = _.template([
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="teachers" class="control-label">Teachers</label>',
                             '<span class="pull-right">x</span>',
-                            '<input type="text" class="form-control" name="teachers" id="teachers" value="<%= teachers %>">',
+                            '<% _(teachers).each(function(teacher) { %>',
+                            '<input type="text" class="form-control" name="teachers" id="teachers" value="<%= teacher %>">',
+                             '<% }); %>',
                         '</div>',
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="experts" class="control-label">Experts</label>',
                             '<span class="pull-right">x</span>',
                             '<input type="text" class="form-control" name="experts" id="experts">',
+                        '<span class="help-block hidden"></span>',
                         '</div>',
                     '</div>',
 
