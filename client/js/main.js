@@ -8,7 +8,7 @@ var CS = {},
     ESC = 27,
     ENTER = 13;
 
-System.register(CS, ['Events', 'ErrorPage', 'Groups', 'User']);
+System.register(CS, ['ErrorPage', 'Groups', 'User']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user']);
 System.register(i, ['locations', 'directions']);
 
