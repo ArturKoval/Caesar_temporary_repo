@@ -3,7 +3,7 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: callStub': 'changeView',
+            'Groups: callStub': 'changeView'
         },
 
         initialize: function () {
@@ -22,7 +22,12 @@
             $('#content-header').append(contentView.renderHeader().$el);
             $('#content-footer').append(contentView.renderFooter().$el);
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            this.mediator = app.mediator;    
+            this.mediator = app.mediator;
+
+            $('#createGroup').on('click', function () {
+                var editCreateView = new This.CreateEditView();
+                $('#modal-window').html(editCreateView.render().$el);
+            });
         },
         
         changeView: function (stub) {
