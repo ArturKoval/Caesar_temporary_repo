@@ -3,24 +3,15 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: callStub': 'changeView'
+            'Groups: callStub': 'changeView',
+            'groups: group selected': 'showSelectedGroup'
         },
 
         initialize: function () {
-            var contentView = new This.ContentView({
-                    model: new This.Group(store.groups[3])
-                }),
-
-                groupView = new This.GroupView({
-                    model: new This.Group(store.groups[3])
-                }),
-
-                groupListView = new This.GroupListView({
+            var groupListView = new This.GroupListView({
                     collection: new This.GroupList(store.groups)
                 });
-                
-            $('#content-header').append(contentView.renderHeader().$el);
-            $('#content-footer').append(contentView.renderFooter().$el);
+
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             this.mediator = app.mediator;
 
@@ -28,6 +19,23 @@
                 var editCreateView = new This.CreateEditView();
                 $('#modal-window').html(editCreateView.render().$el);
             });
+        },
+
+        start: function () {
+            return app.user.location;
+        },
+
+        showSelectedGroup: function (selected) {
+            var contentView = new This.ContentView({
+                model: selected
+            });
+
+            $('#content-header').append(contentView.renderHeader().$el);
+            $('#content-footer').append(contentView.renderFooter().$el);
+            $('.main-section').empty();
+            var groupView = new This.GroupView({
+                model: selected
+            })
         },
         
         changeView: function (stub) {

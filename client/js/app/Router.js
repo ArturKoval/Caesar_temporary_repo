@@ -4,17 +4,13 @@
     This.Router = Backbone.Router.extend({
         routes: {
             '': 'groups',
-            '*home.html':'groups',
-            'Events*path': 'events'
-            //'*path': 'errorPage'
+            'Groups': 'groups',
+            'Groups*path': 'groups',
+            '*path': 'errorPage'
         },
 
         initialize: function () {
-			// do you need something here?
-        },
-		
-        events: function () {
-            app.subRouters['Events'] || (app.subRouters['Events'] = new CS.Events.Router());
+            console.log('[init] Router');
         },
 
         groups: function () {
