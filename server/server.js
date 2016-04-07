@@ -48,7 +48,7 @@ function start (request, response) {
     }
 
 }
-
+/* move to helpers*/
 function sendFile (response, contentType, filePath) {
     fs.stat(filePath, function (err, stats) {
         if (stats) {
@@ -76,4 +76,5 @@ function sendFile (response, contentType, filePath) {
         }
     });
 }
+/* move to helpers*/
 

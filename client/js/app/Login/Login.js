@@ -11,9 +11,9 @@ var login = {
         var xhr = new XMLHttpRequest();
         xhr.addEventListener('readystatechange', function () {
             if (xhr.readyState === 4 && xhr.status === 200) {
-                window.location = '/home.html';
+                window.location = '/';
             } else if (xhr.readyState === 4) {
-                callback();
+                //callback();
             }
         });
         xhr.open('POST', '/login', true);
