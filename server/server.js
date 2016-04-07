@@ -108,13 +108,13 @@ collections = {
         "lastName": "Doe",
         role: "ITA Teacher",
         "location": "Dnipro",
-        "photo": "default-photo.png"
+        "photo": "/default-photo.png"
     }, {
         "firstName": "Dmytro",
         "lastName": "Petin",
         role: "ITA Coordinator",
         "location": "Dnipro",
-        "photo": "default-photo.png"
+        "photo": "/default-photo.png"
     }],
 
     'locations': [{
