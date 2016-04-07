@@ -54,7 +54,7 @@ var CoursesController = Rotor.Controller.extend({
 	sendResponse: function (err, data) {
         if (err) {
             console.log(err);
-            this.response.writeHead(400);
+            this.response.writeHead(401);
             this.response.write(err);
             this.response.end();
         } else {
