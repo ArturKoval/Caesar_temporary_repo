@@ -38,21 +38,24 @@
             $('.group-collection').empty();
             this.groupsArray = this.collection;
             this.groupsArray = this.groupsArray.findGroupsByStage(this.stage);
-            this.groupsArray = new This.GroupList(this.groupsArray);
+          
 
             if (this.areMyGroups) {
                 this.groupsArray = this.groupsArray.findMyGroups(this.userName);
             }
 
             this.checkGroupsAmount();
-            if (this.lastNavPage === 0) {
+            if (this.lastNavPage <= 1 ) {
                 $('.groups-nav').addClass('hidden');
             } else {
                 $('.groups-nav').removeClass('hidden');
             }
 
             $('.page-nav').html(this.currentNavPage + '   /   ' + this.lastNavPage);    //will be in template
+
+            if (this.groupsArray.length) {
             this.groupsArray[this.shownCollection].forEach(this.renderOne, this);
+            }               
 
             return this;
         },
@@ -94,6 +97,7 @@
         },
 
         toggleMyGroups: function () {
+            $('.myGroups').toggleClass('chosen');
             this.areMyGroups = !this.areMyGroups;
             this.render();
         },

@@ -9,7 +9,7 @@ templates.groupListTpl = ([
 	'</div>',
 	'<div class="group-collection row"></div>',
 	'<div class="group-list-footer">',
-		'<button class="myGroups btn btn-primary">My Groups</button>',
+		'<button class="myGroups">My Groups</button>',
 		'<div class="stage-toggle">',
 		'<input class="endedGroups" type="radio" name="group-status" value="ended">',
 		'<input class="currentGroups" type="radio" name="group-status" value="current" checked>',

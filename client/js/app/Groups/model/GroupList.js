@@ -3,30 +3,24 @@
 (function (This) {
     This.GroupList = Backbone.Collection.extend({
         model: This.Group,
-        url: '/groups', 
-
+        url: '/groups',   
+        
         findMyGroups: function (teacher) {
-        	var result = [];
-
-        	this.forEach(function (group) {
-        		if (group.isMyTeacher(teacher)) {
-        			result.push(group);
-        		}
-        	});
-            
-        	return result;
+            return new This.GroupList(this.filter(function (group) {
+                return group.isMyTeacher(teacher);
+            }));
         },
-
+        
         findGroupsByStage: function (stage) {
-        	var result = [];
-
-        	this.forEach(function (group) {
-        		if (group.isMyStage(stage)) {
-        			result.push(group);
-        		}
-        	});
-
-        	return result;
+            return new This.GroupList(this.filter(function (group) {
+                return group.isMyStage(stage);
+            }));
+        },
+        
+        findGroupsByLocations: function (locations) {
+            return new This.GroupList(this.filter(function (group) {
+                return group.isMyLocation(locations);
+            }));
         }
     });
 })(CS.Groups);
