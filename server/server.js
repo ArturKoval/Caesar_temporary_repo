@@ -1,12 +1,9 @@
 var http = require('http'),
     path = require('path'),
     fs = require('fs'),
-    router = require('./router'),
-    mode = process.argv[2];
-    collections = {};
+    router = require('./router');
 
 http.createServer(start).listen(3000);
-
 console.log('server started...');
 
 function start (request, response) {
@@ -24,7 +21,7 @@ function start (request, response) {
             'woff2': "application/font-woff2",
             'eot': "application/vnd.ms-fontobject"
         },
-        dir = getDir(),
+        dir = '../client',
         contentType,
         extention,
         filePath,
@@ -47,31 +44,9 @@ function start (request, response) {
 
         extention = path.extname(filePath);
         contentType = types[extention.substr(1, extention.length)];
-
-        if (urlData[0] !== 'preload') {
-            sendFile(response, contentType, filePath);
-        }
-        
-    }
-    //* delete this
-    if (urlData[0] === 'preload') {
-        response.writeHead(200, {'Content-Type': contentType});
-        response.write(JSON.stringify(collections));
-        response.end();
-    }
-    //*
-}
-
-function getDir () {
-    var dir;
-
-    if (mode === '-pro') {
-        dir = './public';
-    } else {
-        dir = '../client';
+        sendFile(response, contentType, filePath);
     }
 
-    return dir;
 }
 
 function sendFile (response, contentType, filePath) {
@@ -102,146 +77,3 @@ function sendFile (response, contentType, filePath) {
     });
 }
 
-collections = {
-    'users': [{
-        "firstName": "John",
-        "lastName": "Doe",
-        role: "ITA Teacher",
-        "location": "Dnipro",
-        "photo": "/default-photo.png"
-    }, {
-        "firstName": "Dmytro",
-        "lastName": "Petin",
-        role: "ITA Coordinator",
-        "location": "Dnipro",
-        "photo": "/default-photo.png"
-    }],
-
-    'locations': [{
-        "city": "Dnipro"
-    }, {
-        "city": "Kiev"
-    }],
-
-    'groups': [{
-        name: 'DP-093-JS',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Web UI',
-        startDate: '01.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Nodarii'],
-        stage: 'in process'
-    }, {
-        name: 'DP-094-MQC',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'in process'
-    }, {
-        name: 'DP-092-NET',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'ASP.NET developing',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'in process'
-    }, {
-        name: 'Lv-087-MQC',
-        location: 'Lviv',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Oleg Krukchov'],
-        experts: ['Testman'],
-        stage: 'finished'
-    }, {
-        name: 'Rv-091-MQC',
-        location: 'Rivne',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Danylo Golubev'],
-        experts: ['Testman'],
-        stage: 'in process'
-    }, {
-        name: 'DP-095-JS',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Web UI',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'planned'
-    }, {
-        name: 'DP-065-QC',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'planned'
-    }, {
-        name: 'DP-027-JS',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Web UI',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'planned'
-    }, {
-        name: 'DP-035-QC',
-        location: 'Dnipro',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Dmytro Petin'],
-        experts: ['Testman'],
-        stage: 'planned'
-    }, {
-        name: 'Lv-084-MQC',
-        location: 'Lviv',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Oleg Krukchov'],
-        experts: ['Testman'],
-        stage: 'finished'
-    }, {
-        name: 'Lv-077-MQC',
-        location: 'Lviv',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Oleg Krukchov'],
-        experts: ['Testman'],
-        stage: 'finished'
-    }, {
-        name: 'Lv-023-MQC',
-        location: 'Lviv',
-        budgetOwner: 'SoftServe',
-        direction: 'Manual Control Quality Systems',
-        startDate: '15.02.2016',
-        finishDate: '01.05.2016',
-        teachers: ['Oleg Krukchov'],
-        experts: ['Testman'],
-        stage: 'finished'
-    }]
-};
