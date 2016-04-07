@@ -7,8 +7,6 @@
         },
 
         initialize: function () {
-            /* var groupListView = new This.groupListView(); */ //later
-
             var contentView = new This.ContentView({
                     model: new This.Group(store.groups[3])
                 }),
@@ -23,17 +21,12 @@
                 
             $('#content-header').append(contentView.renderHeader().$el);
             $('#content-footer').append(contentView.renderFooter().$el);
-            $('#left-side-bar').append(groupListView.$el)
-                .append(groupListView.render());
-
-            //this.collection = new This.GroupList(app.store.groups);
-            //console.log(this.collection); 
-
+            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             this.mediator = app.mediator;    
         },
         
         changeView: function (stub) {
-            var $el = $('.info');
+            var $el = $('.groupInfoView');
 
             switch (stub) {
                 case 'infoBtn':
@@ -67,11 +60,7 @@
         },
 
         destroyCurrentView: function () {
-           $('.info').empty();
-        },
-        
-        createView: function (a) {
-            console.log(a);
+           $('.groupInfoView').empty();
         }
     });
 })(CS.Groups, app);
