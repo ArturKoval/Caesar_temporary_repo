@@ -1,0 +1,50 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.backdrop .icon {
+    font-size: 30px;
+    color: #3C78B5;
+}
+
+.backdrop .modal-window {
+    width: 100%;
+    background-color: #003366;
+    padding: 20px 0;
+}
+
+.backdrop .form-wrapper {
+    background-color: #fff;
+    padding: 30px 50px 5px;
+}
+
+.backdrop .form-wrapper .control-label {
+    text-align: left;
+}
+
+.backdrop .btn-group .btn {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.5);
+    margin-right: 7px;
+}
+
+.backdrop .form-control {
+    float: right;
+}
+
+hr {
+    border-top: 1px dashed #DEDEDE;
+}
+
+.backdrop .control-label {
+    padding: 6px 0;
+    margin-right: 10px;
+}
+

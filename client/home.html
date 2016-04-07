@@ -6,14 +6,15 @@
 
         <!-- build:css styles.css -->
         <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
-		<link rel="stylesheet" type="text/css" href="/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/css/main.css">
         <link rel="stylesheet" type="text/css" href="/css/groupInfoView.css">
-		<link rel="stylesheet" type="text/css" href="/css/contentView.css">
+        <link rel="stylesheet" type="text/css" href="/css/contentView.css">
         <link rel="stylesheet" type="text/css" href="/css/studentListView.css">
         <link rel="stylesheet" type="text/css" href="/css/scheduleView.css">
         <link rel="stylesheet" type="text/css" href="/css/locationsView.css">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <link rel="stylesheet" type="text/css" href="/css/User/largeUserViewTpl.css">
+        <link rel="stylesheet" type="text/css" href="/css/Groups/GroupCreateEditTpl.css">
 
         <link rel="stylesheet" type="text/css" href="/css/fontello.css">
         <link rel="stylesheet" type="text/css" href="/css/animation.css">
@@ -37,21 +38,22 @@
         <script src="/js/lib/backbone-controller.js"></script>
         <script src="/js/lib/mediator.js"></script>
         <script src="/js/lib/bootstrap.js"></script>
-		  
 
-		<!-- app -->
+
+        <!-- app -->
         <script src="/js/main.js"></script>
         <script src="/js/app/Router.js"></script>
 
         <!-- groups -->
         <script src="/js/app/Groups/tpl/StudentListViewTpl.js"></script>
-        <script src="/js/app/Groups/tpl/ScheduleViewTpl.js"></script> 
-        <script src="/js/app/Groups/tpl/GroupInfoViewTpl.js"></script> 
+        <script src="/js/app/Groups/tpl/ScheduleViewTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupInfoViewTpl.js"></script>
         <script src="/js/app/Groups/tpl/GroupTpl.js"></script>
         <script src="/js/app/Groups/tpl/GroupListTpl.js"></script>
         <script src="/js/app/Groups/tpl/ContentTpl.js"></script>
         <script src="/js/app/Groups/tpl/GroupListTpl.js"></script>
-        
+        <script src="/js/app/Groups/tpl/GroupCreateEditTpl.js"></script>
+
         <script src="/js/app/Groups/view/ScheduleView.js"></script>
         <script src="/js/app/Groups/view/MessageView.js"></script>
         <script src="/js/app/Groups/view/StudentListView.js"></script>
@@ -61,14 +63,15 @@
         <script src="/js/app/Groups/view/ContentView.js"></script>
         <script src="/js/app/Groups/view/GroupListView.js"></script>
         <script src="/js/app/Groups/view/smallGroupView.js"></script>
+        <script src="/js/app/Groups/view/GroupCreateEditView.js"></script>
 
         <script src="/js/app/Groups/model/Group.js"></script>
         <script src="/js/app/Groups/model/GroupList.js"></script>
         <script src="/js/app/Groups/GroupsRouter.js"></script>
         <script src="/js/app/Groups/Controller.js"></script>
-        <!--preloadView-->  
+        <!--preloadView-->
         <script src="/js/app/Preload/PreloadViewTpl.js"></script>
-        <script src="/js/app/Preload/PreloadView.js"></script> 
+        <script src="/js/app/Preload/PreloadView.js"></script>
         <!--Locations -->
         <script src="/js/app/Locations/LocationListViewTpl.js"></script>
         <script src="/js/app/Locations/LocationView.js"></script>
@@ -76,7 +79,7 @@
         <!-- users -->
         <script src="/js/app/Users/tpl/largeUserViewTpl.js"></script>
         <script src="/js/app/Users/tpl/smallUserViewTpl.js"></script>
-        
+
         <script src="/js/app/Users/view/SmallUserView.js"></script>
         <script src="/js/app/Users/view/LargeUserView.js"></script>
 
@@ -97,23 +100,24 @@
             <div id="right-side-bar">Holder for Notifications</div>
             <div id="right-menu"></div>
 		</div> -->
-        <div id = "wrapper" class = "wrapper">
-            <div id = "header" class = "header">
-                <div id = "logo" class = "logo"></div>
-                <div id = "icon" class = "icon"></div>
-                <div id = "top-menu" class = "top-menu"></div>
-                <div id = "right-menu" class = "right-menu"></div>
+        <div id="wrapper" class="wrapper">
+            <div id="header" class="header">
+                <div id="logo" class="logo"></div>
+                <div id="icon" class="icon"></div>
+                <div id="top-menu" class="top-menu"></div>
+                <div id="right-menu" class="right-menu"></div>
             </div>
-            <div id = "page" class= "page">
-                <div id = "left-side-bar" class = "left-side-bar"></div>
-                <div id = "content-section" class = "content-section">
-                    <div id = "content-header" class= "content-header"></div>
-                    <div id = "main-section" class = "main-section"></div>
-                    <div id = "content-footer" class = "content-footer"></div>
+            <div id="page" class="page">
+                <div id="left-side-bar" class="left-side-bar"></div>
+                <div id="content-section" class="content-section">
+                    <div id="content-header" class="content-header"></div>
+                    <div id="main-section" class="main-section"></div>
+                    <div id="content-footer" class="content-footer"></div>
                 </div>
-                <div id = "right-side-bar" class = "right-side-bar"></div>  
+                <div id="right-side-bar" class="right-side-bar"></div>
             </div>
         </div>
-        <div id = "modal-window"></div>
+        <div id="modal-window"></div>
+        <span class="glyphicon glyphicon-plus-sign" id="createGroup"></span>
     </body>
 </html>
