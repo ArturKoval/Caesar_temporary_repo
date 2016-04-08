@@ -3,11 +3,10 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'groups: group selected': 'showSelectedGroup',
+            'Groups: group selected': 'showSelectedGroup',
             'Groups: Edit button selected': 'showCreateEditView',
             'Locations: showLocationsView': 'showLocations',
-            'Locations: showGroupsInLocation': 'getLocations',
-            'Locations: chooseLocation': 'addClassButtonEl'
+            'Locations: showGroupsInLocation': 'getLocations'
         },
 
         initialize: function () {
@@ -16,7 +15,7 @@
                 });
 
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            this.mediator = app.mediator;
+            this.mediator = app.mediator;  
             $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
         },
 
@@ -38,16 +37,19 @@
         },
 
         showLocations: function () {
-            var locationsView = new i.locations.LocationListView(); //All available LocationsView
-            $('#modal-window').append(locationsView.render().$el);
+            var locationsView = new i.locations.LocationListView(),
+                $modal = $('#modal-window');
+
+            if ($modal.is(':empty')){
+                $modal.append(locationsView.render().$el);
+            }
         },
 
-        addClassButtonEl: function () {
-            $('.save').addClass('active-button');
-        },
+        // addClassButtonEl: function () {
+        //     $('.save').addClass('active-button');
+        // },
 
         getLocations: function (locations) {
-            $('.save').addClass('active-button');
             console.log(locations);
         },
 
