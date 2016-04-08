@@ -16,6 +16,7 @@
         
         initialize: function () {
             this.mediator = app.mediator;
+			this.mediator.subscribe
 
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
@@ -42,9 +43,12 @@
                 $el = $('.infoBtn');
             }
 
-            btnClassName = $el.attr("class")
-            this.publishEvent(btnClassName.substr(0, btnClassName.length - 3)); 
-
+            btnClassName = $el.attr("class");
+			if (btnClassName === 'editBtn') {
+			} else {
+				this.publishEvent(btnClassName.substr(0, btnClassName.length - 3)); 
+			}
+           
             switch (btnClassName) {
                 case 'editBtn':
                     this.mediator.publish('Groups: Edit button selected', this.model);
