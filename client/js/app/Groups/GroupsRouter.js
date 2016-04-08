@@ -18,6 +18,7 @@
 
         initialize: function () {
             this.controller = new CS.Groups.Controller();
+            this.controller.start();
             Backbone.history.loadUrl(Backbone.history.fragment); 
             app.mediator.subscribe('Groups: group selected', this.navToGroupSelected, null, this);
             app.mediator.subscribe('Groups: StubView changed', this.navToGroupAction, null, this);
@@ -61,7 +62,7 @@
         },
 
         initLocation: function () {
-            var location = this.controller.start();
+            var location = this.controller.locationRoute();
             this.navigate('Groups/' + location);     
         },
         

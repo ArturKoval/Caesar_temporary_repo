@@ -1,0 +1,39 @@
+.modal-wrapper {
+	position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-wrapper .modal-body {
+	color: #FFFFFF;
+	background-color: #003366;
+	width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.modal-wrapper .modal-body .message-body {
+	display: inline-block;
+}
+
+.modal-wrapper .modal-body p {
+	font-size: 30px;
+	text-align: left;
+	margin: 0;
+}
+
+.modal-wrapper .modal-body button {
+	background-color: transparent;
+}
+
+.modal-wrapper .modal-body button:hover {
+	color: #3C78B5;
+}
+
+.modal-wrapper .modal-body .controls {
+	float: right;
+}
