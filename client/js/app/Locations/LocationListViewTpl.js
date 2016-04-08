@@ -1,7 +1,7 @@
 
 templates.locationTpl = _.template([
 	'<div class="location-buttons">',
-		'<button class="submit"></button>',
-		'<span class="cancel glyphicon glyphicon-remove-sign icon"></span>',
+		'<span class="save glyphicon glyphicon-ok-circle icon"></span>',
+		'<span class="cancel glyphicon glyphicon-remove-circle icon"></span>',
 	'</div>'
 ].join(''));

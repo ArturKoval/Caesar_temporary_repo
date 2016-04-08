@@ -3,8 +3,11 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: callStub': 'changeView',
-            'groups: group selected': 'showSelectedGroup'
+            'groups: group selected': 'showSelectedGroup',
+            'Groups: Edit button selected': 'showCreateEditView',
+            'Locations: showLocationsView': 'showLocations',
+            'Locations: showGroupsInLocation': 'getLocations',
+            'Locations: chooseLocation': 'addClassButtonEl'
         },
 
         initialize: function () {
@@ -14,11 +17,7 @@
 
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             this.mediator = app.mediator;
-
-            $('#createGroup').on('click', function () {
-                var editCreateView = new This.CreateEditView();
-                $('#modal-window').html(editCreateView.render().$el);
-            });
+            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
         },
 
         start: function () {
@@ -29,51 +28,32 @@
             var contentView = new This.ContentView({
                 model: selected
             });
+            
+            contentView.render();
 
-            $('#content-header').append(contentView.renderHeader().$el);
-            $('#content-footer').append(contentView.renderFooter().$el);
             $('.main-section').empty();
             var groupView = new This.GroupView({
                 model: selected
             })
         },
-        
-        changeView: function (stub) {
-            var $el = $('.groupInfoView');
 
-            switch (stub) {
-                case 'infoBtn':
-                    var groupInfoView = new This.GroupInfoView({model: new This.Group(store.groups[0])});
-
-                    this.destroyCurrentView();
-                    $el.append(groupInfoView.render().$el);
-                    break;
-
-                case 'studentsBtn':
-                    var studentListView = new This.StudentListView({collection: store.users});
-
-                    this.destroyCurrentView();
-                    $el.append(studentListView.render().$el);
-                    break;
-
-                case 'sheduleBtn':
-                    var scheduleView = new This.ScheduleView({collection: store.groups});
-
-                    this.destroyCurrentView();
-                    $el.append(scheduleView.render().$el);
-                    break;
-                    
-                case 'messageBtn':
-                    var messageView = new This.MessageView();
-
-                    this.destroyCurrentView();
-                    $el.append(messageView.render().$el);
-                    break;
-            }
+        showLocations: function () {
+            var locationsView = new i.locations.LocationListView(); //All available LocationsView
+            $('#modal-window').append(locationsView.render().$el);
         },
 
-        destroyCurrentView: function () {
-           $('.groupInfoView').empty();
+        addClassButtonEl: function () {
+            $('.save').addClass('active-button');
+        },
+
+        getLocations: function (locations) {
+            $('.save').addClass('active-button');
+            console.log(locations);
+        },
+
+        showCreateEditView: function () {
+            var editCreateView = new This.CreateEditView();
+            $('#modal-window').html(editCreateView.render().$el);
         }
     });
 })(CS.Groups, app);

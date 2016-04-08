@@ -2,18 +2,18 @@
 
 (function (This) {
     This.ContentView = Backbone.View.extend({
-	    renderHeader: function () {
-	    	this.$el = $('#content-header');
-	    	this.$el.html(templates.contentHeaderTpl(this.model.toJSON()));
+    	el: '#content-section',
+
+	    render: function () {
+	    	var contentHeaderView = new This.ContentHeaderView({model: this.model})
+	    		.render();
+	    		this.$el.find('.content-header').html(contentHeaderView.el);
+	    	var contentFooterView = new This.ContentFooterView({model: this.model})
+	    		.render();
+	    		this.$el.find('.content-footer').html(contentFooterView.el);
 	    	
 	    	return this;
-	    },
-
-	    renderFooter: function () {
-	    	this.$el = $('#content-footer');
-	    	this.$el.html(templates.contentFooterTpl(this.model.toJSON()));
-
-	    	return this;
-	    }
+	    }   
     });
+
 })(CS.Groups);

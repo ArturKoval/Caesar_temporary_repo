@@ -2,20 +2,23 @@
 
 (function (This) {
     This.LocationView = Backbone.View.extend({
-    	tagName: 'div',
-    	className: 'location',
+        tagName: 'div',
+        className: 'location',
+
         events: {
             'click': 'onSelectLocation',
         },
 
         render: function () {
-            this.$el.append(this.model);
 
-        	return this;
+            return this;
         },
 
         onSelectLocation: function () {
             this.$el.toggleClass('active-location');
+            var selectedLocations = this.$el.html();
+            app.mediator.publish('Locations: select locations', selectedLocations);
         }
     });
+
 })(i.locations);

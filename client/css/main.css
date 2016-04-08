@@ -32,10 +32,9 @@
 .location:nth-child(5) {
     margin-right: 0px;
 }
-.editBtn,.infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn{
-	margin-top: 10px;
+
+.infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn, .deleteBtn{
     color: white;
-	margin: 5px;
     font-weight: lighter;
     border-color: white;
     border-style: solid;
@@ -44,32 +43,41 @@
     vertical-align: bottom;
     background-color: #346EA3;
     padding: 4px;
+    margin: 5px;
     width: 50px;
-    height: 30px;
+    height: 38px;
     border-radius: 5px;
 }
-.editBtn:hover,.infoBtn:hover ,.studentsBtn:hover ,.sheduleBtn:hover ,.messageBtn:hover{
+.infoBtn:hover ,.studentsBtn:hover ,.sheduleBtn:hover ,.messageBtn:hover{
     background-color: #191970;
     cursor: pointer;
 }
+
 .active{
   background-color: #191970;
 }
 .infoBtn{
     margin-left: 40%;
 }
-.editBtn {
+
+.editBtn, .deleteBtn{
      color: #346EA3;
+     display: inline-block;
+     margin: 5px;
      background-color: transparent;
      border-style: none;
      cursor: pointer;
+     padding: 4px;  
      margin-left: 7%;
-     
 }
-.editBtn:hover{
+.editBtn:hover, .deleteBtn:hover {
     background-color: transparent;
     color: #191970;
 }
+.deleteBtn{
+   margin-left: 2px;
+}
+
 .groupContainer{
     width: 85%;
     height: 300px;
@@ -95,7 +103,7 @@ html, body {height:100%;}
     min-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 0 20px;
+    padding: 15px 20px 0 20px;
 }
 
 .header {

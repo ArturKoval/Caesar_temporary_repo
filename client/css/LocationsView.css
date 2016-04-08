@@ -1,22 +1,22 @@
 .locationsWindow {
-	width: 100%;
+    width: 100%;
     background: #003366;
-
+    z-index: 2;
 }
 
 .location {
-	width: 170px;
+    width: 170px;
     height: 100px;
     background: #3C78B5;
     display: inline-block;
     margin-right: 25px;
-   	cursor: pointer;
+    cursor: pointer;
     box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .active-location {
-	border: 2px solid #323232;
-	box-shadow: none;
+    border: 2px solid #323232;
+    box-shadow: none;
 
 }
 
@@ -39,6 +39,65 @@
 }
 
 .location-buttons {
-    height: 50px;
+    height: 30px;
     padding-right: 20px;
+    text-align: right;
+    margin-bottom: 15px;
+}
+
+.location-buttons .save, .location-buttons .cancel {
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+}
+.locationsWindow {
+    width: 100%;
+    background: #003366;
+    padding-top: 25px;
+
+}
+
+.wrapper-location {
+    width:100%;
+    margin: 0 auto;
+    padding-left: 21%;
+    padding-right: 20%;
+    padding-top: 40px;
+    background: #003366;
+}
+
+.location-buttons .save, .location-buttons .cancel {
+    width: 30px;
+    height: 30px;
+    text-align: right;
+    color: #fff;
+    font-size: 26px;
+    float: none;
+}
+
+.location-buttons .save {
+    color: grey;
+}
+
+.active-button {
+    color: #fff!important;
+}
+
+.location {
+    width: 170px;
+    height: 100px;
+    background: #3C78B5;
+    display: inline-block;
+    margin-bottom: 40px;
+    font-size: 26px;
+    color: #fff;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding-left: 15px;
+    padding-top: 8px;
+    margin-right: 20px;
+}
+.locationsButton {
+    position: absolute;
+    right: 45px;
 }

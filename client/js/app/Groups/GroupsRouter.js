@@ -2,12 +2,10 @@
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
         routes: {    
-            '': 'getLocation', 
-            'Groups': 'getLocation',
-            'Groups/students': 'test',
-        /*
+            '': 'initLocation', 
+            'Groups': 'initLocation',
             'Groups/:location': 'openLocation',
-            'Groups/students': 'test',
+            'Groups/:location/:group': 'openGroupInfo',
             'Groups/:location/:group/info': 'openGroupInfo',
             'Groups/:location/:group/schedule': 'openGroupSchedule',
             'Groups/:location/:group/students': 'openGroupStudents',
@@ -15,37 +13,39 @@
             'Groups/:location/:group/edit': 'openFormGroupEdit',
             'Groups/:location/:group/delete': 'openFormGroupDelete',
             'Groups/:location/:group/create': 'openFormGroupCreate',
-            'Groups*path': 'notFound' */
+            'Groups*path': 'notFound' 
         },
 
         initialize: function () {
             this.controller = new CS.Groups.Controller();
-            Backbone.history.loadUrl(Backbone.history.fragment);
+            Backbone.history.loadUrl(Backbone.history.fragment); 
+            app.mediator.subscribe('Groups: group selected', this.navToGroupSelected, null, this);
+            app.mediator.subscribe('Groups: StubView changed', this.navToGroupAction, null, this);
             app.mediator.subscribe('GroupEdit', this.navToGroupEdit, null, this);
             app.mediator.subscribe('GroupDelete', this.navToGroupDelete, null, this);
             app.mediator.subscribe('GrouoCreate', this.navToGroupCreate, null, this);
             app.mediator.subscribe('CancelAction', this.navToGroupCancelAction, null, this);
-            app.mediator.subscribe('OpenInfoGroup', this.navToGroupAction, null, this);
-            app.mediator.subscribe('OpenScheduleGroup', this.navToGroupAction, null, this);
-            app.mediator.subscribe('OpenStudentsGroup', this.navToGroupAction, null, this);
-            app.mediator.subscribe('OpenNotifiGroup', this.navToGroupAction, null, this);
-        },
-        
-        test: function () {
-            alert('AA');
-            console.log('AA');
         },
 
-        navToGroupAction: function (group, action) {
-            var currentUrl = window.location.pathname;
+        navToGroupSelected: function (model) {
+            var group = model.get('name'),
+                location = model.get('location');
 
-            this.navigate(currentUrl + '/' + group + '/' + action);
+            this.navigate('Groups/' + location + '/' + group);
+        },
+
+        navToGroupAction: function (args) {
+            var group = args.group.get('name'),
+                location = args.group.get('location'),
+                action = args.stubView;
+
+            this.navigate('Groups/' + location + '/' + group + '/' + action);     
         },
 
         navToGroupEdit: function (location, group) {
             var currentUrl = window.location.pathname;
 
-            this.navigate(currentUrl + '/' + group + '/edit');
+            this.navigate('currentUrl' + '/' + group + '/edit');
         },
 
         navToGroupDelete: function (location, group) {
@@ -60,27 +60,17 @@
             this.navigate('Groups/' + location + '/' + group);
         },
 
-        getLocation: function () {
+        initLocation: function () {
             var location = this.controller.start();
-            this.navigate('Groups/' + location);
-            
+            this.navigate('Groups/' + location);     
         },
         
-        testOne: function () {
-            this.navigate('Groups/');
-            //var location = this.controller.getLocation();
-            console.log('/');
-  
-            //this.controller.filterLocation(location);
-        },
-
         openLocation: function (location) {
             this.controller.filterLocation(location);
         },
 
-        openGroupInfo: function (location, group) {
-            this.controller.filterGroup(location, group);
-            this.navigate('Groups/' + location + '/' + group + '/info');
+        openGroupInfo: function (group) {
+            this.controller.filterGroup(group);
         },
 
         notFound: function () {
