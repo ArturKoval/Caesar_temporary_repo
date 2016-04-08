@@ -57,8 +57,8 @@
             return app.user.location;
         },
                     
-        showCreateEditView: function () {
-            var editCreateView = new This.CreateEditView();
+        showCreateEditView: function (group) {
+            var editCreateView = new This.CreateEditView(group);
             $('#modal-window').html(editCreateView.render().$el);
         },
 
