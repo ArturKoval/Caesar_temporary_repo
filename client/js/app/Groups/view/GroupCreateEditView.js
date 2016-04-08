@@ -18,7 +18,20 @@
         },
 
         initialize: function (model) {
-            this.model = model || new This.Group();
+
+            //var mock = {
+            //    budgetOwner: "SoftServe",
+            //    direction: "UI",
+            //    experts: ["gfhfg"],
+            //    finishDate: "2016-06-22",
+            //    location: "Lviv",
+            //    name: "hgfgf",
+            //    startDate: "2016-04-20",
+            //    teachers: ["Petin"]
+            //};
+
+            this.model = model || new This.Group({teachers: [app.user.lastName]});
+            //this.model.set(mock);
             Backbone.Validation.bind(this, {
                 valid: function (view, attr, selector) {
                     var $el = view.$('[name=' + attr + ']'),
@@ -41,11 +54,12 @@
             var locations = ['Dnipropetrovsk', 'Lviv', 'Kharkiv'],
                 directions = ['MQC', 'UI'];
 
-            this.$el.html(this.template(_.extend({
+            var model = _.extend({
                 directions: directions,
-                locations: locations,
-                teachers: [app.user.lastName]
-            }, this.model)));
+                locations: locations
+            }, this.model.toJSON());
+
+            this.$el.html(this.template(model));
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
@@ -77,11 +91,11 @@
         },
 
         setBudgetOwner: function () {
-            this.$el.find('.budget-option').toggleClass('active');
+            this.$el.find('.budget-option').toggleClass('active disabled');
         },
 
         save: function () {
-            var formData = {teachers:[], experts:[]},
+            var formData = {teachers: [], experts: []},
                 errors = {};
 
             this.$el.find('input').each(function (index, field) {
@@ -103,18 +117,18 @@
             });
 
             this.model.set(formData);
-            errors = this.model.isValid(true);
 
-            if (errors) {
-                console.log(errors);
-            } else {
+            if (this.model.isValid(true)) {
                 this.model.save();
+                app.mediator.publish('Groups: Edit/Create dialog accepted', this.model);
+                this.close();
             }
         },
 
         close: function () {
             $(document).off('keydown');
             this.remove();
+            app.mediator.publish('Groups: Edit/Create dialog canceled',this.model);
         }
     });
 })(CS.Groups);

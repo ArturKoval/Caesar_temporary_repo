@@ -3,25 +3,25 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'groups: group selected': 'showSelectedGroup',
+            'Groups: group selected': 'showSelectedGroup',
             'Groups: Edit button selected': 'showCreateEditView',
             'Locations: showLocationsView': 'showLocations',
             'Locations: showGroupsInLocation': 'getLocations',
-            'Locations: chooseLocation': 'addClassButtonEl'
+            'Locations: chooseLocation': 'addClassButtonEl',
+            'Groups: DeleteDialogCalled': 'showDeleteDialog'
         },
 
         initialize: function () {
-            var groupListView = new This.GroupListView({
-                    collection: new This.GroupList(store.groups)
-                });
-
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            this.mediator = app.mediator;
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
+            this.mediator = app.mediator;  
         },
 
         start: function () {
-            return app.user.location;
+            var groupListView = new This.GroupListView({
+                collection: new This.GroupList(store.groups)
+            });
+
+            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
+            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
         },
 
         showSelectedGroup: function (selected) {
@@ -30,7 +30,6 @@
             });
             
             contentView.render();
-
             $('.main-section').empty();
             var groupView = new This.GroupView({
                 model: selected
@@ -38,8 +37,12 @@
         },
 
         showLocations: function () {
-            var locationsView = new i.locations.LocationListView(); //All available LocationsView
-            $('#modal-window').append(locationsView.render().$el);
+            var locationsView = new i.locations.LocationListView(),
+                $modal = $('#modal-window');
+
+            if ($modal.is(':empty')){
+                $modal.append(locationsView.render().$el);
+            }
         },
 
         addClassButtonEl: function () {
@@ -48,12 +51,23 @@
 
         getLocations: function (locations) {
             $('.save').addClass('active-button');
-            console.log(locations);
         },
-
+        
+        locationRoute: function () {
+            return app.user.location;
+        },
+                    
         showCreateEditView: function () {
             var editCreateView = new This.CreateEditView();
             $('#modal-window').html(editCreateView.render().$el);
+        },
+
+        showDeleteDialog: function (group) {
+            var groupDeleteView = new This.GroupDeleteView({
+                model: group
+            });
+
+            $('body').append(groupDeleteView.render().el);
         }
     });
 })(CS.Groups, app);

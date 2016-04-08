@@ -3,7 +3,7 @@
 (function (This) {
     This.GroupDeleteView = Backbone.View.extend({
     	tagName: 'div',
-    	className: 'groupView',
+    	className: 'modal-wrapper',
         template: templates.groupDeleteViewTpl,
         events: {
             'click .btn-delete': 'deleteGroup',
@@ -17,11 +17,16 @@
         },
 
         deleteGroup: function () {
-            this.remove();
             this.model.destroy();
+            this.close();
         },
 
         cancel: function () {
+            this.close();
+        },
+
+        close: function () {
+            app.mediator.publish('Groups: DeleteDialogClosed');
             this.remove();
         }
     });
