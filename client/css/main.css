@@ -29,10 +29,6 @@
     margin-right: 20px;
 }
 
-.location:nth-child(5) {
-    margin-right: 0px;
-}
-
 .infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn, .deleteBtn{
     color: white;
     font-weight: lighter;

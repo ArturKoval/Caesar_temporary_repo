@@ -12,18 +12,48 @@
         },
 
         initialize: function () {
-            this.mediator = app.mediator;  
+            this.mediator = app.mediator;
         },
 
         start: function () {
             var groupListView = new This.GroupListView({
-                collection: new This.GroupList(store.groups)
+                collection: new This.GroupList(store.groups).findGroupsByLocations([app.user.location])
+            });
+			
+            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
+            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
+			return app.user.location;
+        },
+		
+		showLocationByRoute: function (location) {
+			console.log(location);
+			var groupListView = new This.GroupListView({
+                collection: new This.GroupList(store.groups).findGroupsByLocations(location)
             });
 
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
-        },
-
+		},
+		
+		showPageByRoute: function (location, groupName) {
+			var list = new This.GroupList(store.groups).findGroupsByLocations(location);
+			var groupListView = new This.GroupListView({
+                collection: list
+            });
+            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
+            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
+			
+			var contentView = new This.ContentView({
+                model: list.findGroupByName(groupName)
+            });
+			 contentView.render();
+			$('.main-section').empty();
+            var groupView = new This.GroupView({
+                model: list.findGroupByName(groupName)
+            });
+            
+		},
+		
         showSelectedGroup: function (selected) {
             var contentView = new This.ContentView({
                 model: selected
@@ -33,7 +63,7 @@
             $('.main-section').empty();
             var groupView = new This.GroupView({
                 model: selected
-            })
+            });
         },
 
         showLocations: function () {
@@ -50,15 +80,24 @@
         },
 
         getLocations: function (locations) {
+			this.renderView(locations);
             $('.save').addClass('active-button');
         },
+		
+		renderView: function (locations) {
+		    var groupListView = new This.GroupListView({
+                collection: new This.GroupList(store.groups).findGroupsByLocations(locations)
+            });
+			$('#left-side-bar').empty();
+            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
+			
+			
+
+
+		},
         
-        locationRoute: function () {
-            return app.user.location;
-        },
-                    
-        showCreateEditView: function (group) {
-            var editCreateView = new This.CreateEditView(group);
+        showCreateEditView: function () {
+            var editCreateView = new This.CreateEditView();
             $('#modal-window').html(editCreateView.render().$el);
         },
 

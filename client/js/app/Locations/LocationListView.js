@@ -8,7 +8,8 @@
 
         events: {
             'click .cancel':'removeModal',
-            'click .save':'showGroupsInLocation'
+            'click .save':'showGroupsInLocation',
+            'dblclick':'showGroupsInLocation',
         },
 
         initialize: function () {
@@ -17,7 +18,6 @@
             app.mediator.subscribe('Locations: select locations', function (selectedLocations) { 
                 if (!(_.contains(this.locations, selectedLocations))) {
                     this.locations.push(selectedLocations); 
-
                 } else {
                     _.each(this.locations, function (location, i) {
                         if (location === selectedLocations) {
@@ -36,7 +36,17 @@
                 $wrapper.append(locationView.$el.append(location));
             }, this); 
 
-            this.$el.append($wrapper.append(templates.locationTpl));   
+            this.$el.append($wrapper.append(templates.locationTpl));  
+
+            $(document).on('keydown', keyEvent.bind(this));
+            function keyEvent (event) {
+                if (event.which === ENTER) {
+                    this.showGroupsInLocation();
+                } else if (event.which === ESC) {
+                    this.removeModal();
+                }
+        }
+ 
             return this;
         },
 
