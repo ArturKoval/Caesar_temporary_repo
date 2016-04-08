@@ -88,12 +88,9 @@
 		    var groupListView = new This.GroupListView({
                 collection: new This.GroupList(store.groups).findGroupsByLocations(locations)
             });
+            
 			$('#left-side-bar').empty();
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-			
-			
-
-
 		},
         
         showCreateEditView: function () {
@@ -106,7 +103,8 @@
                 model: group
             });
 
-            $('body').append(groupDeleteView.render().el);
+            $('#modal-window').append(groupDeleteView.render().el);
+            groupDeleteView.$el.focus();
         }
     });
 })(CS.Groups, app);

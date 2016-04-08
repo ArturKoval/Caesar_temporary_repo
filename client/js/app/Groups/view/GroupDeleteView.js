@@ -5,9 +5,15 @@
     	tagName: 'div',
     	className: 'modal-wrapper',
         template: templates.groupDeleteViewTpl,
+        documentEl: $(document),
         events: {
             'click .btn-delete': 'deleteGroup',
-            'click .btn-cancel': 'cancel'
+            'click .btn-cancel': 'close'
+        },
+
+        initialize: function () {
+            _.bindAll(this, 'onKeyPress');
+            this.documentEl.bind('keydown', this.onKeyPress);
         },
 
         render: function () {
@@ -21,13 +27,20 @@
             this.close();
         },
 
-        cancel: function () {
-            this.close();
-        },
-
         close: function () {
             app.mediator.publish('Groups: DeleteDialogClosed');
+            this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
+        },
+
+        onKeyPress: function (e) {
+            if (e.keyCode === ESC) {
+                this.close();
+            }
+
+            if (e.keyCode === ENTER) {
+                this.deleteGroup();
+            }
         }
     });
 })(CS.Groups);

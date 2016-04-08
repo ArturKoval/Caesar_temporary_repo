@@ -64,30 +64,30 @@
                 required: true 
             },
 
-            // teachers: function (teachers) {
-            //     var isTeachersValid;
+            teachers: function (teachers) {
+                var isTeachersValid;
 
-            //     isTeachersValid = teachers.every(function (teacher) {
-            //         // return i.teachers.indexOf !== -1;
-            //     });
+                isTeachersValid = teachers.every(function (teacher) {
+                    // return i.teachers.indexOf !== -1;
+                });
 
-            //     if (!isTeachersValid) {
-            //         return 'Teachers fields are invalid';
-            //     }
-            // },
+                if (!isTeachersValid) {
+                    return 'Teachers fields are invalid';
+                }
+            },
 
-            // experts: function (experts) {
-            //     var isExpertsValid,
-            //         regexp = /^[a-z \-\.]{5,25}$/i;
+            experts: function (experts) {
+                var isExpertsValid,
+                    regexp = /^[a-z \-\.]{5,25}$/i;
 
-            //     isExpertsValid = experts.every(function (expert) {
-            //         return regexp.test(expert);
-            //     });
+                isExpertsValid = experts.every(function (expert) {
+                    return regexp.test(expert);
+                });
 
-            //     if (!isExpertsValid) {
-            //         return 'Experts fields are invalid';
-            //     }
-            // }
+                if (!isExpertsValid) {
+                    return 'Experts fields are invalid';
+                }
+            }
         }
     });
 })(CS.Groups);

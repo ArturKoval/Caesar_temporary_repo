@@ -30,8 +30,13 @@
 	background-color: transparent;
 }
 
-.modal-wrapper .modal-body button:hover {
+.modal-wrapper .modal-body button:hover,
+.modal-wrapper .modal-body button:focus {
 	color: #3C78B5;
+}
+
+.modal-wrapper .modal-body button:focus {
+	outline: none;
 }
 
 .modal-wrapper .modal-body .controls {

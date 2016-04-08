@@ -45,12 +45,12 @@
     border-radius: 5px;
 }
 .infoBtn:hover ,.studentsBtn:hover ,.sheduleBtn:hover ,.messageBtn:hover{
-    background-color: #191970;
+    background-color: #003366;
     cursor: pointer;
 }
 
 .active{
-  background-color: #191970;
+  background-color: #003366;
 }
 .infoBtn{
     margin-left: 40%;
@@ -68,7 +68,7 @@
 }
 .editBtn:hover, .deleteBtn:hover {
     background-color: transparent;
-    color: #191970;
+    color: #003366;
 }
 .deleteBtn{
    margin-left: 2px;
@@ -77,9 +77,9 @@
 .groupContainer{
     width: 85%;
     height: 300px;
-    border-color: #191970;
+    border-color: #003366;
     border-style: dotted;
-	border-width: 2px; 
+    border-width: 2px; 
     border-radius: 10px;
     margin: 10px auto;
     text-align: center;
