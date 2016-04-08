@@ -18,6 +18,7 @@ Router.prototype.init = function (request, response, action, route) {
         sendFile(response, 'text/html', '../client/login.html');
     } else {
         controller = this.routes[route];
+        console.log('test')
         controller.initialize(request, response, action);
     }
     

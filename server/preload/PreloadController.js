@@ -7,7 +7,7 @@ var Rotor = require('../libs/rotor/rotor'),
 var PreloadController = Rotor.Controller.extend({
     responseHead: {
         statusOK: '200',
-        statusErr: '300',
+        statusErr: '401',
         cookies: ''
     },
 
@@ -17,6 +17,7 @@ var PreloadController = Rotor.Controller.extend({
         this.request = req;
         this.response = resp;
         reqBody = this.getRequestData(this.request);
+        console.log('test')
         this.getPreloadData(this.request);
     },
 
@@ -24,6 +25,7 @@ var PreloadController = Rotor.Controller.extend({
     	var userId = this.parseCookies(request).token,
     		collections;
 
+        console.log(userId)
         if (userId) {
             collections = {
                 'users': this.getUserData(userId),

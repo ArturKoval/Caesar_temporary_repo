@@ -27,7 +27,7 @@ var Login = Rotor.Controller.extend({
 		if (this.user){
 			if (data.password == this.user.get('password')) {
 				console.log('ok');
-                this.cookies = 'token=' + this.user.get('_id');
+                this.responseHead.cookies = 'token=' + this.user.get('_id');
 				this.sendResponse('', {login: this.user.login, token: this.user.get('_id')});
 			} else {
 				console.log('bad');
