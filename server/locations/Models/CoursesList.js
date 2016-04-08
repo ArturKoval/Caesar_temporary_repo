@@ -5,7 +5,7 @@ var Rotor = require('../../libs/rotor/rotor'),
 
 var CoursesList = Rotor.Collection.extend({
 	model: Course,
-    name: 'courses'
+    name: 'locations'
 });
 
 module.exports = new CoursesList();

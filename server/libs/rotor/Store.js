@@ -7,7 +7,7 @@ var _ = require('underscore'),
 var Store = function(name) {
 	var MongoClient = mongodb.MongoClient;
 
-	this.url = 'mongodb://localhost:27017/test';
+	this.url = 'mongodb://localhost:27017/caeser';
 	this.name = name;
 	this.collection = '';
 

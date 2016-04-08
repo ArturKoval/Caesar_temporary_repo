@@ -1,7 +1,7 @@
 'use strict';
 var Rotor = require('../libs/rotor/rotor');
 
-var CoursesController = Rotor.Controller.extend({
+var Login = Rotor.Controller.extend({
 	users: {
 		john: {
 	       	login: 'john',
@@ -60,7 +60,7 @@ var CoursesController = Rotor.Controller.extend({
         } else {
             this.response.writeHead(200, {
             	'Set-Cookie': 'token=' + data.token,
-            	'Location': 'http://localhost:3000/',
+            	//'Location': 'http://localhost:3000',
             	'Content-Type': 'application/json'
             });
             this.response.write(JSON.stringify(this.formatData(data)));
@@ -69,4 +69,4 @@ var CoursesController = Rotor.Controller.extend({
     },
 });
 
-module.exports = new CoursesController();
+module.exports = new Login();
