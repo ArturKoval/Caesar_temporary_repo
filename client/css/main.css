@@ -32,6 +32,7 @@
 .location:nth-child(5) {
     margin-right: 0px;
 }
+
 .infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn, .deleteBtn{
     color: white;
     font-weight: lighter;
@@ -51,12 +52,14 @@
     background-color: #191970;
     cursor: pointer;
 }
+
 .active{
   background-color: #191970;
 }
 .infoBtn{
     margin-left: 40%;
 }
+
 .editBtn, .deleteBtn{
      color: #346EA3;
      display: inline-block;
@@ -74,6 +77,7 @@
 .deleteBtn{
    margin-left: 2px;
 }
+
 .groupContainer{
     width: 85%;
     height: 300px;

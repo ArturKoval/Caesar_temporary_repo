@@ -1,22 +1,22 @@
 .locationsWindow {
-	width: 100%;
+    width: 100%;
     background: #003366;
     z-index: 2;
 }
 
 .location {
-	width: 170px;
+    width: 170px;
     height: 100px;
     background: #3C78B5;
     display: inline-block;
     margin-right: 25px;
-   	cursor: pointer;
+    cursor: pointer;
     box-shadow: 0 0 2px rgba(0,0,0,0.5);
 }
 
 .active-location {
-	border: 2px solid #323232;
-	box-shadow: none;
+    border: 2px solid #323232;
+    box-shadow: none;
 
 }
 

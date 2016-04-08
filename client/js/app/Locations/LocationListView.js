@@ -2,8 +2,8 @@
 
 (function (This, app) {
     This.LocationListView = Backbone.View.extend({
-    	tagName: 'div',
-    	className: 'locationsWindow',
+        tagName: 'div',
+        className: 'locationsWindow',
         locations: [],
 
         events: {
@@ -13,7 +13,7 @@
 
         initialize: function () {
             $('#modal-window').addClass('modal-window');
-        	this.collection = This;
+            this.collection = This;
             app.mediator.subscribe('Locations: select locations', function (selectedLocations) { 
                 if (!(_.contains(this.locations, selectedLocations))) {
                     this.locations.push(selectedLocations); 
@@ -37,7 +37,7 @@
             }, this); 
 
             this.$el.append($wrapper.append(templates.locationTpl));   
-        	return this;
+            return this;
         },
 
         showGroupsInLocation: function () {
