@@ -38,6 +38,11 @@ _.extend(Controller.prototype, {
         'PUT': 'saveUpdated',
         'DELETE': 'deleteItem'
     },
+    responseHead: {
+        statusOK: '',
+        statusErr: '',
+        cookies: ''
+    },
     response: '',
     method: '',
     answer: '',
@@ -67,10 +72,11 @@ _.extend(Controller.prototype, {
     sendResponse: function (err, data) {
         if (err) {
             console.log(err);
-            this.response.writeHead(500);
+            this.response.writeHead(this.responseHead.statusErr, {'Set-Cookie': this.responseHead.cookies});
+            this.response.write(err);
             this.response.end();
         } else {
-            this.response.writeHead(200, {'Content-Type': 'application/json'});
+            this.response.writeHead(this.responseHead.statusOK, {'Content-Type': 'application/json', 'Set-Cookie': this.responseHead.cookies});
             this.response.write(JSON.stringify(this.formatData(data)));
             this.response.end();
         }

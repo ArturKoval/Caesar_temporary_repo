@@ -6,7 +6,8 @@ function Router () {
     this.routes = {
         locations: require('./locations/CoursesController'),
         preload: require('./preload/PreloadController'),
-        login: require('./login/Login')
+        login: require('./login/Login'),
+        groups: require('./groups/GroupsController'),
     };
 }
 

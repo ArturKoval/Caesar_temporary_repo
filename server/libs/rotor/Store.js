@@ -93,7 +93,7 @@ _.extend(Store.prototype, {
                     console.log('Failed to find documents: ' + err);
                     callback(err, result);
                 } else {
-                    //console.log('Succesfully found: ' + JSON.stringify(result));
+                    console.log('Succesfully found: ' + result.length);
                     callback(err, result);
                 }
 

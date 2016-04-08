@@ -5,22 +5,35 @@ var Rotor = require('../libs/rotor/rotor'),
 	Groups = require('../groups/Models/GroupsList');
 
 var PreloadController = Rotor.Controller.extend({
-	initialize: function (request, resp, action) {
-        var reqBody = this.getRequestData(request);
+    responseHead: {
+        statusOK: '200',
+        statusErr: '300',
+        cookies: ''
+    },
 
+	initialize: function (req, resp, action) {
+        var reqBody;
+
+        this.request = req;
         this.response = resp;
-        this.sendResponse('', this.getPreloadData(request));  
+        reqBody = this.getRequestData(this.request);
+        this.getPreloadData(this.request);
     },
 
     getPreloadData: function (request) {
     	var userId = this.parseCookies(request).token,
     		collections;
 
-		collections = {
-		    'users': this.getUserData(userId),
-		    'locations': this.getLocationsData(),
-		    'groups': this.getGroupsData()
-		};
+        if (userId) {
+            collections = {
+                'users': this.getUserData(userId),
+                'locations': this.getLocationsData(),
+                'groups': this.getGroupsData()
+            };
+            this.sendResponse('', collections);      
+        } else {
+            this.sendResponse('Not authorized');      
+        }
 		
 		return collections;
     },
@@ -38,13 +51,13 @@ var PreloadController = Rotor.Controller.extend({
     getLocationsData: function () {
     	var data = Locations.getCollection();
 
-    	return data;
+    	return this.formatData(data);
     },
 
     getGroupsData: function () {
     	var data = Groups.getCollection();
 
-    	return data;
+    	return this.formatData(data);
     }
 });
 
