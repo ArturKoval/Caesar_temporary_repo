@@ -67,7 +67,7 @@
                 model: group
             });
 
-            $('#modal-window').append(groupDeleteView.render().el);
+            $('body').append(groupDeleteView.render().el);
         }
     });
 })(CS.Groups, app);

@@ -1,7 +1,12 @@
 .locationsWindow {
+    background-color: rgba(255, 255, 255, 0.5);
+    height: 100%;
     width: 100%;
-    background: #003366;
-    z-index: 2;
+    position: absolute;
+    display: flex;
+    top: 0;
+    align-items: center;
+    justify-content: center;
 }
 
 .location {
@@ -15,7 +20,9 @@
 }
 
 .active-location {
-    border: 2px solid #323232;
+    background: #fff!important;
+    box-shadow: none;
+    color: #3C78B5!important;
     box-shadow: none;
 
 }
@@ -50,12 +57,6 @@
     color: #fff;
     cursor: pointer;
 }
-.locationsWindow {
-    width: 100%;
-    background: #003366;
-    padding-top: 25px;
-
-}
 
 .wrapper-location {
     width:100%;
@@ -76,7 +77,7 @@
 }
 
 .location-buttons .save {
-    color: grey;
+    color: white;
 }
 
 .active-button {
