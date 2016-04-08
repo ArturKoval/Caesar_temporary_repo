@@ -42,14 +42,18 @@ _.extend(Controller.prototype, {
     method: '',
     answer: '',
     collection: '',
-    initialize: function (request, resp, action) {
-        var reqBody = this.getRequestData(request);
+    request: '',
+    
+    initialize: function (req, resp, action) {
+        var reqBody;
 
+        this.request = req;
         this.response = resp;
-        this.method = this.methods[request.method];
+        reqBody = this.getRequestData(this.request);
+        this.method = this.methods[this.request.method];
 
-        if (request.method == 'POST' || request.method == 'PUT') {
-            request.on('end', function() {
+        if (this.request.method == 'POST' || this.request.method == 'PUT') {
+            this.request.on('end', function() {
                 reqBody = JSON.parse(Buffer.concat(reqBody));
                 delete reqBody['id'];
                 this.answer = this.collection[this.method](this.sendResponse.bind(this), reqBody, action);
@@ -97,6 +101,19 @@ _.extend(Controller.prototype, {
 
         return body;
     },
+
+    parseCookies: function (request) {
+        var rc = request.headers.cookie,
+            list = {},
+            parts;
+
+        rc && rc.split(';').forEach(function (cookie) {
+            parts = cookie.split('=');
+            list[parts.shift().trim()] = decodeURI(parts.join('='));
+        });
+
+        return list;
+    }
 });
 
 module.exports = Controller;

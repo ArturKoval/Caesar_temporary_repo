@@ -13,7 +13,7 @@ var Store = function(name) {
 
 	this.getConnection = function (callback) {
        	MongoClient.connect(this.url, function (err, db) {
-            if (typeof err === null) {
+            if (err !== null) {
                 console.log('Unable to connect to the mongoDB server. Error:', err);
             } else {
             	var collection = db.collection(this.name);
@@ -32,7 +32,7 @@ _.extend(Store.prototype, {
 	create: function(model, callback) {
         this.getConnection(function (collection, database) {
             collection.insert(model.toJSON(), function (err, result) {
-                if (typeof err === null) {
+                if (err !== null) {
                     console.log('Failed to insert document: ' + err);
                     callback(err, result);
                 } else {
@@ -57,7 +57,7 @@ _.extend(Store.prototype, {
                 {$set: data},
                 {returnNewDocument: true, upsert: false},
                 function (err, result) {
-                    if (typeof err === null) {
+                    if (err !== null) {
                         console.log('Failed to update document: ' + err);
                         callback(err, data);
                     } else {
@@ -73,7 +73,7 @@ _.extend(Store.prototype, {
 	find: function(model, callback) {
 		this.getConnection(function (collection, database) {
             collection.find({"_id": ObjectId(model.id)}, function (err, result) {
-                if (typeof err === null) {
+                if (err !== null) {
                     console.log('Failed to find document: ' + err);
                     callback(err, result);
                 } else {
@@ -89,7 +89,7 @@ _.extend(Store.prototype, {
 	findAll: function(callback) {
 		this.getConnection(function (collection, database) {
             collection.find({}).toArray(function(err, result) {
-                if (typeof err === null) {
+                if (err !== null) {
                     console.log('Failed to find documents: ' + err);
                     callback(err, result);
                 } else {
@@ -105,7 +105,7 @@ _.extend(Store.prototype, {
 	destroy: function(model, callback) {
 		this.getConnection(function (collection, database) {
             collection.findOneAndDelete({"_id": ObjectId(model.id)}, function (err, result) {
-                if (typeof err === null) {
+                if (err !== null) {
                     console.log('Failed to delete document: ' + err);
                     callback(err, result);
                 } else {

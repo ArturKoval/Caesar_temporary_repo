@@ -16,7 +16,11 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
     },
 
     getCollection: function (callback) {
-    	callback('', this.toJSON());
+    	if (callback) {
+    		callback('', this.toJSON());
+    	}
+    	
+    	return this.toJSON();
     },
 
     deleteItem: function (callback, id) {

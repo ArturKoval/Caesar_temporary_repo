@@ -20,7 +20,7 @@ var System = (function () {
 		ajax.addEventListener('readystatechange', function () {
 			if (ajax.readyState === 4 && ajax.status === 200) {
 				store = JSON.parse(ajax.responseText);
-				app.user = store.users[1];
+				app.user = store.users;
 				callback();
 			}
 		}.bind(this), false);

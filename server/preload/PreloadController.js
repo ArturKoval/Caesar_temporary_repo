@@ -1,160 +1,50 @@
 'use strict';
-var Rotor = require('../libs/rotor/rotor');
+var Rotor = require('../libs/rotor/rotor'),
+	Users = require('../users/Models/UsersList'),
+	Locations = require('../locations/Models/CoursesList'),
+	Groups = require('../groups/Models/GroupsList');
 
 var PreloadController = Rotor.Controller.extend({
 	initialize: function (request, resp, action) {
         var reqBody = this.getRequestData(request);
 
         this.response = resp;
-        this.answer = this.getPreloadData(this.sendResponse.bind(this));  
+        this.sendResponse('', this.getPreloadData(request));  
     },
 
-    getPreloadData: function (callback) {
-    	var collections = {
-		    'users': [{
-		        "firstName": "John",
-		        "lastName": "Doe",
-		        role: "ITA Teacher",
-		        "location": "Dnipro",
-		        "photo": "/default-photo.png"
-		    }, {
-		        "firstName": "Dmytro",
-		        "lastName": "Petin",
-		        role: "ITA Coordinator",
-		        "location": "Dnipro",
-		        "photo": "/default-photo.png"
-		    }],
+    getPreloadData: function (request) {
+    	var userId = this.parseCookies(request).token,
+    		collections;
 
-		    'locations': [{
-		        "city": "Dnipro"
-		    }, {
-		        "city": "Kiev"
-		    }],
-
-		    'groups': [{
-		        name: 'DP-093-JS',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Web UI',
-		        startDate: '01.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Nodarii'],
-		        stage: 'in process'
-		    }, {
-		        name: 'DP-094-MQC',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'in process'
-		    }, {
-		        name: 'DP-092-NET',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'ASP.NET developing',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'in process'
-		    }, {
-		        name: 'Lv-087-MQC',
-		        location: 'Lviv',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Oleg Krukchov'],
-		        experts: ['Testman'],
-		        stage: 'finished'
-		    }, {
-		        name: 'Rv-091-MQC',
-		        location: 'Rivne',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Danylo Golubev'],
-		        experts: ['Testman'],
-		        stage: 'in process'
-		    }, {
-		        name: 'DP-095-JS',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Web UI',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'planned'
-		    }, {
-		        name: 'DP-065-QC',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'planned'
-		    }, {
-		        name: 'DP-027-JS',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Web UI',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'planned'
-		    }, {
-		        name: 'DP-035-QC',
-		        location: 'Dnipro',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Dmytro Petin'],
-		        experts: ['Testman'],
-		        stage: 'planned'
-		    }, {
-		        name: 'Lv-084-MQC',
-		        location: 'Lviv',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Oleg Krukchov'],
-		        experts: ['Testman'],
-		        stage: 'finished'
-		    }, {
-		        name: 'Lv-077-MQC',
-		        location: 'Lviv',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Oleg Krukchov'],
-		        experts: ['Testman'],
-		        stage: 'finished'
-		    }, {
-		        name: 'Lv-023-MQC',
-		        location: 'Lviv',
-		        budgetOwner: 'SoftServe',
-		        direction: 'Manual Control Quality Systems',
-		        startDate: '15.02.2016',
-		        finishDate: '01.05.2016',
-		        teachers: ['Oleg Krukchov'],
-		        experts: ['Testman'],
-		        stage: 'finished'
-		    }]
+		collections = {
+		    'users': this.getUserData(userId),
+		    'locations': this.getLocationsData(),
+		    'groups': this.getGroupsData()
 		};
+		
+		return collections;
+    },
 
-		callback('', collections);
+    getUserData: function (id) {
+    	var user = Users.get(id),
+    		data;
+
+    	data = user.toJSON();
+    	data.id = data._id;
+
+    	return data;
+    },
+
+    getLocationsData: function () {
+    	var data = Locations.getCollection();
+
+    	return data;
+    },
+
+    getGroupsData: function () {
+    	var data = Groups.getCollection();
+
+    	return data;
     }
 });
 

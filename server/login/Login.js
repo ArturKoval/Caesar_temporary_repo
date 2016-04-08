@@ -1,28 +1,9 @@
 'use strict';
-var Rotor = require('../libs/rotor/rotor');
+var Rotor = require('../libs/rotor/rotor'),
+	Users = require('../users/Models/UsersList');
 
 var Login = Rotor.Controller.extend({
-	users: {
-		john: {
-	       	login: 'john',
-	       	firstName: "John",
-	        lastName: "Doe",
-	        role: "ITA Teacher",
-	        location: "Dnipro",
-	        photo: "/default-photo.png",
-	        password: '1234'
-
-	    }, 
-	    dmytro: {
-	    	login: 'dmytro',
-	        firstName: "Dmytro",
-	        lastName: "Petin",
-	        role: "ITA Coordinator",
-	        location: "Dnipro",
-	        photo: "/default-photo.png",
-	        password: '1234'
-	    }
-	},
+	user: '',
 
 	initialize: function (request, resp, action) {
         var reqBody = this.getRequestData(request);
@@ -36,10 +17,12 @@ var Login = Rotor.Controller.extend({
     },
 
 	auth: function (data) {
-		if (this.users[data.login]){
-			if (data.password == this.users[data.login]['password']) {
+		this.user = Users.findWhere({login: data.login});
+
+		if (this.user){
+			if (data.password == this.user.get('password')) {
 				console.log('ok');
-				this.sendResponse('', {login:this.users[data.login], token: new Date().getTime()});
+				this.sendResponse('', {login: this.user.login, token: this.user.get('_id')});
 			} else {
 				console.log('bad');
 				this.sendResponse('Not valid password');
