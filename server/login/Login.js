@@ -4,6 +4,11 @@ var Rotor = require('../libs/rotor/rotor'),
 
 var Login = Rotor.Controller.extend({
 	user: '',
+    responseHead: {
+        statusOK: '200',
+        statusErr: '401',
+        cookies: ''
+    },
 
 	initialize: function (request, resp, action) {
         var reqBody = this.getRequestData(request);
@@ -22,6 +27,7 @@ var Login = Rotor.Controller.extend({
 		if (this.user){
 			if (data.password == this.user.get('password')) {
 				console.log('ok');
+                this.responseHead.cookies = 'token=' + this.user.get('_id');
 				this.sendResponse('', {login: this.user.login, token: this.user.get('_id')});
 			} else {
 				console.log('bad');
@@ -32,24 +38,7 @@ var Login = Rotor.Controller.extend({
 			this.sendResponse('No user with such login');
 		}
 		
-	},
-
-	sendResponse: function (err, data) {
-        if (err) {
-            console.log(err);
-            this.response.writeHead(401);
-            this.response.write(err);
-            this.response.end();
-        } else {
-            this.response.writeHead(200, {
-            	'Set-Cookie': 'token=' + data.token,
-            	//'Location': 'http://localhost:3000',
-            	'Content-Type': 'application/json'
-            });
-            this.response.write(JSON.stringify(this.formatData(data)));
-            this.response.end();
-        }
-    },
+	}
 });
 
 module.exports = new Login();

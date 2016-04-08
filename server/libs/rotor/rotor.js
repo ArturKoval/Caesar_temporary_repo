@@ -28,12 +28,16 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
 
     	model.destroy({success: function (result) {
     		callback('', result);
+    	}, error: function (err) {
+    		callback(err);
     	}}, {wait: true});
     },
 
     saveNew: function (callback, data) {
     	this.create(data, {success: function (result) {
     		callback('', result.attributes);
+    	}, error: function (err) {
+    		callback(err);
     	}}, {wait: true});
     },
 
@@ -42,6 +46,8 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
 
     	model.save(data, {success: function (result) {
     		callback('', result.attributes);
+    	}, error: function (err) {
+    		callback(err);
     	}}, {wait: true});
     }
 });
@@ -55,24 +61,44 @@ Rotor.sync = function(method, model, options) {
 		switch (method) {
 			case "read":    
 				resp = model.id ? store.find(model, function (err, result) {
-					options.success(result);
+					if (err !== null) {
+						options.error(err);
+					} else {
+						options.success(result);
+					}
 				}) : store.findAll(function (err, result) {
-					options.success(result);
+					if (err !== null) {
+						options.error(err);
+					} else {
+						options.success(result);
+					}
 				}); 
 				break;
 
 			case "create":  resp = store.create(model, function (err, result) {
-				options.success(result);
+				if (err !== null) {
+					options.error(err);
+				} else {
+					options.success(result);
+				}
 			});                            
 				break;
 
 			case "update":  resp = store.update(model, function (err, result) {
-				options.success(result);
+				if (err !== null) {
+					options.error(err);
+				} else {
+					options.success(result);
+				}
 			});                            
 				break;
 
 			case "delete":  resp = store.destroy(model, function (err, result) {
-				options.success(result);
+				if (err !== null) {
+					options.error(err);
+				} else {
+					options.success(result);
+				}
 			});                           
 				break;
 				

@@ -7,30 +7,37 @@ console.log('server reset...');
 function reset (request, response) {
 	var MongoClient = mongodb.MongoClient,
 		url = 'mongodb://localhost:27017/caeser';
+        
 	console.log('fsdf')	
 	getConnection('users', function (collection, db) {
-		collection.insert(users, function (err, result) {
-			console.log(err)
-				console.log('Succesfully inserted users: ' + result.toString());
-				db.close();
-			}
-		);
+        collection.remove({}, function (err, result) {
+            collection.insert(users, function (err, result) {
+                console.log(err)
+                    console.log('Succesfully inserted users: ' + result.toString());
+                    db.close();
+                }
+            );
+        });    
 	});
 	
 	getConnection('groups', function (collection, db) {
-		collection.insert(groups, function (err, result) {
-				console.log('Succesfully inserted users: ' + result);
-				db.close();
-			}
-		);
+        collection.remove({}, function (err, result) {    
+    		collection.insert(groups, function (err, result) {
+    				console.log('Succesfully inserted groups: ' + result);
+    				db.close();
+    			}
+    		);
+        });
 	});
 	
 	getConnection('locations', function (collection, db) {
-		collection.insert(locations, function (err, result) {
-				console.log('Succesfully inserted users: ' + result);
-				db.close();
-			}
-		);
+        collection.remove({}, function (err, result) {
+    		collection.insert(locations, function (err, result) {
+    				console.log('Succesfully inserted locations: ' + result);
+    				db.close();
+    			}
+    		);
+        });
 	});
 
 	function getConnection (name, callback) {
@@ -89,8 +96,8 @@ var groups = [{
     "location": "Dnipro",
     "budgetOwner": "SoftServe",
     "direction": "ASP.NET developing",
-    "startDate": "15.02.2016",
-    "finishDate": "01.05.2016",
+    "startDate": "15-02-2016",
+    "finishDate": "01-05-2016",
     "teachers": ["Dmytro Petin"],
     "experts": ["Testman"],
     "stage": "in process"
