@@ -1,0 +1,49 @@
+.groupInfoView .group_coordination, .groupInfoView  .group_info {
+	display: inline-block;
+}
+
+.groupInfoView .group_coordination {
+	margin-right: 20%;
+}
+
+.groupInfoView h3 {
+    margin: 12px 0px;
+	text-align: left;
+    font-size: 16px;
+
+}
+
+.groupInfoView .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #333333;
+    font-size: 14px;
+}
+
+.groupInfoView .tg td {
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #dedede;
+    padding: 9px 10px;
+}
+
+.groupInfoView .tg th {
+    border-color: #dedede;
+    height: 14px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    background-color: #f0f0f0;
+}
+
+.groupInfoView td:nth-child(2) {
+    font-style: italic; 
+}
+
+.groupInfoView .group_info td:nth-child(2) {
+    font-style: normal; 
+}
