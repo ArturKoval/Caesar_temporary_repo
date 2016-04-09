@@ -16,7 +16,6 @@
         
         initialize: function () {
             this.mediator = app.mediator;
-			this.mediator.subscribe
 
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
@@ -43,26 +42,23 @@
                 $el = $('.infoBtn');
             }
 
-            btnClassName = $el.attr("class");
-			if (btnClassName === 'editBtn') {
-			} else {
-				this.publishEvent(btnClassName.substr(0, btnClassName.length - 3)); 
-			}
-           
+            btnClassName = $el.attr("name")
+            this.publishEvent(btnClassName); 
+
             switch (btnClassName) {
-                case 'editBtn':
+                case 'edit':
                     this.mediator.publish('Groups: Edit button selected', this.model);
                      break;
-                case 'infoBtn':
+                case 'info':
                     this.showStubView({view: 'GroupInfoView', model: this.model});
                     break;
-                case 'studentsBtn':
+                case 'students':
                     this.showStubView({view: 'StudentListView', collection: students});
                     break;
-                case 'sheduleBtn':
+                case 'shedule':
                     this.showStubView({view: 'ScheduleView', collection: store.groups});
                     break; 
-                case 'messageBtn':
+                case 'message':
                     this.showStubView({view: 'MessageView'});
                     break;
             }
@@ -84,6 +80,7 @@
 
         showDeleteDialog: function () {
             this.mediator.publish('Groups: DeleteDialogCalled', this.model);
+            this.mediator.publish('Messenger: Confirmation window open', {type: 'confirmation', object: this.model.get('name')});
         }
     });
 })(CS.Groups);

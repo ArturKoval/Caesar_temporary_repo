@@ -19,7 +19,10 @@
             var groupListView = new This.GroupListView({
                 collection: new This.GroupList(store.groups).findGroupsByLocations([app.user.location])
             });
-			
+			$('#createGroup').on('click', function () {
+                 var editCreateView = new This.CreateEditView();
+                 $('#modal-window').html(editCreateView.render().$el);
+            });
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
 			return app.user.location;
@@ -93,8 +96,8 @@
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
 		},
         
-        showCreateEditView: function () {
-            var editCreateView = new This.CreateEditView();
+        showCreateEditView: function (group) {
+            var editCreateView = new This.CreateEditView(group);
             $('#modal-window').html(editCreateView.render().$el);
         },
 
