@@ -6,7 +6,12 @@
         className: 'groupInfoView',
         template: templates.groupInfoViewTpl,
 
-        render: function() {
+        initialize: function () {
+        	this.model.on('change', this.render, this);
+        },
+
+        render: function () {
+        	this.$el.empty();
             this.$el.html(this.template(this.model.toJSON()));
             return this;
         }

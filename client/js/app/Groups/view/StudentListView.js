@@ -6,7 +6,12 @@
         className: 'students_list',
         template: templates.studentListViewTpl,
 
-        render: function() {
+        initialize: function () {
+           // this.collection.on('change', this.render, this);
+        },
+
+        render: function () {
+            this.$el.empty();
             this.collection.forEach(function(student) {
                 this.$el.append(this.template(student));
             }, this);

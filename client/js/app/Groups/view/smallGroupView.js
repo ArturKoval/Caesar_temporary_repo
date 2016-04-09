@@ -15,8 +15,8 @@
         },
 
         render: function () {
+            this.$el.empty();
             this.$el.append(this.model.get('name'));
-            
             return this;
         },
 

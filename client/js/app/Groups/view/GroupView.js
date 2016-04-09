@@ -16,25 +16,25 @@
         
         initialize: function () {
             this.mediator = app.mediator;
-
             this.model.on('change', this.render, this);
-            this.model.on('destroy', this.remove, this);
-
-            $('#main-section').append(this.render().$el); // ContentView responsibility
-
-            this.$groupContainer = $('.groupContainer');
-            this.showStubView({view: 'GroupInfoView', model: this.model});
+            this.model.on('destroy', this.remove, this); 
+            $('#main-section').append(this.$el); // ContentView responsibility
+            this.render();
+           
         },
 
         render: function () {
+            this.$el.empty(); 
             this.$el.append(templates.groupTpl());
+            this.$groupContainer = $('.groupContainer');
+            this.showStubView({view: 'GroupInfoView', model: this.model});
             return this;
         },
 
         stubsListener: function (e) {
             var $buttons = $('.groupView > .active'),
                 $el,
-                btnClassName;
+                action;
 
             if (e) {
                 $el = $(e.currentTarget);
@@ -42,10 +42,10 @@
                 $el = $('.infoBtn');
             }
 
-            btnClassName = $el.attr("name")
-            this.publishEvent(btnClassName); 
+            action = $el.attr("name")
+            this.publishEvent(action); 
 
-            switch (btnClassName) {
+            switch (action) {
                 case 'edit':
                     this.mediator.publish('Groups: Edit button selected', this.model);
                      break;

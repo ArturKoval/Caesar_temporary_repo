@@ -8,7 +8,6 @@
         },
 
         render: function () {
-
         	return this;
         },
 

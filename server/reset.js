@@ -70,7 +70,7 @@ var users = [{
 	"password": "1234"
 }];
 			
-var locations = [{"city": "Dnipro"}, {"city": "Kiev"}];
+var locations = [{"city": "Dnipro"}, {"city": "Kiev"}, {"city": "Sofia"}, {"city": "Chernivtsy"}, {"city": "Rivne"}];
 var groups = [{
     "name": "DP-093-JS",
     "location": "Dnipro",

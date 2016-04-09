@@ -3,6 +3,10 @@
 (function (This) {
     This.ContentView = Backbone.View.extend({
     	el: '#content-section',
+    	
+    	initialize: function () {
+    		this.model.on('change', this.render, this);
+    	},
 
 	    render: function () {
 	    	var contentHeaderView = new This.ContentHeaderView({model: this.model})

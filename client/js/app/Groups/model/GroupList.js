@@ -21,6 +21,16 @@
             return new This.GroupList(this.filter(function (group) {
                 return group.isMyLocation(locations);
             }));
+        },
+
+        findGroupByName: function (name) {
+            var res;
+            this.forEach(function (group) {
+                if (group.get('name') === name) {
+                    res = group;
+                }
+            });
+            return res;
         }
     });
 })(CS.Groups);
