@@ -7,7 +7,8 @@ function Router () {
         locations: require('./locations/CoursesController'),
         preload: require('./preload/PreloadController'),
         login: require('./login/Login'),
-        groups: require('./groups/GroupsController'),
+		users: require('./users/UsersController'),
+        groups: require('./groups/GroupsController')
     };
 }
 

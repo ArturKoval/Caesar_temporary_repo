@@ -1,8 +1,9 @@
+data/db/
+server/public
 node_modules
 npm-debug.log
-server/public
 .idea
 .DS_Store
-data/db/
+
 
 

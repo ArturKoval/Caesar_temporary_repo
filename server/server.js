@@ -42,6 +42,14 @@ function start (request, response) {
             filePath = dir + '/home.html';
         }
 
+        if (/admin/.test(request.url)) {
+            if (request.url === '/admin') {
+                filePath = '../admin/admin.html';
+			} else {
+				filePath = '../' + request.url;
+			}			
+        }	
+		
         extention = path.extname(filePath);
         contentType = types[extention.substr(1, extention.length)];
         sendFile(response, contentType, filePath);

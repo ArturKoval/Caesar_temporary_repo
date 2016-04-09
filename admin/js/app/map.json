@@ -1,0 +1,34 @@
+var map = {
+    users: {
+	    settings: {
+		    url: '/users',
+			urlRoot: '/users'
+		},
+		fields: {		
+	        firstName: '',
+		    lastName: '',
+		    role: '',
+		    location: '',
+		    photo: '',
+		    login: '',
+			password: ''		    
+		}
+	},	
+	groups: {
+	    settings: {
+		    url: '/groups',
+			urlRoot: '/groups'
+		},
+		fields: {		
+	        name: '',
+		    location: '',
+			budgetOwner: '',
+			direction: '',
+			startDate: '',
+			finishDate: '',
+			teachers: '',
+			experts: '',
+			stage: ''
+		}
+	}
+};
