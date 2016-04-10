@@ -56,7 +56,7 @@
                     this.showStubView({view: 'StudentListView', collection: students});
                     break;
                 case 'shedule':
-                    this.showStubView({view: 'ScheduleView', collection: store.groups});
+                    this.showStubView({view: 'ScheduleView', model: this.model});
                     break; 
                 case 'message':
                     this.showStubView({view: 'MessageView'});
