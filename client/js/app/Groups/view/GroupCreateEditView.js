@@ -120,15 +120,15 @@
 
             if (this.model.isValid(true)) {
                 this.model.save();
-                app.mediator.publish('Groups: Edit/Create dialog accepted', this.model);
-                this.close();
+                app.mediator.publish('Groups: group saved', this.model);
+                this.remove();
             }
         },
 
         close: function () {
             $(document).off('keydown');
             this.remove();
-            app.mediator.publish('Groups: Edit/Create dialog canceled',this.model);
+            app.mediator.publish('Groups: dialog closed');
         }
     });
 })(CS.Groups);

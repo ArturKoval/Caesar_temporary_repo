@@ -2,8 +2,8 @@
 
 (function (This) {
     This.GroupDeleteView = Backbone.View.extend({
-    	tagName: 'div',
-    	className: 'modal-wrapper',
+        tagName: 'div',
+        className: 'modal-wrapper',
         template: templates.groupDeleteViewTpl,
         documentEl: $(document),
         events: {
@@ -17,18 +17,19 @@
         },
 
         render: function () {
-        	this.$el.append(this.template(this.model.toJSON()));
-        	
+            this.$el.append(this.template(this.model.toJSON()));
+            
             return this;
         },
 
         deleteGroup: function () {
+            app.mediator.publish('Groups: delete group');
             this.model.destroy();
-            this.close();
+            this.remove();
         },
 
         close: function () {
-            app.mediator.publish('Groups: DeleteDialogClosed');
+            app.mediator.publish('Groups: dialog closed');
             this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
         },

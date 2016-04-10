@@ -28,6 +28,7 @@
             this.$el.append(templates.groupTpl());
             this.$groupContainer = $('.groupContainer');
             this.showStubView({view: 'GroupInfoView', model: this.model});
+            //this.stubsListener('students');
             return this;
         },
 
@@ -42,9 +43,15 @@
                 $el = $('.infoBtn');
             }
 
-            action = $el.attr("name")
-            this.publishEvent(action); 
-
+            if (typeof e !== "string") {
+                action = $el.attr('name');
+                if (action !== 'edit') {
+                    this.publishEvent(action); 
+                }
+            } else {
+                action = e;
+            }
+        
             switch (action) {
                 case 'edit':
                     this.mediator.publish('Groups: Edit button selected', this.model);
@@ -56,7 +63,7 @@
                     this.showStubView({view: 'StudentListView', collection: students});
                     break;
                 case 'shedule':
-                    this.showStubView({view: 'ScheduleView', collection: store.groups});
+                    this.showStubView({view: 'ScheduleView', model: this.model});
                     break; 
                 case 'message':
                     this.showStubView({view: 'MessageView'});
