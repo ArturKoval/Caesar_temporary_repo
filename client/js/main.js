@@ -8,9 +8,8 @@ var CS = {},
     ESC = 27,
     ENTER = 13;
 
-System.register(CS, ['ErrorPage', 'Groups', 'User']);
+System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user']);
-System.register(i, ['locations', 'directions']);
 
 $(function () {
     System.preload().then(main);
@@ -26,7 +25,4 @@ $(function () {
     }
 });
 
-i.locations = [
-  'Chernivtsy','Ivano-Frankivsk', 'Dnipro', 'Rivne', 'Kyiv', 'Sofia', 'Lviv'
-];
 

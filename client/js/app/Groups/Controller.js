@@ -7,7 +7,6 @@
             'Groups: Edit button selected': 'showCreateEditView',
             'Locations: showLocationsView': 'showLocations',
             'Locations: showGroupsInLocation': 'getLocations',
-            'Locations: chooseLocation': 'addClassButtonEl',
             'Groups: DeleteDialogCalled': 'showDeleteDialog'
         },
 
@@ -70,16 +69,12 @@
         },
 
         showLocations: function () {
-            var locationsView = new i.locations.LocationListView(),
+            var locationsView = new CS.Locations.LocationListView({collection: i.locations}),
                 $modal = $('#modal-window');
 
             if ($modal.is(':empty')){
                 $modal.append(locationsView.render().$el);
             }
-        },
-
-        addClassButtonEl: function () {
-            $('.save').addClass('active-button');
         },
 
         getLocations: function (locations) {
@@ -110,4 +105,4 @@
             groupDeleteView.$el.focus();
         }
     });
-})(CS.Groups, app);
+})(CS.Groups, app, CS.Locations);

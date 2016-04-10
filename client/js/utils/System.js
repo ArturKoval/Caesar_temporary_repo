@@ -29,6 +29,7 @@ var System = (function () {
 	}
 
 	function setLocations (dataFromServer) {
+		i.locations = [];
 		dataFromServer.forEach(function (record) {
 			i.locations.push(record.city);
 		});

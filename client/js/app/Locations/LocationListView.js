@@ -14,7 +14,6 @@
 
         initialize: function () {
             $('#modal-window').addClass('modal-window');
-            this.collection = This;
             app.mediator.subscribe('Locations: select locations', function (selectedLocations) { 
                 if (!(_.contains(this.locations, selectedLocations))) {
                     this.locations.push(selectedLocations); 
@@ -39,6 +38,7 @@
             this.$el.append($wrapper.append(templates.locationTpl));  
 
             $(document).on('keydown', keyEvent.bind(this));
+
             function keyEvent (event) {
                 if (event.which === ENTER) {
                     this.showGroupsInLocation();
@@ -63,4 +63,4 @@
         }
     });
 
-})(i.locations, app);
+})(CS.Locations, app);
