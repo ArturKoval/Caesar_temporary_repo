@@ -34,6 +34,7 @@ var System = (function () {
 			i.locations.push(record.city);
 		});
 	}
+	
     return {
 		register: _register,
 		preload: _preload,

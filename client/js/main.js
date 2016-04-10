@@ -26,4 +26,42 @@ $(function () {
     }
 });
 
+i.directions = [
+    'WebUI',
+    'JavaScript(UI)',
+    'LAMP',
+    '.Net',
+    'iOS',
+    'C/C++',
+    'Delphi',
+    'RDBMS',
+    'MQC',
+    'ATQC',
+    'ISTQB',
+    'DevOps',
+    'UX'
+];
+
+i.teachers = [
+    'M. Demchyna',
+    'M. Lopatynska',
+    'M. Plesha',
+    'V. Ryazhska',
+    'A. Korkuna',
+    'L. Halamaha',
+    'Y. Harasym',
+    'I. Kohut',
+    'L. Klakovych',
+    'V. Koldovskyy',
+    'N. Romanenko',
+    'A. Pertsov',
+    'O. Shvets`',
+    'O. Reuta',
+    'I. Tsvietkov',
+    'Y. Bezgachnyuk',
+    'D. Petin',
+    'M. Omel`chuk',
+    'B. Yulian'
+];
+
 
