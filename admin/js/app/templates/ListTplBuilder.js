@@ -9,11 +9,9 @@ templates.collection.build = function (module) {
 	
 	_.forEach(fields, function (type, field) {
 	    var fieldTpl;
-		
-		if (type === '') {
-			fieldTpl = '<th>' + field + '</th>';
-			tpl.push(fieldTpl);
-		}
+				
+		fieldTpl = '<th>' + field + '</th>';
+		tpl.push(fieldTpl);
 	})
 
     tpl.push('<th class="actions text-center">actions</th>');

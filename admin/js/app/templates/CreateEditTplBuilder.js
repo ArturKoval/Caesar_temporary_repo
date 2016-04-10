@@ -26,19 +26,37 @@ templates.crud.build = function (module) {
 		if (type === '') {
 			fieldTpl = '<input type="text" class="form-control" name="' + field + '" aria-describedby="basic-addon1">',
 			tpl.push(fieldTpl);
-		}
-		
-		if (type === 'list') {
-			/*'<select class="form-control" name="role">',
-                                    '<option>Teacher</option>',
-                                    '<option>Coordinator</option>',
-                                    '<option>Administrator</option>',
-                                    '<option>Recruiter</option>',
-                                    '<option>TSE</option>',
-                                '</select>',*/
-			fieldTpl = '<input type="text" class="form-control" name="' + field + '" aria-describedby="basic-addon1">',
-			tpl.push(fieldTpl);
-		}
+		} else {
+			if (type.control === 'select') {
+				tpl.push('<select class="form-control" name="' + field + '">');
+
+				type.options.forEach(function (item) {
+					tpl.push('<option value=' + item + '>' + item + '</option>')
+				});
+			
+				tpl.push('</select>');
+			}
+			
+			if (type.control === 'date') {
+				tpl.push('<input type="date" class="form-control" name="' + field + '" >');
+			}
+			
+			if (type.control === 'array') {
+				tpl.push('<textarea class="form-control" rows="3" name="' + field + '" ></textarea>	');
+				tpl.push('use ; to separate options'); 
+			}
+			
+			if (type.control === 'bool') {
+				fieldTpl = '<div class="checkbox">';
+                fieldTpl += '<label><input type="checkbox" value="';
+				fieldTpl += type.option + '" name="';
+				fieldTpl += field;
+				fieldTpl += '">' + type.option + '</label>';
+                fieldTpl += '</div>';
+				
+				tpl.push(fieldTpl);
+			}
+		}		
 		
 		tpl.push('</div></div>');
 	})

@@ -7,8 +7,14 @@ var map = {
 		fields: {		
 	        firstName: '',
 		    lastName: '',
-		    role: '',
-		    location: '',
+		    role: {
+			    control: 'select',
+				options: ['Teacher', 'Coordinator', 'Administrator']
+			},
+		    location: {
+			    control: 'select',
+				options: ['Dnipropetrovsk', 'Lviv', 'Kyiv', 'Rivne']
+			},
 		    photo: '',
 		    login: '',
 			password: ''		    
@@ -21,14 +27,34 @@ var map = {
 		},
 		fields: {		
 	        name: '',
-		    location: '',
-			budgetOwner: '',
-			direction: '',
-			startDate: '',
-			finishDate: '',
-			teachers: '',
-			experts: '',
-			stage: ''
+		    location: {
+			    control: 'select',
+				options: ['Dnipropetrovsk', 'Lviv', 'Kyiv', 'Rivne']
+			},
+			budgetOwner: {
+			    control: 'bool',
+				option: 'SoftServe'
+			},
+			direction: {
+			    control: 'select',
+				options: ['MQC', 'UI']
+			},
+			startDate: {
+			    control: 'date'
+			},
+			finishDate: {
+			    control: 'date'
+			},
+			teachers: {
+			    control: 'array'
+			},
+			experts: {
+			    control: 'array'
+			},
+			stage: {
+			    control: 'select',
+				options: ['boarding', 'before-start', 'in-process', 'offering', 'finished']
+			}
 		}
 	}
 };
