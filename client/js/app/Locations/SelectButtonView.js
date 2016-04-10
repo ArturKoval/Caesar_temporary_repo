@@ -1,6 +1,6 @@
 var SelectButtonView = Backbone.View.extend({
 	tagName: 'button',
-	className: 'myGroups btn btn-primary',
+	className: 'btn btn-primary',
     events: {
         'click': 'onSelectLocation',
     },

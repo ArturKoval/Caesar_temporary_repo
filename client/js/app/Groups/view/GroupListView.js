@@ -2,15 +2,15 @@
 
 (function (This) {
     This.GroupListView = Backbone.View.extend({
-        userName: 'Dmytro Petin', //hard code
+        userName: (app.user.firstName +' ' + app.user.lastName), //hard code
         tagName: 'div',
         className: 'group-list-view',
         template: templates.groupListTpl,
         groupsArray: [], //for navigation we will use arrays of groups (yes - array of arrays), each nested arr contains 10 groups
         areMyGroups: false,
-        currentNavPage: 1,
+        paginatorPage: 1,
         stage: 'in process',
-        lastNavPage: 0,
+        lastPaginatorPage: 0,
         shownCollection: 0, // array of groups that is shown
         tmp : [],
 
@@ -19,15 +19,9 @@
             'click .left-nav': 'openPreviousGroupList',
             'click .right-nav': 'openNextGroupList',
             'click .myGroups': 'toggleMyGroups',
-            'click .endedGroups': function () {
-                this.selectStage('finished')
-            },
-            'click .currentGroups': function () {
-                this.selectStage('in process')
-            },
-            'click .futureGroups': function () {
-                this.selectStage('planned')
-            }
+            'click .endedGroups': function () {this.selectStage('finished')},
+            'click .currentGroups': function () {this.selectStage('in process')},
+            'click .futureGroups': function () {this.selectStage('planned')}
         },
 
         initialize: function () {
@@ -35,27 +29,31 @@
         },
 
         render: function () {
-            $('.group-collection').empty();
-            this.groupsArray = this.collection;
-            this.groupsArray = this.groupsArray.findGroupsByStage(this.stage);
-          
 
-            if (this.areMyGroups) {
-                this.groupsArray = this.groupsArray.findMyGroups(this.userName);
-            }
+            app.mediator.publish('Groups: cleared');
+
+            this.groupsArray = this.collection;
+
+            this.groupsArray = app.Filter(this.collection, {
+                'stage': this.stage,
+                'areMyGroups': this.areMyGroups,
+                'paginatorPage' : 'curent page'
+            });
+
 
             this.checkGroupsAmount();
-            if (this.lastNavPage <= 1 ) {
+
+            if (this.lastPaginatorPage <= 1 ) {
                 $('.groups-nav').addClass('hidden');
             } else {
                 $('.groups-nav').removeClass('hidden');
             }
 
-            $('.page-nav').html(this.currentNavPage + '   /   ' + this.lastNavPage);    //will be in template
+            $('.page-nav').html(this.paginatorPage + '   /   ' + this.lastPaginatorPage);    //will be in template
 
             if (this.groupsArray.length) {
-            this.groupsArray[this.shownCollection].forEach(this.renderOne, this);
-            }               
+                this.groupsArray[this.shownCollection].forEach(this.renderOne, this);
+            }
 
             return this;
         },
@@ -79,21 +77,26 @@
                 this.groupsArray.push(chunk);
             }
 
-            this.lastNavPage = this.groupsArray.length;
+            this.lastPaginatorPage = this.groupsArray.length;
         },
 
+
         openPreviousGroupList: function () {
-            this.shownCollection--;
-            this.currentNavPage--;
-            $('.page-nav').html(this.currentNavPage + ' / ' + this.lastNavPage);
-            this.render();
+            if (this.paginatorPage !== 1) {
+                this.shownCollection--;
+                this.paginatorPage--;
+                $('.page-nav').html(this.paginatorPage + ' / ' + this.lastPaginatorPage);
+                this.render();
+            }
         },
 
         openNextGroupList: function () {
-            this.shownCollection++;
-            this.currentNavPage++;
-            $('.page-nav').html(this.currentNavPage + '   /   ' + this.lastNavPage);
-            this.render();
+            if (this.paginatorPage !== this.lastPaginatorPage) {
+                this.shownCollection++;
+                this.paginatorPage++;
+                $('.page-nav').html(this.paginatorPage + '   /   ' + this.lastPaginatorPage);
+                this.render();
+            }
         },
 
         toggleMyGroups: function () {
@@ -108,3 +111,4 @@
         }
     });
 })(CS.Groups);
+
