@@ -5,7 +5,7 @@
         subscribes: {
             'Groups: group selected': 'showSelectedGroup',
             'Groups: Edit button selected': 'showCreateEditView',
-            'Locations: showLocationsView': 'showLocations',
+            'Locations: Show-button selected': 'showLocations',
             'Locations: showGroupsInLocation': 'getLocations',
             'Groups: DeleteDialogCalled': 'showDeleteDialog'
         },
@@ -79,7 +79,6 @@
 
         getLocations: function (locations) {
 			this.renderView(locations);
-            $('.save').addClass('active-button');
         },
 		
 		renderView: function (locations) {
