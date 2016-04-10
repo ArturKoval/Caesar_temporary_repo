@@ -51,12 +51,9 @@
         },
 
         render: function () {
-            var locations = ['Dnipropetrovsk', 'Lviv', 'Kharkiv'],
-                directions = ['MQC', 'UI'];
-
             var model = _.extend({
-                directions: directions,
-                locations: locations
+                directions: i.directions,
+                locations: i.locations
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));

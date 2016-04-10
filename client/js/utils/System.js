@@ -29,10 +29,12 @@ var System = (function () {
 	}
 
 	function setLocations (dataFromServer) {
+		i.locations = [];
 		dataFromServer.forEach(function (record) {
 			i.locations.push(record.city);
 		});
 	}
+	
     return {
 		register: _register,
 		preload: _preload,

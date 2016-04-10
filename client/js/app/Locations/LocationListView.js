@@ -4,8 +4,6 @@
     This.LocationListView = Backbone.View.extend({
         tagName: 'div',
         className: 'locationsWindow',
-        locations: [],
-
         events: {
             'click .cancel':'removeModal',
             'click .save':'showGroupsInLocation',
@@ -13,19 +11,8 @@
         },
 
         initialize: function () {
-            $('#modal-window').addClass('modal-window');
-            this.collection = This;
-            app.mediator.subscribe('Locations: select locations', function (selectedLocations) { 
-                if (!(_.contains(this.locations, selectedLocations))) {
-                    this.locations.push(selectedLocations); 
-                } else {
-                    _.each(this.locations, function (location, i) {
-                        if (location === selectedLocations) {
-                            this.locations.splice(i, 1)
-                        }
-                    }.bind(this));
-                }
-            }.bind(this));
+            this.locations = [];
+            app.mediator.subscribe('Locations: select locations', this.chooseLocations.bind(this));
         },
 
         render: function () {
@@ -39,28 +26,40 @@
             this.$el.append($wrapper.append(templates.locationTpl));  
 
             $(document).on('keydown', keyEvent.bind(this));
+
             function keyEvent (event) {
                 if (event.which === ENTER) {
                     this.showGroupsInLocation();
                 } else if (event.which === ESC) {
                     this.removeModal();
                 }
-        }
+            }
  
             return this;
         },
 
+        chooseLocations: function (selectedLocations) {   
+            if (!(_.contains(this.locations, selectedLocations))) {
+                this.locations.push(selectedLocations); 
+            } else {
+                this.locations = this.locations.filter(isLocationChosen);
+            }  
+
+            function isLocationChosen (location , i) {
+                return location !== selectedLocations;
+            }
+         },
+
         showGroupsInLocation: function () {
             app.mediator.publish('Locations: showGroupsInLocation', this.locations);
-            this.$el.remove();
-            $('#modal-window').removeClass('modal-window');
             this.locations.splice(0);
+            this.$el.remove();
         },
 
         removeModal: function () {
             this.$el.remove();
-            $('#modal-window').removeClass('modal-window');
-        }
+        },
+
     });
 
-})(i.locations, app);
+})(CS.Locations, app);

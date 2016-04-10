@@ -40,16 +40,16 @@
                 msg: 'Please enter valid name. Allowed symbols: english alpabeth, digits, "space", "/", "-"'
             }],
 
-            stage: {
-                oneOf: ['planned', 'in process', 'finished']
+            direction: function (direction) {
+                if (i.directions.indexOf(direction) === -1) {
+                   return 'Direction must be one of: ' + i.directions.join(', ');
+                }
             },
 
-            direction: {
-                // oneOf: i.directions
-            },
-
-            location: {
-                oneOf: i.locations
+            location: function (location) {
+                if (i.locations.indexOf(location) === -1) {
+                   return 'Location must be one of: ' + i.locations.join(' ');
+                }
             },
 
             startDate: {
@@ -68,7 +68,7 @@
                 var isTeachersValid;
 
                 isTeachersValid = teachers.every(function (teacher) {
-                    // return i.teachers.indexOf !== -1;
+                    return i.teachers.indexOf(teacher) !== -1;
                 });
 
                 if (!isTeachersValid) {
@@ -81,7 +81,7 @@
                     regexp = /^[a-z \-\.]{5,25}$/i;
 
                 isExpertsValid = experts.every(function (expert) {
-                    return regexp.test(expert);
+                    return regexp.test(expert) || (expert.length === 0);
                 });
 
                 if (!isExpertsValid) {

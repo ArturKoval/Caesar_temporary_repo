@@ -40,11 +40,11 @@
         },
 
         getFullName: function () {
-            return this.get('lastName') + ' ' + this.get('firstName');
+            return this.get('firstName') + ' ' + this.get('lastName');
         },
 
         getShortName: function () {
-            return  this.get('lastName') + ' ' + this.get('firstName').charAt(0) + '.';
+            return this.get('firstName').charAt(0) + '. ' + this.get('lastName');
         }
     });
 })(CS.User);

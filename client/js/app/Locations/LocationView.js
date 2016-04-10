@@ -4,7 +4,6 @@
     This.LocationView = Backbone.View.extend({
         tagName: 'div',
         className: 'location',
-
         events: {
             'click': 'onSelectLocation',
         },
@@ -21,4 +20,4 @@
         }
     });
 
-})(i.locations);
+})(CS.Locations);

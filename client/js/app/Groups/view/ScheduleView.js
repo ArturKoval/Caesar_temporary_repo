@@ -7,12 +7,7 @@
         template: templates.scheduleViewTpl,
 
         render: function() {
-            this.collection.forEach(function(group) {
-                if (group.name === 'DP-093-JS') {
-                    this.$el.append(this.template(group));
-                }
-            }, this);
-            
+            this.$el.html(this.template(this.model.toJSON()));
             return this;
         }
     });
