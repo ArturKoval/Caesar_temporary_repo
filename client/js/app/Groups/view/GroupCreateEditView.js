@@ -51,12 +51,9 @@
         },
 
         render: function () {
-            var locations = ['Dnipropetrovsk', 'Lviv', 'Kharkiv'],
-                directions = ['MQC', 'UI'];
-
             var model = _.extend({
-                directions: directions,
-                locations: locations
+                directions: i.directions,
+                locations: i.locations
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));
@@ -120,7 +117,7 @@
 
             if (this.model.isValid(true)) {
                 this.model.save();
-                app.mediator.publish('Groups: Edit/Create dialog accepted', this.model);
+                app.mediator.publish('Groups: dialog closed');
                 this.close();
             }
         },
@@ -128,7 +125,7 @@
         close: function () {
             $(document).off('keydown');
             this.remove();
-            app.mediator.publish('Groups: Edit/Create dialog canceled',this.model);
+            app.mediator.publish('Groups: dialog closed');
         }
     });
 })(CS.Groups);
