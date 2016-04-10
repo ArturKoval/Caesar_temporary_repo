@@ -20,7 +20,7 @@
         },
 
         defineText: function () {
-            this.set('text', this.questions[this.get('type')]+ this.get('action') + ' ' + this.get('object') + ' ?'); 
+            this.set('text', this.questions[this.get('type')] + this.get('action') + ' ' + this.get('object') + ' ?'); 
         }
     });
 })(CS.Messenger);

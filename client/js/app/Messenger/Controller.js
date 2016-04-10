@@ -13,7 +13,7 @@
         showConfirmation: function (data) {
             var m = new This.Message(data),
                 view = new This.ConfirmationView({model: m});
-                
+                console.log(data);
             $('#modal-window').html(view.render().$el);
         }
     });

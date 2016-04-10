@@ -10,7 +10,7 @@ var SelectButtonView = Backbone.View.extend({
     },
 
     onSelectLocation: function () {
-        app.mediator.publish('Locations: showLocationsView');
+        app.mediator.publish('Locations: Show-button selected');
     }
 });
 
