@@ -39,16 +39,24 @@
         },
 
         render: function () {
-            this.teachers = this.model.get('teachers');
+            var teacherView,
+                expertView,
+                model;
 
-            var teacherView = new This.TeacherView(this.teachers);
-            var model = _.extend({
+            this.teachers = this.model.get('teachers');
+            this.experts = this.model.get('experts');
+
+            teacherView = new This.TeacherView(this.teachers);
+            expertView = new This.ExpertView(this.experts);
+
+            model = _.extend({
                 directions: i.directions,
                 locations: i.locations
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));
             this.$el.find('#teachers').html(teacherView.render().$el);
+            this.$el.find('#experts').html(expertView.render().$el);
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
@@ -84,16 +92,11 @@
         },
 
         save: function () {
-            var formData = {teachers: this.teachers, experts: []},
-                errors = {},
+            var formData = {teachers: this.teachers, experts: this.experts},
                 message;
 
             this.$el.find('input').each(function (index, field) {
-                if (field.name === 'experts') {
-                    formData[field.name].push(field.value);
-                } else {
-                    formData[field.name] = field.value;
-                }
+                formData[field.name] = field.value;
             });
 
             this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {

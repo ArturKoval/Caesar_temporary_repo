@@ -27,7 +27,7 @@ templates.groupTeacherTpl = _.template([
     '<% _(teachers).each(function(teacher) { %>',
     '<li>',
     '<%= teacher %>',
-    '    <button class="removeTeacher" class="pull-right" data-teacher="<%= teacher %>">x</button>',
+    '    <button class="remove-teacher" class="pull-right" data-teacher="<%= teacher %>">x</button>',
     '</li>',
     '<% }); %>'
 ].join(''));

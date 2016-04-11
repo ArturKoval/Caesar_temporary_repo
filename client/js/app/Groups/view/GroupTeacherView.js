@@ -4,10 +4,9 @@
 
         events: {
             'click .add-teacher-btn': 'renderTeacherSelect',
-            'click .remove': 'removeTeacher',
             'click #cancelSelect': 'renderAddBtn',
             'click #acceptSelect': 'addTeacher',
-            'click .removeTeacher': 'removeTeacher'
+            'click .remove-teacher': 'removeTeacher'
         },
 
         initialize: function (teachers) {
@@ -42,7 +41,8 @@
         },
 
         removeTeacher: function (event) {
-            this.teachers = _.without(this.teachers, $(event.target).data('teacher'));
+            var teacherIndex = this.teachers.indexOf($(event.target).data('teacher'));
+            this.teachers.splice(teacherIndex,1);
             this.renderList()
         }
     });
