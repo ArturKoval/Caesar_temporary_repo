@@ -1,183 +1,107 @@
 'use strict';
 
-(function (This, app) {
+(function (This) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Groups: group selected': 'showSelectedGroup',
-            'Groups: Edit button selected': 'showCreateEditView',
-            'Locations: Show-button selected': 'showLocations',
-            'Locations: showGroupsInLocation': 'getLocations',
-/*             'Locations: chooseLocation': 'addClassButtonEl', */
-            'Groups: DeleteDialogCalled': 'showDeleteDialog',
-            'Groups: group saved': 'showSelectedGroup',
-            'Groups: Show 404': 'showMessege404'
+            'Groups: Edit button selected': 'createEdit',
+            'Locations: Show-button selected': 'showAllLocations',
+            'Locations: showGroupsInLocation': 'render',
+            'Groups: DeleteDialogCalled': 'delete',
+            'Groups: group-saved': 'showSelectedGroup',
+            'Groups: Show 404': 'show404'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
 			$('#createGroup').on('click', function () {
-                 var editCreateView = new This.CreateEditView();
-                 $('#modal-window').html(editCreateView.render().$el);
+                var editCreateView = new This.CreateEditView();
+                this.$modal(editCreateView);
             });
+            this.$modal = function (view) {
+                $('#modal-window').append(view.render().$el);
+            };
+            this.$main = $('.main-section');
+            this.$showAllbutton = function () {
+                $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
+            };
+            this.list = function (data) {
+                return new This.GroupList(store.groups).findGroupsByLocations(data)
+            };
         },
 
         start: function () {
+            this.render([app.user.location])
+            this.$showAllbutton();
 
-            var groupListView = new This.GroupListView({
-                collection: new This.GroupList(store.groups).findGroupsByLocations([app.user.location])
-            });
-        
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
-            
             return app.user.location;
-        },
-        
-        showLocationByRoute: function (location) {
-            var groupListView = new This.GroupListView({
-                collection: new This.GroupList(store.groups).findGroupsByLocations(location)
-            });
-
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
-        },
-        
-        showPageByRoute: function (location, groupName) {
-            var list = new This.GroupList(store.groups).findGroupsByLocations(location);
-            var groupListView = new This.GroupListView({
-                collection: list
-            });
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
-            
-            var contentView = new This.ContentView({
-                model: list.findGroupByName(groupName)
-            });
-             contentView.render();
-            $('.main-section').empty();
-
-            this.render([app.user.location]);
-			$('#createGroup').on('click', function () {
-                 var editCreateView = new This.CreateEditView();
-                 $('#modal-window').html(editCreateView.render().$el);
-            });
-            this.btnShowAll();
-
-			return app.user.location;
         },
 
         render: function (data) {
             var groupListView = new This.GroupListView({
-                collection: new This.GroupList(store.groups).findGroupsByLocations(data)
-            });
+                collection: this.list(data)
+            }),
+                $sidebar = $('#left-side-bar');
 
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
+            $sidebar.empty();
+            $sidebar.append(groupListView.$el).append(groupListView.render());
         },
 
-        btnShowAll: function () {
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
+        showPageByRoute: function (location, groupName) {
+            this.render(location);
+            this.$showAllbutton();
+            this.showSelectedGroup(this.list(location).findGroupByName(groupName));
         },
-		
+
 		showLocationByRoute: function (location) {
             this.render(location);
-            this.btnShowAll();
+            this.$showAllbutton();
 		},
-		
-		showPageByRoute: function (location, groupName) {
-			var list = new This.GroupList(store.groups).findGroupsByLocations(location),
-				groupListView = new This.GroupListView({
-                	collection: list
-            	});
-
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            this.btnShowAll();
-			
-			var contentView = new This.ContentView({
-                model: list.findGroupByName(groupName)
-            });
-
-			contentView.render();
-			$('.main-section').empty();
-
-            var groupView = new This.GroupView({
-               	model: list.findGroupByName(groupName)
-            });
-
-            return list.findGroupByName(groupName);
-        },
 
         showViewByRoute: function (location, groupName, action) {
-            var list = new This.GroupList(store.groups).findGroupsByLocations(location);
-            var groupListView = new This.GroupListView({
-                collection: list
-            });
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
-            
-            var contentView = new This.ContentView({
-                model: list.findGroupByName(groupName)
-            });
-             contentView.render();
-            $('.main-section').empty();
-            var groupView = new This.GroupView({
-                model: list.findGroupByName(groupName)
-            });
-
-            groupView.stubsListener(action);
+            this.render(location);
+            this.$showAllbutton();
+            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
-		
 
-        showSelectedGroup: function (selected) {
+        showSelectedGroup: function (selected, action) {
             var contentView = new This.ContentView({
                 model: selected
             });
             
             contentView.render();
-            $('.main-section').empty();
+            this.$main.empty();
             var groupView = new This.GroupView({
                 model: selected
             });
+
+            groupView.stubsListener(action);
         },
 
-        showLocations: function () {
-            var locationsView = new CS.Locations.LocationListView({collection: i.locations}),
-                $modal = $('#modal-window');
+        showAllLocations: function () {
+            var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
-            $modal.append(locationsView.render().$el);
-        },
-
-        getLocations: function (locations) {
-            this.renderView(locations);
-            $('.save').addClass('active-button');
+            this.$modal(locationsView);
         },
         
-        renderView: function (locations) {
-            var groupListView = new This.GroupListView({
-                collection: new This.GroupList(store.groups).findGroupsByLocations(locations)
-            });
-            
-            $('#left-side-bar').empty();
-            $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
-        },
-        
-        showCreateEditView: function (group) {
-            var editCreateView = new This.CreateEditView(group);
-            $('#modal-window').html(editCreateView.render().$el);
+        createEdit: function (group) {
+            var createEditView = new This.CreateEditView(group);
+
+            this.$modal(createEditView);
         },
 
-        showDeleteDialog: function (group) {
+        delete: function (group) {
             var groupDeleteView = new This.GroupDeleteView({
                 model: group
             });
 
-            $('#modal-window').append(groupDeleteView.render().el);
-            groupDeleteView.$el.focus();
+            this.$modal(groupDeleteView);
         },
 
-        showMessege404: function () {
+        show404: function () {
             var errorPage = new This.ErrorPageView();
 
-            $('.main-section').html(errorPage.render().$el)
+            $('.main-section').html(errorPage.render().$el);
         }
     });
-})(CS.Groups, app, CS.Locations);
+})(CS.Groups);

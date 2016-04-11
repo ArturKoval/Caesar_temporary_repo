@@ -1,11 +1,10 @@
-body { /* Test start, remove after task completion */
-    background: url('https://c5.staticflickr.com/8/7071/7191636196_b53c055d7b_k.jpg') center center fixed;
+body {
     background-size: cover;
     width: 100%;
     height: 100%;
-} /* Test end */
+}
 
-.modal {
+.app .modal {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -17,10 +16,11 @@ body { /* Test start, remove after task completion */
     background-color: rgba(255, 255, 255, 0.5);
 }
 
-.wrapper{
+.app .login_wrapper{
     display: inherit;
     width: 100%;
     background: #171b65;
+    font-size: 17px;
 }
 
 .login {
@@ -28,9 +28,8 @@ body { /* Test start, remove after task completion */
     margin: 0 auto;
 }
 
-.message {
+.login .message {
     text-align: center;
-    font-size: 17px;
     color: #fff;
 }
 
@@ -41,7 +40,7 @@ body { /* Test start, remove after task completion */
 
 .login label{
     font-family: 'Tahoma', sans-serif;
-    font-size: 17px;
+    font-size: 21px;
     text-align: left;
     display: inline-block;
     font-weight: 700;
@@ -51,22 +50,23 @@ body { /* Test start, remove after task completion */
 .login input {
     margin-left:15px;
     float: right;
-    padding: 2px 5px;
+    padding: 4px 5px;
+    border: 0;
+    font-size: 16px;
 }
 
 .login button {
     float: right;
-    margin: 12px 6px 0px 0px;
-    background: url('../img/submit_arrow.png') no-repeat -2px;
-    width: 30px;
-    height: 30px;
+    padding: 6px 0px 0px 0px;
+    margin-right: 6px;
     border: 0;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
     outline: 0;
+    background: none;
+    color: #fff;
+    font-size: 2.6em;
 }
 
 .login button:hover {
-    opacity: 0.9;
+    color: #3C78B5;
     cursor: pointer;
 }
