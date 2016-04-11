@@ -85,10 +85,15 @@
 
         save: function () {
             var formData = {teachers: this.teachers, experts: []},
-                errors = {};
+                errors = {},
+                message;
 
             this.$el.find('input').each(function (index, field) {
+                if (field.name === 'experts') {
+                    formData[field.name].push(field.value);
+                } else {
                     formData[field.name] = field.value;
+                }
             });
 
             this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {
@@ -103,11 +108,16 @@
 
             this.model.set(formData);
 
-            var a = this.model.isNew();
-            debugger;
             if (this.model.isValid(true)) {
+                if (this.model.isNew()) {
+                    message = 'group created';
+                } else {
+                    message = 'group edited';
+                }
+
                 this.model.save();
-                app.mediator.publish('Groups: group saved', this.model);
+                app.mediator.publish('Groups: group-saved', this.model);
+                app.mediator.publish('Groups: group-action', message);
                 this.remove();
             }
         },
@@ -115,7 +125,7 @@
         close: function () {
             $(document).off('keydown');
             this.remove();
-            app.mediator.publish('Groups: dialog closed');
+            app.mediator.publish('Groups: dialog-closed');
         }
     });
 })(CS.Groups);
