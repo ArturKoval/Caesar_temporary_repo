@@ -7,7 +7,7 @@
             'Groups: Edit button selected': 'showCreateEditView',
             'Locations: Show-button selected': 'showLocations',
             'Locations: showGroupsInLocation': 'getLocations',
-            'Locations: chooseLocation': 'addClassButtonEl',
+/*             'Locations: chooseLocation': 'addClassButtonEl', */
             'Groups: DeleteDialogCalled': 'showDeleteDialog',
             'Groups: group saved': 'showSelectedGroup',
             'Groups: Show 404': 'showMessege404'
@@ -15,6 +15,10 @@
 
         initialize: function () {
             this.mediator = app.mediator;
+			$('#createGroup').on('click', function () {
+                 var editCreateView = new This.CreateEditView();
+                 $('#modal-window').html(editCreateView.render().$el);
+            });
         },
 
         start: function () {
@@ -22,10 +26,7 @@
             var groupListView = new This.GroupListView({
                 collection: new This.GroupList(store.groups).findGroupsByLocations([app.user.location])
             });
-            $('#createGroup').on('click', function () {
-                 var editCreateView = new This.CreateEditView();
-                 $('#modal-window').html(editCreateView.render().$el);
-            });
+        
             $('#left-side-bar').append(groupListView.$el).append(groupListView.render());
             $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations')); //button to show all locations
             

@@ -27,7 +27,7 @@ $(function () {
 });
 
 i.directions = [
-    'WebUI',
+    'Web UI',
     'JavaScript(UI)',
     'LAMP',
     '.Net',

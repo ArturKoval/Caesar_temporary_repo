@@ -13,7 +13,7 @@ var map = {
 			},
 		    location: {
 			    control: 'select',
-				options: ['Dnipropetrovsk', 'Lviv', 'Kyiv', 'Rivne']
+				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
 			},
 		    photo: '',
 		    login: '',
@@ -29,7 +29,7 @@ var map = {
 	        name: '',
 		    location: {
 			    control: 'select',
-				options: ['Dnipropetrovsk', 'Lviv', 'Kyiv', 'Rivne']
+				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
 			},
 			budgetOwner: {
 			    control: 'bool',

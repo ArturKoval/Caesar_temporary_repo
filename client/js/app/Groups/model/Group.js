@@ -14,7 +14,7 @@
                 finishDate: '',
                 teachers: [],
                 experts: ['John Doe'],
-                stage: ''
+                stage: 'planned'
             };
         },
         
