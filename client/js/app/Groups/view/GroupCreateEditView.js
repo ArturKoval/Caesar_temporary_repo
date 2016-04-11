@@ -18,20 +18,8 @@
         },
 
         initialize: function (model) {
+            this.model = model || new This.Group();
 
-            //var mock = {
-            //    budgetOwner: "SoftServe",
-            //    direction: "UI",
-            //    experts: ["gfhfg"],
-            //    finishDate: "2016-06-22",
-            //    location: "Lviv",
-            //    name: "hgfgf",
-            //    startDate: "2016-04-20",
-            //    teachers: ["Petin"]
-            //};
-
-            this.model = model || new This.Group({teachers: [app.user.lastName]});
-            //this.model.set(mock);
             Backbone.Validation.bind(this, {
                 valid: function (view, attr, selector) {
                     var $el = view.$('[name=' + attr + ']'),
@@ -51,12 +39,16 @@
         },
 
         render: function () {
+            this.teachers = this.model.get('teachers');
+
+            var teacherView = new This.TeacherView(this.teachers);
             var model = _.extend({
                 directions: i.directions,
                 locations: i.locations
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));
+            this.$el.find('#teachers').html(teacherView.render().$el);
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
@@ -92,18 +84,14 @@
         },
 
         save: function () {
-            var formData = {teachers: [], experts: []},
+            var formData = {teachers: this.teachers, experts: []},
                 errors = {};
 
             this.$el.find('input').each(function (index, field) {
-                if (field.name === 'teachers' || field.name === 'experts') {
-                    formData[field.name].push(field.value);
-                } else {
                     formData[field.name] = field.value;
-                }
             });
 
-            this.$el.find('select option:selected').each(function (index, field) {
+            this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
 
@@ -115,6 +103,8 @@
 
             this.model.set(formData);
 
+            var a = this.model.isNew();
+            debugger;
             if (this.model.isValid(true)) {
                 this.model.save();
                 app.mediator.publish('Groups: dialog closed');
