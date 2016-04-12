@@ -71,7 +71,6 @@
             },
 
             teachers: function (teachers) {
-                console.log(teachers);
                 var isTeachersValid;
 
                 isTeachersValid = teachers.every(function (teacher) {
@@ -84,7 +83,6 @@
             },
 
             experts: function (experts) {
-                console.log(typeof experts);
                 var isExpertsValid,
                     regexp = /^[a-z \-\.]{5,25}$/i;
 
