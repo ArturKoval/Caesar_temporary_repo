@@ -20,7 +20,7 @@
 	    },
 
 	    showUserProfile: function () {
-	        app.mediator.publish('User: UserProfileCalled', this.model);
+	        app.mediator.publish('User: user-profile-called', this.model);
 	    }
     });
 })(CS.User, app);

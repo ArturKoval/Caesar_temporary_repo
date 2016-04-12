@@ -55,7 +55,7 @@ function reset (request, response) {
 var users = [{
     "firstName": "John",
     "lastName": "Doe",
-    "role": "ITA Teacher",
+    "role": "Teacher",
     "location": "Dnipro",
     "photo": "/default-photo.png",
 	"login": "john",
@@ -63,7 +63,7 @@ var users = [{
 }, {
     "firstName": "Dmytro",
     "lastName": "Petin",
-    "role": "ITA Coordinator",
+    "role": "Coordinator",
     "location": "Dnipro",
     "photo": "/default-photo.png",
 	"login": "dmytro",
