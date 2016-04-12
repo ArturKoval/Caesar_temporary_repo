@@ -26,6 +26,12 @@ $(function () {
     }
 });
 
+i.roles = [
+    'Teacher',
+	'Coordinator',
+	'Administrator'
+];
+
 i.directions = [
     'WebUI',
     'JavaScript(UI)',

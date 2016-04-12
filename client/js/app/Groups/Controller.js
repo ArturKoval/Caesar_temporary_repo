@@ -37,9 +37,9 @@
             return app.user.location;
         },
 
-        render: function (data) {
+        render: function (location) {
             var groupListView = new This.GroupListView({
-                collection: this.list(data)
+                collection: this.list(location)
             }),
                 $sidebar = $('#left-side-bar');
 
@@ -47,19 +47,24 @@
             $sidebar.append(groupListView.$el).append(groupListView.render());
 
             this.$main.empty();            
-
         },
 
         showPageByRoute: function (location, groupName) {
             this.render(location);
             this.$showAllbutton();
             this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+
             return this.list(location).findGroupByName(groupName);
         },
 
 		showLocationByRoute: function (location) {
-            this.render(location);
-            this.$showAllbutton();
+			if (i.locations.indexOf(location) > -1) {
+				this.render(location);
+				this.$showAllbutton();
+			} else {
+				//404 location is not found
+			}
+            
 		},
 
         showViewByRoute: function (location, groupName, action) {
@@ -79,7 +84,7 @@
                 model: selected
             });
 
-            groupView.stubsListener(action);
+            groupView.stubsListener('info');
         },
 
         showAllLocations: function () {

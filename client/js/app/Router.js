@@ -4,13 +4,8 @@
     This.Router = Backbone.Router.extend({
         routes: {
             '': 'groups',
-            'Groups': 'groups',
             'Groups*path': 'groups',
             '*path': 'errorPage'
-        },
-
-        initialize: function () {
-            console.log('[init] Router');
         },
 
         groups: function () {

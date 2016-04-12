@@ -2,14 +2,12 @@
 
 (function (This) {
     This.User = Backbone.Model.extend({
-        urlRoot: '/users',
-        
         defaults: function () {
             return {
-                firstName: 'John',
-                lastName: 'Hankock',
+                firstName: '',
+                lastName: '',
                 location: 'Unknown',
-                role: 'ITA Teacher',
+                role: 'Teacher',
                 photo: '/img/default-photo.png'
             };
         },
@@ -45,6 +43,6 @@
 
         getShortName: function () {
             return this.get('firstName').charAt(0) + '. ' + this.get('lastName');
-        }
+        }	
     });
 })(CS.User);

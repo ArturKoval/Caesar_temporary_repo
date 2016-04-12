@@ -3,6 +3,7 @@
 (function (This, app) {
     This.LargeUserView = Backbone.View.extend({
 	    template: templates.largeUserViewTpl,
+		
 	    events: {
 	        'click .btn-edit': 'showEditDialog',
 	        'click .btn-logout': 'logout',
@@ -32,7 +33,7 @@
 	    	this.$el.addClass('open');
 	    },
 
-	    hide: function (e) {
+	    hide: function () {
 	    	this.$el.removeClass('open');
 	    }
     });

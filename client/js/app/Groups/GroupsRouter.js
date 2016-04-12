@@ -8,13 +8,10 @@
             'Groups(/)': 'initLocation',
             'Groups/:location(/)': 'openLocation',
             'Groups/:location/:group(/)': 'openGroupInfo',
-            'Groups/:location/:group/info(/)': 'openGroupInfo',
-            'Groups/:location/:group/:action(/)': 'openGroupAction',
-            'Groups/:location/:group/students(/)': 'openGroupStudents',
-            'Groups/:location/:group/notification(/)': 'openGroupNotifi',
             'Groups/:location/:group/edit(/)': 'openFormGroupEdit',
             'Groups/:location/:group/delete(/)': 'openFormGroupDelete',
             'Groups/:location/:group/create(/)': 'openFormGroupCreate',
+			'Groups/:location/:group/:action(/)': 'openGroupAction',
             'Groups*path': 'notFound' 
         },
 
@@ -43,7 +40,7 @@
                 location = args.group.get('location'),
                 action = args.stubView;
 
-            this.navigate('Groups/' + location + '/' + groupName + '/' + action);     
+            this.navigate('Groups/' + location + '/' + groupName + '/' + action);
         },
 
         navToShowFormEdit: function () {

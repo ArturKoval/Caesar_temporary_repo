@@ -4,8 +4,10 @@
     This.SmallUserView = Backbone.View.extend({
         tagName: 'div',
         className: 'user-photo',
+		
 	    template: templates.smallUserViewTpl,
-	    events: {
+	    
+		events: {
 	        'click': 'showUserProfile'
 	    },
 
