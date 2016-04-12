@@ -24,15 +24,23 @@ var Controller = Rotor.Controller.extend({
 
     getPreloadData: function (request) {
     	var userId = this.session.get('userID'),
-    		collections;
+    		collections = {
+				'users': '',
+				'locations': '',
+				'groups': ''
+			};
             
         if (userId) {
-            collections = {
-                'users': this.getUserData(userId),
-                'locations': this.getLocationsData(),
-                'groups': this.getGroupsData()
-            };
-            this.sendResponse('', collections);      
+			collections.users = this.getUserData(userId);
+			
+            Locations.initialize(function (result) {
+				collections.locations = this.getLocationsData();
+				
+				Groups.initialize(function (result) {
+					collections.groups = this.getGroupsData();
+					this.sendResponse('', collections);      
+				}.bind(this));
+			}.bind(this));
         } else {
             this.sendResponse('Not authorized');      
         }
@@ -53,7 +61,6 @@ var Controller = Rotor.Controller.extend({
     getLocationsData: function () {
     	var data = Locations.getCollection();
 		
-		console.log(Locations)
     	return this.formatData(data);
     },
 
