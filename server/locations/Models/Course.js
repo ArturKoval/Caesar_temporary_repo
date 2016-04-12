@@ -2,9 +2,11 @@
 var Rotor = require('../../libs/rotor/rotor');
 
 var Course = Rotor.Model.extend({
-	name: 'locations',
+	name: 'courses',
 	defaults: {
-		city: ''
+		city: '',
+		teachers: '',
+		groups: ''
 	} ,
 
 });

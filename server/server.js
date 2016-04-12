@@ -32,16 +32,16 @@ function start (request, response) {
     urlData = request.url.substr(1, request.url.length).split('/');
     route = urlData[0];
     action = urlData[1];
+
+    if (request.url == '/') {
+        route = 'index';
+    }
     
     if (router.routes[route]){
         router.init(request, response, action, route);
     } else {
         filePath = dir + request.url;
-
-        if (filePath === (dir + '/')) {
-            filePath = dir + '/home.html';
-        }
-
+        
         if (/admin/.test(request.url)) {
             if (request.url === '/admin') {
                 filePath = '../admin/admin.html';
