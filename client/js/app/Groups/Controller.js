@@ -16,7 +16,7 @@
             this.mediator = app.mediator;
 			$('#createGroup').on('click', function () {
                 var editCreateView = new This.CreateEditView();
-                this.$modal(editCreateView);
+                $('#modal-window').append(editCreateView.render().$el);
             });
             this.$modal = function (view) {
                 $('#modal-window').append(view.render().$el);
@@ -105,7 +105,7 @@
         show404: function () {
             var errorPage = new This.ErrorPageView();
 
-            $('.main-section').html(errorPage.render().$el);
+            this.$main.html(errorPage.render().$el);
         }
     });
 })(CS.Groups);
