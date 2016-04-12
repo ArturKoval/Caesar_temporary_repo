@@ -16,7 +16,7 @@
             this.mediator = app.mediator;
 			$('#createGroup').on('click', function () {
                 var editCreateView = new This.CreateEditView();
-                this.$modal(editCreateView);
+                $('#modal-window').append(editCreateView.render().$el);
             });
             this.$modal = function (view) {
                 $('#modal-window').append(view.render().$el);
@@ -45,12 +45,16 @@
 
             $sidebar.empty();
             $sidebar.append(groupListView.$el).append(groupListView.render());
+
+            this.$main.empty();            
+
         },
 
         showPageByRoute: function (location, groupName) {
             this.render(location);
             this.$showAllbutton();
             this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+            return this.list(location).findGroupByName(groupName);
         },
 
 		showLocationByRoute: function (location) {
@@ -101,7 +105,7 @@
         show404: function () {
             var errorPage = new This.ErrorPageView();
 
-            $('.main-section').html(errorPage.render().$el);
+            this.$main.html(errorPage.render().$el);
         }
     });
 })(CS.Groups);

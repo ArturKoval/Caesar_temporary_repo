@@ -27,7 +27,7 @@ $(function () {
 });
 
 i.directions = [
-    'Web UI',
+    'WebUI',
     'JavaScript(UI)',
     'LAMP',
     '.Net',
@@ -64,4 +64,15 @@ i.teachers = [
     'B. Yulian'
 ];
 
+i.experts = [
+    'A. Korkuna',
+    'L. Halamaha',
+    'Y. Harasym',
+    'I. Kohut',
+    'L. Klakovych',
+    'V. Koldovskyy',
+    'N. Romanenko',
+    'A. Pertsov',
+    'O. Shvets`'
+];
 

@@ -14,7 +14,7 @@
 
                 if (key === 'areMyGroups') {
                     if (params[key]) {
-                    collection = collection.findMyGroups(app.user.firstName +' ' + app.user.lastName);
+                    collection = collection.findMyGroups(new CS.User.User(app.user).getShortName());
                 }}
             }
         }

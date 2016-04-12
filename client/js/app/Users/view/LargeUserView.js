@@ -21,11 +21,11 @@
 	    },
 
 	    showEditDialog: function () {
-	        app.mediator.publish('User: EditDialogCalled', this.model);
+	        app.mediator.publish('User: edit-dialog-called', this.model);
 	    },
 
 	    logout: function () {
-	        app.mediator.publish('User: LoggedOut', this.model);
+	        app.mediator.publish('User: logged-out', this.model);
 	    }, 
 	    
 	    show: function () {

@@ -92,12 +92,12 @@
 
         openFormGroupDelete: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
-            this.controller.showDeleteDialog(modelGroup);
+            this.controller.delete(modelGroup);
         },
 
         openFormGroupEdit: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
-            this.controller.showCreateEditView(modelGroup);
+            this.controller.createEdit(modelGroup);
         },
 
         openGroupAction: function (location, groupName, action) {

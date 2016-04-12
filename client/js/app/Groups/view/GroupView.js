@@ -25,7 +25,7 @@
 
         render: function () {
             this.$el.empty(); 
-            this.$el.append(templates.groupTpl());
+            this.$el.append(templates.groupTpl(this.model.toJSON()));
             this.$groupContainer = $('.groupContainer');
             this.showStubView({view: 'GroupInfoView', model: this.model});
             //this.stubsListener('students');

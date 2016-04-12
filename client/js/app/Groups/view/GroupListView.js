@@ -9,7 +9,7 @@
         groupsArray: [], //for navigation we will use arrays of groups (yes - array of arrays), each nested arr contains 10 groups
         areMyGroups: false,
         paginatorPage: 1,
-        stage: 'in process',
+        stage: 'in-process',
         lastPaginatorPage: 0,
         shownCollection: 0, // array of groups that is shown
         tmp : [],
@@ -20,8 +20,8 @@
             'click .right-nav': 'openNextGroupList',
             'click .myGroups': 'toggleMyGroups',
             'click .endedGroups': function () {this.selectStage('finished')},
-            'click .currentGroups': function () {this.selectStage('in process')},
-            'click .futureGroups': function () {this.selectStage('planned')}
+            'click .currentGroups': function () {this.selectStage('in-process')},
+            'click .futureGroups': function () {this.selectStage('boarding')}
         },
 
         initialize: function () {

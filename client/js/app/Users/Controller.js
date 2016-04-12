@@ -3,8 +3,8 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'User: EditDialogCalled': 'showEditDialog',
-            'User: UserProfileCalled': 'showUserProfile',
+            'User: edit-dialog-called': 'showEditDialog',
+            'User: user-profile-called': 'showUserProfile',
         },
 
         initialize: function () {
