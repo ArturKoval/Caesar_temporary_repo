@@ -11,8 +11,11 @@
 }
 
 .backdrop .icon {
-    font-size: 30px;
     color: #3C78B5;
+}
+
+.backdrop .icon:hover {
+    color: #003366;
 }
 
 .backdrop .modal-window {

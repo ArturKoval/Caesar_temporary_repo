@@ -20,22 +20,7 @@
         initialize: function (model) {
             this.model = model || new This.Group();
 
-            Backbone.Validation.bind(this, {
-                valid: function (view, attr, selector) {
-                    var $el = view.$('[name=' + attr + ']'),
-                        $group = $el.closest('.form-group');
-
-                    $group.removeClass('has-error');
-                    $group.find('.help-block').html('').addClass('hidden');
-                },
-                invalid: function (view, attr, error, selector) {
-                    var $el = view.$('[name=' + attr + ']'),
-                        $group = $el.closest('.form-group');
-
-                    $group.addClass('has-error');
-                    $group.find('.help-block').html(error).removeClass('hidden');
-                }
-            });
+            Backbone.Validation.bind(this);
         },
 
         render: function () {
@@ -93,35 +78,54 @@
 
         save: function () {
             var formData = {teachers: this.teachers, experts: this.experts},
+                errors = {},
                 message;
 
-            this.$el.find('input').each(function (index, field) {
+            this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
                 formData[field.name] = field.value;
             });
-
             this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
-
             this.$el.find('.budget-option').each(function (index, button) {
                 if ($(button).hasClass('active')) {
                     formData['budgetOwner'] = $(button).data('value');
                 }
             });
 
-            this.model.set(formData);
+            errors = this.model.preValidate(formData);
 
-            if (this.model.isValid(true)) {
+            if (!_.isEmpty(errors)) {
+                app.mediator.publish('Message', {
+                    type: 'hints',
+                    $el: this.$el,
+                    hints: [errors]
+                })
+            } else {
+                this.model.save(formData);
+
                 if (this.model.isNew()) {
-                    message = 'group created';
+                    message = 'group ' + this.model.get('name') + ' created';
                 } else {
-                    message = 'group edited';
+                    message = 'group ' + this.model.get('name') + ' edited';
                 }
 
-                this.model.save();
+                _.each(_.pick(formData, 'teachers', 'experts'), function (value, key) {
+                    if (!value.length) {
+                        app.mediator.publish('Message', {
+                            type: 'warning',
+                            msg: key + ' are not specified'
+                        });
+                    }
+                });
+
                 app.mediator.publish('Groups: group-saved', this.model);
-                app.mediator.publish('Groups: group-action', message);
+                app.mediator.publish('Message', {
+                    type: 'info',
+                    msg: message
+                });
                 this.remove();
+
             }
         },
 
@@ -130,5 +134,6 @@
             this.remove();
             app.mediator.publish('Groups: dialog-closed');
         }
+
     });
 })(CS.Groups);

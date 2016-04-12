@@ -3,8 +3,8 @@ templates.groupEditCreate = _.template([
                 '<section class="form-inline form-wrapper container">',
                     '<div class="row">',
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
-                            '<label for="groupName" class="control-label">Group name</label>',
-                            '<input type="text" class="form-control" id="groupName" name="name" value="<%= name %>">',
+                            '<label for="name" class="control-label">Group name</label>',
+                            '<input type="text" class="form-control" id="name" name="name" value="<%= name %>">',
                         '<span class="help-block hidden"></span>',
                        ' </div>',
 
@@ -69,8 +69,10 @@ templates.groupEditCreate = _.template([
 
                     '<hr>',
 
-                    '<div class="text-center"><span class="glyphicon glyphicon-ok-sign icon" id="save"></span>',
-                    '<span class="glyphicon glyphicon-remove-sign icon" id="cancel"></span></div>',
+                    '<div class="text-center">',
+                    '<span class="fa fa-check-circle-o fa-3x icon" id="save"></span>',
+                    '<span class="fa fa-times-circle-o fa-3x icon" id="cancel"></span></div>',
+    '                </div>',
                 '</section>',
             '</section>'
 ].join(''));
