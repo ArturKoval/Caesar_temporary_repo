@@ -25,9 +25,11 @@ var Session = Rotor.Controller.extend({
 			if (session) {
 				return session;
 			} else {
+				console.log('reject')
 				return false;
 			}
 		} else {
+			console.log('reject')
 			return false;
 		}
 	},

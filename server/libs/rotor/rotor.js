@@ -12,7 +12,7 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
     name: '',
 
     initialize: function () {
-        this.fetch();
+        this.fetch({wait: true});
     },
 
     getCollection: function (callback) {

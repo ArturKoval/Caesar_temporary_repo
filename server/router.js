@@ -34,7 +34,8 @@ Router.prototype.init = function (request, response, action, route) {
                 controller.initialize(request, response, action, currSession);
             }    
         } else {
-             sendFile(response, 'text/html', '../client/login.html');
+			console.log('redirect');
+            sendFile(response, 'text/html', '../client/login.html');
         }
     } else {
         controller = require(dir + this.routes[route]['module'] + '/Controller');
@@ -55,18 +56,7 @@ function sendFile (response, contentType, filePath) {
                     response.end();
                 }
             });
-        } else {
-            fs.readFile('../client/home.html', function(error, data) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                } else {
-                    response.writeHead(200, {'Content-Type': contentType});
-                    response.write(data);
-                    response.end();
-                }
-            });
-        }
+        } 
     });
 }
 /* move to helpers*/

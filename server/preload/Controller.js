@@ -52,7 +52,8 @@ var Controller = Rotor.Controller.extend({
 
     getLocationsData: function () {
     	var data = Locations.getCollection();
-
+		
+		console.log(Locations)
     	return this.formatData(data);
     },
 
