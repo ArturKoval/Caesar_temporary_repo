@@ -11,7 +11,7 @@ templates.groupEditCreate = _.template([
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="budgetOptions" class="control-label">Budget owner</label>',
                             '<div class="btn-group pull-right" id="budgetOptions">',
-                                '<button class="<%= !budgetOwner?\'active disabled\': \'\'%> btn btn-default budget-option <%= budgetOwner ===  \'SoftServe\' ? \'active\' : \'\'%>" data-value="SoftServe">SoftServe</button>',
+                                '<button class="btn btn-default budget-option <%= budgetOwner !==  \'OpenGroup\' ? \'active\' : \'\'%>" data-value="SoftServe">SoftServe</button>',
                                 '<button class="btn btn-default budget-option <%= budgetOwner ===  \'OpenGroup\' ? \'active\' : \'\'%>" data-value="OpenGroup">OpenGroup</button>',
                             '</div>',
                         '</div>',

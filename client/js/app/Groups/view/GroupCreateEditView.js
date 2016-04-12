@@ -72,8 +72,9 @@
             this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
         },
 
-        setBudgetOwner: function () {
-            this.$el.find('.budget-option').toggleClass('active disabled');
+        setBudgetOwner: function (event) {
+            this.$el.find('.budget-option').removeClass('active');
+            $(event.target).addClass('active');
         },
 
         save: function () {
