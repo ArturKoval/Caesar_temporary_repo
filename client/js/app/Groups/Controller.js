@@ -45,12 +45,16 @@
 
             $sidebar.empty();
             $sidebar.append(groupListView.$el).append(groupListView.render());
+
+            this.$main.empty();            
+
         },
 
         showPageByRoute: function (location, groupName) {
             this.render(location);
             this.$showAllbutton();
             this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+            return this.list(location).findGroupByName(groupName);
         },
 
 		showLocationByRoute: function (location) {
