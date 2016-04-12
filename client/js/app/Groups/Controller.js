@@ -5,34 +5,35 @@
         subscribes: {
             'Groups: group selected': 'showSelectedGroup',
             'Groups: Edit button selected': 'createEdit',
-            'Locations: Show-button selected': 'showAllLocations',
-            'Locations: showGroupsInLocation': 'render',
             'Groups: DeleteDialogCalled': 'delete',
             'Groups: group-saved': 'showSelectedGroup',
-            'Groups: Show 404': 'show404'
+            'Groups: Show 404': 'show404',
+            'Locations: Show-button selected': 'showAllLocations',
+            'Locations: showGroupsInLocation': 'render'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
-			$('#createGroup').on('click', function () {
-                var editCreateView = new This.CreateEditView();
-                $('#modal-window').append(editCreateView.render().$el);
-            });
-            this.$modal = function (view) {
+            this.modal = function (view) {
                 $('#modal-window').append(view.render().$el);
             };
             this.$main = $('.main-section');
-            this.$showAllbutton = function () {
+            this.buttonShowAll = function () {
                 $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
             };
             this.list = function (data) {
                 return new This.GroupList(store.groups).findGroupsByLocations(data)
             };
+
+            $('#createGroup').on('click', function () {
+                var createEditView = new This.CreateEditView();
+                this.modal(createEditView);
+            }.bind(this));
         },
 
         start: function () {
-            this.render([app.user.location])
-            this.$showAllbutton();
+            this.render(app.user.location)
+            this.buttonShowAll();
 
             return app.user.location;
         },
@@ -45,13 +46,12 @@
 
             $sidebar.empty();
             $sidebar.append(groupListView.$el).append(groupListView.render());
-
-            this.$main.empty();            
+            this.$main.empty();
         },
 
         showPageByRoute: function (location, groupName) {
             this.render(location);
-            this.$showAllbutton();
+            this.buttonShowAll();
             this.showSelectedGroup(this.list(location).findGroupByName(groupName));
 
             return this.list(location).findGroupByName(groupName);
@@ -60,16 +60,15 @@
 		showLocationByRoute: function (location) {
 			if (i.locations.indexOf(location) > -1) {
 				this.render(location);
-				this.$showAllbutton();
+				this.buttonShowAll();
 			} else {
-				//404 location is not found
+				//404 'Not Found'
 			}
-            
 		},
 
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
-            this.$showAllbutton();
+            this.buttonShowAll();
             this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
@@ -90,13 +89,13 @@
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
-            this.$modal(locationsView);
+            this.modal(locationsView);
         },
         
         createEdit: function (group) {
             var createEditView = new This.CreateEditView(group);
 
-            this.$modal(createEditView);
+            this.modal(createEditView);
         },
 
         delete: function (group) {
@@ -104,7 +103,7 @@
                 model: group
             });
 
-            this.$modal(groupDeleteView);
+            this.modal(groupDeleteView);
         },
 
         show404: function () {
