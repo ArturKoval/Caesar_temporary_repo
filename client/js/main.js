@@ -9,7 +9,7 @@ var CS = {},
     ENTER = 13;
 
 System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations']);
-System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter']);
+System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter', 'userController']);
 
 $(function () {
     System.preload().then(main);
@@ -19,7 +19,7 @@ $(function () {
         app.filter = new app.Filter();
         app.router = new CS.Router();
 		app.subRouters = {};
-        var userController = new CS.User.Controller();
+        app.userController = new CS.User.Controller();
         //app.notFound = new CS.ErrorPage.Controller();
 		
         Backbone.history.start({pushState: true});
@@ -69,16 +69,3 @@ i.teachers = [
     'M. Omel`chuk',
     'B. Yulian'
 ];
-
-i.experts = [
-    'A. Korkuna',
-    'L. Halamaha',
-    'Y. Harasym',
-    'I. Kohut',
-    'L. Klakovych',
-    'V. Koldovskyy',
-    'N. Romanenko',
-    'A. Pertsov',
-    'O. Shvets`'
-];
-

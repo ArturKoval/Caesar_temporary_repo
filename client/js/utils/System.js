@@ -22,7 +22,7 @@ var System = (function () {
 				var response = JSON.parse(ajax.responseText);
 				store.groups = response.groups;
 				setLocations(response.locations);
-				app.user = response.users;
+				app.user = new CS.User.User(response.users);
 				callback();
 			}
 		}.bind(this), false);

@@ -32,10 +32,10 @@
         },
 
         start: function () {
-            this.render(app.user.location)
+            this.render(app.user.get('location'));
             this.buttonShowAll();
 
-            return app.user.location;
+            return app.user.get('location');
         },
 
         render: function (location) {
