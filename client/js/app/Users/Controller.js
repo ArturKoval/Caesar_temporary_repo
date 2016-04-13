@@ -13,13 +13,12 @@
             this.$menuEl = $('#right-menu');
 			
             this.mediator = app.mediator;
-            this.user = new This.User(app.user);
             
 			this.smallUserView = new This.SmallUserView({
-                model: this.user
+                model: app.user
             });
-            this.largeUserView =  new This.LargeUserView({
-                model: this.user,
+            this.largeUserView = new This.LargeUserView({
+                model: app.user,
                 el: this.$menuEl
             });
 			
@@ -31,7 +30,7 @@
             //add editView here
         },
 
-        showUserProfile: function (user) {
+        showUserProfile: function () {
             this.largeUserView.show();
         }
     });

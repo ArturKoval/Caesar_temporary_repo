@@ -2,7 +2,7 @@
 
 (function (This) {
     This.GroupListView = Backbone.View.extend({
-        userName: (app.user.firstName +' ' + app.user.lastName), //hard code
+        // userName: app.user.getFullName(), //hard code
         tagName: 'div',
         className: 'group-list-view',
         template: templates.groupListTpl,

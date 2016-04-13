@@ -6,7 +6,7 @@ templates.largeUserViewTpl = _.template([
             '<i class="fa fa-cog fa-2x"></i>',
         '</button>',
         '<div class="user-info">',
-            '<img class="photo" src="<%= photo %>" alt="<%= name %>">',
+            '<img class="photo" src="<%= photo %>" alt="<% print(lastName + \' \' + firstName) %>">',
             '<p class="name"><%= firstName %></br>',
                 '<%= lastName %></p>',
             '<p class="role"><%= role %></p>',

@@ -7,14 +7,13 @@
         if (collection instanceof CS.Groups.GroupList) {
 
             for (var key in params) {
-                console.log(key);
                 if (key === 'stage')  {
                     collection = collection.findGroupsByStage(params[key])
                 }
 
                 if (key === 'areMyGroups') {
                     if (params[key]) {
-                    collection = collection.findMyGroups(new CS.User.User(app.user).getShortName());
+                    collection = collection.findMyGroups(app.user.getShortName());
                 }}
             }
         }
