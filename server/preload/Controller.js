@@ -2,14 +2,22 @@
 var Rotor = require('../libs/rotor/rotor'),
 	Users = require('../users/Models/UsersList'),
 	Locations = require('../locations/Models/CoursesList'),
-	Groups = require('../groups/Models/GroupsList');
+	Groups = require('../groups/Models/GroupsList'),
+    lock = require('../libs/lock');
 
 var Controller = Rotor.Controller.extend({
     session: {},
+
     responseHead: {
         statusOK: '200',
         statusErr: '401',
         cookies: ''
+    },
+
+    preloadData: {
+        users: '',
+        locations: '',
+        groups: ''
     },
 
 	initialize: function (req, resp, action, currSession) {
@@ -23,29 +31,19 @@ var Controller = Rotor.Controller.extend({
     },
 
     getPreloadData: function (request) {
-    	var userId = this.session.get('userID'),
-    		collections = {
-				'users': '',
-				'locations': '',
-				'groups': ''
-			};
+    	var userId = this.session.get('userID');
             
         if (userId) {
-			collections.users = this.getUserData(userId);
-			
-            Locations.initialize(function (result) {
-				collections.locations = this.getLocationsData();
-				
-				Groups.initialize(function (result) {
-					collections.groups = this.getGroupsData();
-					this.sendResponse('', collections);      
-				}.bind(this));
-			}.bind(this));
+			this.preloadData.users = this.getUserData(userId);
+            this.getLocationsData();
+            this.getGroupsData();
+
+            lock.reset(2).then(function () {
+                this.sendResponse('', this.preloadData);
+            }.bind(this));
         } else {
             this.sendResponse('Not authorized');      
         }
-		
-		return collections;
     },
 
     getUserData: function (id) {
@@ -54,20 +52,25 @@ var Controller = Rotor.Controller.extend({
 
     	data = user.toJSON();
     	data.id = data._id;
+        
+        delete data._id;
+        delete data.password;
 
     	return data;
     },
 
     getLocationsData: function () {
-    	var data = Locations.getCollection();
-		
-    	return this.formatData(data);
+        Locations.initialize(function (result) {
+            this.preloadData.locations = this.formatData(Locations.getCollection());
+            lock.check();
+        }.bind(this));
     },
 
     getGroupsData: function () {
-    	var data = Groups.getCollection();
-
-    	return this.formatData(data);
+    	Groups.initialize(function (result) {
+            this.preloadData.groups = this.formatData(Groups.getCollection());
+            lock.check();
+        }.bind(this));
     }
 });
 

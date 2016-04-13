@@ -21,6 +21,10 @@
         position: absolute;
     }
 
+    #right-menu a {
+        color: #FFFFFF;
+    }
+
     #right-menu .btn-edit {
         top: 10px;
         right: 10px;
