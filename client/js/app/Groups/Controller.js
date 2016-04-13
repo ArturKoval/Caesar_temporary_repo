@@ -13,24 +13,27 @@
         },
 
         initialize: function () {
-            this.mediator = app.mediator;
-            this.modal = function (view) {
+            this.mediator = app.mediator;            
+            this.$main = $('.main-section');
+			
+			// you can find temporary block below
+			this.modal = function (view) {
                 $('#modal-window').append(view.render().$el);
             };
-            this.$main = $('.main-section');
             this.buttonShowAll = function () {
                 $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
-            };
-            this.list = function (data) {
-                return new This.GroupList(store.groups).findGroupsByLocations(data)
-            };
-
+            };          
             $('#createGroup').on('click', function () {
                 var createEditView = new This.CreateEditView();
                 this.modal(createEditView);
             }.bind(this));
+			// end of temporary block
         },
 
+		list: function (data) {
+             return new This.GroupList(store.groups).findGroupsByLocations(data);
+        },
+			
         start: function () {
             this.render(app.user.get('location'));
             this.buttonShowAll();
@@ -40,12 +43,12 @@
 
         render: function (location) {
             var groupListView = new This.GroupListView({
-                collection: this.list(location)
-            }),
+                    collection: this.list(location)
+                }),
                 $sidebar = $('#left-side-bar');
-
-            $sidebar.empty();
-            $sidebar.append(groupListView.$el).append(groupListView.render());
+          		   
+            $sidebar.html(groupListView.$el).append(groupListView.render());
+			
             this.$main.empty();
         },
 
@@ -74,15 +77,15 @@
 
         showSelectedGroup: function (selected, action) {
             var contentView = new This.ContentView({
-                model: selected
-            });
-            
+                    model: selected
+                }),
+				groupView = new This.GroupView({
+                    model: selected
+                });
+            		
             contentView.render();
-            this.$main.empty();
-            var groupView = new This.GroupView({
-                model: selected
-            });
-
+            //this.$main.empty();
+            
             groupView.stubsListener('info');
         },
 

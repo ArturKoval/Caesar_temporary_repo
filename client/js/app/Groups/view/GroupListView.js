@@ -25,11 +25,12 @@
         },
 
         initialize: function () {
-            this.$el.append(templates.groupListTpl);
+           this.$el.append(templates.groupListTpl);
         },
 
         render: function () {
-
+          
+					
             app.mediator.publish('Groups: cleared');
 
             this.groupsArray = this.collection;

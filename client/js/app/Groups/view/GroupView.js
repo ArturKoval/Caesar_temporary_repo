@@ -20,13 +20,17 @@
             this.mediator = app.mediator;
 			this.listener = {
 				'info': {view: 'GroupInfoView', model: this.model},
+				'edit': {view: 'GroupCreateEditView', model: this.model},
 				'shedule': {view: 'ScheduleView', model: this.model},
 				'students': {view: 'StudentListView', collection: students},
 				'message': {view: 'MessageView'}
 			};
             this.model.on('change', this.render, this);
-            this.model.on('destroy', this.remove, this); 
+            this.model.on('destroy', this.remove, this); 				
+			
+			$('#main-section').empty();
             $('#main-section').append(this.$el); // ContentView responsibility
+			
             this.render();
            
         },
@@ -45,7 +49,7 @@
                 $el,
                 action;
 		
-            if (e) {
+            if (e.currentTarget || e) {
                 $el = $(e.currentTarget);
             } else {
                 $el = $('.infoBtn');
@@ -53,6 +57,7 @@
 
             if (typeof e !== "string") {
                 action = $el.attr('name');
+				
                 if (action !== 'edit') {
                     this.publishEvent(action); 
                 }
