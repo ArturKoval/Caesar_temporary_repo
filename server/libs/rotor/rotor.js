@@ -11,8 +11,12 @@ var Model = Rotor.Model = Rotor.Model.extend({
 var Collection = Rotor.Collection = Rotor.Collection.extend({
     name: '',
 
-    initialize: function () {
-        this.fetch();
+    initialize: function (callback) {
+        this.fetch({success: function (result) {
+			if (callback) {
+				callback(result);
+			}
+		}},{wait: true});
     },
 
     getCollection: function (callback) {

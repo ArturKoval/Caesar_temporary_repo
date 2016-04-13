@@ -6,7 +6,7 @@ var http = require('http'),
 http.createServer(start).listen(3000);
 console.log('server started...');
 
-function start (request, response) {
+function start (request, response, errRoute) {
     var types = {
             'html': 'text/html',
             'js': 'application/javascript',
@@ -28,20 +28,24 @@ function start (request, response) {
         urlData,
         action,
         route;
+	
+	if (!errRoute) {
+		urlData = request.url.substr(1, request.url.length).split('/');
+		route = urlData[0];
+		action = urlData[1];
+	} else {
+		route = errRoute;
+	} 
 
-    urlData = request.url.substr(1, request.url.length).split('/');
-    route = urlData[0];
-    action = urlData[1];
+    if (request.url == '/') {
+        route = 'index';
+    }
     
     if (router.routes[route]){
         router.init(request, response, action, route);
     } else {
         filePath = dir + request.url;
-
-        if (filePath === (dir + '/')) {
-            filePath = dir + '/home.html';
-        }
-
+        
         if (/admin/.test(request.url)) {
             if (request.url === '/admin') {
                 filePath = '../admin/admin.html';
@@ -52,12 +56,12 @@ function start (request, response) {
 		
         extention = path.extname(filePath);
         contentType = types[extention.substr(1, extention.length)];
-        sendFile(response, contentType, filePath);
+        sendFile(request, response, contentType, filePath);
     }
 
 }
 /* move to helpers*/
-function sendFile (response, contentType, filePath) {
+function sendFile (request, response, contentType, filePath) {
     fs.stat(filePath, function (err, stats) {
         if (stats) {
             fs.readFile(filePath, function(error, data) {
@@ -71,17 +75,8 @@ function sendFile (response, contentType, filePath) {
                 }
             });
         } else {
-            fs.readFile('../client/home.html', function(error, data) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                } else {
-                    response.writeHead(200, {'Content-Type': contentType});
-                    response.write(data);
-                    response.end();
-                }
-            });
-        }
+			start(request, response, 'index')
+		}
     });
 }
 /* move to helpers*/

@@ -7,8 +7,7 @@ console.log('server reset...');
 function reset (request, response) {
 	var MongoClient = mongodb.MongoClient,
 		url = 'mongodb://localhost:27017/caeser';
-        
-	console.log('fsdf')	
+		
 	getConnection('users', function (collection, db) {
         collection.remove({}, function (err, result) {
             collection.insert(users, function (err, result) {

@@ -8,9 +8,7 @@ var User = Rotor.Model.extend({
 		lastName: '',
 		role: '',
 		location: '',
-		photo: "/default-photo.png",
-		password: '',
-		login: ''
+		photo: "/default-photo.png"
 	} ,
 
 });

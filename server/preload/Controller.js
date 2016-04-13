@@ -4,35 +4,43 @@ var Rotor = require('../libs/rotor/rotor'),
 	Locations = require('../locations/Models/CoursesList'),
 	Groups = require('../groups/Models/GroupsList');
 
-var PreloadController = Rotor.Controller.extend({
+var Controller = Rotor.Controller.extend({
+    session: {},
     responseHead: {
         statusOK: '200',
         statusErr: '401',
         cookies: ''
     },
 
-	initialize: function (req, resp, action) {
+	initialize: function (req, resp, action, currSession) {
         var reqBody;
 
         this.request = req;
         this.response = resp;
+        this.session = currSession;
         reqBody = this.getRequestData(this.request);
-        console.log('test')
         this.getPreloadData(this.request);
     },
 
     getPreloadData: function (request) {
-    	var userId = this.parseCookies(request).token,
-    		collections;
-
-        console.log(userId)
+    	var userId = this.session.get('userID'),
+    		collections = {
+				'users': '',
+				'locations': '',
+				'groups': ''
+			};
+            
         if (userId) {
-            collections = {
-                'users': this.getUserData(userId),
-                'locations': this.getLocationsData(),
-                'groups': this.getGroupsData()
-            };
-            this.sendResponse('', collections);      
+			collections.users = this.getUserData(userId);
+			
+            Locations.initialize(function (result) {
+				collections.locations = this.getLocationsData();
+				
+				Groups.initialize(function (result) {
+					collections.groups = this.getGroupsData();
+					this.sendResponse('', collections);      
+				}.bind(this));
+			}.bind(this));
         } else {
             this.sendResponse('Not authorized');      
         }
@@ -52,7 +60,7 @@ var PreloadController = Rotor.Controller.extend({
 
     getLocationsData: function () {
     	var data = Locations.getCollection();
-
+		
     	return this.formatData(data);
     },
 
@@ -63,4 +71,4 @@ var PreloadController = Rotor.Controller.extend({
     }
 });
 
-module.exports = new PreloadController();
+module.exports = new Controller();
