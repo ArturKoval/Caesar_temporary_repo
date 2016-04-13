@@ -10,6 +10,7 @@ function Router () {
         locations: {module: 'locations', auth: true},
         preload: {module: 'preload', auth: true},
         login: {module: 'login', auth: false},
+        logout: {module: 'login', auth: true},
 		users: {module: 'users', auth: true},
         groups: {module:'groups', auth: true}
     };

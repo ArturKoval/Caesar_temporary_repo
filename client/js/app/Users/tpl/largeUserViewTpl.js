@@ -12,7 +12,9 @@ templates.largeUserViewTpl = _.template([
             '<p class="role"><%= role %></p>',
         '</div>',
         '<button class="btn-logout" title="Logout">',
-            '<i class="fa fa-sign-out fa-3x"></i>',
+            '<a href="http://localhost:3000/logout">',
+                '<i class="fa fa-sign-out fa-3x"></i>',
+            '<a/>',
         '</button>',
     '</div>'
 ].join(''));

@@ -36,6 +36,12 @@ var Session = Rotor.Controller.extend({
 
 	addSession: function (callback, data) {
 		this.collection.saveNew(callback, data);
+	},
+
+	endSession: function (session, callback) {
+		this.collection.deleteItem(function (err, result) {
+			callback(err, result);
+		}, session.get('_id'));
 	}
 });
 
