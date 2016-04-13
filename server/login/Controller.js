@@ -29,7 +29,7 @@ var Controller = Rotor.Controller.extend({
     },
 
 	auth: function (data) {
-		this.user = Users.findWhere({login: data.login});
+		this.user = Users.findWhere({login: data.login.toLowerCase()});
 
 		if (this.user){
 			if (data.password == this.user.get('password')) {
