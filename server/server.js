@@ -1,6 +1,6 @@
 var http = require('http'),
     path = require('path'),
-    fs = require('fs'),
+    helper = require('./libs/helper'),
     router = require('./router');
 
 http.createServer(start).listen(3000);
@@ -29,55 +29,33 @@ function start (request, response, errRoute) {
         action,
         route;
 	
-	if (!errRoute) {
-		urlData = request.url.substr(1, request.url.length).split('/');
-		route = urlData[0];
-		action = urlData[1];
-	} else {
+	if (errRoute) {
 		route = errRoute;
-	} 
-
-    if (request.url == '/') {
+    } else if (request.url == '/') {
         route = 'index';
-    }
+	} else {
+		urlData = request.url.substr(1, request.url.length).split('/');
+        route = urlData[0];
+        action = urlData[1];
+	} 
     
     if (router.routes[route]){
         router.init(request, response, action, route);
     } else {
         filePath = dir + request.url;
         
-        if (/admin/.test(request.url)) {
-            if (request.url === '/admin') {
-                filePath = '../admin/admin.html';
-			} else {
-				filePath = '../' + request.url;
-			}			
-        }	
+   //      if (/admin/.test(request.url)) {
+   //          if (request.url === '/admin') {
+   //              filePath = '../admin/admin.html';
+			// } else {
+			// 	filePath = '../' + request.url;
+			// }			
+   //      }	
 		
         extention = path.extname(filePath);
         contentType = types[extention.substr(1, extention.length)];
-        sendFile(request, response, contentType, filePath);
+        helper.sendFile(response, contentType, filePath, request, start);
     }
 
 }
-/* move to helpers*/
-function sendFile (request, response, contentType, filePath) {
-    fs.stat(filePath, function (err, stats) {
-        if (stats) {
-            fs.readFile(filePath, function(error, data) {
-                if (error) {
-                    response.writeHead(500);
-                    response.end();
-                } else {
-                    response.writeHead(200, {'Content-Type': contentType});
-                    response.write(data);
-                    response.end();
-                }
-            });
-        } else {
-			start(request, response, 'index')
-		}
-    });
-}
-/* move to helpers*/
 

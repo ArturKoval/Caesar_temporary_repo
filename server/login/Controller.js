@@ -1,10 +1,11 @@
 'use strict';
+
 var Rotor = require('../libs/rotor/rotor'),
 	Users = require('../users/Models/UsersList'),
-	Session = require('../sessions/Controller'),
-	fs = require('fs');
+	Session = require('../sessions/Controller');
 
-var Controller = Rotor.Controller.extend({
+var Controller = Rotor.Controller.extend({ //как его называть????)
+	loginPagePath: '../client/login.html',
 	user: '',
     responseHead: {
         statusOK: '200',
@@ -16,11 +17,15 @@ var Controller = Rotor.Controller.extend({
         var reqBody = this.getRequestData(request);
 
         this.response = resp;
-        this.method = this.methods[request.method];
-        if (request.url == '/logout') {
-        	this.logout(curSession);
+
+        if (request.method == 'GET') {
+        	if (request.url == '/logout') {
+	        	this.logout(curSession);
+	        } else {
+	        	this.sendFile(this.response, 'text/html', this.loginPagePath);
+	        }
         } else {
-        	request.on('end', function() {
+        	request.on('end', function () {
 	            reqBody = JSON.parse(Buffer.concat(reqBody));
 	            this.answer = this.auth(reqBody);
 	        }.bind(this));
@@ -34,10 +39,7 @@ var Controller = Rotor.Controller.extend({
 		if (this.user){
 			if (data.password == this.user.get('password')) {
 				console.log('ok');
-				Session.addSession(function (err, result) {
-	                this.responseHead.cookies = 'token=' + result._id;
-					this.sendResponse('', {login: this.user.get('login'), token: result._id});
-				}.bind(this), {login: this.user.get('login'), userID: this.user.id});
+				this.login();
 			} else {
 				console.log('bad');
 				this.sendResponse('Not valid password');
@@ -55,21 +57,11 @@ var Controller = Rotor.Controller.extend({
 		}.bind(this));
 	},
 
-	sendFile: function (response, contentType, filePath) {
-	    fs.stat(filePath, function (err, stats) {
-	        if (stats) {
-	            fs.readFile(filePath, function(error, data) {
-	                if (error) {
-	                    response.writeHead(500);
-	                    response.end();
-	                } else {
-	                    response.writeHead(200, {'Content-Type': contentType});
-	                    response.write(data);
-	                    response.end();
-	                }
-	            });
-	        } 
-	    });
+	login: function () {
+		Session.addSession(function (err, result) {
+            this.responseHead.cookies = 'token=' + result._id;
+			this.sendResponse('', {login: this.user.get('login'), token: result._id});
+		}.bind(this), {login: this.user.get('login'), userID: this.user.id});
 	}
 
 });

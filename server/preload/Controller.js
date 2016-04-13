@@ -40,7 +40,8 @@ var Controller = Rotor.Controller.extend({
 
             lock.reset(2).then(function () {
                 this.sendResponse('', this.preloadData);
-            }.bind(this));
+            }, this);
+            
         } else {
             this.sendResponse('Not authorized');      
         }
@@ -52,7 +53,7 @@ var Controller = Rotor.Controller.extend({
 
     	data = user.toJSON();
     	data.id = data._id;
-        
+
         delete data._id;
         delete data.password;
 

@@ -7,6 +7,7 @@ function Lock () {}
 _.extend(Lock.prototype, {
 	counter: '',
 	callback: '',
+	context: '',
 
 	reset: function (n) {
 		this.counter = n;
@@ -16,14 +17,15 @@ _.extend(Lock.prototype, {
 
 	check: function () {
 		if (!(--this.counter)) {
-			this.callback();
+			this.callback.call(this.context);
 		}
 
 		return this;
 	},
 
-	then: function (callback) {
+	then: function (callback, context) {
 		this.callback = callback;
+		this.context = context;
 
 		return this;
 	}

@@ -1,18 +1,26 @@
-var mongodb = require('mongodb');
+var mongodb = require('mongodb'),
+    lock = require('./libs/lock');
 
-console.log('server reset...');
+console.log('server reset start...');
 reset();
 
 function reset (request, response) {
 	var MongoClient = mongodb.MongoClient,
 		url = 'mongodb://localhost:27017/caeser';
-		
+	
+    console.log('Please, wait...');
+
+    lock.reset(3).then(function () {
+        console.log('All done! Exiting...');
+        process.exit();
+    });
+
 	getConnection('users', function (collection, db) {
         collection.remove({}, function (err, result) {
             collection.insert(users, function (err, result) {
-                console.log(err)
                     console.log('Succesfully inserted users: ' + result.toString());
                     db.close();
+                    lock.check();
                 }
             );
         });    
@@ -23,6 +31,7 @@ function reset (request, response) {
     		collection.insert(groups, function (err, result) {
     				console.log('Succesfully inserted groups: ' + result);
     				db.close();
+                    lock.check();
     			}
     		);
         });
@@ -33,6 +42,7 @@ function reset (request, response) {
     		collection.insert(locations, function (err, result) {
     				console.log('Succesfully inserted locations: ' + result);
     				db.close();
+                    lock.check();
     			}
     		);
         });
@@ -68,8 +78,22 @@ var users = [{
 	"password": "1234"
 }];
 			
-var locations = [{"city": "Dnipro"}, {"city": "Kyiv"}, {"city": "Sofia"}, {"city": "Chernivtsy"}, {"city": "Rivne"},
-                    {"city":"Ivano-Frankivsk"}, {"city": "Lviv"}];
+var locations = [{
+    "city": "Dnipro"
+}, {
+    "city": "Kyiv"
+}, {
+    "city": "Sofia"
+}, {
+    "city": "Chernivtsy"
+}, {
+    "city": "Rivne"
+}, {
+    "city":"Ivano-Frankivsk"
+}, {
+    "city": "Lviv"
+}];
+
 var groups = [{
     "name": "DP-093-JS",
     "location": "Dnipro",

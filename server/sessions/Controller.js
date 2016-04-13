@@ -12,33 +12,39 @@ var Session = Rotor.Controller.extend({
         'endSession': 'deleteItem'
     },
 
-     initialize: function (req) {
+    initialize: function (req) {
         this.request = req;
     },
 
 	checkAuth: function () {
 		var token = this.parseCookies(this.request).token,
-			session;
+			session, result;
 
 		if (token) {
 			session = this.collection.get(token);
+
 			if (session) {
-				return session;
+				result = session;
 			} else {
-				console.log('reject')
-				return false;
+				console.log('reject');
+				result = false;
 			}
 		} else {
-			console.log('reject')
-			return false;
+			console.log('reject');
+			result = false;
 		}
+
+		return result;
 	},
 
+	//поменять порядок аргументов!!!!!
 	addSession: function (callback, data) {
 		this.collection.saveNew(callback, data);
 	},
 
+	//поменять порядок аргументов!!!!!
 	endSession: function (session, callback) {
+		//поменять порядок аргументов!!!!!
 		this.collection.deleteItem(function (err, result) {
 			callback(err, result);
 		}, session.get('_id'));
