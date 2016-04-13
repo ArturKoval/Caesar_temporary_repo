@@ -1,8 +1,7 @@
-var http = require('http'),
-	mongodb = require('mongodb');
+var mongodb = require('mongodb');
 
-http.createServer(reset).listen(3000);
 console.log('server reset...');
+reset();
 
 function reset (request, response) {
 	var MongoClient = mongodb.MongoClient,

@@ -15,9 +15,7 @@ _.extend(Lock.prototype, {
 	},
 
 	check: function () {
-		this.counter--;
-
-		if (!this.counter) {
+		if (!(--this.counter)) {
 			this.callback();
 		}
 

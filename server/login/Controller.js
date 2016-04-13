@@ -36,7 +36,6 @@ var Controller = Rotor.Controller.extend({
 				console.log('ok');
 				Session.addSession(function (err, result) {
 	                this.responseHead.cookies = 'token=' + result._id;
-	                console.log(this.user.get('login'))
 					this.sendResponse('', {login: this.user.get('login'), token: result._id});
 				}.bind(this), {login: this.user.get('login'), userID: this.user.id});
 			} else {
