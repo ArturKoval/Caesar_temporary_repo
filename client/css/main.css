@@ -145,7 +145,7 @@ html, body {height:100%;}
 } 
 
 .left-side-bar {
-    width: 24%;
+    width: 23%;
     height: 100%;
     border: #003366 1px solid;
     border-radius: 10px;
@@ -154,7 +154,7 @@ html, body {height:100%;}
 }
 
 .content-section {
-    width: 64%;
+    width: 65%;
     height: 100%;
     float: left;
     box-sizing: border-box;
