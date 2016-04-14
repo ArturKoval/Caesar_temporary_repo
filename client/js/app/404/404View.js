@@ -2,17 +2,13 @@
 
 (function (This)  {
     This.ErrorPageView = Backbone.View.extend({
-        className: 'hidden',
+        className: 'errorPage',
         tpl: templates.ErrorPageTpl,
 
-        render: function () {
-            this.$el.append(this.tpl());
-
+        render: function (message) {
+            this.$el.html(this.tpl(message));
+            
             return this;
-        },
-
-        show: function () {
-            this.$el.removeClass('hidden');
         }
     });
 })(CS.ErrorPage);

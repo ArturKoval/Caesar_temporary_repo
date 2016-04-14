@@ -16,6 +16,12 @@
                 return group.isMyStage(stage);
             }));
         },
+
+        findGroupsByState: function (state) {
+            return new This.GroupList(this.filter(function (group) {
+                return group.isMyState(state);
+            }));
+        },
         
         findGroupsByLocations: function (locations) {
             return new This.GroupList(this.filter(function (group) {

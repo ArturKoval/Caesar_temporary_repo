@@ -18,14 +18,14 @@
         initialize: function () {
             this.controller = new CS.Groups.Controller();
             Backbone.history.loadUrl(Backbone.history.fragment); 
-            app.mediator.subscribe('Groups: group selected', this.navToGroupSelected, null, this);
-            app.mediator.subscribe('Groups: StubView changed', this.navToGroupAction, null, this);
-            app.mediator.subscribe('Groups: Edit button selected', this.navToShowFormEdit, null, this);
-            app.mediator.subscribe('Groups: DeleteDialogCalled', this.navToShowFormDelete, null, this);
-            app.mediator.subscribe('Groups: Create', this.navToShowFormCreate, null, this);
-            app.mediator.subscribe('Groups: delete group', this.navToDeleteGroup, null, this);
-            app.mediator.subscribe('Groups: group saved', this.navToSaveGroup, null, this);
-            app.mediator.subscribe('Groups: dialog closed', this.navToCancelForm, null, this);
+            app.mediator.subscribe('Groups: group-selected', this.navToGroupSelected, null, this);
+            app.mediator.subscribe('Groups: stubView-changed', this.navToGroupAction, null, this);
+            app.mediator.subscribe('Groups: edit-button-selected', this.navToShowFormEdit, null, this);
+            app.mediator.subscribe('Groups: delete-dialog-called', this.navToShowFormDelete, null, this);
+            app.mediator.subscribe('Groups: group-create', this.navToShowFormCreate, null, this);
+            app.mediator.subscribe('Groups: delete-group', this.navToDeleteGroup, null, this);
+            app.mediator.subscribe('Groups: group-saved', this.navToSaveGroup, null, this);
+            app.mediator.subscribe('Groups: dialog-closed', this.navToCancelForm, null, this);
         },
 
         navToGroupSelected: function (model) {
@@ -83,18 +83,25 @@
         },
 
         openGroupInfo: function (location, groupName) {
-            this.controller.showPageByRoute(location, groupName);
-            this.navigate('Groups/' + location + '/' + groupName + '/info');
+            var modelGroup = this.controller.showPageByRoute(location, groupName);
+
+            if (modelGroup) {
+                this.navigate('Groups/' + location + '/' + groupName + '/info');
+            }     
         },
 
         openFormGroupDelete: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
+
             this.controller.delete(modelGroup);
         },
 
         openFormGroupEdit: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
-            this.controller.createEdit(modelGroup);
+
+            if (modelGroup) {
+                this.controller.createEdit(modelGroup);
+            }      
         },
 
         openGroupAction: function (location, groupName, action) {

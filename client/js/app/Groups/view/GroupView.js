@@ -20,13 +20,17 @@
             this.mediator = app.mediator;
 			this.listener = {
 				'info': {view: 'GroupInfoView', model: this.model},
+				'edit': {view: 'GroupCreateEditView', model: this.model},
 				'shedule': {view: 'ScheduleView', model: this.model},
 				'students': {view: 'StudentListView', collection: students},
 				'message': {view: 'MessageView'}
 			};
             this.model.on('change', this.render, this);
-            this.model.on('destroy', this.remove, this); 
+            this.model.on('destroy', this.remove, this); 				
+			
+			$('#main-section').empty();
             $('#main-section').append(this.$el); // ContentView responsibility
+			
             this.render();
            
         },
@@ -45,7 +49,7 @@
                 $el,
                 action;
 		
-            if (e) {
+            if (e.currentTarget || e) {
                 $el = $(e.currentTarget);
             } else {
                 $el = $('.infoBtn');
@@ -53,6 +57,7 @@
 
             if (typeof e !== "string") {
                 action = $el.attr('name');
+				
                 if (action !== 'edit') {
                     this.publishEvent(action); 
                 }
@@ -60,10 +65,11 @@
                 action = e;
             }
 			if (action === 'edit') {
-				this.mediator.publish('Groups: Edit button selected', this.model);
-			}
+				this.mediator.publish('Groups: edit-button-selected', this.model);
+			} else {
+                this.showStubView(this.listener[action]);
+            }	
 			
-			this.showStubView(this.listener[action]);
             $buttons.removeClass('active');
             $el.addClass('active');
         },
@@ -76,11 +82,11 @@
         },
         
         publishEvent: function (stubViewName) {
-            this.mediator.publish('Groups: StubView changed', {group: this.model, stubView: stubViewName});
+            this.mediator.publish('Groups: stubView-changed', {group: this.model, stubView: stubViewName});
         },
 
         showDeleteDialog: function () {
-            this.mediator.publish('Groups: DeleteDialogCalled', this.model);
+            this.mediator.publish('Groups: delete-dialog-called', this.model);
             //this.mediator.publish('Messenger: Confirmation window open', {type: 'confirmation', object: this.model.get('name')});
         }
     });

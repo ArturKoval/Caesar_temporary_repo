@@ -3,14 +3,20 @@
 (function (This, app)  {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Show 404': 'showAll'
+            'Error by route': 'showErrorPage'
         },
 
         initialize: function () {
-            this.collectionView = new This.ErrorPageView();
-            this.$el = $('#main');
+            this.errorPageView = new This.ErrorPageView();
             this.mediator = app.mediator;
-            this.start();
+        },
+
+        showErrorPage: function (args) {
+            var elem = args.elem,
+                message = args.message;
+
+            elem.empty();
+            elem.html(this.errorPageView.render({message: message}).el);
         }
     });
 })(CS.ErrorPage, app);

@@ -20,7 +20,7 @@ $(function () {
         app.router = new CS.Router();
 		app.subRouters = {};
         app.userController = new CS.User.Controller();
-        //app.notFound = new CS.ErrorPage.Controller();
+        app.notFound = new CS.ErrorPage.Controller();
 		
         Backbone.history.start({pushState: true});
     }

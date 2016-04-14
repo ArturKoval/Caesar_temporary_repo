@@ -30,6 +30,24 @@
             return locations.indexOf(this.get('location')) > -1;
         },
 
+        isMyState: function (state) {
+            var result;
+
+            if (state === 'planned') {
+                result = this.get('stage') === 'boarding' || this.get('stage') === 'before-start'
+            }
+
+            if (state === 'in-process') {
+                result = this.get('stage') === 'in-process' || this.get('stage') === 'offering'
+            }
+
+            if (state === 'finished') {
+                result = this.get('stage') === 'finished'
+            }
+            return result;
+
+        },
+
         validation: {
             name: [{
                 minLength: 4
