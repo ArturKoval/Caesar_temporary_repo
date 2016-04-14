@@ -1,6 +1,6 @@
 'use strict';
 
-var Rotor = require('../libs/rotor/rotor'),
+var Rotor = require('../../libs/rotor/rotor'),
 	Users = require('../users/Models/UsersList');
 
 var Session = Rotor.Controller.extend({
@@ -37,17 +37,17 @@ var Session = Rotor.Controller.extend({
 		return result;
 	},
 
-	//поменять порядок аргументов!!!!!
-	addSession: function (callback, data) {
-		this.collection.saveNew(callback, data);
+	//поменять порядок аргументов!!!!! обработка ошибки
+	addSession: function (data, callback, context) {
+		this.collection.saveNew(data, '', callback, context);
 	},
 
-	//поменять порядок аргументов!!!!!
-	endSession: function (session, callback) {
+	//поменять порядок аргументов!!!!!обработка ошибки
+	endSession: function (session, callback, context) {
 		//поменять порядок аргументов!!!!!
-		this.collection.deleteItem(function (err, result) {
-			callback(err, result);
-		}, session.get('_id'));
+		this.collection.deleteItem(session.get('_id'), function (err, result) {
+			callback.call(context, err, result);
+		});
 	}
 });
 

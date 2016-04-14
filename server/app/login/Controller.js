@@ -1,11 +1,11 @@
 'use strict';
 
-var Rotor = require('../libs/rotor/rotor'),
+var Rotor = require('../../libs/rotor/rotor'),
 	Users = require('../users/Models/UsersList'),
 	Session = require('../sessions/Controller');
 
 var Controller = Rotor.Controller.extend({ //как его называть????)
-	loginPagePath: '../client/login.html',
+	loginPagePath: '../../client/login.html',
 	user: '',
     responseHead: {
         statusOK: '200',
@@ -49,19 +49,24 @@ var Controller = Rotor.Controller.extend({ //как его называть????)
 			this.sendResponse('No user with such login');
 		}
 	},
-
+//поменять порядок аргументов, обработать контекст внутри!!!! обработка ошибок
 	logout: function (session) {
 		Session.endSession(session, function (err, result) {
 			this.responseHead.cookies = '';
 			this.sendFile(this.response, 'text/html', '../client/login.html');
-		}.bind(this));
+		}, this);
 	},
-
+//поменять порядок аргументов, обработать контекст внутри!!!! обработка ошибок
 	login: function () {
-		Session.addSession(function (err, result) {
+		var data = {
+			login: this.user.get('login'),
+			userID: this.user.id
+		};
+
+		Session.addSession(data, function (err, result) {
             this.responseHead.cookies = 'token=' + result._id;
 			this.sendResponse('', {login: this.user.get('login'), token: result._id});
-		}.bind(this), {login: this.user.get('login'), userID: this.user.id});
+		}, this);
 	}
 
 });

@@ -3,6 +3,8 @@
 var Rotor = require('backbone'),
 	Store = require('./Store');
 
+var Controller = Rotor.Controller = require('./Controller');
+
 var Model = Rotor.Model = Rotor.Model.extend({
 	idAttribute: '_id',
 	name: ''
@@ -11,52 +13,58 @@ var Model = Rotor.Model = Rotor.Model.extend({
 var Collection = Rotor.Collection = Rotor.Collection.extend({
     name: '',
 
-    initialize: function (callback) {
+    initialize: function (callback, context) {
         this.fetch({success: function (result) {
 			if (callback) {
-				callback(result);
+				callback.call(context, result);
+				context = null;
 			}
 		}},{wait: true});
     },
 
-    getCollection: function (callback) {
+    getCollection: function (action, callback, context) {
     	if (callback) {
-    		callback('', this.toJSON());
+    		callback.call(context, '', this.toJSON());
+    		context = null;
     	}
     	
     	return this.toJSON();
     },
 
-    deleteItem: function (callback, id) {
-    	var model = this.get(id);
+    deleteItem: function (action, callback, context) {
+    	var model = this.get(action);
 
     	model.destroy({success: function (result) {
-    		callback('', result);
+    		callback.call(context, '', result);
+    		context = null;
     	}, error: function (err) {
-    		callback(err);
+    		callback.call(context, err);
+    		context = null;
     	}}, {wait: true});
     },
 
-    saveNew: function (callback, data) {
+    saveNew: function (data, action, callback, context) {
     	this.create(data, {success: function (result) {
-    		callback('', result.attributes);
+    		callback.call(context, '', result.attributes);
+    		context = null;
     	}, error: function (err) {
-    		callback(err);
+    		callback.call(context, err);
+    		context = null;
     	}}, {wait: true});
     },
 
-    saveUpdated: function (callback, data, id) {
-    	var model = this.get(id);
+    saveUpdated: function (data, action, callback, context) {
+    	var model = this.get(action);
 
     	model.save(data, {success: function (result) {
-    		callback('', result.attributes);
+    		callback.call(context, '', result.attributes);
+    		context = null;
     	}, error: function (err) {
-    		callback(err);
+    		callback.call(context, err);
+    		context = null;
     	}}, {wait: true});
     }
 });
-
-var Controller = Rotor.Controller = require('./Controller');
 
 Rotor.sync = function(method, model, options) {
 		var resp;
@@ -109,4 +117,5 @@ Rotor.sync = function(method, model, options) {
 			default: options.error("Record not found");
 		}
 };
+
 module.exports = Rotor;

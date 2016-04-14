@@ -1,9 +1,9 @@
 'use strict';
 
-var session = require('./sessions/Controller'),
+var session = require('./app/sessions/Controller'),
     helper = require('./libs/helper'),
     _ = require('underscore'),
-    dir = './';
+    dir = './app/';
 
 function Router () {}
 
@@ -20,22 +20,19 @@ _.extend(Router.prototype, {
     },
 
     init: function (request, response, action, route) {
-        var controller,
-            currSession;
+        var currSession;
 
         if (this.routes[route]['auth']) {
             currSession = this.getSession(request);
 
             if (currSession){
-                controller = require(dir + this.routes[route]['module'] + '/Controller');
-                controller.initialize(request, response, action, currSession);
+                this.navigate(route, request, response, action, currSession)
             } else {
                 console.log('redirect');
                 helper.sendFile(response, 'text/html', '../client/login.html');
             }
         } else {
-            controller = require(dir + this.routes[route]['module'] + '/Controller');
-            controller.initialize(request, response, action);
+            this.navigate(route, request, response, action)
         }
     },
 
@@ -43,7 +40,14 @@ _.extend(Router.prototype, {
         session.initialize(request);
 
         return session.checkAuth();
-    }   
+    },
+
+    navigate: function (route, request, response, action, currSession) {
+        var controller;
+
+        controller = require(dir + this.routes[route]['module'] + '/Controller');
+        controller.initialize(request, response, action, currSession);
+    }  
 });
 
 module.exports = new Router();

@@ -1,8 +1,8 @@
 'use strict';
 
-var Rotor = require('../libs/rotor/rotor'),
+var Rotor = require('../../libs/rotor/rotor'),
 	path = require('path'),
-	helper = require('../libs/helper');
+	helper = require('../../libs/helper');
 
 var Controller = Rotor.Controller.extend({
 	adminPagePath: '../admin/admin.html',
@@ -27,7 +27,7 @@ var Controller = Rotor.Controller.extend({
 
 	initialize: function (request, response) {
         if (request.url === '/admin') {
-            this.filePath = '../admin/admin.html';
+            this.filePath = this.adminPagePath;
 		} else {
 			this.filePath = '../' + request.url;
 		}

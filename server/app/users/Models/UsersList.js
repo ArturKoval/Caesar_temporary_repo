@@ -1,6 +1,6 @@
 'use strict';
 
-var Rotor = require('../../libs/rotor/rotor'),
+var Rotor = require('../../../libs/rotor/rotor'),
 	User = require('./User');
 
 var UsersList = Rotor.Collection.extend({

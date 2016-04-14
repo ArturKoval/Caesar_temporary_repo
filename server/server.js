@@ -21,6 +21,7 @@ function start (request, response, errRoute) {
             'woff2': "application/font-woff2",
             'eot': "application/vnd.ms-fontobject"
         },
+
         dir = '../client',
         contentType,
         extention,
@@ -43,19 +44,10 @@ function start (request, response, errRoute) {
         router.init(request, response, action, route);
     } else {
         filePath = dir + request.url;
-        
-   //      if (/admin/.test(request.url)) {
-   //          if (request.url === '/admin') {
-   //              filePath = '../admin/admin.html';
-			// } else {
-			// 	filePath = '../' + request.url;
-			// }			
-   //      }	
-		
         extention = path.extname(filePath);
         contentType = types[extention.substr(1, extention.length)];
+
         helper.sendFile(response, contentType, filePath, request, start);
     }
-
 }
 

@@ -1,8 +1,8 @@
 'use strict';
-var Rotor = require('../libs/rotor/rotor');
+var Rotor = require('../../libs/rotor/rotor');
 
 var Controller = Rotor.Controller.extend({
-	collection: require('./Models/UsersList')
+	collection: require('./Models/GroupsList'),
 });
 
 module.exports = new Controller();

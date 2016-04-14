@@ -1,5 +1,5 @@
 'use strict';
-var Rotor = require('../../libs/rotor/rotor');
+var Rotor = require('../../../libs/rotor/rotor');
 
 var User = Rotor.Model.extend({
 	name: 'users',
