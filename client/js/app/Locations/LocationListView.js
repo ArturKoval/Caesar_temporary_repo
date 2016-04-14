@@ -16,8 +16,10 @@
         },
 
         render: function () {
-            var $wrapper = $('<div><div>').addClass('wrapper-location');
-            _.each(this.collection, function (location) { 
+            var $wrapper = $('<div><div>').addClass('wrapper-location'),
+                collection = this.collection.sort();
+
+            _.each(collection, function (location) {
                 var locationView = new This.LocationView();
 
                 $wrapper.append(locationView.$el.append(location));
