@@ -49,18 +49,19 @@ var Controller = Rotor.Controller.extend({ //как его называть????)
 			this.sendResponse('No user with such login');
 		}
 	},
-//поменять порядок аргументов, обработать контекст внутри!!!! обработка ошибок
+//!!!! обработка ошибок
 	logout: function (session) {
 		Session.endSession(session, function (err, result) {
-			this.responseHead.cookies = '';
+			this.responseHead.cookies = 'token=""';
 			this.sendFile(this.response, 'text/html', '../client/login.html');
 		}, this);
 	},
-//поменять порядок аргументов, обработать контекст внутри!!!! обработка ошибок
+//!!!! обработка ошибок
 	login: function () {
 		var data = {
 			login: this.user.get('login'),
-			userID: this.user.id
+			userID: this.user.id,
+			role: this.user.get('role')
 		};
 
 		Session.addSession(data, function (err, result) {

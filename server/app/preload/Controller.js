@@ -37,7 +37,7 @@ var Controller = Rotor.Controller.extend({
         if (userId && Users.get(userId)) {
 			this.responsePreload(userId);
         } else {
-            this.sendResponse('Not authorized');      
+            this.sendResponse('Not authorized');
         }
     },
 
@@ -53,14 +53,14 @@ var Controller = Rotor.Controller.extend({
 
     	return data;
     },
-//поменять порядок аргументов, обработать контекст внутри
+//обработка ошибок
     getLocationsData: function () {
         Locations.initialize(function (result) {
             this.preloadData.locations = this.formatData(Locations.getCollection());
             lock.check();
         }, this);
     },
-//поменять порядок аргументов, обработать контекст внутри
+//обработка ошибок
     getGroupsData: function () {
     	Groups.initialize(function (result) {
             this.preloadData.groups = this.formatData(Groups.getCollection());

@@ -10,7 +10,7 @@ function reset (request, response) {
 	
     console.log('Please, wait...');
 
-    lock.reset(3).then(function () {
+    lock.reset(4).then(function () {
         console.log('All done! Exiting...');
         process.exit();
     });
@@ -47,6 +47,14 @@ function reset (request, response) {
     		);
         });
 	});
+
+    getConnection('sessions', function (collection, db) {
+        collection.remove({}, function (err, result) {
+            console.log('Succesfully delted sessions: ' + result);
+            db.close();
+            lock.check();
+        });
+    });
 
 	function getConnection (name, callback) {
        	MongoClient.connect(url, function (err, db) {
