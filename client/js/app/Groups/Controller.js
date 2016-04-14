@@ -8,7 +8,8 @@
             'Groups: delete-dialog-called': 'delete',
             'Groups: group-saved': 'showSelectedGroup',
             'Locations: Show-button selected': 'showAllLocations',
-            'Locations: showGroupsInLocation': 'render'
+            'Locations: showGroupsInLocation': 'render',
+            'Paginator: collection-divided': 'groupsRender'
         },
 
         initialize: function () {
@@ -41,14 +42,19 @@
         },
 
         render: function (location) {
-            var groupListView = new This.GroupListView({
+            this.groupListView = new This.GroupListView({
                     collection: this.list(location)
-                }),
-                $sidebar = $('#left-side-bar');
-          		   
-            $sidebar.html(groupListView.$el).append(groupListView.render());
-			
+                });
+
+            var $sidebar = $('#left-side-bar');
+                   
+            $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
+            
             this.$main.empty();
+        },
+
+         groupsRender: function(collection) {
+            this.groupListView.renderGroups(collection);
         },
 
         showPageByRoute: function (location, groupName) {

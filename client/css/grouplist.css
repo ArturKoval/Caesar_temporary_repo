@@ -12,19 +12,25 @@
     margin-top:20px;
     font-size: 2em;
     display: inline-block;
-    color: black;
 }
 
-.groups-nav {
+.paginator-place-holder {
     text-align: center;
     white-space: pre;
     width:150px;
     display:inline-block;
-    border: 2px solid darkblue;
     padding: 5px;
     float: right;
     margin: 20px;
     right: 40px;
+}
+
+.left-nav, .right-nav {
+    cursor: pointer;
+}
+
+.invisible {
+    visibility: hidden;
 }
 
 .group-collection {
@@ -48,15 +54,16 @@
 .small-group-view {
     font-size: 1.7em;
     display: inline-block;
-    margin: 13px;
+    margin: 2% 5%;
     vertical-align: top;
     padding: 10px;
     background: #3C78B5;
-    height: 100px;
+    height: 110px;
     width: 40%;
     text-align: center;
     color: white;
     cursor: pointer;
+    word-wrap: break-word;
 }
 
 .myGroups {
@@ -64,7 +71,7 @@
     color: white;
     margin-left: 15px;
     padding:15px;
-    border-radius: 1em;     
+    border-radius: 1em;
 }
 
 
