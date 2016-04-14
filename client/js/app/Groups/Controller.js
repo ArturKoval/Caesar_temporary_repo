@@ -3,11 +3,10 @@
 (function (This) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: group selected': 'showSelectedGroup',
-            'Groups: Edit button selected': 'createEdit',
-            'Groups: DeleteDialogCalled': 'delete',
+            'Groups: group-selected': 'showSelectedGroup',
+            'Groups: edit-button-selected': 'createEdit',
+            'Groups: delete-dialog-called': 'delete',
             'Groups: group-saved': 'showSelectedGroup',
-            'Groups: Show 404': 'show404',
             'Locations: Show-button selected': 'showAllLocations',
             'Locations: showGroupsInLocation': 'render'
         },
@@ -53,9 +52,18 @@
         },
 
         showPageByRoute: function (location, groupName) {
-            this.render(location);
-            this.buttonShowAll();
-            this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+            if (i.locations.indexOf(location) > -1) {
+                this.render(location);
+                this.buttonShowAll();
+
+                if (this.list(location).findGroupByName(groupName)) {
+                    this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+                } else {
+                    app.mediator.publish('Error by route', {elem: this.$main, message: 'such a group is not found'})
+                }
+            } else {
+                app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
+            }
 
             return this.list(location).findGroupByName(groupName);
         },
@@ -65,17 +73,29 @@
 				this.render(location);
 				this.buttonShowAll();
 			} else {
-				//404 'Not Found'
+				app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
 			}
 		},
 
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
             this.buttonShowAll();
-            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
+            this.showSelectedGroupByRouter(this.list(location).findGroupByName(groupName), action);
         },
 
-        showSelectedGroup: function (selected, action) {
+        showSelectedGroupByRouter: function (selected, action) {
+            var contentView = new This.ContentView({
+                    model: selected
+                }),
+                groupView = new This.GroupView({
+                    model: selected
+                });
+                    
+            contentView.render(); 
+            groupView.stubsListener(action, 'info');    
+        },
+
+        showSelectedGroup: function (selected) {
             var contentView = new This.ContentView({
                     model: selected
                 }),
@@ -84,9 +104,7 @@
                 });
             		
             contentView.render();
-            //this.$main.empty();
-            
-            groupView.stubsListener('info');
+            groupView.stubsListener('info');    
         },
 
         showAllLocations: function () {
@@ -107,12 +125,6 @@
             });
 
             this.modal(groupDeleteView);
-        },
-
-        show404: function () {
-            var errorPage = new This.ErrorPageView();
-
-            this.$main.html(errorPage.render().$el);
         }
     });
 })(CS.Groups);

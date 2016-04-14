@@ -23,13 +23,13 @@
         },
 
         deleteGroup: function () {
-            app.mediator.publish('Groups: delete group');
+            app.mediator.publish('Groups: delete-group');
             this.model.destroy();
             this.remove();
         },
 
         close: function () {
-            app.mediator.publish('Groups: dialog closed');
+            app.mediator.publish('Groups: dialog-closed');
             this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
         },

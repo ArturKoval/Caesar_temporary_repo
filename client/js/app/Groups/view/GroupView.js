@@ -65,10 +65,11 @@
                 action = e;
             }
 			if (action === 'edit') {
-				this.mediator.publish('Groups: Edit button selected', this.model);
-			}
+				this.mediator.publish('Groups: edit-button-selected', this.model);
+			} else {
+                this.showStubView(this.listener[action]);
+            }	
 			
-			this.showStubView(this.listener[action]);
             $buttons.removeClass('active');
             $el.addClass('active');
         },
@@ -81,11 +82,11 @@
         },
         
         publishEvent: function (stubViewName) {
-            this.mediator.publish('Groups: StubView changed', {group: this.model, stubView: stubViewName});
+            this.mediator.publish('Groups: stubView-changed', {group: this.model, stubView: stubViewName});
         },
 
         showDeleteDialog: function () {
-            this.mediator.publish('Groups: DeleteDialogCalled', this.model);
+            this.mediator.publish('Groups: delete-dialog-called', this.model);
             //this.mediator.publish('Messenger: Confirmation window open', {type: 'confirmation', object: this.model.get('name')});
         }
     });
