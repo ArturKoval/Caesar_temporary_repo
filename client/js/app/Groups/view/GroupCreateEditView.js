@@ -57,6 +57,9 @@
         },
 
         setFinishDate: function () {
+            var startDate = this.$el.find('[name=startDate]').val();
+
+            if (startDate){
             var finishDate,
                 courseDuration;
 
@@ -66,10 +69,11 @@
                 courseDuration = 12 * 7;
             }
 
-            finishDate = new Date(this.$el.find('[name=startDate]').val());
+            finishDate = new Date(startDate);
 
             finishDate.setDate(finishDate.getDate() + courseDuration);
             this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
+            }
         },
 
         setBudgetOwner: function (event) {
@@ -97,10 +101,17 @@
             errors = this.model.preValidate(formData);
 
             if (!_.isEmpty(errors)) {
+                var hints = [];
+                var obj = {};
+                _.each(errors, function (value, key) {
+                    obj[key] = value;
+                    hints.push(obj);
+                    obj = {};
+                });
                 app.mediator.publish('Message', {
                     type: 'hints',
                     $el: this.$el,
-                    hints: [errors]
+                    hints: hints
                 })
             } else {
                 this.model.save(formData);
@@ -111,19 +122,21 @@
                     message = 'group ' + this.model.get('name') + ' edited';
                 }
 
-                _.each(_.pick(formData, 'teachers', 'experts'), function (value, key) {
+                _.each(_.pick(formData, 'teachers', 'experts'), function (value, key) { //msg 2 в одном
                     if (!value.length) {
                         app.mediator.publish('Message', {
                             type: 'warning',
-                            msg: key + ' are not specified'
+                            message: key + ' are not specified'
                         });
                     }
                 });
 
                 app.mediator.publish('Groups: group-saved', this.model);
-                
+                app.mediator.publish('Message', {
+                    type: 'info',
+                    message: message
+                });
                 this.remove();
-
             }
         },
 
