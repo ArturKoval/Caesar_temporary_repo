@@ -36,7 +36,11 @@
 
             model = _.extend({
                 directions: i.directions,
-                locations: i.locations
+                locations: i.locations,
+                stages: i.stages,
+                isCreate: this.model.isNew(),
+                defaultLocation: app.user.get('location'),
+                defaultTeacher: app.user.getShortName()
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));
@@ -59,20 +63,20 @@
         setFinishDate: function () {
             var startDate = this.$el.find('[name=startDate]').val();
 
-            if (startDate){
-            var finishDate,
-                courseDuration;
+            if (startDate) {
+                var finishDate,
+                    courseDuration;
 
-            if (this.$el.find('[name=direction]').val() === 'MQC') {
-                courseDuration = 9 * 7;
-            } else {
-                courseDuration = 12 * 7;
-            }
+                if (this.$el.find('[name=direction]').val() === 'MQC') {
+                    courseDuration = 9 * 7;
+                } else {
+                    courseDuration = 12 * 7;
+                }
 
-            finishDate = new Date(startDate);
+                finishDate = new Date(startDate);
 
-            finishDate.setDate(finishDate.getDate() + courseDuration);
-            this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
+                finishDate.setDate(finishDate.getDate() + courseDuration);
+                this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
             }
         },
 
@@ -84,7 +88,8 @@
         save: function () {
             var formData = {teachers: this.teachers, experts: this.experts},
                 errors = {},
-                message;
+                infoMessage,
+                warningMessage;
 
             this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
                 formData[field.name] = field.value;
@@ -102,11 +107,12 @@
 
             if (!_.isEmpty(errors)) {
                 var hints = [];
-                var obj = {};
+
                 _.each(errors, function (value, key) {
-                    obj[key] = value;
-                    hints.push(obj);
-                    obj = {};
+                    hints.push({
+                        name: key,
+                        message: value
+                    });
                 });
                 app.mediator.publish('Message', {
                     type: 'hints',
@@ -117,24 +123,30 @@
                 this.model.save(formData);
 
                 if (this.model.isNew()) {
-                    message = 'group ' + this.model.get('name') + ' created';
+                    infoMessage = 'group ' + this.model.get('name') + ' created';
                 } else {
-                    message = 'group ' + this.model.get('name') + ' edited';
+                    infoMessage = 'group ' + this.model.get('name') + ' edited';
                 }
 
-                _.each(_.pick(formData, 'teachers', 'experts'), function (value, key) { //msg 2 в одном
-                    if (!value.length) {
-                        app.mediator.publish('Message', {
-                            type: 'warning',
-                            message: key + ' are not specified'
-                        });
-                    }
-                });
+                if (!formData.teachers.length && !formData.experts.length) {
+                    warningMessage = 'Teachers and experts';
+                } else if (!formData.teachers.length) {
+                    warningMessage = 'Teachers';
+                } else if (!formData.experts.length) {
+                    warningMessage = 'Experts';
+                }
+
+                if (warningMessage) {
+                    app.mediator.publish('Message', {
+                        type: 'warning',
+                        message: warningMessage + ' are not specified'
+                    });
+                }
 
                 app.mediator.publish('Groups: group-saved', this.model);
                 app.mediator.publish('Message', {
                     type: 'info',
-                    message: message
+                    message: infoMessage
                 });
                 this.remove();
             }

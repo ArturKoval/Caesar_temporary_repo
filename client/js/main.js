@@ -69,3 +69,10 @@ i.teachers = [
     'M. Omel`chuk',
     'B. Yulian'
 ];
+
+i.stages = ['boarding',
+    'before-start',
+    'in-process',
+    'offering',
+    'finished'
+];

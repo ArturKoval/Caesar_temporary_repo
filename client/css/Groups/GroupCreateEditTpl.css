@@ -10,14 +10,6 @@
     background-color: rgba(255, 255, 255, .5);
 }
 
-.backdrop .icon {
-    color: #3C78B5;
-}
-
-.backdrop .icon:hover {
-    color: #003366;
-}
-
 .backdrop .modal-window {
     width: 100%;
     background-color: #003366;
@@ -49,4 +41,34 @@ hr {
 .backdrop .control-label {
     padding: 6px 0;
     margin-right: 10px;
+}
+
+.backdrop [for="stage"] {
+    margin-top: 20px;
+}
+
+.backdrop #stage {
+    margin-top: -30px;
+}
+
+.backdrop .budgetOptions {
+    margin-top: 30px;
+}
+
+.backdrop .btn-icon {
+    color: #fff;
+    margin: 0 5px;
+}
+
+.backdrop .btn-icon::before {
+    background-color: #3C78B5;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: block;
+    cursor: pointer;
+}
+
+.backdrop .btn-icon:hover::before {
+    background-color: #003366;
 }
