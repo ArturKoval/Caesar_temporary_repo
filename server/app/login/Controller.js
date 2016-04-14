@@ -5,7 +5,7 @@ var Rotor = require('../../libs/rotor/rotor'),
 	Session = require('../sessions/Controller');
 
 var Controller = Rotor.Controller.extend({ //как его называть????)
-	loginPagePath: '../../client/login.html',
+	loginPagePath: '../client/login.html',
 	user: '',
     responseHead: {
         statusOK: '200',

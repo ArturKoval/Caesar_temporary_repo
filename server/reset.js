@@ -50,7 +50,7 @@ function reset (request, response) {
 
     getConnection('sessions', function (collection, db) {
         collection.remove({}, function (err, result) {
-            console.log('Succesfully delted sessions: ' + result);
+            console.log('Succesfully deleted sessions: ' + result);
             db.close();
             lock.check();
         });
