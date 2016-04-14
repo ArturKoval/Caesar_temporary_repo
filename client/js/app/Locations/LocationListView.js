@@ -12,7 +12,7 @@
 
         initialize: function () {
             this.locations = [];
-            app.mediator.subscribe('Locations: select locations', this.chooseLocations.bind(this));
+            app.mediator.subscribe('Locations: select-locations', this.chooseLocations.bind(this));
         },
 
         render: function () {
@@ -53,7 +53,7 @@
          },
 
         showGroupsInLocation: function () {
-            app.mediator.publish('Locations: showGroupsInLocation', this.locations);
+            app.mediator.publish('Locations: show-groups-in-location', this.locations);
             this.locations.splice(0);
             this.$el.remove();
         },

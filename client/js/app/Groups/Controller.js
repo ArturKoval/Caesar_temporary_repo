@@ -7,8 +7,8 @@
             'Groups: edit-button-selected': 'createEdit',
             'Groups: delete-dialog-called': 'delete',
             'Groups: group-saved': 'showSelectedGroup',
-            'Locations: Show-button selected': 'showAllLocations',
-            'Locations: showGroupsInLocation': 'render',
+            'Locations: show-button-selected': 'showAllLocations',
+            'Locations: show-groups-in-location': 'render',
             'Paginator: collection-divided': 'groupsRender'
         },
 
@@ -97,11 +97,12 @@
                     model: selected
                 });
                     
-            contentView.render(); 
+           
             groupView.stubsListener(action, 'info');    
         },
 
         showSelectedGroup: function (selected) {
+            
             var contentView = new This.ContentView({
                     model: selected
                 }),

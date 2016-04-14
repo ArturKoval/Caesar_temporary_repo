@@ -3,8 +3,6 @@ body {
 }
 .groupName, .groupLocation {
 	color: #003366;
-	font-size: 18px;
-	width: 50%;
 	font-size: 26px;
 	font-weight: bold;
 }
@@ -16,8 +14,6 @@ body {
 .groupLocation, .groupStageTitle, .groupStage {
 	text-align: left;
 	display: inline-block;
- 
-
 }
 
 .groupStageTitle {
@@ -33,5 +29,17 @@ body {
 	font-size: 16px;
 	height: 50px;
 	line-height: 60px;
+}
+
+.contentGroupName {
+	float: right;
+}
+
+.content-header-location, .content-header-group-name {
+	display:inline-block;
+}
+
+.content-header-group-name {
+	float: right;
 }
 

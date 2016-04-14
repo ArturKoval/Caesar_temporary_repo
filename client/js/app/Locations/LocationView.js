@@ -16,7 +16,7 @@
         onSelectLocation: function () {
             this.$el.toggleClass('active-location');
             var selectedLocations = this.$el.html();
-            app.mediator.publish('Locations: select locations', selectedLocations);
+            app.mediator.publish('Locations: select-locations', selectedLocations);
         }
     });
 
