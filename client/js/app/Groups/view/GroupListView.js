@@ -14,7 +14,7 @@
 
         initialize: function() {
             this.filtered = function(collection) {
-                return app.Filter(collection, {
+                return app.filter(collection, {
                     'state': this.state,
                     'areMyGroups': this.areMyGroups
                 });

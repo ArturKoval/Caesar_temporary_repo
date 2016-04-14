@@ -5,7 +5,6 @@
     	el: '#content-section',
     	
     	initialize: function () {
-    		console.log('sdfsf');
     		this.model.on('change', this.render, this);
     		app.mediator.subscribe('Locations: show-groups-in-location', this.showContentHeader.bind(this));
     	},
