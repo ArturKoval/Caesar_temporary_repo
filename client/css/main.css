@@ -37,7 +37,7 @@
     display: inline-block;
     text-align: center;
     vertical-align: bottom;
-    background-color: #346EA3;
+    background-color: #3C78B5;
     padding: 4px;
     margin: 5px;
     width: 50px;
@@ -103,7 +103,7 @@ html, body {height:100%;}
 }
 
 .header {
-    height: 50px;
+    height: 40px;
     background: #003366;
     position: relative;
 }
@@ -129,13 +129,13 @@ html, body {height:100%;}
     position: absolute;
     top : 0;
     left: 100%;
-    width: 15%;
+    width: 13%;
     transition: 0.4s;
 }
 
 .right-menu.open {
   transition: 0.4s;
-  left: 85%;
+  left: 87%;
 }
 
 .page {

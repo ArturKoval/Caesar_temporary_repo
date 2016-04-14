@@ -73,7 +73,7 @@ var users = [{
     "lastName": "Doe",
     "role": "Teacher",
     "location": "Dnipro",
-    "photo": "/default-photo.png",
+    "photo": "/img/default-photo.png",
 	"login": "john",
 	"password": "1234"
 }, {
@@ -81,7 +81,7 @@ var users = [{
     "lastName": "Petin",
     "role": "Coordinator",
     "location": "Dnipro",
-    "photo": "/default-photo.png",
+    "photo": "/img/default-photo.png",
 	"login": "dmytro",
 	"password": "1234"
 }];

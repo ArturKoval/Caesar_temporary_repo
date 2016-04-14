@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, i) {
     This.Group = Backbone.Model.extend({ 
         urlRoot: '/groups',
         
@@ -34,15 +34,15 @@
             var result;
 
             if (state === 'planned') {
-                result = this.get('stage') === 'boarding' || this.get('stage') === 'before-start'
+                result = this.get('stage') === 'boarding' || this.get('stage') === 'before-start';
             }
 
             if (state === 'in-process') {
-                result = this.get('stage') === 'in-process' || this.get('stage') === 'offering'
+                result = this.get('stage') === 'in-process' || this.get('stage') === 'offering';
             }
 
             if (state === 'finished') {
-                result = this.get('stage') === 'finished'
+                result = this.get('stage') === 'finished';
             }
             return result;
 
@@ -92,7 +92,7 @@
                 var isTeachersValid;
 
                 isTeachersValid = teachers.every(function (teacher) {
-                    return (i.teachers.indexOf(teacher) !== -1) || (teacher.length === 0);
+                    return (i.teachers.indexOf(teacher) !== -1);
                 });
 
                 if (!isTeachersValid) {
@@ -105,7 +105,7 @@
                     regexp = /^[a-z \-\.]{5,25}$/i;
 
                 isExpertsValid = experts.every(function (expert) {
-                    return regexp.test(expert) || (expert.length === 0);
+                    return regexp.test(expert);
                 });
 
                 if (!isExpertsValid) {
@@ -114,4 +114,4 @@
             }
         }
     });
-})(CS.Groups);
+})(CS.Groups, i);

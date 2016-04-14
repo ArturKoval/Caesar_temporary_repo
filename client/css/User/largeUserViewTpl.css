@@ -31,7 +31,7 @@
     }
 
     #right-menu .btn-edit:hover,
-    #right-menu .btn-logout:hover {
+    #right-menu .btn-logout:hover a {
         color: #3C78B5;
     }
 
