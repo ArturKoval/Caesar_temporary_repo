@@ -42,6 +42,7 @@
                     collection: this.list(location)
                 });
 
+            this.$main.empty();
             $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
         },
 
