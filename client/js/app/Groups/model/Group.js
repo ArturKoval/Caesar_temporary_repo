@@ -13,7 +13,7 @@
                 startDate: '',
                 finishDate: '',
                 teachers: [],
-                experts: ['John Doe'],
+                experts: [],
                 stage: 'planned'
             };
         },

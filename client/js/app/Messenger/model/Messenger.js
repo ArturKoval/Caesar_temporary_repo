@@ -5,22 +5,18 @@
         defaults: function () {
             return {
                 type: '',
+                text: '',
                 object: '',
-                action: '',
-                text: ''
+                callback: '',
+                $el: ''
             };
         },
 
-        questions: {
-            'confirmation': 'Do you want to '
-        },
-
         initialize: function () {
-            this.defineText();
         },
 
-        defineText: function () {
-            this.set('text', this.questions[this.get('type')] + this.get('action') + ' ' + this.get('object') + ' ?'); 
+        defineMessage: function (data) {
+             this.set('text', data.message);
         }
     });
 })(CS.Messenger);

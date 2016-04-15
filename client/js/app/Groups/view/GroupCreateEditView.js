@@ -123,11 +123,11 @@
                 this.model.save(formData);
 
                 if (this.model.isNew()) {
-                    infoMessage = 'group ' + this.model.get('name') + ' created';
+                    infoMessage = 'Group ' + this.model.get('name') + ' was created';
                 } else {
-                    infoMessage = 'group ' + this.model.get('name') + ' edited';
+                    infoMessage = 'Group ' + this.model.get('name') + ' was edited';
                 }
-
+               
                 if (!formData.teachers.length && !formData.experts.length) {
                     warningMessage = 'Teachers and experts';
                 } else if (!formData.teachers.length) {
@@ -138,15 +138,15 @@
 
                 if (warningMessage) {
                     app.mediator.publish('Message', {
-                        type: 'warning',
-                        message: warningMessage + ' are not specified'
+                        type: 'flash-warning',
+                        text: warningMessage + ' are not specified'
                     });
                 }
 
                 app.mediator.publish('Groups: group-saved', this.model);
                 app.mediator.publish('Message', {
-                    type: 'info',
-                    message: infoMessage
+                    type: 'flash-info',
+                    text: infoMessage
                 });
                 this.remove();
             }

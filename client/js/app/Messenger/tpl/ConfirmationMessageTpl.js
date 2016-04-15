@@ -1,11 +1,17 @@
 'use strict';
 
 templates.confirmationTpl = _.template([
-	'<section class="modal-window confirmationMessage" >',
-		    '<div class="text"> <%=text%> </div>',
+	'<div class="modal-body" >',
+		'<div class="message-body">',
+		    '<p class="text"> <%=text%> </p>',
 		    '<div class="controls">',
-		    	'<button class=okBtn><i class="fa fa-check fa-2x"></i></button>',
-		    	'<button class=cancelBtn><i class="fa fa-close fa-2x"></i></button>',
+		    	'<button class="btn okBtn">',
+			    	'<i class="fa fa-check-circle-o fa-3x"></i>',
+			    '</button>',
+			    '<button class="btn cancelBtn">',
+			    	'<i class="fa fa-times-circle-o fa-3x"></i>',
+			   	'</button>',
 		    '</div>',
+		'</div>',
 	'</section>'
 ].join(''));

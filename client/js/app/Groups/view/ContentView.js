@@ -14,6 +14,7 @@
 	    	contentGroupNameView,
 	    	contentFooterView;
 
+
 	    	contentLocationView = new This.ContentLocationView({
 	    		model: this.model
 	    	});
@@ -29,13 +30,13 @@
 	    		model: this.model
 	    	});
 
+	    	this.$el.find('.content-footer').empty();
 	    	this.$el.find('.content-footer').append(contentFooterView.render().el);
 	    	
 	    	return this;
 	    },
 
 	    showContentHeader: function (locations) {
-	    	console.log(locations);
 	    	var numberOfLocations, contentLocationView;
 	    	numberOfLocations = locations.length + ' ' + 'locations';
 
