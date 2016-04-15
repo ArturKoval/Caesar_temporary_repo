@@ -1,3 +1,3 @@
 templates.studentListViewTpl = _.template([
-    '<li><%= name %> <%= role %></li>',
+    '<li><%= name %></li>',
 ].join(''));

@@ -7,5 +7,9 @@ templates.contentGroupNameTpl = _.template([
 ].join(''))
 
 templates.contentFooterTpl = _.template([
-	'<p class = "groupStageTitle">Stage: </p> <p class = "groupStage"><%= stage %></p> '
+	'<div class = "stageView">',
+		'<p class = "groupStageTitle">Stage:  </p>' , 
+		'<p class = "groupStage"><%= stage %></p> ',
+	'</div> ',
+	'<div class = "flashMessage"></div> '
 ].join(''));

@@ -3,7 +3,7 @@
 (function (This, app) {
     This.ConfirmationView = Backbone.View.extend({
         tagName: 'div',
-        className: 'backdrop',
+        className: 'modal-wrapper',
 	    template: templates.confirmationTpl,
 	    events: {
 	        'click .okBtn': 'confirmate',
@@ -20,7 +20,7 @@
 	    },
 
 	    confirmate: function () {
-	        //app.mediator.publish('User: userProfileCalled', this.model);
+	        //
 	        this.remove();
 	    },
 

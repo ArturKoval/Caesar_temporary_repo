@@ -49,8 +49,9 @@
             var $sidebar = $('#left-side-bar');
                    
             $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
-            
+
             this.$main.empty();
+
         },
 
          groupsRender: function(collection) {
@@ -86,22 +87,10 @@
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
             this.buttonShowAll();
-            this.showSelectedGroupByRouter(this.list(location).findGroupByName(groupName), action);
+            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
-        showSelectedGroupByRouter: function (selected, action) {
-            var contentView = new This.ContentView({
-                    model: selected
-                }),
-                groupView = new This.GroupView({
-                    model: selected
-                });
-                    
-           
-            groupView.stubsListener(action, 'info');    
-        },
-
-        showSelectedGroup: function (selected) {
+        showSelectedGroup: function (selected, action) {
             
             var contentView = new This.ContentView({
                     model: selected

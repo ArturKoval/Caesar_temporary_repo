@@ -85,11 +85,25 @@
             this.mediator.publish('Groups: stubView-changed', {group: this.model, stubView: stubViewName});
         },
 
-        showDeleteDialog: function () {
+         showDeleteDialog: function () {
             this.mediator.publish('Groups: delete-dialog-called', this.model);
-            //this.mediator.publish('Messenger: Confirmation window open', {type: 'confirmation', object: this.model.get('name')});
+            /*this.mediator.publish('Messenger: show message', {
+                type: 'confirmation',
+                object: this.model,
+                callback: function () {
+                    this.model.destroy();
+                },
+                text: 'Group '+ this.model.get('name') + ' will be destroyed. Are you sure?'
+             });*/
         }
     });
 })(CS.Groups);
 
-var students = [{'name': 'Artem', 'role': 'student'}, {'name': 'Nastya', 'role': 'student'}];
+var students = [{'name': 'Anastasyia Serheeva'},
+ {'name': 'Vladyslava Tyshchenko'},
+ {'name':'Anna Hranovska'},
+ {'name':'Denis Poznukhov'},
+ {'name':'Yuryi Tataryntsev'},
+ {'name':'Artem Zhylko'},
+ {'name':'Anastasiia Manilnykova'},
+ {'name':'Yana Sharipbaeva'}];

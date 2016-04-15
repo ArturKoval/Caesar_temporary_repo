@@ -24,6 +24,10 @@
 
         deleteGroup: function () {
             app.mediator.publish('Groups: delete-group');
+            app.mediator.publish('Message', {
+                 type: 'flash-warning',
+                 text: 'Group '+ this.model.get('name') + ' was destroyed.'
+             });
             this.model.destroy();
             this.remove();
         },

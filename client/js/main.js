@@ -8,7 +8,7 @@ var CS = {},
     ESC = 27,
     ENTER = 13;
 
-System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations']);
+System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter', 'userController']);
 
 $(function () {
@@ -21,7 +21,8 @@ $(function () {
 		app.subRouters = {};
         app.userController = new CS.User.Controller();
         app.notFound = new CS.ErrorPage.Controller();
-		
+		app.messenger = new CS.Messenger.Controller();
+
         Backbone.history.start({pushState: true});
     }
 });

@@ -1,0 +1,94 @@
+.flash-style {
+	margin-top: 10px;
+    display: inline-block;
+    float: right;
+    min-height: 50px;
+    box-sizing: border-box;
+    border-radius: 10px 0px 0px 10px;
+    transition-timing-function: ease;
+}
+
+.picture, .text, .controlls {
+	display: inline-block;
+} 
+
+.pictureInfo, .pictureWarning {
+	width: 45px;
+    display: inline-block;
+    color: white;
+    min-height: 50px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 26px;
+    border-radius: 10px 0px 0px 10px;
+}
+
+.styleInfo {
+    border-top: 1px solid #003366;
+    border-bottom: 1px solid #003366;
+}
+
+.styleWarning {
+    border-top: 1px solid #fff200;
+    border-bottom: 1px solid #fff200;
+}
+
+.pictureInfo {
+    background: #003366;
+}
+
+.pictureWarning {
+    background: #fff200;
+}
+
+.textInfo, .textWarning {    
+    line-height: 50px;
+    vertical-align: top;
+    min-height: 50px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 20px;
+    display: inline-block;
+
+}
+
+.textInfo {
+    color: #003366;
+}
+
+.textWarning {
+    color: #fff200;
+}
+
+.flash-style .close .fa-2x{
+	font-size: 1em;
+}
+
+.removeFlash  {
+    display: none;
+}
+
+.hint {
+    background: #ff6600;
+    box-sizing: border-box;
+    padding: 0 10px;
+    color: #fff;
+    top: -11px;
+    right: 8px;
+    position: absolute;;
+}
+
+.form-group {
+    position: relative;
+}
+
+.hintTriangle {
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 10px 7.5px 0 7.5px;
+    border-color: #ff6600 transparent transparent transparent;
+    position: absolute;
+    top: 9px;
+    right: 10px;
+}
