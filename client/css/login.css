@@ -1,4 +1,4 @@
-body {
+171B65 {
     background-size: cover;
     width: 100%;
     height: 100%;
@@ -19,7 +19,7 @@ body {
 .app .login_wrapper{
     display: inherit;
     width: 100%;
-    background: #003366;
+    background: #171B65;
     font-size: 17px;
 }
 

@@ -17,13 +17,16 @@
 
         render: function () {
             var $wrapper = $('<div><div>').addClass('wrapper-location'),
+				$locationContainer = $('<div><div>').addClass('locationContainer'),
                 collection = this.collection.sort();
 
             _.each(collection, function (location) {
                 var locationView = new This.LocationView();
-
-                $wrapper.append(locationView.$el.append(location));
+				
+                $locationContainer.append(locationView.$el.append(location));
             }, this); 
+			
+			$wrapper.append($locationContainer);
 
             this.$el.append($wrapper.append(templates.locationTpl));  
 

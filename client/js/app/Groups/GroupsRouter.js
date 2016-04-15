@@ -109,7 +109,7 @@
         },
 
         notFound: function () {
-            app.mediator.publish('Groups: Show 404');
+            app.mediator.publish('Error: show-page-404');
         }
     });
 })(CS.Groups, app);

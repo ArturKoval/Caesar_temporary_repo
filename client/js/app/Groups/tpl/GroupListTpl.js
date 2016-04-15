@@ -1,6 +1,6 @@
 templates.groupListTpl = ([
 	'<div class="group-list-header row">',
-	'<div class="search col-sm-offset-2"><span class="fa fa-search" aria-hidden="true"></span></div>',
+	'<div class="search"><img src = "/img/search.png"></div>',
 	'<div class="paginator-place-holder"></div>',
 	'</div>',
 	'<div class="group-collection row"></div>',

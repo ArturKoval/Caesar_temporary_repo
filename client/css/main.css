@@ -4,7 +4,7 @@
 
 .locationsWindow {
     width: 100%;
-    background: #003366;
+    background: #171B65;
     padding-top: 25px;
 
 }
@@ -45,12 +45,12 @@
     border-radius: 5px;
 }
 .infoBtn:hover ,.studentsBtn:hover ,.sheduleBtn:hover ,.messageBtn:hover{
-    background-color: #003366;
+    background-color: #171B65;
     cursor: pointer;
 }
 
 .active{
-  background-color: #003366;
+  background-color: #171B65;
 }
 .infoBtn{
     margin-left: 40%;
@@ -68,7 +68,7 @@
 }
 .editBtn:hover, .deleteBtn:hover {
     background-color: transparent;
-    color: #003366;
+    color: #171B65;
 }
 .deleteBtn{
    margin-left: 2px;
@@ -77,9 +77,6 @@
 .groupContainer{
     width: 85%;
     height: 300px;
-    border-color: #003366;
-    border-style: dotted;
-    border-width: 2px; 
     border-radius: 10px;
     margin: 10px auto;
     text-align: center;
@@ -104,7 +101,7 @@ html, body {height:100%;}
 
 .header {
     height: 40px;
-    background: #003366;
+    background: #171B65;
     position: relative;
 }
 
@@ -147,7 +144,7 @@ html, body {height:100%;}
 .left-side-bar {
     width: 23%;
     height: 100%;
-    border: #003366 1px solid;
+    border: #171B65 1px solid;
     border-radius: 10px;
     box-sizing: border-box;
     float: left;    
@@ -169,7 +166,7 @@ html, body {height:100%;}
 .main-section {
     width: 100%;
     height: 80%;
-    border: #003366 1px solid;
+    border: #171B65 1px solid;
     border-radius: 10px;
 }
 
@@ -181,7 +178,7 @@ html, body {height:100%;}
 .right-side-bar {
     width: 12%;
     height: 100%;
-    border: #003366 1px solid;
+    border: #171B65 1px solid;
     border-radius: 10px;
     float: right;
     box-sizing: border-box;

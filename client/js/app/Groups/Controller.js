@@ -9,7 +9,8 @@
             'Groups: group-saved': 'showSelectedGroup',
             'Locations: show-button-selected': 'showAllLocations',
             'Locations: show-groups-in-location': 'render',
-            'Paginator: collection-divided': 'groupsRender'
+            'Paginator: collection-divided': 'groupsRender',
+			'Groups: group-create': 'showFormCreate'
         },
 
         initialize: function () {
@@ -18,9 +19,8 @@
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                var createEditView = new This.CreateEditView();
-                this.modal(createEditView);
-            }.bind(this));
+                app.mediator.publish('Groups: group-create');    
+            });
             //Temporary button end
         },
 
@@ -41,6 +41,9 @@
             this.groupListView = new This.GroupListView({
                     collection: this.list(location)
                 });
+				
+			var contentView = new This.ContentView();
+            contentView.render();
 
             this.$main.empty();
             $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
@@ -79,7 +82,19 @@
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
             this.buttonShowAll();
-            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
+            this.showSelectedGroupByRouter(this.list(location).findGroupByName(groupName), action);
+        },
+
+        showSelectedGroupByRouter: function (selected, action) {
+            var contentView = new This.ContentView({
+                    model: selected
+                }),
+                groupView = new This.GroupView({
+                    model: selected
+                }); 
+
+            contentView.render();
+            groupView.stubsListener(action);    
         },
 
         showSelectedGroup: function (selected) {
@@ -93,7 +108,7 @@
             contentView.render();
             groupView.stubsListener('info');
         },
-
+		
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
@@ -126,6 +141,12 @@
 
         list: function (data) {
             return new This.GroupList(store.groups).findGroupsByLocations(data);
+        },
+		
+		showFormCreate: function () {
+            var createEditView = new This.CreateEditView();
+
+            this.modal(createEditView);
         }
     });
 })(CS.Groups);

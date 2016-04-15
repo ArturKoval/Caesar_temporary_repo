@@ -40,7 +40,10 @@
 
             app.mediator.publish('Groups: rendered');
             this.tmp = this.filtered(collection);
-            this.tmp.forEach(this.renderOne, this)
+			if (this.tmp) {
+				this.tmp.forEach(this.renderOne, this);
+			}
+            
         },
 
         renderOne: function (group) {

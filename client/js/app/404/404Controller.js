@@ -3,12 +3,14 @@
 (function (This, app)  {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Error by route': 'showErrorPage'
+            'Error: show-error-page': 'showErrorPage',
+            'Error: show-page-404': 'showPage404'
         },
 
         initialize: function () {
-            this.errorPageView = new This.ErrorPageView();
             this.mediator = app.mediator;
+            this.errorPageView = new This.ErrorPageView();
+            this.errorPageViewMain = new This.ErrorPageViewMain();
         },
 
         showErrorPage: function (args) {
@@ -17,6 +19,10 @@
 
             elem.empty();
             elem.html(this.errorPageView.render({message: message}).el);
+        },
+
+        showPage404: function () {
+            $('#modal-window').html(this.errorPageViewMain.render().$el);
         }
     });
 })(CS.ErrorPage, app);

@@ -13,7 +13,7 @@
         },
 
         errorPage: function () {
-            app.mediator.publish('Show 404');
+           app.mediator.publish('Error: show-page-404');
         }
     });
 })(CS, app);

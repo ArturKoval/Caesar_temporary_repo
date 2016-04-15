@@ -30,7 +30,7 @@
                 var m = new This.Messenger(data),
                     view = new This[this.messageRouter[data.type].view]({model: m});
 
-                $(this.messageRouter[data.type].el).append(view.render().$el);
+                $(''+this.messageRouter[data.type].el).append(view.render().$el);
             }
         }
     });
