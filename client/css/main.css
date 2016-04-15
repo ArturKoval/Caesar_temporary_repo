@@ -6,11 +6,10 @@
     width: 100%;
     background: #171B65;
     padding-top: 25px;
-
 }
 
 .wrapper-location {
-    width:755px;
+    width: 755px;
     margin: 0 auto;
 }
 
@@ -29,55 +28,61 @@
     margin-right: 20px;
 }
 
-.infoBtn ,.studentsBtn ,.sheduleBtn ,.messageBtn, .deleteBtn{
+.group-controls {
+    overflow: hidden;
+}
+
+.group-controls .btn-group {
+    float: right;
+}
+
+.group-controls .btn-group .btn {
     color: white;
     font-weight: lighter;
-    border-color: white;
-    border-style: solid;
     display: inline-block;
     text-align: center;
     vertical-align: bottom;
     background-color: #3C78B5;
-    padding: 4px;
-    margin: 5px;
     width: 50px;
     height: 38px;
     border-radius: 5px;
+    padding: 0;
+    margin-right: 2px;
+    outline: 0;
+	z-index: 0;
 }
-.infoBtn:hover ,.studentsBtn:hover ,.sheduleBtn:hover ,.messageBtn:hover{
+
+.group-controls .btn-group .btn:last-of-type {
+    margin-right: 0;
+}
+
+.group-controls .btn-group .btn:hover {
     background-color: #171B65;
     cursor: pointer;
 }
 
-.active{
+.group-controls .btn-group .btn.active {
   background-color: #171B65;
 }
-.infoBtn{
-    margin-left: 40%;
-}
 
-.editBtn, .deleteBtn{
+.editBtn, .deleteBtn {
      color: #346EA3;
      display: inline-block;
-     margin: 5px;
      background-color: transparent;
-     border-style: none;
+     border: 0;
      cursor: pointer;
-     padding: 4px;  
-     margin-left: 7%;
+     box-shadow: none !important;
 }
-.editBtn:hover, .deleteBtn:hover {
-    background-color: transparent;
+.editBtn:hover, .deleteBtn:hover,
+.editBtn:focus, .deleteBtn:focus  {
+    outline: 0 !important;
     color: #171B65;
-}
-.deleteBtn{
-   margin-left: 2px;
+    background-color: white;
+    box-shadow: none;
 }
 
 .groupContainer{
-    width: 85%;
     height: 300px;
-    border-radius: 10px;
     margin: 10px auto;
     text-align: center;
 }
@@ -168,6 +173,7 @@ html, body {height:100%;}
     height: 80%;
     border: #171B65 1px solid;
     border-radius: 10px;
+    padding: 0 6%;
 }
 
 .content-footer {

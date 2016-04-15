@@ -45,11 +45,10 @@
     line-height: 50px;
     vertical-align: top;
     min-height: 50px;
-    font-size: 16px;
+    font-size: 19px;
     font-weight: bold;
     padding-left: 20px;
     display: inline-block;
-
 }
 
 .textInfo {
@@ -75,7 +74,8 @@
     color: #fff;
     top: -11px;
     right: 8px;
-    position: absolute;;
+    position: absolute;
+    width: 90%;
 }
 
 .form-group {

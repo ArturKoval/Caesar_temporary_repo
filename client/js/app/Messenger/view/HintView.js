@@ -8,13 +8,17 @@
 
 	    initialize: function () {
 	    	this.render();
+			setTimeout(this.removeHint.bind(this), 5000);
 	    },
-
+		
 	    render: function () {
-	    	console.log();
-	        this.$el.html(this.template(this.model.toJSON()))
+	        this.$el.html(this.template(this.model.toJSON()));
 	        return this;
 	    },
 
+		removeHint: function () {
+			this.$el.remove();
+			this.model.destroy();
+	    }
     });
 })(CS.Messenger);

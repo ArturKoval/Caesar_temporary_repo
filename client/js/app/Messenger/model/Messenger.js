@@ -11,12 +11,5 @@
                 $el: ''
             };
         },
-
-        initialize: function () {
-        },
-
-        defineMessage: function (data) {
-             this.set('text', data.message);
-        }
     });
 })(CS.Messenger);

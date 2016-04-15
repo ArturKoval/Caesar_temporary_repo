@@ -110,7 +110,7 @@
                 _.each(errors, function (value, key) {
                     hints.push({
                         name: key,
-                        message: value
+                        text: value
                     });
                 });
                 app.mediator.publish('Message', {

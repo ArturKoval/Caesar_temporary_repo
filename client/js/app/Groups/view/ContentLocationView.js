@@ -17,6 +17,9 @@
 	    			if (locations.length > 1) {
 	    				numberOfLocations = locations.length + ' ' + 'locations';
 	    				this.$el.html(templates.contentLocationTpl({location: numberOfLocations}));
+		    			this.$el.attr({
+		    				'title': locations
+		    			});
 			    	} else {
 			    		this.$el.html(templates.contentLocationTpl({location: locations}));
 			    	}

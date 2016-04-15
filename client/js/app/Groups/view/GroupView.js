@@ -45,7 +45,7 @@
         },
 
         stubsListener: function (e) {
-            var $buttons = $('.groupView > .active'),
+            var $buttons = $('.groupView .active'),
                 $el,
                 action;
 		
