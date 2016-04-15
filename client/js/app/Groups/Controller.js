@@ -15,19 +15,13 @@
         initialize: function () {
             this.mediator = app.mediator;            
             this.$main = $('.main-section');
-			
-			// you can find temporary block below
-			this.modal = function (view) {
-                $('#modal-window').append(view.render().$el);
-            };
-            this.buttonShowAll = function () {
-                $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
-            };          
+
+            //Temporary button start
             $('#createGroup').on('click', function () {
                 var createEditView = new This.CreateEditView();
                 this.modal(createEditView);
             }.bind(this));
-			// end of temporary block
+            //Temporary button end
         },
 
 		list: function (data) {
@@ -42,19 +36,16 @@
         },
 
         render: function (location) {
+            var $sidebar = $('#left-side-bar');
+
             this.groupListView = new This.GroupListView({
                     collection: this.list(location)
                 });
 
-            var $sidebar = $('#left-side-bar');
-                   
             $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
-
-            this.$main.empty();
-
         },
 
-         groupsRender: function(collection) {
+        groupsRender: function(collection) {
             this.groupListView.renderGroups(collection);
         },
 
@@ -90,8 +81,7 @@
             this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
-        showSelectedGroup: function (selected, action) {
-            
+        showSelectedGroup: function (selected) {
             var contentView = new This.ContentView({
                     model: selected
                 }),
@@ -100,7 +90,7 @@
                 });
             		
             contentView.render();
-            groupView.stubsListener('info');    
+            groupView.stubsListener('info');
         },
 
         showAllLocations: function () {
@@ -121,6 +111,20 @@
             });
 
             this.modal(groupDeleteView);
+        },
+
+        //Helpers
+
+        modal: function (view) {
+            $('#modal-window').append(view.render().$el);
+        },
+
+        buttonShowAll: function () {
+            $('#page').prepend(new SelectButtonView().render().$el.html('Show all locations'));
+        },
+
+        list: function (data) {
+            return new This.GroupList(store.groups).findGroupsByLocations(data);
         }
     });
 })(CS.Groups);
