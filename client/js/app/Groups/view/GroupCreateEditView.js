@@ -39,8 +39,7 @@
                 locations: i.locations,
                 stages: i.stages,
                 isCreate: this.model.isNew(),
-                defaultLocation: app.user.get('location'),
-                defaultTeacher: app.user.getShortName()
+                defaultLocation: app.user.get('location')
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));

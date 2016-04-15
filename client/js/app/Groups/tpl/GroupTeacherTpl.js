@@ -9,7 +9,7 @@ templates.groupSelectTeacherTpl = _.template([
     '<div class="input-group">',
     '    <select name="teachers" id="teachers" class="form-control">',
     '    <% _(allTeachers).each(function(teacher) { %>',
-    '       <option value="<%= teacher %>"><%= teacher %></option>',
+    '       <option value="<%= teacher %>" <%= teacher === defaultTeacher ? \'selected\' : \'\' %>><%= teacher %></option>',
     '    <% }); %>',
     '    </select>',
     '    <span class="input-group-btn">',

@@ -12,6 +12,7 @@
         initialize: function (teachers) {
             this.teachers = teachers;
             this.allTeachers = i.teachers;
+            this.defaultTeacher = app.user.getShortName()
         },
 
         render: function () {
@@ -30,7 +31,9 @@
         },
 
         renderTeacherSelect: function () {
-            this.$el.find('.add-teacher').html(templates.groupSelectTeacherTpl({allTeachers: _.difference(this.allTeachers, this.teachers)}))
+            this.$el.find('.add-teacher').html(templates.groupSelectTeacherTpl({
+                allTeachers: _.difference(this.allTeachers, this.teachers),
+                defaultTeacher: this.defaultTeacher}))
         },
 
         addTeacher: function () {
