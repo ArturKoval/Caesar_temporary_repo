@@ -14,7 +14,6 @@
 	    	contentGroupNameView,
 	    	contentFooterView;
 
-
 	    	contentLocationView = new This.ContentLocationView({
 	    		model: this.model
 	    	});
