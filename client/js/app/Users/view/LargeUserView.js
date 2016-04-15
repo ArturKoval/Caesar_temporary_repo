@@ -7,7 +7,8 @@
 	    events: {
 	        'click .btn-edit': 'showEditDialog',
 	        'click .btn-logout': 'logout',
-	        'mouseleave': 'hide'
+	        'mouseleave': 'hide',
+	        'mouseover': 'show'
 	    },
 
 	    initialize: function () {
@@ -30,11 +31,17 @@
 	    }, 
 	    
 	    show: function () {
-	    	this.$el.addClass('open');
+	    	if (this.timerId) {
+                clearTimeout(this.timerId);
+            }
+
+            this.$el.addClass('open');
 	    },
 
 	    hide: function () {
-	    	this.$el.removeClass('open');
+	    	this.timerId = setTimeout(function () {
+                this.$el.removeClass('open');
+            }.bind(this), 1000);
 	    }
     });
 })(CS.User, app);

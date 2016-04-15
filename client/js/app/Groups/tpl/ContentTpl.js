@@ -8,7 +8,7 @@ templates.contentGroupNameTpl = _.template([
 
 templates.contentFooterTpl = _.template([
 	'<div class = "stageView">',
-		'<p class = "groupStageTitle">Stage:  </p>' , 
+		'<p class = "groupStageTitle">Stage:&nbsp;</p>' , 
 		'<p class = "groupStage"><%= stage %></p> ',
 	'</div> ',
 	'<div class = "flashMessage"></div> '
