@@ -3,7 +3,7 @@
 (function (This) {
     This.SmallGroupView = Backbone.View.extend({
         tagName: 'div',
-        className: 'small-group-view',
+        className: 'small-group-view col-md-6',
         events: {
             'click': 'selectGroup'
         },
@@ -16,7 +16,7 @@
         },
 
         render: function () {
-            this.$el.html(this.model.get('name'));
+            this.$el.html('<div><p>' + this.model.get('name') + '</p></div>');
             return this;
         },
 

@@ -5,7 +5,6 @@
 
 .group-list-header {
     display: block;
-    padding-bottom: 20px;
 }
 
 .search {
@@ -24,7 +23,6 @@
     white-space: pre;
     width:150px;
     display:inline-block;
-    padding: 5px;
     float: right;
     margin: 20px;
     right: 40px;
@@ -39,48 +37,73 @@
 }
 
 .group-collection {
-    margin-left:10px;
-    margin-right:10px;
+    margin: 0 10px;
 }
 
 .group-list-footer {
-    display: inline-block;
     width: 100%;
     position: absolute;
     bottom: 20px;
+    padding: 0 20px;
 }
 
 .stage-toggle {
-    float: right;
-    margin-right: 49px;
-    display: inline-block;
+    position: inherit;
+    top: 25%;
+    right: 5%;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label div {
+    background: #171B65;
+}
+
+input[type="radio"] + label > div {
+    width: 20px;
+    height: 20px;
+    background: #3C78B5;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+input[type="radio"] + label {
+    margin-bottom: 0;
+    vertical-align: middle;
 }
 
 .small-group-view {
-    font-size: 1.7em;
-    display: inline-block;
-    margin: 2% 5%;
-    vertical-align: top;
-    padding: 10px;
+    padding: 5px 10px;
+}
+
+.small-group-view > div {
+    height: 80px;
     background: #3C78B5;
-    height: 110px;
-    width: 40%;
+    display: flex;
+    vertical-align: middle;
     text-align: center;
-    color: white;
-    cursor: pointer;
     word-wrap: break-word;
+}
+
+.small-group-view > div > p {
+    font-size: 1.5em;
+    padding: 10px; 
+    color: white;
+    cursor: pointer; 
+    margin: auto;
 }
 
 .myGroups {
     background: #3C78B5;
     color: white;
-    margin-left: 15px;
-    padding:15px;
+    padding: 10px;
     border-radius: 1em;
 }
 
 
-.chosen {
+.chosen > div {
     background: #171B65;
     color: white;
 }

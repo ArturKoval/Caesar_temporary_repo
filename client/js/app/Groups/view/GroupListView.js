@@ -7,9 +7,9 @@
 
         events: {
             'click .myGroups': 'toggleMyGroups',
-            'click .endedGroups': function () {this.selectState('finished')},
-            'click .currentGroups': function () {this.selectState('in-process')},
-            'click .futureGroups': function () {this.selectState('planned')}
+            'click #endedGroups': function () {this.selectState('finished')},
+            'click #currentGroups': function () {this.selectState('in-process')},
+            'click #futureGroups': function () {this.selectState('planned')}
         },
 
         initialize: function() {
