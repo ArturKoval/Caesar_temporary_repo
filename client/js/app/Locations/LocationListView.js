@@ -4,39 +4,37 @@
     This.LocationListView = Backbone.View.extend({
         tagName: 'div',
         className: 'locationsWindow',
+        template:templates.locationTpl,
         events: {
-            'click .cancel':'removeModal',
+            'click .cancel':'close',
             'click .save':'showGroupsInLocation',
             'dblclick':'showGroupsInLocation',
         },
-
+        
         initialize: function () {
             this.locations = [];
             app.mediator.subscribe('Locations: select-locations', this.chooseLocations.bind(this));
         },
 
         render: function () {
-            var $wrapper = $('<div><div>').addClass('wrapper-location'),
-				$locationContainer = $('<div><div>').addClass('locationContainer'),
-                collection = this.collection.sort();
+            var collection, 
+                locationView;
+
+            this.$el.html(this.template);
+            collection = this.collection.sort();
 
             _.each(collection, function (location) {
-                var locationView = new This.LocationView();
-				
-                $locationContainer.append(locationView.$el.append(location));
+                locationView = new This.LocationView();
+                this.$el.find('.locations').prepend(locationView.$el.append(location));
             }, this); 
 			
-			$wrapper.append($locationContainer);
-
-            this.$el.append($wrapper.append(templates.locationTpl));  
-
             $(document).on('keydown', keyEvent.bind(this));
 
             function keyEvent (event) {
                 if (event.which === ENTER) {
                     this.showGroupsInLocation();
                 } else if (event.which === ESC) {
-                    this.removeModal();
+                    this.close();
                 }
             }
  
@@ -50,7 +48,7 @@
                 this.locations = this.locations.filter(isLocationChosen);
             }  
 
-            function isLocationChosen (location , i) {
+            function isLocationChosen (location) {
                 return location !== selectedLocations;
             }
          },
@@ -58,13 +56,12 @@
         showGroupsInLocation: function () {
             app.mediator.publish('Locations: show-groups-in-location', this.locations);
             this.locations.splice(0);
-            this.$el.remove();
+            this.close();
         },
 
-        removeModal: function () {
+        close: function () {
             this.$el.remove();
-        },
-
+        }
     });
 
 })(CS.Locations, app);

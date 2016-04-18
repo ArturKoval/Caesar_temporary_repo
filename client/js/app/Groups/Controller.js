@@ -43,7 +43,7 @@
                 });
 				
 			var contentView = new This.ContentView();
-            contentView.render();
+                contentView.render();
 
             this.$main.empty();
             $sidebar.html(this.groupListView.$el).append(this.groupListView.render());

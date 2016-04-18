@@ -9,54 +9,22 @@
     justify-content: center;
 }
 
-.location {
-    width: 168px;
-    height: 98px;
-    background: #3C78B5;
-    display: inline-block;
-    margin-right: 25px;
-    cursor: pointer;
-    border: 2px solid #3C78B5;
-    box-shadow: 0 0 2px rgba(0,0,0,0.5);
-}
-
 .active-location {
     background: #fff!important;
     box-shadow: none;
     color: #3C78B5!important;
-    box-shadow: none;
-    border: 2px solid #3C78B5;
-
-}
-
-.locationsWindow .submit:hover {
-    opacity: 0.9;
-    cursor: pointer;
-    background-color: #3C78B5;
-}
-
-.locationsWindow .submit {
-    float: right;
-    margin-bottom: 20px;
-    background: url('../img/submit_arrow.png') no-repeat -2px;
-    width: 30px;
-    height: 30px;
-    border: 0;
-    border: 2px solid #ffffff;
-    border-radius: 50%;
-    outline: 0;
+/*    border: 2px solid #3C78B5;*/
 }
 
 .location-buttons {
     height: 30px;
     text-align: right;
     margin-bottom: 30px;
-	padding-right: 107px;
 }
+
 .location-buttons > span {
 	margin-right: 20px;
 }
-
 
 .location-buttons .save, .location-buttons .cancel {
     font-size: 40px;
@@ -67,26 +35,14 @@
     color: #fff;
 }
 
-.wrapper-location {
-    width:100%;
-    margin: 0 auto;
-    padding-left: 25%;
-    padding-right: 20%;
-    padding-top: 40px;
-    background: #171B65;
-}
-
 .location-buttons .save {
     color: white;
-}
-
-.active-button {
-    color: #fff!important;
 }
 
 .location {
     width: 170px;
     height: 100px;
+    cursor: pointer;
     background: #3C78B5;
     display: inline-block;
     font-size: 26px;
@@ -101,9 +57,23 @@
     -ms-user-select: none;
 }
 
-.locationContainer{
-	margin-top: 0;
+.location:nth-child(4){
+    margin-right:0px;
 }
+
+.locations {
+    width: 740px;
+}
+
+.location-wrapper {
+    background: #171B65;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 40px;
+}
+
 .location-buttons .icon  {
 	float: right;
 }
