@@ -11,7 +11,7 @@
             'Groups/:location/:group/edit(/)': 'openFormGroupEdit',
             'Groups/:location/:group/delete(/)': 'openFormGroupDelete',
             'Groups/:location/:group/create(/)': 'openFormGroupCreate',
-			'Groups/:location/:group/:action(/)': 'openGroupAction',
+            'Groups/:location/:group/:action(/)': 'openGroupAction',
             'Groups*path': 'notFound' 
         },
 
@@ -105,7 +105,18 @@
         },
 
         openGroupAction: function (location, groupName, action) {
-            this.controller.showViewByRoute(location, groupName, action);
+            var actions = {
+                    'info': true,
+                    'students': true,
+                    'shedule': true,
+                    'message': true
+                };
+
+            if (actions[action]) {
+                this.controller.showViewByRoute(location, groupName, action);
+            } else {
+                this.openGroupInfo(location, groupName);
+            }   
         },
 
         notFound: function () {
