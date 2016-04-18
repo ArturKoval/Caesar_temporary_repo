@@ -22,7 +22,7 @@
         render: function () {
             this.$el.html(this.template());
             $('.page-nav').html(this.page + 1 + '   /   ' + this.lastPage);    //will be in template
-            this.lastPage === 1? this.$el.addClass('invisible') : this.$el.removeClass('invisible');
+            this.lastPage <= 1? this.$el.addClass('invisible') : this.$el.removeClass('invisible');
             this.giveBackCollection(this.pageElems[this.page]);
             return this;
         },

@@ -53,7 +53,7 @@
         },
 
         toggleMyGroups: function () {
-            this.$myGroups.toggleClass('chosen');
+            this.$myGroups.toggleClass('pressed');
             this.areMyGroups = !this.areMyGroups;
             this.paginatorView.remove();
             this.createPaginator(this.filtered(this.collection));

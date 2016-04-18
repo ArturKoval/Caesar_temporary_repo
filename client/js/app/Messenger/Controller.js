@@ -16,7 +16,7 @@
         },
 
         showMessage: function (data) {
-            var m, hintName
+            var m, hintName, view;
             if (data.type === 'hints') {
                 data.hints.forEach( function (hint) {
                     hintName = '#' + hint.name,
