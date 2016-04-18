@@ -141,7 +141,7 @@
                         text: warningMessage + ' are not specified'
                     });
                 }
-
+                
                 app.mediator.publish('Groups: group-saved', this.model);
                 app.mediator.publish('Message', {
                     type: 'flash-info',

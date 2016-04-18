@@ -138,10 +138,6 @@
         buttonShowAll: function () {
 			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
 		},
-
-        list: function (data) {
-            return new This.GroupList(store.groups).findGroupsByLocations(data);
-        },
 		
 		showFormCreate: function () {
             var createEditView = new This.CreateEditView();

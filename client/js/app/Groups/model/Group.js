@@ -14,7 +14,7 @@
                 finishDate: '',
                 teachers: [],
                 experts: [],
-                stage: 'planned'
+                stage: 'boarding'
             };
         },
         

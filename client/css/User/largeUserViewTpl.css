@@ -5,11 +5,6 @@
 
     #right-menu .profile-container {
         background-color: #323232;
-        padding: 20px;
-        bottom: 0;
-        top: 0;
-        right: 0;
-        display: flex;
         height: 100%;
     }
 
@@ -26,32 +21,40 @@
     }
 
     #right-menu .btn-edit {
-        top: 10px;
-        right: 10px;
+        top: 9%;
+        right: 15%;
     }
 
     #right-menu .btn-edit:hover,
     #right-menu .btn-logout:hover a {
         color: #3C78B5;
     }
-
+    
+    #right-menu img {
+        height: 65%;
+        width: 65%;
+    }
+    
     #right-menu .user-info {
-        margin: auto;
         text-align: center;
+        position: relative;
+        top: 20%;
     }
     
     #right-menu .name {
-        font-size: 30px;
-        margin: 10px 0;
+        font-size: 2em;
+        margin-top: 40px;
+        line-height: 1.2;
     }
 
     #right-menu .role {
-        font-size: 26px;
+        margin-top: 10px;
+        font-size: 1.5em;
     }
 
     #right-menu .btn-logout {
-        bottom: 10px;
-        right: 10px;
+        bottom: 3%;
+        right: 11%;
     }
 
     #right-menu p {

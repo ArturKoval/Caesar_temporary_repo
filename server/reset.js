@@ -81,7 +81,7 @@ var users = [{
     "lastName": "Petin",
     "role": "Coordinator",
     "location": "Dnipro",
-    "photo": "/img/default-photo.png",
+    "photo": "/img/dmytro-petin.jpg",
 	"login": "dmytro",
 	"password": "1234"
 }];
