@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, i) {
     This.User = Backbone.Model.extend({
         defaults: function () {
             return {
@@ -65,4 +65,4 @@
            return this.get('role') === role; 
         }	
     });
-})(CS.User);
+})(CS.User, i);

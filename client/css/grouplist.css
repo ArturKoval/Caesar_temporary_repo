@@ -94,6 +94,7 @@
     width: 100%;
     height: 81%;
     padding: 0 10px;
+    clear: both;
 }
 
 .group-list-footer {
@@ -138,13 +139,13 @@ input[type="radio"] + label {
     vertical-align: middle;
     text-align: center;
     word-wrap: break-word;
+    cursor: pointer; 
 }
 
 .small-group-view > div > p {
     font-size: 1.5em;
     padding: 10px; 
     color: white;
-    cursor: pointer; 
     margin: auto;
     word-wrap: break-word;
 }
