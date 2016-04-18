@@ -33,7 +33,7 @@ var LoginView = function (model) {
             model.sendRequest(function () {
                 passwordField.value = '';
                 messageEl.innerHTML = 'Incorrect login or password. Please, try again';
-            }, {login: loginField.value.toLowerCase(), password: passwordField.value.toLowerCase()});
+            }, {login: loginField.value.toLowerCase(), password: passwordField.value});
         } else {
             messageEl.innerText = 'Incorrect login or password. Please, try again';
             passwordField.value = '';

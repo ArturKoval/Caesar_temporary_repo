@@ -1,6 +1,7 @@
 'use strict';
 
 (function (This) {
+    var formData;
 
     This.CreateEditView = Backbone.View.extend({
         tagName: 'section',
@@ -28,11 +29,11 @@
                 expertView,
                 model;
 
-            this.teachers = this.model.get('teachers');
-            this.experts = this.model.get('experts');
+            this.teachers = this.model.get('teachers').slice();
+            this.experts = this.model.get('experts').slice();
 
-            teacherView = new This.TeacherView(this.teachers);
-            expertView = new This.ExpertView(this.experts);
+            this.teacherView = new This.TeacherView(this.teachers);
+            this.expertView = new This.ExpertView(this.experts);
 
             model = _.extend({
                 directions: i.directions,
@@ -43,8 +44,8 @@
             }, this.model.toJSON());
 
             this.$el.html(this.template(model));
-            this.$el.find('#teachers').html(teacherView.render().$el);
-            this.$el.find('#experts').html(expertView.render().$el);
+            this.$el.find('#teachers').html(this.teacherView.render().$el);
+            this.$el.find('#experts').html(this.expertView.render().$el);
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
@@ -66,7 +67,7 @@
                 var finishDate,
                     courseDuration;
 
-                if (this.$el.find('[name=direction]').val() === 'MQC') {
+                if (this.$el.find('[name=direction]').val() === 'MQC') { //ISTQB also 9 weeks
                     courseDuration = 9 * 7;
                 } else {
                     courseDuration = 12 * 7;
@@ -85,10 +86,37 @@
         },
 
         save: function () {
-            var formData = {teachers: this.teachers, experts: this.experts},
-                errors = {},
-                infoMessage,
-                warningMessage;
+            var errors = {};
+
+            this.getFormData();
+
+            errors = this.model.preValidate(formData);
+
+            if (!_.isEmpty(errors)) {
+                this.createHint(errors);
+            } else {
+                this.model.save(formData);
+                app.mediator.publish('Groups: group-saved', this.model);
+                this.createInfoMessage();
+                this.createWarningMessage();
+                this.destroy();
+            }
+        },
+
+        close: function () {
+            this.destroy();
+            app.mediator.publish('Groups: dialog-closed');
+        },
+
+        destroy: function () {
+            $(document).off('keydown');
+            this.teacherView.remove();
+            this.expertView.remove();
+            this.remove();
+        },
+
+        getFormData: function () {
+            formData = {teachers: this.teachers, experts: this.experts};
 
             this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
                 formData[field.name] = field.value;
@@ -101,61 +129,57 @@
                     formData['budgetOwner'] = $(button).data('value');
                 }
             });
-
-            errors = this.model.preValidate(formData);
-
-            if (!_.isEmpty(errors)) {
-                var hints = [];
-
-                _.each(errors, function (value, key) {
-                    hints.push({
-                        name: key,
-                        text: value
-                    });
-                });
-                app.mediator.publish('Message', {
-                    type: 'hints',
-                    $el: this.$el,
-                    hints: hints
-                })
-            } else {
-                this.model.save(formData);
-
-                if (this.model.isNew()) {
-                    infoMessage = 'Group ' + this.model.get('name') + ' was created';
-                } else {
-                    infoMessage = 'Group ' + this.model.get('name') + ' was edited';
-                }
-               
-                if (!formData.teachers.length && !formData.experts.length) {
-                    warningMessage = 'Teachers and experts';
-                } else if (!formData.teachers.length) {
-                    warningMessage = 'Teachers';
-                } else if (!formData.experts.length) {
-                    warningMessage = 'Experts';
-                }
-
-                if (warningMessage) {
-                    app.mediator.publish('Message', {
-                        type: 'flash-warning',
-                        text: warningMessage + ' are not specified'
-                    });
-                }
-                
-                app.mediator.publish('Groups: group-saved', this.model);
-                app.mediator.publish('Message', {
-                    type: 'flash-info',
-                    text: infoMessage
-                });
-                this.remove();
-            }
         },
 
-        close: function () {
-            $(document).off('keydown');
-            this.remove();
-            app.mediator.publish('Groups: dialog-closed');
-        }
+        createHint: function (errors) {
+            var hints = [];
 
+            _.each(errors, function (value, key) {
+                hints.push({
+                    name: key,
+                    message: value
+                });
+            });
+
+            app.mediator.publish('Message', {
+                type: 'hints',
+                $el: this.$el,
+                hints: hints
+            })
+        },
+
+        createInfoMessage: function () {
+            var infoMessage;
+
+            if (this.model.isNew()) {
+                infoMessage = 'Group ' + this.model.get('name') + ' was created';
+            } else {
+                infoMessage = 'Group ' + this.model.get('name') + ' was edited';
+            }
+
+            app.mediator.publish('Message', {
+                type: 'flash-info',
+                text: infoMessage
+            });
+        },
+
+        createWarningMessage: function () {
+            var warningMessage;
+
+            if (!formData.teachers.length && !formData.experts.length) {
+                warningMessage = 'Teachers and experts';
+            } else if (!formData.teachers.length) {
+                warningMessage = 'Teachers';
+            } else if (!formData.experts.length) {
+                warningMessage = 'Experts';
+            }
+
+            if (warningMessage) {
+                app.mediator.publish('Message', {
+                    type: 'flash-warning',
+                    text: warningMessage + ' are not specified'
+                });
+            }
+        }
     });
 })(CS.Groups);

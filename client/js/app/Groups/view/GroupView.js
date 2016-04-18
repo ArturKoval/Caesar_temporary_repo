@@ -55,7 +55,7 @@
                 $el = $('.infoBtn');
             }
 
-            if (typeof e !== "string") {
+            if (typeof e !== 'string') {
                 action = $el.attr('name');
 				
                 if (action !== 'edit') {
