@@ -58,11 +58,11 @@
                 msg: 'Please enter valid name. Allowed symbols: english alpabeth, digits, "space", "/", "-"'
             }],
 
-            // stage: function (stage) {
-            //     if (i.stages.indexOf(stage) === -1) {
-            //        return 'Direction must be one of: ' + i.stages.join(', ');
-            //     }
-            // },
+            stage: function (stage) {
+                if (i.stages.indexOf(stage) === -1) {
+                   return 'Direction must be one of: ' + i.stages.join(', ');
+                }
+            },
 
             direction: function (direction) {
                 if (i.directions.indexOf(direction) === -1) {

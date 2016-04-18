@@ -8,16 +8,13 @@
         height: 100%;
     }
 
-    #right-menu button {
+    #right-menu button,
+    #right-menu a {
         background-color: transparent;
         color: #FFFFFF;
         border: none;
         cursor: pointer;
         position: absolute;
-    }
-
-    #right-menu a {
-        color: #FFFFFF;
     }
 
     #right-menu .btn-edit {
@@ -26,8 +23,14 @@
     }
 
     #right-menu .btn-edit:hover,
-    #right-menu .btn-logout:hover a {
+    #right-menu .logout:hover {
         color: #3C78B5;
+    }
+    
+    #right-menu .btn-edit:focus,
+    #right-menu .logout:focus {
+        border: 0;
+        outline: 0;
     }
     
     #right-menu img {
@@ -52,7 +55,7 @@
         font-size: 1.5em;
     }
 
-    #right-menu .btn-logout {
+    #right-menu .logout {
         bottom: 3%;
         right: 11%;
     }

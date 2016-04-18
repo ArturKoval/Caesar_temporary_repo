@@ -120,7 +120,7 @@
                 })
             } else {
                 this.model.save(formData);
-
+                
                 if (this.model.isNew()) {
                     infoMessage = 'Group ' + this.model.get('name') + ' was created';
                 } else {
