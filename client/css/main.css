@@ -114,6 +114,17 @@ html, body {height:100%;}
     width: 50%;
     height: 100%;
     float: left;
+    
+}
+
+.logo > a {
+    display: inline-block;
+    height: 100%;
+    margin-left: 5px;
+}
+
+.logo > a > img {
+    height: 100%;
 }
 
 .icon {
