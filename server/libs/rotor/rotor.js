@@ -34,13 +34,18 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
     deleteItem: function (action, callback, context) {
     	var model = this.get(action);
 
-    	model.destroy({success: function (result) {
-    		callback.call(context, '', result);
-    		context = null;
-    	}, error: function (err) {
-    		callback.call(context, err);
-    		context = null;
-    	}}, {wait: true});
+    	if (model) {
+    		model.destroy({success: function (result) {
+	    		callback.call(context, '', result);
+	    		context = null;
+	    	}, error: function (err) {
+	    		callback.call(context, err);
+	    		context = null;
+	    	}}, {wait: true});
+    	} else {
+    		callback.call(context, 'No such model');
+	    	context = null;
+    	}
     },
 
     saveNew: function (data, action, callback, context) {
@@ -56,13 +61,18 @@ var Collection = Rotor.Collection = Rotor.Collection.extend({
     saveUpdated: function (data, action, callback, context) {
     	var model = this.get(action);
 
-    	model.save(data, {success: function (result) {
-    		callback.call(context, '', result.attributes);
-    		context = null;
-    	}, error: function (err) {
-    		callback.call(context, err);
-    		context = null;
-    	}}, {wait: true});
+    	if (model) {
+    		model.save(data, {success: function (result) {
+	    		callback.call(context, '', result.attributes);
+	    		context = null;
+	    	}, error: function (err) {
+	    		callback.call(context, err);
+	    		context = null;
+	    	}}, {wait: true});
+    	} else {
+    		callback.call(context, 'No such model');
+	    	context = null;
+    	}
     }
 });
 
