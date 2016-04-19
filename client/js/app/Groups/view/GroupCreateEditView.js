@@ -25,9 +25,7 @@
         },
 
         render: function () {
-            var teacherView,
-                expertView,
-                model;
+            var model;
 
             this.teachers = this.model.get('teachers').slice();
             this.experts = this.model.get('experts').slice();
@@ -64,18 +62,19 @@
             var startDate = this.$el.find('[name=startDate]').val();
 
             if (startDate) {
-                var finishDate,
-                    courseDuration;
+                var courseDurationWeeks,
+                    courseDurationDays,
+                    finishDate;
 
                 if (this.$el.find('[name=direction]').val() === 'MQC') { //ISTQB also 9 weeks
-                    courseDuration = 9 * 7;
+                    courseDurationWeeks = 9;
                 } else {
-                    courseDuration = 12 * 7;
+                    courseDurationWeeks = 12;
                 }
 
                 finishDate = new Date(startDate);
-
-                finishDate.setDate(finishDate.getDate() + courseDuration);
+                courseDurationDays = courseDurationWeeks * 7;
+                finishDate.setDate(finishDate.getDate() + courseDurationDays);
                 this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
             }
         },

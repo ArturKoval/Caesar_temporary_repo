@@ -55,6 +55,14 @@ hr {
     margin-top: 30px;
 }
 
+.backdrop .budgetOptions {
+    margin-top: 30px;
+}
+
+.backdrop .create .budgetOptions {
+    margin-top: 0;
+}
+
 .backdrop .btn-icon {
     color: #fff;
     margin: 0 5px;
@@ -71,4 +79,33 @@ hr {
 
 .backdrop .btn-icon:hover::before {
     background-color: #171B65;
+}
+
+.backdrop ul {
+    list-style: none;
+    margin: 0;
+}
+
+.backdrop .list,
+.backdrop .listExpert {
+    text-align: right;
+}
+
+.backdrop .remove-teacher,
+.backdrop .remove-expert {
+    background-color: transparent;
+}
+
+.backdrop [name="experts"] {
+    max-width: 130px;
+}
+
+.backdrop .add-teacher,
+.backdrop .add-expert {
+    padding: 6px 0;
+}
+
+.backdrop .add-teacher-btn,
+.backdrop .add-expert-btn {
+    cursor: pointer;
 }
