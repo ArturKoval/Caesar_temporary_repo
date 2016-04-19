@@ -5,6 +5,7 @@ var CS = {},
     templates = {},
     store = {},
     i = {},
+	/**move to System constants**/
     ESC = 27,
     ENTER = 13;
 
@@ -16,16 +17,17 @@ $(function () {
     
     function main () {
         app.mediator = new Mediator();
-        app.filter = new app.Filter();
+        app.filter = new app.Filter();/**CS.Filter**/
         app.router = new CS.Router();
-		app.subRouters = {};
-        app.userController = new CS.User.Controller();
+		
+        app.userController = new CS.User.Controller();/**rename to user(resolve problem with naming)**/
         app.notFound = new CS.ErrorPage.Controller();
 		app.messenger = new CS.Messenger.Controller();
 
         Backbone.history.start({pushState: true});
     }
 });
+/**move info blocks to preload**/
 
 i.roles = [
     'Teacher',

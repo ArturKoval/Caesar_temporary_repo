@@ -1,23 +1,31 @@
 'use strict';
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
-        currentUrl: window.location.pathname,
+        currentUrl: 'Groups',
 
         routes: {    
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
             'Groups/:location(/)': 'openLocation',
             'Groups/:location/:group(/)': 'openGroupInfo',
+			/**rename actions (delete 'Form' from name)**/
+			
             'Groups/:location/:group/edit(/)': 'openFormGroupEdit',
             'Groups/:location/:group/delete(/)': 'openFormGroupDelete',
             'Groups/:location/:group/create(/)': 'openFormGroupCreate',
+			
+			/**rename actions (delete 'Form from name')**/
             'Groups/:location/:group/:action(/)': 'openGroupAction',
             'Groups*path': 'notFound' 
         },
-
+	/**
+		create function to load subscriptions to mediator from hash
+	**/
         initialize: function () {
             this.controller = new CS.Groups.Controller();
+			
             Backbone.history.loadUrl(Backbone.history.fragment); 
+			
             app.mediator.subscribe('Groups: group-selected', this.navToGroupSelected, null, this);
             app.mediator.subscribe('Groups: stubView-changed', this.navToGroupAction, null, this);
             app.mediator.subscribe('Groups: edit-button-selected', this.navToShowFormEdit, null, this);
@@ -38,22 +46,25 @@
         navToGroupAction: function (args) {
             var groupName = args.group.get('name'),
                 location = args.group.get('location'),
-                action = args.stubView;
+                action = args.stubView; /**rename stub**/
 
             this.navigate('Groups/' + location + '/' + groupName + '/' + action);
         },
 
         navToShowFormEdit: function () {
+			/**create function prepareCurrentUrl **/
             this.currentUrl = window.location.pathname;
             this.navigate(this.currentUrl.split('/', 4).join('/') + '/edit');
         },
 
         navToShowFormDelete: function () {
+			/**create function prepareCurrentUrl **/
             this.currentUrl = window.location.pathname;
             this.navigate(this.currentUrl.split('/', 4).join('/') + '/delete');
         },
 
         navToShowFormCreate: function () {
+			/**create function prepareCurrentUrl **/
             this.currentUrl = window.location.pathname;
             this.navigate(this.currentUrl.split('/', 3).join('/') + '/create');
         },

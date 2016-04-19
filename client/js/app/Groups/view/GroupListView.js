@@ -40,6 +40,7 @@
 
             app.mediator.publish('Groups: rendered');
             this.tmp = this.filtered(collection);
+			
 			if (this.tmp) {
 				this.tmp.forEach(this.renderOne, this);
 			}
@@ -48,7 +49,9 @@
 
         renderOne: function (group) {
             var smallGroupView = new This.SmallGroupView({model: group});
+			
             this.$groupList.append(smallGroupView.render().el);
+			
             return this;
         },
 

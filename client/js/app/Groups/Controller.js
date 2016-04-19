@@ -1,16 +1,19 @@
 'use strict';
-
+/**import app, i**/
 (function (This) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: group-selected': 'showSelectedGroup',
-            'Groups: edit-button-selected': 'createEdit',
-            'Groups: delete-dialog-called': 'delete',
-            'Groups: group-saved': 'showSelectedGroup',
-            'Locations: show-button-selected': 'showAllLocations',
-            'Locations: show-groups-in-location': 'render',
-            'Paginator: collection-divided': 'groupsRender',
-			'Groups: group-create': 'showFormCreate'
+			/**
+				rename channels (remove 'button', module name etc from names as show below)
+			**/
+            'Groups: group-selected': 'showSelectedGroup', //selected
+            'Groups: edit-button-selected': 'createEdit', //edit-request
+            'Groups: delete-dialog-called': 'delete', //delete-request
+            'Groups: group-saved': 'showSelectedGroup', //saved
+            'Locations: show-button-selected': 'showAllLocations', //show-request
+            'Locations: show-groups-in-location': 'render', //selected
+            'Paginator: collection-divided': 'groupsRender',//page-selected
+			'Groups: group-create': 'showFormCreate' //create-request
         },
 
         initialize: function () {
@@ -23,16 +26,14 @@
             });
             //Temporary button end
         },
-
-		list: function (data) {
-             return new This.GroupList(store.groups).findGroupsByLocations(data);
-        },
 			
         start: function () {
-            this.render(app.user.get('location'));
+			var userLocation = app.user.get('location');
+			
+            this.render(userLocation);
             this.buttonShowAll();
 
-            return app.user.get('location');
+            return userLocation;
         },
 
         render: function (location) {
@@ -108,6 +109,12 @@
             contentView.render();
             groupView.stubsListener('info');
         },
+				
+		showFormCreate: function () {
+            var createEditView = new This.CreateEditView();
+
+            this.modal(createEditView);
+        },
 		
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
@@ -139,10 +146,9 @@
 			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
 		},
 		
-		showFormCreate: function () {
-            var createEditView = new This.CreateEditView();
-
-            this.modal(createEditView);
+		list: function (data) {
+             return new This.GroupList(store.groups).findGroupsByLocations(data);
         }
+
     });
 })(CS.Groups);
