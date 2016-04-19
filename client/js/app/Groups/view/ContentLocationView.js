@@ -4,7 +4,7 @@
         className: 'contentLocation',
     
         initialize: function () {
-            app.mediator.subscribe('Locations: show-groups-in-location', this.render.bind(this));
+            app.mediator.subscribe('Locations: selected', this.render.bind(this));
         },
 
         render: function (locations) {

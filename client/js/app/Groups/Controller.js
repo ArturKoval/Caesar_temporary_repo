@@ -1,19 +1,16 @@
 'use strict';
-/**import app, i**/
-(function (This) {
+
+(function (This, app, i) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-			/**
-				rename channels (remove 'button', module name etc from names as show below)
-			**/
-            'Groups: group-selected': 'showSelectedGroup', //selected
-            'Groups: edit-button-selected': 'createEdit', //edit-request
-            'Groups: delete-dialog-called': 'delete', //delete-request
-            'Groups: group-saved': 'showSelectedGroup', //saved
-            'Locations: show-button-selected': 'showAllLocations', //show-request
-            'Locations: show-groups-in-location': 'render', //selected
-            'Paginator: collection-divided': 'groupsRender',//page-selected
-			'Groups: group-create': 'showFormCreate' //create-request
+            'Groups: selected': 'showSelectedGroup',
+            'Groups: edit-request': 'createEdit',
+            'Groups: delete-request': 'delete',
+            'Groups: saved': 'showSelectedGroup',
+            'Locations: show-request': 'showAllLocations',
+            'Locations: selected': 'render',
+            'Paginator: page-selected': 'groupsRender',
+			'Groups: create-request': 'showFormCreate'
         },
 
         initialize: function () {
@@ -22,7 +19,7 @@
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: group-create');    
+                app.mediator.publish('Groups: create-request');    
             });
             //Temporary button end
         },
@@ -151,4 +148,4 @@
         }
 
     });
-})(CS.Groups);
+})(CS.Groups, app, i);

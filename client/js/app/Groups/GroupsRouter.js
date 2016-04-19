@@ -26,13 +26,13 @@
 			
             Backbone.history.loadUrl(Backbone.history.fragment); 
 			
-            app.mediator.subscribe('Groups: group-selected', this.navToGroupSelected, null, this);
+            app.mediator.subscribe('Groups: selected', this.navToGroupSelected, null, this);
             app.mediator.subscribe('Groups: stubView-changed', this.navToGroupAction, null, this);
-            app.mediator.subscribe('Groups: edit-button-selected', this.navToShowFormEdit, null, this);
-            app.mediator.subscribe('Groups: delete-dialog-called', this.navToShowFormDelete, null, this);
-            app.mediator.subscribe('Groups: group-create', this.navToShowFormCreate, null, this);
+            app.mediator.subscribe('Groups: edit-request', this.navToShowFormEdit, null, this);
+            app.mediator.subscribe('Groups: delete-request', this.navToShowFormDelete, null, this);
+            app.mediator.subscribe('Groups: create-request', this.navToShowFormCreate, null, this);
             app.mediator.subscribe('Groups: delete-group', this.navToDeleteGroup, null, this);
-            app.mediator.subscribe('Groups: group-saved', this.navToSaveGroup, null, this);
+            app.mediator.subscribe('Groups: saved', this.navToSaveGroup, null, this);
             app.mediator.subscribe('Groups: dialog-closed', this.navToCancelForm, null, this);
         },
 

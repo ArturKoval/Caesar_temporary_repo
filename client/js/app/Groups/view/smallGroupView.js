@@ -21,7 +21,7 @@
         },
 
         selectGroup: function () {
-            app.mediator.publish('Groups: group-selected', this.model);
+            app.mediator.publish('Groups: selected', this.model);
             $('.small-group-view').removeClass('chosen');
             this.$el.addClass('chosen');
         }

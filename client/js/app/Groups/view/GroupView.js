@@ -65,7 +65,7 @@
                 action = e;
             }
 			if (action === 'edit') {
-				this.mediator.publish('Groups: edit-button-selected', this.model);
+				this.mediator.publish('Groups: edit-request', this.model);
 			} else {
                 this.showStubView(this.listener[action]);
             }	
@@ -86,7 +86,7 @@
         },
 
          showDeleteDialog: function () {
-            this.mediator.publish('Groups: delete-dialog-called', this.model);
+            this.mediator.publish('Groups: delete-request', this.model);
             /*this.mediator.publish('Messenger: show message', {
                 type: 'confirmation',
                 object: this.model,

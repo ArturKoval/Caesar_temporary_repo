@@ -57,7 +57,7 @@
         },
 
         giveBackCollection: function(collection) {
-            app.mediator.publish('Paginator: collection-divided', collection);
+            app.mediator.publish('Paginator: page-selected', collection);
         }
     });
 })(app);

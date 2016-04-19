@@ -9,7 +9,7 @@
                 this.model.on('change', this.render, this);
                 this.model.on('destroy', this.close, this);
             }
-            app.mediator.subscribe('Locations: show-groups-in-location', this.close.bind(this));
+            app.mediator.subscribe('Locations: selected', this.close.bind(this));
         },
 
         render: function () {

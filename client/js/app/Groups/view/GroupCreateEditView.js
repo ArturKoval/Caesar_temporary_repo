@@ -96,7 +96,7 @@
                 this.createHint(errors);
             } else {
                 this.model.save(formData);
-                app.mediator.publish('Groups: group-saved', this.model);
+                app.mediator.publish('Groups: saved', this.model);
                 this.createInfoMessage();
                 this.createWarningMessage();
                 this.destroy();
