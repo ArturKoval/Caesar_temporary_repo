@@ -2,39 +2,39 @@
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
         currentUrl: 'Groups',
-
+        
+        subscribes: {
+            'Groups: selected': 'navToGroupSelected',
+            'Groups: stubView-changed': 'navToGroupAction',
+            'Groups: edit-request': 'navToShowFormEdit',
+            'Groups: delete-request': 'navToShowFormDelete',
+            'Groups: create-request': 'navToShowFormCreate',
+            'Groups: delete-group': 'navToDeleteGroup',
+            'Groups: saved': 'navToSaveGroup',
+            'Groups: dialog-closed': 'navToCancelForm'
+        },
+        
         routes: {    
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
             'Groups/:location(/)': 'openLocation',
             'Groups/:location/:group(/)': 'openGroupInfo',
-			/**rename actions (delete 'Form' from name)**/
-			
-            'Groups/:location/:group/edit(/)': 'openFormGroupEdit',
-            'Groups/:location/:group/delete(/)': 'openFormGroupDelete',
-            'Groups/:location/:group/create(/)': 'openFormGroupCreate',
-			
-			/**rename actions (delete 'Form from name')**/
+            'Groups/:location/:group/edit(/)': 'openGroupEdit',
+            'Groups/:location/:group/delete(/)': 'openGroupDelete',
+            'Groups/:location/:group/create(/)': 'openGroupCreate',
             'Groups/:location/:group/:action(/)': 'openGroupAction',
             'Groups*path': 'notFound' 
         },
-	/**
-		create function to load subscriptions to mediator from hash
-	**/
+        
         initialize: function () {
+            this.mediator = app.mediator;
+            this.setupSubscribes();
             this.controller = new CS.Groups.Controller();
 			
-            Backbone.history.loadUrl(Backbone.history.fragment); 
-			
-            app.mediator.subscribe('Groups: selected', this.navToGroupSelected, null, this);
-            app.mediator.subscribe('Groups: stubView-changed', this.navToGroupAction, null, this);
-            app.mediator.subscribe('Groups: edit-request', this.navToShowFormEdit, null, this);
-            app.mediator.subscribe('Groups: delete-request', this.navToShowFormDelete, null, this);
-            app.mediator.subscribe('Groups: create-request', this.navToShowFormCreate, null, this);
-            app.mediator.subscribe('Groups: delete-group', this.navToDeleteGroup, null, this);
-            app.mediator.subscribe('Groups: saved', this.navToSaveGroup, null, this);
-            app.mediator.subscribe('Groups: dialog-closed', this.navToCancelForm, null, this);
+            Backbone.history.loadUrl(Backbone.history.fragment);
         },
+        
+        setupSubscribes: System.setupSubscribes,
 
         navToGroupSelected: function (model) {
             var groupName = model.get('name'),
@@ -101,13 +101,13 @@
             }     
         },
 
-        openFormGroupDelete: function (location, groupName) {
+        openGroupDelete: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
 
             this.controller.delete(modelGroup);
         },
 
-        openFormGroupEdit: function (location, groupName) {
+        openGroupEdit: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
 
             if (modelGroup) {

@@ -18,8 +18,8 @@ $(function () {
         app.router = new CS.Router();
 		
         app.userController = new CS.User.Controller();/**rename to user(resolve problem with naming)**/
-        app.notFound = new CS.ErrorPage.Controller();
-		app.messenger = new CS.Messenger.Controller();
+        app.notFoundController = new CS.ErrorPage.Controller();
+		app.messengerController = new CS.Messenger.Controller();
 
         Backbone.history.start({pushState: true});
     }

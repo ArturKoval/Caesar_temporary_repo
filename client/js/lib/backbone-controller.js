@@ -40,18 +40,20 @@ Backbone.Controller = (function () {
     _.extend(Controller.prototype, {
         initialize: function () { },
 
-        setupSubscribes: function () {
-            var subscribes = _.result(this, 'subscribes'),
-                method;
+        // setupSubscribes: function () {
+        //     var subscribes = _.result(this, 'subscribes'),
+        //         method;
 
-            for (var key in subscribes) {
-                method = subscribes[key];
-                if (!_.isFunction(method)) {
-                    method = this[method];
-                }
-                this.mediator.subscribe(key, _.bind(method, this));
-            }
-        },
+        //     for (var key in subscribes) {
+        //         method = subscribes[key];
+        //         if (!_.isFunction(method)) {
+        //             method = this[method];
+        //         }
+        //         this.mediator.subscribe(key, _.bind(method, this));
+        //     }
+        // },
+        
+        setupSubscribes: System.setupSubscribes,
 		
         start: function () {
             this.$el.append((this.collectionView.render().$el));

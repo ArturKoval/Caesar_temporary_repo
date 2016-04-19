@@ -58,12 +58,39 @@ var System = (function () {
 		response.roles.forEach(function (record) {
 			i.roles.push(record.name);
 		});
-
-		i.stages = ['boarding', 'before-start', 'in-process', 'offering', 'finished'];
+		
+		response.stages.forEach(function (record) {
+			i.stages.push(record.name);
+		});
 	}
+	
+	// function _setupSubscribes (subscribes, mediator, context) {
+	// 	var method;
 
+	// 	for (var key in subscribes) {
+	// 		method = subscribes[key];
+	// 		if (!_.isFunction(method)) {
+	// 			method = context[method];
+	// 		}
+	// 		mediator.subscribe(key, _.bind(method, context));
+	// 	}
+	// };
+	
+	function _setupSubscribes () {
+		var subscribes = _.result(this, 'subscribes'),
+			method;
+
+		for (var key in subscribes) {
+			method = subscribes[key];
+			if (!_.isFunction(method)) {
+				method = this[method];
+			}
+			this.mediator.subscribe(key, _.bind(method, this));
+		}
+	};
 
     return {
+		setupSubscribes: _setupSubscribes,
 		constants: _constants,
 		register: _register,
 		preload: _preload,
