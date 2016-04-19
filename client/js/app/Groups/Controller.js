@@ -144,7 +144,7 @@
 		},
 		
 		list: function (data) {
-             return new This.GroupList(store.groups).findGroupsByLocations(data);
+             return store.groups.findGroupsByLocations(data);
         }
 
     });

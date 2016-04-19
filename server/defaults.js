@@ -76,7 +76,7 @@ var defaultData = {
         "lastName": "Doe",
         "role": "Teacher",
         "location": "Dnipro",
-        "photo": "/default-photo.png",
+        "photo": "/img/default-photo.png",
     	"login": "john",
     	"password": "1234"
     }, {
@@ -84,7 +84,7 @@ var defaultData = {
         "lastName": "Petin",
         "role": "Coordinator",
         "location": "Dnipro",
-        "photo": "/default-photo.png",
+        "photo": "/img/dmytro-petin.jpg",
     	"login": "dmytro",
     	"password": "1234"
     }],
