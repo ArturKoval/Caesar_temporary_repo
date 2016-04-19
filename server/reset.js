@@ -10,7 +10,7 @@ function reset (defaultInfo) {
 
     console.log('Please, wait...');
 
-    lock.reset(7).then(function () {
+    lock.reset(8).then(function () {
         console.log('All done! Exiting...');
         process.exit();
     });
@@ -21,6 +21,7 @@ function reset (defaultInfo) {
     resetTable('roles', data.roles);
     resetTable('directions', data.directions);
     resetTable('teachers', data.teachers);
+    resetTable('stages', data.stages);
 
     getConnection('sessions', function (collection, db) {
         collection.remove({}, function (err, result) {

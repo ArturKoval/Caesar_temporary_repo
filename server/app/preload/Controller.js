@@ -1,11 +1,12 @@
 'use strict';
 var Rotor = require('../../libs/rotor/rotor'),
-	Users = require('../users/Models/UsersList'),
-	Locations = require('../locations/Models/CoursesList'),
-	Groups = require('../groups/Models/GroupsList'),
-    Teachers = require('../teachers/Models/TeachersList'),
-    Roles = require('../roles/Models/RolesList'),
     Directions = require('../directions/Models/DirectionsList'),
+	Locations = require('../locations/Models/CoursesList'),
+    Teachers = require('../teachers/Models/TeachersList'),
+	Groups = require('../groups/Models/GroupsList'),
+    Stages = require('../stages/Models/StagesList'),
+    Roles = require('../roles/Models/RolesList'),
+    Users = require('../users/Models/UsersList'),
     lock = require('../../libs/lock');
 
 var Controller = Rotor.Controller.extend({
@@ -23,7 +24,8 @@ var Controller = Rotor.Controller.extend({
         groups: '',
         teachers: '',
         roles: '',
-        directions: ''
+        directions: '',
+        stages: ''
     },
 
 	initialize: function (req, resp, action, currSession) {
@@ -89,8 +91,9 @@ var Controller = Rotor.Controller.extend({
         this.getData(Teachers, 'teachers');
         this.getData(Roles, 'roles');
         this.getData(Directions, 'directions');
+        this.getData(Stages, 'stages');
 
-        lock.reset(5).then(function () {
+        lock.reset(6).then(function () {
             this.sendResponse('', this.preloadData);
         }, this);
     }

@@ -1,4 +1,15 @@
 var defaultData = {
+    stages: [{
+        "name": "boarding"
+    }, {
+        "name": "before-start"
+    }, {
+        "name": "in-process"
+    }, {
+        "name": "offering"
+    }, {
+        "name": "finished"
+    }],
 
     teachers: [{
         "name" : "M. Demchyna"
