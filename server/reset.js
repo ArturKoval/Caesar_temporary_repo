@@ -1,6 +1,6 @@
-var mongodb = require('mongodb'),
+var defaultData = require('./defaults'),
     lock = require('./libs/lock'),
-    defaultData = require('./defaults');
+    mongodb = require('mongodb');
 
 console.log('server reset start...');
 reset(defaultData);

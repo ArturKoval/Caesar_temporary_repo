@@ -62,10 +62,15 @@ _.extend(Controller.prototype, {
             this.request.on('end', function() {
                 reqBody = JSON.parse(Buffer.concat(reqBody));
                 delete reqBody['id'];
-                this.answer = this.collection[this.method](reqBody, action, this.sendResponse.bind(this));
+
+                this.collection.initialize(function (result) {
+                    this.answer = this.collection[this.method](reqBody, action, this.sendResponse.bind(this));
+                }, this);
             }.bind(this));
         } else {
-            this.answer = this.collection[this.method](action, this.sendResponse.bind(this));
+            this.collection.initialize(function (result) {
+                this.answer = this.collection[this.method](action, this.sendResponse.bind(this));
+            }, this);
         }
         
     },

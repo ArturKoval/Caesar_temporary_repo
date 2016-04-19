@@ -49,6 +49,25 @@ var Controller = Rotor.Controller.extend({
         }
     },
 
+    responsePreload: function (userId) {
+        this.preloadData.users = this.getUserData(userId);
+
+        this.getData(Groups, 'groups');
+        this.getData(Locations, 'locations');
+        this.getData(Teachers, 'teachers');
+        this.getData(Roles, 'roles');
+        this.getData(Directions, 'directions');
+        this.getData(Stages, 'stages');
+
+        /**
+            Use this count to fix the number of collections you want to preload
+            (syncs collections)
+        **/
+        lock.reset(6).then(function () {
+            this.sendResponse('', this.preloadData);
+        }, this);
+    },
+
     getUserData: function (id) {
     	var user = Users.get(id),
     		data;
@@ -61,40 +80,11 @@ var Controller = Rotor.Controller.extend({
 
     	return data;
     },
-//обработка ошибок
-    getLocationsData: function () {
-        Locations.initialize(function (result) {
-            this.preloadData.locations = this.formatData(Locations.getCollection());
-            lock.check();
-        }, this);
-    },
-//обработка ошибок
-    getGroupsData: function () {
-    	Groups.initialize(function (result) {
-            this.preloadData.groups = this.formatData(Groups.getCollection());
-            lock.check();
-        }, this);
-    },
-
+// error exception ????//
     getData: function (collection, name) {
         collection.initialize(function (result) {
             this.preloadData[name] = this.formatData(collection.getCollection());
             lock.check();
-        }, this);
-    },
-
-    responsePreload: function (userId) {
-        this.preloadData.users = this.getUserData(userId);
-
-        this.getData(Groups, 'groups');
-        this.getData(Locations, 'locations');
-        this.getData(Teachers, 'teachers');
-        this.getData(Roles, 'roles');
-        this.getData(Directions, 'directions');
-        this.getData(Stages, 'stages');
-
-        lock.reset(6).then(function () {
-            this.sendResponse('', this.preloadData);
         }, this);
     }
 });
