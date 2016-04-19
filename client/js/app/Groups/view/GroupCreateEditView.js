@@ -50,9 +50,9 @@
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
 
-                if (event.which === ENTER) {
+                if (event.which === System.constants.ENTER) {
                     this.save();
-                } else if (event.which === ESC) {
+                } else if (event.which === System.constants.ESC) {
                     this.close();
                 }
             }

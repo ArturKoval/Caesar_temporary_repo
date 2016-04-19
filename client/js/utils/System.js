@@ -1,7 +1,11 @@
 'use strict';
 
 var System = (function () {
-	var ajax = new XMLHttpRequest();
+	var ajax = new XMLHttpRequest(),
+		_constants = {
+			ESC: 27,
+			ENTER: 13
+		};
 
     function _register (parent, modules) {
         modules.forEach(function (module) {
@@ -60,6 +64,7 @@ var System = (function () {
 
 
     return {
+		constants: _constants,
 		register: _register,
 		preload: _preload,
 		then: _then

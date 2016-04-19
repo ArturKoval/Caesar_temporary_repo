@@ -4,10 +4,7 @@ var CS = {},
     app = {},
     templates = {},
     store = {},
-    i = {},
-	/**move to System constants**/
-    ESC = 27,
-    ENTER = 13;
+    i = {};
 
 System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter', 'userController']);
