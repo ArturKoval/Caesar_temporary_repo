@@ -4,10 +4,7 @@ var CS = {},
     app = {},
     templates = {},
     store = {},
-    i = {},
-	/**move to System constants**/
-    ESC = 27,
-    ENTER = 13;
+    i = {};
 
 System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
 System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter', 'userController']);
@@ -27,55 +24,3 @@ $(function () {
         Backbone.history.start({pushState: true});
     }
 });
-/**move info blocks to preload**/
-
-i.roles = [
-    'Teacher',
-	'Coordinator',
-	'Administrator'
-];
-
-i.directions = [
-    'WebUI',
-    'JavaScript(UI)',
-    'LAMP',
-    '.Net',
-    'iOS',
-    'C/C++',
-    'Delphi',
-    'RDBMS',
-    'MQC',
-    'ATQC',
-    'ISTQB',
-    'DevOps',
-    'UX'
-];
-
-i.teachers = [
-    'M. Demchyna',
-    'M. Lopatynska',
-    'M. Plesha',
-    'V. Ryazhska',
-    'A. Korkuna',
-    'L. Halamaha',
-    'Y. Harasym',
-    'I. Kohut',
-    'L. Klakovych',
-    'V. Koldovskyy',
-    'N. Romanenko',
-    'A. Pertsov',
-    'O. Shvets`',
-    'O. Reuta',
-    'I. Tsvietkov',
-    'Y. Bezgachnyuk',
-    'D. Petin',
-    'M. Omel`chuk',
-    'B. Yulian'
-];
-
-i.stages = ['boarding',
-    'before-start',
-    'in-process',
-    'offering',
-    'finished'
-];

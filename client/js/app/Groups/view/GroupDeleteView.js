@@ -39,11 +39,11 @@
         },
 
         onKeyPress: function (e) {
-            if (e.keyCode === ESC) {
+            if (e.keyCode === System.constants.ESC) {
                 this.close();
             }
 
-            if (e.keyCode === ENTER) {
+            if (e.keyCode === System.constants.ENTER) {
                 this.deleteGroup();
             }
         }
