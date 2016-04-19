@@ -25,6 +25,7 @@
 				'students': {view: 'StudentListView', collection: students},
 				'message': {view: 'MessageView'}
 			};
+
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this); 				
 			
@@ -44,32 +45,37 @@
             return this;
         },
 
-        stubsListener: function (e) {
+        stubsListener: function (argument) {
             var $buttons = $('.groupView .active'),
+                action,
                 $el,
-                action;
+                defineAction = {
+                    'undefined': function () {
+                        $el = $('.infoBtn');
+                        action = $el.attr('name');
+                    },
+                    'string': function () {
+                        action = argument;
+                        $el = $('.'+ action + 'Btn');
+                    },
+                    'object': function () {
+                        $el = $(argument.currentTarget);
+                        action = $el.attr('name');
+                    }
+                };
 		
-            if (e.currentTarget || e) {
-                $el = $(e.currentTarget);
-            } else {
-                $el = $('.infoBtn');
-            }
+           
+            defineAction[typeof argument]();
 
-            if (typeof e !== 'string') {
-                action = $el.attr('name');
-				
-                if (action !== 'edit') {
-                    this.publishEvent(action); 
-                }
-            } else {
-                action = e;
-            }
+            // temporary?
 			if (action === 'edit') {
 				this.mediator.publish('Groups: edit-request', this.model);
 			} else {
+                this.publishEvent(action); 
                 this.showStubView(this.listener[action]);
             }	
-			
+			//
+
             $buttons.removeClass('active');
             $el.addClass('active');
         },
@@ -85,19 +91,11 @@
             this.mediator.publish('Groups: stubView-changed', {group: this.model, stubView: stubViewName});
         },
 
-         showDeleteDialog: function () {
+        showDeleteDialog: function () {
             this.mediator.publish('Groups: delete-request', this.model);
-            /*this.mediator.publish('Messenger: show message', {
-                type: 'confirmation',
-                object: this.model,
-                callback: function () {
-                    this.model.destroy();
-                },
-                text: 'Group '+ this.model.get('name') + ' will be destroyed. Are you sure?'
-             });*/
         }
     });
-})(CS.Groups);
+})(CS.Groups, app);
 
 var students = [{'name': 'Anastasyia Serheeva'},
  {'name': 'Vladyslava Tyshchenko'},
