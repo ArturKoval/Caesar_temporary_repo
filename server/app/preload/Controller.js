@@ -3,6 +3,9 @@ var Rotor = require('../../libs/rotor/rotor'),
 	Users = require('../users/Models/UsersList'),
 	Locations = require('../locations/Models/CoursesList'),
 	Groups = require('../groups/Models/GroupsList'),
+    Teachers = require('../teachers/Models/TeachersList'),
+    Roles = require('../roles/Models/RolesList'),
+    Directions = require('../directions/Models/DirectionsList'),
     lock = require('../../libs/lock');
 
 var Controller = Rotor.Controller.extend({
@@ -17,7 +20,10 @@ var Controller = Rotor.Controller.extend({
     preloadData: {
         users: '',
         locations: '',
-        groups: ''
+        groups: '',
+        teachers: '',
+        roles: '',
+        directions: ''
     },
 
 	initialize: function (req, resp, action, currSession) {
@@ -68,12 +74,23 @@ var Controller = Rotor.Controller.extend({
         }, this);
     },
 
+    getData: function (collection, name) {
+        collection.initialize(function (result) {
+            this.preloadData[name] = this.formatData(collection.getCollection());
+            lock.check();
+        }, this);
+    },
+
     responsePreload: function (userId) {
         this.preloadData.users = this.getUserData(userId);
-        this.getLocationsData();
-        this.getGroupsData();
 
-        lock.reset(2).then(function () {
+        this.getData(Groups, 'groups');
+        this.getData(Locations, 'locations');
+        this.getData(Teachers, 'teachers');
+        this.getData(Roles, 'roles');
+        this.getData(Directions, 'directions');
+
+        lock.reset(5).then(function () {
             this.sendResponse('', this.preloadData);
         }, this);
     }
