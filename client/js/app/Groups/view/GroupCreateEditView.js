@@ -15,7 +15,8 @@
             'click #cancel': 'close',
             'change [name="startDate"]': 'setFinishDate',
             'change [name="direction"]': 'setFinishDate',
-            'click .budget-option': 'setBudgetOwner'
+            'click .budget-option': 'setBudgetOwner',
+            'click .calendar': 'showCalendar'
         },
 
         initialize: function (model) {
@@ -45,6 +46,10 @@
             this.$el.find('#teachers').html(this.teacherView.render().$el);
             this.$el.find('#experts').html(this.expertView.render().$el);
 
+            this.$el.find('[type=date]').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
 
@@ -66,7 +71,7 @@
                     courseDurationDays,
                     finishDate;
 
-                if (this.$el.find('[name=direction]').val() === 'MQC') { //ISTQB also 9 weeks
+                if (['MQC', 'ISTQB'].indexOf(this.$el.find('[name=direction]').val()) !== -1) {
                     courseDurationWeeks = 9;
                 } else {
                     courseDurationWeeks = 12;
@@ -121,7 +126,7 @@
             this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
                 formData[field.name] = field.value;
             });
-            this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {
+            this.$el.find('#location option:selected, #direction option:selected, #stage option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
             this.$el.find('.budget-option').each(function (index, button) {
@@ -166,13 +171,11 @@
                     text: infoMessage + ', but ' + warning + ' are not specified'
                 });
             } else {
-                 app.mediator.publish('Message', {
+                app.mediator.publish('Message', {
                     type: 'flash-info',
                     text: infoMessage
                 });
             }
-
-           
         },
 
         createWarningMessage: function () {
@@ -189,7 +192,10 @@
             if (warningMessage !== '') {
                 return warningMessage;
             }
+        },
 
+        showCalendar: function (event) {
+            $(event.target).siblings('[type=date]').focus();
         }
     });
 })(CS.Groups);
