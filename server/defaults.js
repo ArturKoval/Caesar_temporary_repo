@@ -347,13 +347,13 @@ var defaultData = {
         "logo": "/img/logoFluffyDots.png",
         "direction": "mqc",
         "people": {
-            "Liliia Krivsun": "/Fluffy Dots/img/Krivsun.jpg",
-            "Anton Fanygin": "/Fluffy Dots/img/Fanygin.jpg",
-            "Svetlana Shylnenkova": "/Fluffy Dots/img/Shylnenkova.jpg",
-            "Ihor Zhuhan": "/Fluffy Dots/img/Zhuhan.jpg",
-            "Anastasiia Petina": "/Fluffy Dots/img/Petina.jpg",
-            "Oleksandra Pervunina": "/Fluffy Dots/img/Pervunina.jpg",
-            "Mariia Ananchenko": "/Fluffy Dots/img/Ananchenko.jpg"
+            "Liliia Krivsun": "/img/FluffyDots/Krivsun.jpg",
+            "Anton Fanygin": "/img/FluffyDots/Fanygin.jpg",
+            "Svetlana Shylnenkova": "/img/FluffyDots/Shylnenkova.jpg",
+            "Ihor Zhuhan": "/img/FluffyDots/Zhuhan.jpg",
+            "Anastasiia Petina": "/img/FluffyDots/Petina.jpg",
+            "Oleksandra Pervunina": "/img/FluffyDots/Pervunina.jpg",
+            "Mariia Ananchenko": "/img/FluffyDots/Ananchenko.jpg"
         }
     }, {
         "nickname": "Floppy-Drive 8",
@@ -361,14 +361,14 @@ var defaultData = {
         "logo": "/img/default-photo.png",
         "direction": "javascript",
         "people": {
-            "Vladyslava Tyschenko": "/Floppy-Drive 8/img/Tyschenko.jpg",
-            "Anastasyia Serheeva": "/Floppy-Drive 8/img/Serheeva.jpg",
-            "Anna Hranovs'ka": "/Floppy-Drive 8/img/Hranovs'ka.jpg",
-            "Yuryi Tataryntsev": "/Floppy-Drive 8/img/Tataryntsev.jpg",
-            "Artem Zhylko": "/Floppy-Drive 8/img/Zhylko.jpg",
-            "Anastasiia Manil'nykova": "/Floppy-Drive 8/img/Manil'nykova.jpg",
-            "Denys Poznukhov": "/Floppy-Drive 8/img/Poznukhov.jpg",
-            "Yana Sharipbaeva": "/Floppy-Drive 8/img/Sharipbaeva.jpg"
+            "Vladyslava Tyschenko": "/img/Floppy-Drive-8/Tyschenko.jpg",
+            "Anastasyia Serheeva": "/img/Floppy-Drive-8/Serheeva.jpg",
+            "Anna Hranovs'ka": "/img/Floppy-Drive-8/Hranovs'ka.jpg",
+            "Yuryi Tataryntsev": "/img/Floppy-Drive-8/Tataryntsev.jpg",
+            "Artem Zhylko": "/img/Floppy-Drive-8/Zhylko.jpg",
+            "Anastasiia Manil'nykova": "/img/Floppy-Drive-8/Manil'nykova.jpg",
+            "Denys Poznukhov": "/img/Floppy-Drive-8/Poznukhov.jpg",
+            "Yana Sharipbaeva": "/img/Floppy-Drive-8/Sharipbaeva.jpg"
         }
     }, {
         "nickname": "Charming Chaos",
@@ -376,12 +376,12 @@ var defaultData = {
         "logo": "/img/default-photo.png",
         "direction": "mqc",
         "people": {
-            "Elena Kulynenkova": "/Charming Chaos/img/Kulynenkova.jpg",
-            "Lylyia Babenko": "/Charming Chaos/img/Babenko.jpg",
-            "Valeryia Rusynko": "/Charming Chaos/img/Rusynko.jpg",
-            "Oksana Shyrman": "/Charming Chaos/img/Shyrman.jpg",
-            "Kateryna Buzykina": "/Charming Chaos/img/Buzykina.jpg",
-            "Olena Petrusha": "/Charming Chaos/img/Petrusha.jpg"
+            "Elena Kulynenkova": "/img/CharmingChaos/Kulynenkova.jpg",
+            "Lylyia Babenko": "/img/CharmingChaos/Babenko.jpg",
+            "Valeryia Rusynko": "/img/CharmingChaos/Rusynko.jpg",
+            "Oksana Shyrman": "/img/CharmingChaos/Shyrman.jpg",
+            "Kateryna Buzykina": "/img/CharmingChaos/Buzykina.jpg",
+            "Olena Petrusha": "/img/CharmingChaos/Petrusha.jpg"
         }
     }]
 };

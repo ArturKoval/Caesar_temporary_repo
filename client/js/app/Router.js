@@ -3,13 +3,19 @@
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
         routes: {
-            '': 'groups',
-            'Groups*path': 'groups',
+            '': 'pageGroups',
+            'Groups*path': 'pageGroups',
+            'About': 'pageAbout',
+            'About*path':'pageAbout',
             '*path': 'errorPage'
         },
 
-        groups: function () {
+        pageGroups: function () {
             app.subRouters['Groups'] || (app.subRouters['Groups'] = new CS.Groups.Router());
+        },
+
+        pageAbout: function () {
+            app.subRouters['About'] || (app.subRouters['About'] = new CS.About.Router());
         },
 
         errorPage: function () {
