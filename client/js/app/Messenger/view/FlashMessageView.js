@@ -14,6 +14,9 @@
 	    initialize: function () {
 	    	this.render();
 	     	setTimeout(this.removeFlash.bind(this), 4000);
+	     	this.model.on('destroy', this.fadeOutElement.bind(this));
+	     	this.removeMessage();
+
 	    },
 
 	    render: function () {
@@ -29,9 +32,18 @@
 	    },
 
 	    removeFlash: function () {
-			this.$el.remove();
+
 			this.model.destroy();
 	    },
+
+	    fadeOutElement: function () {
+			this.$el.fadeOut();
+	    	setTimeout(this.removeMessage.bind(this), 1000);	
+	    },
+
+	    removeMessage: function () {
+	        this.$el.remove();
+	    }
 
     });
 })(CS.Messenger, app);

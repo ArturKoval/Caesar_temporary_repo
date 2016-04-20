@@ -11,24 +11,24 @@
         },
 
         render: function () {
-                this.$el.html(templates.contentTpl);
-                this.$el.find('.groupLocation').html(app.user.get('location'));
+            this.$el.html(templates.contentTpl);
+            this.$el.find('.groupLocation').html(app.user.get('location'));
 
-         return this;
+        return this;
         },
 
         showSelectedGroup: function (selected) {
-                this.$el.find('.groupLocation').html(selected.get('location'));
-                this.$el.find('.groupName').html(selected.get('name'));
-                var groupView = new This.GroupView({
-                    model: selected
-                });
+            this.$el.find('.groupLocation').html(selected.get('location'));
+            this.$el.find('.groupName').html(selected.get('name'));
+            var groupView = new This.GroupView({
+                model: selected
+            });
 
-                this.$el.find('#main-section').html(groupView.render().el);
-                this.$el.find('.groupStage').html(selected.get('stage'));
-                this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
+            this.$el.find('#main-section').html(groupView.render().el);
+            this.$el.find('.groupStage').html(selected.get('stage'));
+            this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
 
-                groupView.stubsListener('info');
+            groupView.stubsListener('info');
 
             return this;
         },
@@ -38,15 +38,15 @@
 
             if (locations.length > 1) {
                 numberOfLocations = locations.length + ' ' + 'locations';
-                this.$el.find('.groupLocation').html(numberOfLocations);
-                this.$el.attr({
-                    'title': locations
-                });
+                this.$el.find('.groupLocation').html(numberOfLocations)
+                    .attr({
+                        'title': locations
+                    });
             } else {
                 this.$el.find('.groupLocation').html(locations);
             }
 
-            this.$el.find('.content-header-group-name').empty();
+            this.$el.find('.groupName').empty();
             this.$el.find('.main-section').empty();
             this.$el.find('.groupStage').empty();
             this.$el.find('.groupStageTitle').html('');

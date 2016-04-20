@@ -26,9 +26,11 @@
 .styleInfo {
     border-top: 1px solid #003366;
     border-bottom: 1px solid #003366;
+    position: relative;
 }
 
 .styleWarning {
+    position: relative;
     border-top: 1px solid #fff200;
     border-bottom: 1px solid #fff200;
 }
@@ -42,14 +44,14 @@
 }
 
 .textInfo, .textWarning {    
-    line-height: 28px;
-    vertical-align: middle;
+    vertical-align: top;
     min-height: 0px;
     width: 82%;
     font-size: 15px;
     font-weight: bold;
     padding-left: 5px;
     display: inline-block;
+    padding-top: 5px;
 }
 
 .textInfo {
@@ -62,6 +64,12 @@
 
 .flash-style .close .fa-2x{
     font-size: 1em;
+}
+.flash-style .close {
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
 }
 
 .removeFlash  {
