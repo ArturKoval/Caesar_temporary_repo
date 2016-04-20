@@ -9,6 +9,8 @@ var defaultData = {
         "name": "offering"
     }, {
         "name": "finished"
+    } , {
+        "name": "planned"
     }],
 
     teachers: [{

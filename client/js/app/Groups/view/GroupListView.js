@@ -13,7 +13,7 @@
         },
 
         initialize: function() {
-            this.collection.on('add', this.render, this);
+            this.collection.on('change', this.render, this);
         },
 
         render: function () {
@@ -21,6 +21,7 @@
             this.$groupList  = $('.group-collection');
             this.$myGroups = $('.myGroups');
             this.$paginator = $('.paginator-place-holder');
+            app.mediator.publish('GroupsListView: rendered'); //stub, will be deleted with filter update
             this.createPaginator(app.filter.split('groupList'));
 
             return this;

@@ -9,14 +9,11 @@
         },
 
         initialize: function () {
-            this.model.on('change', this.render, this);
-            this.model.on('add', this.render, this);
-            this.model.on('destroy', this.remove, this);
             app.mediator.subscribe('Groups: rendered', this.remove.bind(this));
         },
 
         render: function () {
-            this.$el.html('<div><p>' + this.model.get('name') + '</p></div>');
+            this.$el.html(templates.smallGroupTpl(this.model.toJSON()));
             return this;
         },
 

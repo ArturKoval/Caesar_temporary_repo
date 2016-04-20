@@ -18,3 +18,7 @@ templates.groupListTpl = ([
 		'</div>',
 	'</div>'
 ].join(''));
+
+templates.smallGroupTpl = _.template([
+	'<div><p>' + '<%= name %>' + '</p></div>'
+].join(''));
