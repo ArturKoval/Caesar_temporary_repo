@@ -17,7 +17,7 @@
 	margin: auto;
 }
 
-.chosen {
+.chosenDirection {
     background: #171B65;
     color: white;
 }
@@ -32,6 +32,7 @@
     color: #171B65;
 	font-size: 2em;
 	font-weight: 600;
+	cursor: pointer;
 }
 
 .groupContributors  img {
@@ -55,6 +56,7 @@
 .contributorPhoto {
 	margin: 10px 0;
 	padding: 10px 0;
+	cursor: pointer;
 }
 
 .containerContributors {
@@ -65,6 +67,7 @@
 	text-align: left;
 	font-size: 2em;
 	font-weight: 600;
+	float: left;
 }
 
 .chosenPhoto {

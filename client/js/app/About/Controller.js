@@ -24,13 +24,12 @@
             this.list.fetch();
             this.list.on('sync', function () {
                 store.contributors = this.list;
-                console.log(store.contributors.findByDirection(direction));
                 this.contentView = new This.ContentAboutView({collection: store.contributors.findByDirection(direction)});
                 $('#main-section').html(this.contentView.render().$el);
             }, this);
             
-            $('.menuAbout').removeClass('chosen');
-            $('.' + direction).addClass('chosen');
+            $('.menuAbout').removeClass('chosenDirection');
+            $('.' + direction).addClass('chosenDirection');
         }, 
 
         openListPeopleGroup: function (model) {

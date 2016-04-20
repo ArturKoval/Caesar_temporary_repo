@@ -2,44 +2,55 @@
 
 (function (This, app) {
     This.ContentView = Backbone.View.extend({
-        el: '#content-section',
+        template: templates.contentTpl,
+
     
         initialize: function () {
-            if (this.model){
-                this.model.on('change', this.render, this);
-                this.model.on('destroy', this.close, this);
-            }
-            app.mediator.subscribe('Locations: selected', this.close.bind(this));
+            app.mediator.subscribe('Locations: selected', this.showLocationInfo.bind(this));
+            app.mediator.subscribe('Groups: selected', this.showSelectedGroup.bind(this));
         },
 
         render: function () {
-            var contentLocationView,
-                contentGroupNameView,
-                contentFooterView;
-
-            contentLocationView = new This.ContentLocationView({
-                model: this.model
-            });
-            this.$el.find('.content-header-location').html(contentLocationView.render().el);
-
-            contentGroupNameView = new This.ContentGroupNameView({
-                model: this.model
-            });
-            this.$el.find('.content-header-group-name').html(contentGroupNameView.render().el);
-    
-            contentFooterView = new This.ContentFooterView({
-                model: this.model
-            });
-            this.$el.find('.content-footer').empty();
-            this.$el.find('.content-footer').append(contentFooterView.render().el);
+                this.$el.html(templates.contentTpl);
+                this.$el.find('.groupLocation').html(app.user.get('location'));
 
          return this;
-	    },
+        },
 
-        close: function () {
+        showSelectedGroup: function (selected) {
+                this.$el.find('.groupLocation').html(selected.get('location'));
+                this.$el.find('.groupName').html(selected.get('name'));
+                var groupView = new This.GroupView({
+                    model: selected
+                });
+
+                this.$el.find('#main-section').html(groupView.render().el);
+                this.$el.find('.groupStage').html(selected.get('stage'));
+                this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
+
+                groupView.stubsListener('info');
+
+            return this;
+        },
+
+        showLocationInfo: function (locations) {
+            var numberOfLocations;
+
+            if (locations.length > 1) {
+                numberOfLocations = locations.length + ' ' + 'locations';
+                this.$el.find('.groupLocation').html(numberOfLocations);
+                this.$el.attr({
+                    'title': locations
+                });
+            } else {
+                this.$el.find('.groupLocation').html(locations);
+            }
+
             this.$el.find('.content-header-group-name').empty();
-            this.$el.find('.content-footer').empty();
-        }
+            this.$el.find('.main-section').empty();
+            this.$el.find('.groupStage').empty();
+            this.$el.find('.groupStageTitle').html('');
+        },
     });
 
 })(CS.Groups, app);

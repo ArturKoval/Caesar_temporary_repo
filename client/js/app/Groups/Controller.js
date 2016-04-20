@@ -24,6 +24,9 @@
                 app.mediator.publish('Groups: create-request');
             });
             //Temporary button end
+
+            var contentView = new This.ContentView();
+            $('#content-section').html(contentView.render().$el);
         },
 
         start: function () {
@@ -36,14 +39,10 @@
         },
 
         render: function () {
-			var contentView = new This.ContentView();
-                contentView.render();
-
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
-            this.$main.empty();
             this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
         },
 
@@ -59,10 +58,10 @@
                 if (this.list(location).findGroupByName(groupName)) {
                     this.showSelectedGroup(this.list(location).findGroupByName(groupName));
                 } else {
-                    app.mediator.publish('Error by route', {elem: this.$main, message: 'such a group is not found'})
+                    app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'})
                 }
             } else {
-                app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
+                app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
             }
 
             return this.list(location).findGroupByName(groupName);
@@ -84,14 +83,10 @@
         },
 
         showSelectedGroup: function (selected, action) {
-            var contentView = new This.ContentView({
-                    model: selected
-                }),
-				groupView = new This.GroupView({
+            var groupView = new This.GroupView({
                     model: selected
                 });
 
-            contentView.render();
             groupView.stubsListener(typeof action === 'string'? action : 'info');
         },
 

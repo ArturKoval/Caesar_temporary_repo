@@ -1,5 +1,5 @@
 .flash-style {
-	margin-top: 10px;
+    margin-top: 10px;
     display: inline-block;
     float: right;
     min-height: 50px;
@@ -9,11 +9,11 @@
 }
 
 .picture, .text, .controlls {
-	display: inline-block;
+    display: inline-block;
 } 
 
 .pictureInfo, .pictureWarning {
-	width: 45px;
+    width: 45px;
     display: inline-block;
     color: white;
     min-height: 50px;
@@ -42,12 +42,13 @@
 }
 
 .textInfo, .textWarning {    
-    line-height: 50px;
-    vertical-align: top;
-    min-height: 50px;
-    font-size: 19px;
+    line-height: 28px;
+    vertical-align: middle;
+    min-height: 0px;
+    width: 82%;
+    font-size: 15px;
     font-weight: bold;
-    padding-left: 20px;
+    padding-left: 5px;
     display: inline-block;
 }
 
@@ -60,7 +61,7 @@
 }
 
 .flash-style .close .fa-2x{
-	font-size: 1em;
+    font-size: 1em;
 }
 
 .removeFlash  {

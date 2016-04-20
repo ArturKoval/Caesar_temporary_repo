@@ -137,7 +137,7 @@
             _.each(errors, function (value, key) {
                 hints.push({
                     name: key,
-                    message: value
+                    text: value
                 });
             });
 
@@ -149,7 +149,8 @@
         },
 
         createInfoMessage: function () {
-            var infoMessage;
+            var infoMessage,
+                warning;
 
             if (this.model.isNew()) {
                 infoMessage = 'Group ' + this.model.get('name') + ' was created';
@@ -157,10 +158,21 @@
                 infoMessage = 'Group ' + this.model.get('name') + ' was edited';
             }
 
-            app.mediator.publish('Message', {
-                type: 'flash-info',
-                text: infoMessage
-            });
+            warning = this.createWarningMessage();
+
+            if (warning) {
+                app.mediator.publish('Message', {
+                    type: 'flash-warning',
+                    text: infoMessage + ', but ' + warning + ' are not specified'
+                });
+            } else {
+                 app.mediator.publish('Message', {
+                    type: 'flash-info',
+                    text: infoMessage
+                });
+            }
+
+           
         },
 
         createWarningMessage: function () {
@@ -174,12 +186,10 @@
                 warningMessage = 'Experts';
             }
 
-            if (warningMessage) {
-                app.mediator.publish('Message', {
-                    type: 'flash-warning',
-                    text: warningMessage + ' are not specified'
-                });
+            if (warningMessage !== '') {
+                return warningMessage;
             }
+
         }
     });
 })(CS.Groups);

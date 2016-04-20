@@ -1,15 +1,14 @@
-templates.contentLocationTpl = _.template([
-	'<p class = "groupLocation"  ><%= location %></p>',
-].join(''));
-
-templates.contentGroupNameTpl = _.template([
-	'<p class = groupName><%= name %></p>'
-].join(''))
-
-templates.contentFooterTpl = _.template([
+templates.contentTpl = _.template([
+	'<div class="content-header-location">',
+		'<p class = "groupLocation"></p>',
+	'</div>',
+	'<div class="content-header-group-name">',
+		'<p class = groupName></p>',
+	'</div>',
+	'<div id="main-section" class="main-section"></div>',
 	'<div class = "stageView">',
-		'<p class = "groupStageTitle">Stage:&nbsp;</p>' , 
-		'<p class = "groupStage"><%= stage %></p> ',
+		'<p class = "groupStageTitle"></p>' , 
+		'<p class = "groupStage"></p> ',
 	'</div> ',
 	'<div class = "flashMessage"></div> '
 ].join(''));
