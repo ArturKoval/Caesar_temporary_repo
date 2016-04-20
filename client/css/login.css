@@ -4,6 +4,10 @@
     height: 100%;
 }
 
+.main-section {
+    width: initial;
+}
+
 .app .modal {
     display: flex;
     align-items: center;
