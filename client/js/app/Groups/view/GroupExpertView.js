@@ -33,7 +33,7 @@
         },
 
         addExpert: function () {
-            var newExpert = this.$el.find('#experts').val();
+            var newExpert = this.$el.find('[name=experts]').val();
             this.experts.push(newExpert);
             this.renderList();
             this.renderAddBtn();

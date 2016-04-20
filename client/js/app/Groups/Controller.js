@@ -4,47 +4,47 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Groups: selected': 'showSelectedGroup',
+            'Groups: saved': 'showSelectedGroup',
             'Groups: edit-request': 'createEdit',
             'Groups: delete-request': 'delete',
-            'Groups: saved': 'showSelectedGroup',
-            'Locations: show-request': 'showAllLocations',
+            'Groups: create-request': 'showFormCreate',
             'Locations: selected': 'render',
-            'Paginator: page-selected': 'groupsRender',
-			'Groups: create-request': 'showFormCreate'
+            'Locations: show-request': 'showAllLocations',
+            'Paginator: page-selected': 'groupsRender'
         },
 
         initialize: function () {
-            this.mediator = app.mediator;            
+            this.mediator = app.mediator;
+
             this.$main = $('.main-section');
+            this.$sidebar = $('#left-side-bar');
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request');    
+                app.mediator.publish('Groups: create-request');
             });
             //Temporary button end
         },
-			
+
         start: function () {
 			var userLocation = app.user.get('location');
-			
+
             this.render(userLocation);
             this.buttonShowAll();
 
             return userLocation;
         },
 
-        render: function (location) {
-            var $sidebar = $('#left-side-bar');
-
-            this.groupListView = new This.GroupListView({
-                    collection: this.list(location)
-                });
-				
+        render: function () {
 			var contentView = new This.ContentView();
                 contentView.render();
 
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
+
             this.$main.empty();
-            $sidebar.html(this.groupListView.$el).append(this.groupListView.render());
+            this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
         },
 
         groupsRender: function(collection) {
@@ -80,45 +80,33 @@
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
             this.buttonShowAll();
-            this.showSelectedGroupByRouter(this.list(location).findGroupByName(groupName), action);
+            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
-        showSelectedGroupByRouter: function (selected, action) {
-            var contentView = new This.ContentView({
-                    model: selected
-                }),
-                groupView = new This.GroupView({
-                    model: selected
-                }); 
-
-            contentView.render();
-            groupView.stubsListener(action);    
-        },
-
-        showSelectedGroup: function (selected) {
+        showSelectedGroup: function (selected, action) {
             var contentView = new This.ContentView({
                     model: selected
                 }),
 				groupView = new This.GroupView({
                     model: selected
                 });
-            		
+
             contentView.render();
-            groupView.stubsListener('info');
+            groupView.stubsListener(typeof action === 'string'? action : 'info');
         },
-				
+
 		showFormCreate: function () {
             var createEditView = new This.CreateEditView();
 
             this.modal(createEditView);
         },
-		
+
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
             this.modal(locationsView);
         },
-        
+
         createEdit: function (group) {
             var createEditView = new This.CreateEditView(group);
 
@@ -142,10 +130,9 @@
         buttonShowAll: function () {
 			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
 		},
-		
+
 		list: function (data) {
              return store.groups.findGroupsByLocations(data);
         }
-
     });
 })(CS.Groups, app, i);

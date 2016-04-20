@@ -1,4 +1,4 @@
-.groupView{
+.groupView {
     margin-top: 20px;
 }
 
@@ -49,7 +49,7 @@
     padding: 0;
     margin-right: 2px;
     outline: 0;
-	z-index: 0;
+    z-index: 0;
 }
 
 .group-controls .btn-group .btn:last-of-type {
@@ -62,26 +62,27 @@
 }
 
 .group-controls .btn-group .btn.active {
-  background-color: #171B65;
+    background-color: #171B65;
 }
 
 .editBtn, .deleteBtn {
-     color: #346EA3;
-     display: inline-block;
-     background-color: transparent;
-     border: 0;
-     cursor: pointer;
-     box-shadow: none !important;
+    color: #346EA3;
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    box-shadow: none !important;
 }
+
 .editBtn:hover, .deleteBtn:hover,
-.editBtn:focus, .deleteBtn:focus  {
+.editBtn:focus, .deleteBtn:focus {
     outline: 0 !important;
     color: #171B65;
     background-color: white;
     box-shadow: none;
 }
 
-.groupContainer{
+.groupContainer {
     height: 300px;
     margin: 10px auto;
     text-align: center;
@@ -94,7 +95,10 @@
     border: 0px;
 }
 
-html, body {height:100%;}
+html, body {
+    height: 100%;
+    min-width: 1024px;
+}
 
 .wrapper {
     height: 100%;
@@ -114,7 +118,7 @@ html, body {height:100%;}
     width: 50%;
     height: 100%;
     float: left;
-    
+
 }
 
 .logo > a {
@@ -135,27 +139,27 @@ html, body {height:100%;}
 
 .top-menu {
     position: absolute;
-    top : 0;
+    top: 0;
 }
 
 .right-menu {
     position: absolute;
-    top : 0;
+    top: 0;
     left: 100%;
     width: 13%;
     transition: 0.4s;
 }
 
 .right-menu.open {
-  transition: 0.4s;
-  left: 87%;
+    transition: 0.4s;
+    left: 87%;
 }
 
 .page {
     height: calc(100% - 50px);
     box-sizing: border-box;
     padding: 14px 0;
-} 
+}
 
 .left-side-bar {
     width: 23%;
@@ -163,7 +167,7 @@ html, body {height:100%;}
     border: #171B65 1px solid;
     border-radius: 10px;
     box-sizing: border-box;
-    float: left;    
+    float: left;
 }
 
 .content-section {
@@ -202,28 +206,27 @@ html, body {height:100%;}
 }
 
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot');
-  src: url('../font/fontello.eot') format('embedded-opentype'),
-       url('../font/fontello.woff2') format('woff2'),
-       url('../font/fontello.woff') format('woff'),
-       url('../font/fontello.ttf') format('truetype'),
-       url('../font/fontello.svg') format('svg');
-  font-weight: normal;
-  font-style: normal;
+    font-family: 'fontello';
+    src: url('../font/fontello.eot');
+    src: url('../font/fontello.eot') format('embedded-opentype'),
+    url('../font/fontello.woff2') format('woff2'),
+    url('../font/fontello.woff') format('woff'),
+    url('../font/fontello.ttf') format('truetype'),
+    url('../font/fontello.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
 }
 
-.demo-icon
-    {
-      font-family: "fontello";
-      font-style: normal;
-      font-weight: normal;
-      speak: none;
-     
-      display: inline-block;
-      text-decoration: inherit;
-      width: 1em;
-      margin-right: .2em;
-      text-align: center;
-      /* opacity: .8; */
-      }
+.demo-icon {
+    font-family: "fontello";
+    font-style: normal;
+    font-weight: normal;
+    speak: none;
+
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-right: .2em;
+    text-align: center;
+    /* opacity: .8; */
+}

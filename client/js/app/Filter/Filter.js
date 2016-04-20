@@ -1,37 +1,34 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
 
-    This.Filter = function (collection, params) {
-        var collection,
-            key;
+    This.Filter = function () {
+        var params = {
+                state: 'in-process',
+                areMyGroups: false,
+                locations: [app.user.get('location')]
+            },
+            groupList;
 
-        function func(collection, params) {
-            if (collection instanceof CS.Groups.GroupList) {
+        app.mediator.subscribe('MyGroups: selected', function (value) {params.areMyGroups = value});
+        app.mediator.subscribe('State: selected', function (value) {params.state = value});
+        app.mediator.subscribe('Locations: selected', function (value) {params.locations = value});
 
-                for (key in params) {
-                    if (key === 'state') {
-                        if (params[key] === 'planned') {
-                            collection = collection.findGroupsByState('planned');
-                        }
-                        if (params[key] === 'in-process' || params[key] === 'offering') {
-                            collection = collection.findGroupsByState('in-process');
-                        }
-                        if (params[key] === 'finished') {
-                            collection = collection.findGroupsByState('finished');
-                        }
-                    }
+        this.split = function (collection) {
+            if (collection === 'groupList') {
 
-                    if (key === 'areMyGroups') {
-                        if (params[key]) {
-                            collection = collection.findMyGroups(app.user.getShortName());
-                        }
-                    }
+                groupList = store.groups;
+                groupList = groupList.findGroupsByLocations(params.locations);
+                groupList = groupList.findGroupsByState(params.state);
+
+                if (params.areMyGroups) {
+                    groupList = groupList.findMyGroups(app.user.getShortName());
                 }
             }
-            return collection;
-        }
-        return func;
+            return groupList;
+        };
+
+        return this;
     };
 
-})(app);
+})(CS, app);

@@ -54,7 +54,7 @@
          },
 
         showGroupsInLocation: function () {
-            app.mediator.publish('Locations: selected', this.locations);
+            app.mediator.publish('Locations: selected', this.locations.slice());
             this.locations.splice(0);
             this.close();
         },

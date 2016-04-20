@@ -29,6 +29,7 @@
                  text: 'Group '+ this.model.get('name') + ' was destroyed.'
              });
             this.model.destroy();
+            this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
         },
 
