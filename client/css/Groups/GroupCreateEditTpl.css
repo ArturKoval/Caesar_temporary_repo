@@ -46,20 +46,12 @@ hr {
     margin-right: 10px;
 }
 
-.backdrop [for="stage"] {
-    margin-top: 20px;
-}
-
-.backdrop #stage {
-    margin-top: -30px;
+.backdrop .stage-wrapper {
+    margin-top: 9px;
 }
 
 .backdrop .budgetOptions {
-    margin-top: 30px;
-}
-
-.backdrop .budgetOptions {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .backdrop .create .budgetOptions {
@@ -127,7 +119,7 @@ hr {
 
 .backdrop .fa-calendar {
     position: absolute;
-    top: 3px;
+    bottom: 3px;
     right: -20px;
     color: #3C78B5;
     cursor: pointer;
