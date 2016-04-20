@@ -14,6 +14,7 @@
         app.mediator.subscribe('State: selected', function (value) {params.state = value});
         app.mediator.subscribe('Locations: selected', function (value) {params.locations = value});
         app.mediator.subscribe('GroupsListView: rendered', function () {params.state = 'in-process'});
+        app.mediator.subscribe('GroupsListView: rendered', function () {params.areMyGroups = false});
 
 
         this.split = function (collection) {

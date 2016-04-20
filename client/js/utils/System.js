@@ -64,21 +64,7 @@ var System = (function () {
         });
     }
 
-    function _setupSubscribes () {
-        var subscribes = _.result(this, 'subscribes'),
-            method;
-
-        for (var key in subscribes) {
-            method = subscribes[key];
-            if (!_.isFunction(method)) {
-                method = this[method];
-            }
-            this.mediator.subscribe(key, _.bind(method, this));
-        }
-    }
-
     return {
-        setupSubscribes: _setupSubscribes,
         constants: _constants,
         register: _register,
         preload: _preload,

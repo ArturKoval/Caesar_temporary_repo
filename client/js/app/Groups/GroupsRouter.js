@@ -27,14 +27,12 @@
         },
         
         initialize: function () {
-            this.mediator = app.mediator;
-            this.setupSubscribes();
+            app.mediator.multiSubscribe(this.subscribes, this);
+            
             this.controller = new CS.Groups.Controller();
 			
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
-        
-        setupSubscribes: System.setupSubscribes,
 
         navToGroupSelected: function (model) {
             var groupName = model.get('name'),
