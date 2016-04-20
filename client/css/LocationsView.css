@@ -26,7 +26,8 @@
     color: #FFFFFF
 }
 
-.location-buttons button:hover {
+.location-buttons button:hover,
+.location-buttons button:focus {
     color: #3C78B5;
 }
 

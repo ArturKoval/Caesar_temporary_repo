@@ -15,16 +15,20 @@
         
         initialize: function () {
             this.checkedLocations = [];
+            
             app.mediator.subscribe('Locations: checked', this.updateCheckedLocations, {}, this);
             app.mediator.subscribe('Locations: one-selected', this.selectOne, {}, this);
+            
             _.bindAll(this, 'onKeyPress');
             this.$documentEl.bind('keydown', this.onKeyPress);
         },
 
         render: function () {
-            var collection;
+            var collection = [];
             
             this.$el.html(this.template);
+            this.$saveBtnEl = this.$el.find('.save');
+            
             collection = this.collection.sort();
 
             _.each(collection, function (location) {
@@ -40,7 +44,9 @@
 
         onKeyPress: function (e) {
             if (e.keyCode === System.constants.ENTER) {
-                this.select();
+                if (this.checkedLocations.length > 0) {
+                   this.select(); 
+                }
             } else if (e.keyCode === System.constants.ESC) {
                 this.close();
             }
@@ -51,7 +57,15 @@
                 this.checkedLocations = this.checkedLocations.filter(isLocationChecked);
             } else {
                 this.checkedLocations.push(checkedLocation);
-            }  
+            }
+            
+            if (this.checkedLocations.length > 0) {
+                this.$saveBtnEl.prop('disabled', false);
+                this.$saveBtnEl.removeClass('disabled');
+            } else {
+                this.$saveBtnEl.prop('disabled', true);
+                this.$saveBtnEl.addClass('disabled');
+            }
            
             function isLocationChecked (location) {
                 return location !== checkedLocation;
@@ -60,6 +74,7 @@
 
         select: function () {
             app.mediator.publish('Locations: selected', this.checkedLocations.slice());
+            
             this.close();
         },
         

@@ -1,8 +1,8 @@
 templates.locationTpl = _.template([
-	'<div class =location-wrapper>',
+	'<div class="location-wrapper">',
 		'<div class="locations">',
 		'<div class="location-buttons">',
-			'<button class="save">',
+			'<button class="save disabled" disabled>',
 				'<i class="fa fa-check-circle-o fa-3x"></i>',
 			'</button>',
 			'<button class="cancel">',
