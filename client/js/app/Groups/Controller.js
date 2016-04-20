@@ -5,9 +5,9 @@
         subscribes: {
             'Groups: selected': 'showSelectedGroup',
             'Groups: saved': 'showSelectedGroup',
-            'Groups: edit-request': 'createEdit',
+            'Groups: edit-request': 'showForm',
             'Groups: delete-request': 'delete',
-            'Groups: create-request': 'showFormCreate',
+            'Groups: create-request': 'showForm',
             'Locations: selected': 'render',
             'Locations: show-request': 'showAllLocations',
             'Paginator: page-selected': 'groupsRender'
@@ -90,20 +90,20 @@
             groupView.stubsListener(typeof action === 'string'? action : 'info');
         },
 
-		showFormCreate: function () {
-            var createEditView = new This.CreateEditView();
-
-            this.modal(createEditView);
-        },
-
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
             this.modal(locationsView);
         },
 
-        createEdit: function (group) {
-            var createEditView = new This.CreateEditView(group);
+        showForm: function (group) {
+            var createEditView;
+
+            if (group instanceof Backbone.Model) { //Temporary solution
+                createEditView = new This.CreateEditView(group);
+            } else {
+                createEditView = new This.CreateEditView();
+            };
 
             this.modal(createEditView);
         },
