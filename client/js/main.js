@@ -6,8 +6,8 @@ var CS = {},
     store = {},
     i = {};
 
-System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'filter', 'Messenger']);
-System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'userController']);
+System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
+System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController']);
 
 $(function () {
     System.preload().then(main);

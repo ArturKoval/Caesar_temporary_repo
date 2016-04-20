@@ -19,16 +19,8 @@
 
                 groupList = store.groups;
                 groupList = groupList.findGroupsByLocations(params.locations);
+                groupList = groupList.findGroupsByState(params.state);
 
-                if (params.state === 'planned') {
-                    groupList = groupList.findGroupsByState('planned');
-                }
-                if (params.state === 'in-process') {
-                    groupList = groupList.findGroupsByState('in-process');
-                }
-                if (params.state === 'finished') {
-                    groupList = groupList.findGroupsByState('finished');
-                }
                 if (params.areMyGroups) {
                     groupList = groupList.findMyGroups(app.user.getShortName());
                 }

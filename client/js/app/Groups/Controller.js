@@ -14,25 +14,21 @@
         },
 
         initialize: function () {
-            this.mediator = app.mediator;    
-            
+            this.mediator = app.mediator;
+
             this.$main = $('.main-section');
             this.$sidebar = $('#left-side-bar');
-            
-            this.groupListView = new This.GroupListView({
-                collection: store.groups
-            });
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request');    
+                app.mediator.publish('Groups: create-request');
             });
             //Temporary button end
         },
-			
+
         start: function () {
 			var userLocation = app.user.get('location');
-			
+
             this.render(userLocation);
             this.buttonShowAll();
 
@@ -42,6 +38,10 @@
         render: function () {
 			var contentView = new This.ContentView();
                 contentView.render();
+
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
 
             this.$main.empty();
             this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
@@ -100,13 +100,13 @@
 
             this.modal(createEditView);
         },
-		
+
         showAllLocations: function () {
             var locationsView = new CS.Locations.LocationListView({collection: i.locations});
 
             this.modal(locationsView);
         },
-        
+
         createEdit: function (group) {
             var createEditView = new This.CreateEditView(group);
 
@@ -130,7 +130,7 @@
         buttonShowAll: function () {
 			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
 		},
-		
+
 		list: function (data) {
              return store.groups.findGroupsByLocations(data);
         }
