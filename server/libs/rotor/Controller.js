@@ -46,7 +46,6 @@ _.extend(Controller.prototype, {
     },
     response: '',
     method: '',
-    answer: '',
     collection: '',
     request: '',
     
@@ -64,12 +63,12 @@ _.extend(Controller.prototype, {
                 delete reqBody['id'];
 
                 this.collection.initialize(function (result) {
-                    this.answer = this.collection[this.method](reqBody, action, this.sendResponse.bind(this));
+                    this.collection[this.method](reqBody, action, this.sendResponse, this);
                 }, this);
             }.bind(this));
         } else {
             this.collection.initialize(function (result) {
-                this.answer = this.collection[this.method](action, this.sendResponse.bind(this));
+                this.collection[this.method](action, this.sendResponse, this);
             }, this);
         }
         

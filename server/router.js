@@ -16,7 +16,8 @@ _.extend(Router.prototype, {
         login: {module: 'login', auth: false},
         logout: {module: 'login', auth: true},
         users: {module: 'users', auth: true},
-        groups: {module:'groups', auth: true}
+        groups: {module:'groups', auth: true},
+        contributors: {module:'contributors', auth: false}
     },
 
     init: function (request, response, action, route) {

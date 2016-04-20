@@ -313,6 +313,76 @@ var defaultData = {
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
+    }],
+
+    contributors: [{
+        "nickname": "Team Doloto",
+        "name": "Dp-080-UI",
+        "logo": "/img/logoTeamDoloto.jpg",
+        "direction": "javascript",
+        "people": {
+            "Karina Chegorko": "/img/Chegorko.jpg",
+            "Alena Borysova": "/img/Borysova.jpg",
+            "Serhii Andronik": "/img/Andronik.jpg",
+            "Ivan Shytikov": "/img/Shytikov.jpg",
+            "Dmytro Selezen": "/img/Selezen.jpg",
+            "Maksim Belinskiy": "/img/Belinskiy.jpg",
+            "Aleksei Lebedianskyi": "/img/Lebedianskyi.jpg"
+        }
+    }, {
+        "nickname": "The Light side",
+        "name": "Dp-082-MQC",
+        "logo": "/img/logoTheLightSide.jpg",
+        "direction": "mqc",
+        "people": {
+            "Artur Chesnokov": "/img/Chesnokov.jpg",
+            "Sergey Tsova": "/img/Tsova.jpg",
+            "Kateryna Bekesh": "/img/Bekesh.jpg",
+            "Mihail Makarenko": "/img/Makarenko.jpg",
+            "Alona Krutin": "/img/Krutin.jpg"
+        }
+    }, {
+        "nickname": "Fluffy Dots",
+        "name": "Dp-088-MQC",
+        "logo": "/img/logoFluffyDots.png",
+        "direction": "mqc",
+        "people": {
+            "Liliia Krivsun": "/Fluffy Dots/img/Krivsun.jpg",
+            "Anton Fanygin": "/Fluffy Dots/img/Fanygin.jpg",
+            "Svetlana Shylnenkova": "/Fluffy Dots/img/Shylnenkova.jpg",
+            "Ihor Zhuhan": "/Fluffy Dots/img/Zhuhan.jpg",
+            "Anastasiia Petina": "/Fluffy Dots/img/Petina.jpg",
+            "Oleksandra Pervunina": "/Fluffy Dots/img/Pervunina.jpg",
+            "Mariia Ananchenko": "/Fluffy Dots/img/Ananchenko.jpg"
+        }
+    }, {
+        "nickname": "Floppy-Drive 8",
+        "name": "Dp-09-JS",
+        "logo": "/img/default-photo.png",
+        "direction": "javascript",
+        "people": {
+            "Vladyslava Tyschenko": "/Floppy-Drive 8/img/Tyschenko.jpg",
+            "Anastasyia Serheeva": "/Floppy-Drive 8/img/Serheeva.jpg",
+            "Anna Hranovs'ka": "/Floppy-Drive 8/img/Hranovs'ka.jpg",
+            "Yuryi Tataryntsev": "/Floppy-Drive 8/img/Tataryntsev.jpg",
+            "Artem Zhylko": "/Floppy-Drive 8/img/Zhylko.jpg",
+            "Anastasiia Manil'nykova": "/Floppy-Drive 8/img/Manil'nykova.jpg",
+            "Denys Poznukhov": "/Floppy-Drive 8/img/Poznukhov.jpg",
+            "Yana Sharipbaeva": "/Floppy-Drive 8/img/Sharipbaeva.jpg"
+        }
+    }, {
+        "nickname": "Charming Chaos",
+        "name": "Dp-094-MQC",
+        "logo": "/img/default-photo.png",
+        "direction": "mqc",
+        "people": {
+            "Elena Kulynenkova": "/Charming Chaos/img/Kulynenkova.jpg",
+            "Lylyia Babenko": "/Charming Chaos/img/Babenko.jpg",
+            "Valeryia Rusynko": "/Charming Chaos/img/Rusynko.jpg",
+            "Oksana Shyrman": "/Charming Chaos/img/Shyrman.jpg",
+            "Kateryna Buzykina": "/Charming Chaos/img/Buzykina.jpg",
+            "Olena Petrusha": "/Charming Chaos/img/Petrusha.jpg"
+        }
     }]
 };
 
