@@ -92,7 +92,7 @@
                 });
 
             contentView.render();
-            groupView.stubsListener('info' || action);
+            groupView.stubsListener(typeof action === 'string'? action : 'info');
         },
 
 		showFormCreate: function () {
