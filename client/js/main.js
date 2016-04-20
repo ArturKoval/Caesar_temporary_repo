@@ -6,15 +6,15 @@ var CS = {},
     store = {},
     i = {};
 
-System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
-System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'filter', 'userController']);
+System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'filter', 'Messenger']);
+System.register(app, ['mediator', 'router', 'subRouters', 'notFound', 'user', 'userController']);
 
 $(function () {
     System.preload().then(main);
     
     function main () {
         app.mediator = new Mediator();
-        app.filter = new app.Filter();/**CS.Filter**/
+        app.filter = new CS.Filter();
         app.router = new CS.Router();
 		
         app.userController = new CS.User.Controller();/**rename to user(resolve problem with naming)**/

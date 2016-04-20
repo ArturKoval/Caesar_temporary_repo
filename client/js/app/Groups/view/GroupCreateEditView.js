@@ -96,6 +96,7 @@
             } else {
                 this.model.save(formData);
                 app.mediator.publish('Groups: saved', this.model);
+                store.groups.add(this.model);
                 this.createInfoMessage();
                 this.createWarningMessage();
                 this.destroy();

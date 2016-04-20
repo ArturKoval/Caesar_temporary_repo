@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.SmallGroupView = Backbone.View.extend({
         tagName: 'div',
         className: 'small-group-view col-md-6',
@@ -26,4 +26,4 @@
             this.$el.addClass('chosen');
         }
     });
-})(CS.Groups);
+})(CS.Groups, app);

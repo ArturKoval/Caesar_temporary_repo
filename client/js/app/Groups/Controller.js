@@ -33,12 +33,10 @@
             return userLocation;
         },
 
-        render: function (location) {
+        render: function () {
             var $sidebar = $('#left-side-bar');
 
-            this.groupListView = new This.GroupListView({
-                    collection: this.list(location)
-                });
+            this.groupListView = new This.GroupListView({collection: store.groups});
 				
 			var contentView = new This.ContentView();
                 contentView.render();
@@ -102,7 +100,6 @@
 				groupView = new This.GroupView({
                     model: selected
                 });
-            		
             contentView.render();
             groupView.stubsListener('info');
         },

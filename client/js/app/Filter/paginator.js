@@ -21,7 +21,8 @@
 
         render: function () {
             this.$el.html(this.template());
-            $('.page-nav').html(this.page + 1 + '   /   ' + this.lastPage);    //will be in template
+            this.$pageNav =  $('.page-nav');
+            this.$pageNav.html(this.page + 1 + '   /   ' + this.lastPage);    //will be in template
             this.lastPage <= 1? this.$el.addClass('invisible') : this.$el.removeClass('invisible');
             this.giveBackCollection(this.pageElems[this.page]);
             return this;
@@ -30,7 +31,7 @@
         openPrevPage: function () {
             if (this.page !== 0) {
                 this.page--;
-                $('.page-nav').html(this.page + 1 + ' / ' + this.lastPage);
+                this.$pageNav.html(this.page + 1 + ' / ' + this.lastPage);
                 this.render();
             }
         },
@@ -38,7 +39,7 @@
         openNextPage: function () {
             if (this.page + 1 !== this.lastPage) {
                 this.page++;
-                $('.page-nav').html(this.page + 1 + '   /   ' + this.lastPage);
+                this.$pageNav.html(this.page + 1 + '   /   ' + this.lastPage);
                 this.render();
             }
         },
