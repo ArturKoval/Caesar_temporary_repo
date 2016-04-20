@@ -8,6 +8,7 @@
         initialize: function () {
             app.mediator.subscribe('Locations: selected', this.showLocationInfo.bind(this));
             app.mediator.subscribe('Groups: selected', this.showSelectedGroup.bind(this));
+            app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));
         },
 
         render: function () {
