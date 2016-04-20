@@ -17,26 +17,25 @@
 }
 
 .location-buttons {
-    height: 30px;
     text-align: right;
     margin-bottom: 30px;
 }
 
-.location-buttons > span {
-	margin-right: 20px;
+.location-buttons button {
+    background-color: transparent;
+    color: #FFFFFF
 }
 
-.location-buttons .save, .location-buttons .cancel {
-    font-size: 40px;
-    cursor: pointer;
-	width: 30px;
-    height: 30px;
-    text-align: right;
-    color: #fff;
+.location-buttons button:hover {
+    color: #3C78B5;
+}
+
+.location-buttons button.disabled {
+    color: #323232;
 }
 
 .location-buttons .save {
-    color: white;
+    margin-right: 10px;
 }
 
 .location {
