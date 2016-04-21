@@ -14,7 +14,6 @@
         render: function () {
             this.$el.html(templates.contentTpl);
             this.$el.find('.groupLocation').html(app.user.get('location'));
-
         return this;
         },
 
@@ -30,7 +29,6 @@
             this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
 
             groupView.stubsListener('info');
-
             return this;
         },
 

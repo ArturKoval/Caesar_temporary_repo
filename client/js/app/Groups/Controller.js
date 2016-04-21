@@ -25,8 +25,8 @@
             });
             //Temporary button end
 
-            var contentView = new This.ContentView();
-            $('#content-section').html(contentView.render().$el);
+            this.contentView = new This.ContentView();
+            $('#content-section').html(this.contentView.render().$el);
         },
 
         start: function () {
@@ -87,6 +87,7 @@
                     model: selected
                 });
 
+            this.contentView.showSelectedGroup(selected);
             groupView.stubsListener(typeof action === 'string'? action : 'info');
         },
 
