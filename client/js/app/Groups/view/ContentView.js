@@ -14,21 +14,22 @@
         render: function () {
             this.$el.html(templates.contentTpl);
             this.$el.find('.groupLocation').html(app.user.get('location'));
-        return this;
-        },
 
-        showSelectedGroup: function (selected) {
+            return this;
+        },
+        showSelectedGroup: function (selected, action) {
+
             this.$el.find('.groupLocation').html(selected.get('location'));
             this.$el.find('.groupName').html(selected.get('name'));
             var groupView = new This.GroupView({
                 model: selected
             });
 
-            this.$el.find('#main-section').html(groupView.render().el);
             this.$el.find('.groupStage').html(selected.get('stage'));
             this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
 
-            groupView.stubsListener('info');
+            groupView.stubsListener(typeof action === 'string'? action : 'info');
+
             return this;
         },
 

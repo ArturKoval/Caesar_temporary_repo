@@ -14,7 +14,6 @@
             'click .messageBtn': 'stubsListener',
             'click .deleteBtn': 'showDeleteDialog'
         },
-	
 		
         initialize: function () {
             this.mediator = app.mediator;
@@ -31,7 +30,6 @@
 			
 			$('#main-section').empty();
             $('#main-section').append(this.$el); // ContentView responsibility
-			
             this.render();
            
         },
@@ -41,7 +39,7 @@
             this.$el.append(templates.groupTpl(this.model.toJSON()));
             this.$groupContainer = $('.groupContainer');
             this.showStubView({view: 'GroupInfoView', model: this.model});
-			
+
             return this;
         },
 

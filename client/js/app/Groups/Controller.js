@@ -3,8 +3,6 @@
 (function (This, app, i) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: selected': 'showSelectedGroup',
-            'Groups: saved': 'showSelectedGroup',
             'Groups: edit-request': 'showForm',
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
@@ -79,16 +77,7 @@
         showViewByRoute: function (location, groupName, action) {
             this.render(location);
             this.buttonShowAll();
-            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
-        },
-
-        showSelectedGroup: function (selected, action) {
-            var groupView = new This.GroupView({
-                    model: selected
-                });
-
-            this.contentView.showSelectedGroup(selected);
-            groupView.stubsListener(typeof action === 'string'? action : 'info');
+            this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
         showAllLocations: function () {
