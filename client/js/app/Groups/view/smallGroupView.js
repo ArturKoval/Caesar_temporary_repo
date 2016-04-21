@@ -18,9 +18,13 @@
         },
 
         selectGroup: function () {
-            app.mediator.publish('Groups: selected', this.model);
-            $('.small-group-view').removeClass('chosen');
-            this.$el.addClass('chosen');
+            if (this.$el.hasClass('chosen')) {
+                $('.small-group-view').removeClass('chosen');
+            } else {
+                $('.small-group-view').removeClass('chosen');
+                this.$el.addClass('chosen');
+                app.mediator.publish('Groups: selected', this.model);
+            }
         }
     });
 })(CS.Groups, app);
