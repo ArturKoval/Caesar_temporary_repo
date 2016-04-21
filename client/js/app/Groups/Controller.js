@@ -54,7 +54,7 @@
                 this.buttonShowAll();
 
                 if (this.list(location).findGroupByName(groupName)) {
-                    this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+                    this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName));
                 } else {
                     app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'})
                 }
