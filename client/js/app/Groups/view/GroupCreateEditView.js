@@ -102,8 +102,7 @@
                 this.model.save(formData);
                 app.mediator.publish('Groups: saved', this.model);
                 store.groups.add(this.model);
-                this.createInfoMessage();
-                this.createWarningMessage();
+                this.createFlashMessage();
                 this.destroy();
             }
         },
@@ -153,7 +152,7 @@
             })
         },
 
-        createInfoMessage: function () {
+        createFlashMessage: function () {
             var infoMessage,
                 warning;
 
@@ -182,11 +181,11 @@
             var warningMessage;
 
             if (!formData.teachers.length && !formData.experts.length) {
-                warningMessage = 'Teachers and experts';
+                warningMessage = 'teachers and experts';
             } else if (!formData.teachers.length) {
-                warningMessage = 'Teachers';
+                warningMessage = 'teachers';
             } else if (!formData.experts.length) {
-                warningMessage = 'Experts';
+                warningMessage = 'experts';
             }
 
             if (warningMessage !== '') {

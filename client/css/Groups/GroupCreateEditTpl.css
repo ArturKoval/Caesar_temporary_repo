@@ -125,6 +125,11 @@ hr {
     cursor: pointer;
 }
 
+.backdrop .fa-calendar:hover {
+    color: #171B65;
+}
+
+
 .backdrop input::-webkit-calendar-picker-indicator{
     display: none;
 }

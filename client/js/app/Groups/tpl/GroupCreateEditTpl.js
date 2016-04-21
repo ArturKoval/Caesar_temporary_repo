@@ -36,7 +36,7 @@ templates.groupEditCreate = _.template([
                         '<div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
                             '<label for="direction" class="control-label">Direction</label>',
                            ' <select class="form-control" name="direction" id="direction">',
-                                '<option selected="true" disabled="disabled"></option>',
+                                '<option selected="true" data-name="direction" disabled="disabled"></option>',
                                 '<% _(directions).each(function(thisDirection) { %>',
                                 '<option data-name="direction" value="<%= thisDirection %>" <%= thisDirection === direction ? \'selected\' : \'\' %> > <%= thisDirection %> </option>',
                                 '<% }); %>',
