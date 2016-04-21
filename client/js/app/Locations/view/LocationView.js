@@ -4,13 +4,16 @@
     This.LocationView = Backbone.View.extend({
         tagName: 'div',
         className: 'location',
+        
+        template: templates.locationViewTpl,
+        
         events: {
             'click': 'check',
             'dblclick':'select'
         },
 
         render: function () {
-            this.$el.html(this.model);
+            this.$el.html(this.template(this.model.toJSON()));
             
             return this;
         },

@@ -17,7 +17,7 @@ $(function () {
         app.filter = new CS.Filter();
         app.router = new CS.Router();
 		
-        app.userController = new CS.User.Controller();/**rename to user(resolve problem with naming)**/
+        app.userController = new CS.User.Controller();
         app.notFoundController = new CS.ErrorPage.Controller();
 		app.messengerController = new CS.Messenger.Controller();
 

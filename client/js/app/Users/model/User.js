@@ -32,8 +32,10 @@
             }],
             
             location: function (location) {
-                if (i.locations.indexOf(location) === -1) {
-                   return 'Location must be one of: ' + i.locations.join(', ');
+                var locationNames = store.locations.getNames();
+                
+                if (locationNames.indexOf(location) === -1) {
+                   return 'Location must be one of: ' + locationNames.join(', ');
                 }
             },
             

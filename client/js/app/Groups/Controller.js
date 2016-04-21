@@ -49,7 +49,7 @@
         },
 
         showPageByRoute: function (location, groupName) {
-            if (i.locations.indexOf(location) > -1) {
+            if (store.locations.getNames().indexOf(location) > -1) {
                 this.render();
                 this.buttonShowAll();
 
@@ -66,7 +66,7 @@
         },
 
 		showLocationByRoute: function (location) {
-			if (i.locations.indexOf(location) > -1) {
+			if (store.locations.getNames().indexOf(location) > -1) {
 				this.render();
 				this.buttonShowAll();
 			} else {
@@ -81,7 +81,7 @@
         },
 
         showAllLocations: function () {
-            var locationsView = new CS.Locations.LocationListView({collection: i.locations});
+            var locationsView = new CS.Locations.LocationListView({collection: store.locations});
 
             this.modal(locationsView);
         },

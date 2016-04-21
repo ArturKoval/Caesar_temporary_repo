@@ -24,20 +24,19 @@
         },
 
         render: function () {
-            var collection = [];
             
             this.$el.html(this.template);
             this.$saveBtnEl = this.$el.find('.save');
+			
+			this.collection.sort();
             
-            collection = this.collection.sort();
-
-            _.each(collection, function (location) {
+            this.collection.forEach(function (location) {
                 var locationView = new This.LocationView({
                     model: location
                 });
                 
-                this.$el.find('.location-buttons').before(locationView.$el.append(location));
-            }, this); 
+                this.$el.find('.locations').append(locationView.render().el);
+            }.bind(this));
 			
             return this;
         },
@@ -53,10 +52,10 @@
         },
         
         updateCheckedLocations: function (checkedLocation) {   
-            if (_.contains(this.checkedLocations, checkedLocation)) {
+            if (_.contains(this.checkedLocations, checkedLocation.get('city'))) {
                 this.checkedLocations = this.checkedLocations.filter(isLocationChecked);
             } else {
-                this.checkedLocations.push(checkedLocation);
+                this.checkedLocations.push(checkedLocation.get('city'));
             }
             
             if (this.checkedLocations.length > 0) {
@@ -79,7 +78,7 @@
         },
         
         selectOne: function (selectedLocation) {
-            this.checkedLocations = [selectedLocation];
+            this.checkedLocations = [selectedLocation.get('city')];
             this.select();
         },
 

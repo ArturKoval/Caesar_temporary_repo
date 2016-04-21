@@ -13,7 +13,6 @@
     background: #fff!important;
     box-shadow: none;
     color: #3C78B5!important;
-/*    border: 2px solid #3C78B5;*/
 }
 
 .location-buttons {
@@ -40,37 +39,34 @@
 }
 
 .location {
-    width: 170px;
-    height: 100px;
+    margin: 2%;
+    width: 21%;
+    height: 120px;
     cursor: pointer;
     background: #3C78B5;
-    display: inline-block;
     font-size: 26px;
+    font-weight: bold;
     color: #fff;
     box-sizing: border-box;
-    vertical-align: top;
-    padding-left: 15px;
-    padding-top: 8px;
-    margin-right: 20px;
+    padding: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
 
-.location:nth-child(4){
-    margin-right:0px;
-}
-
 .locations {
-    width: 740px;
+    width: 64%;
+    display: flex;
+    flex-flow: row wrap;
+    margin: 0 auto;
 }
 
 .location-wrapper {
     background: #171B65;
     width: 100%;
-    display: flex;
+    /*display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center;*/
     padding-top: 40px;
 }
 
