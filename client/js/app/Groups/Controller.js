@@ -19,7 +19,7 @@
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request');
+                app.mediator.publish('Groups: create-request', null);
             });
             //Temporary button end
 
@@ -50,7 +50,7 @@
 
         showPageByRoute: function (location, groupName) {
             if (i.locations.indexOf(location) > -1) {
-                this.render(location);
+                this.render();
                 this.buttonShowAll();
 
                 if (this.list(location).findGroupByName(groupName)) {
@@ -67,7 +67,7 @@
 
 		showLocationByRoute: function (location) {
 			if (i.locations.indexOf(location) > -1) {
-				this.render(location);
+				this.render();
 				this.buttonShowAll();
 			} else {
 				app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
@@ -75,7 +75,7 @@
 		},
 
         showViewByRoute: function (location, groupName, action) {
-            this.render(location);
+            this.render();
             this.buttonShowAll();
             this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
@@ -87,13 +87,7 @@
         },
 
         showForm: function (group) {
-            var createEditView;
-
-            if (group instanceof Backbone.Model) { //Temporary solution
-                createEditView = new This.CreateEditView(group);
-            } else {
-                createEditView = new This.CreateEditView();
-            };
+            var createEditView = new This.CreateEditView(group);
 
             this.modal(createEditView);
         },
