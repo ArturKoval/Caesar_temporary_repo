@@ -67,7 +67,7 @@
             }
            
             function isLocationChecked (location) {
-                return location !== checkedLocation;
+                return location !== checkedLocation.get('city');
             }
         },
 

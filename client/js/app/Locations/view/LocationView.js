@@ -2,14 +2,14 @@
 
 (function (This, app) {
     This.LocationView = Backbone.View.extend({
-        tagName: 'div',
+        tagName: 'li',
         className: 'location',
         
         template: templates.locationViewTpl,
         
         events: {
-            'click': 'check',
-            'dblclick':'select'
+            'click p': 'check',
+            'dblclick p':'select'
         },
 
         render: function () {

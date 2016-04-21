@@ -9,9 +9,8 @@
     justify-content: center;
 }
 
-.active-location {
+.active-location > p {
     background: #fff!important;
-    box-shadow: none;
     color: #3C78B5!important;
 }
 
@@ -34,28 +33,34 @@
     color: #323232;
 }
 
-.location-buttons .save {
-    margin-right: 10px;
+.location-buttons button {
+    margin-right: 15px;
 }
 
 .location {
-    margin: 2%;
-    width: 21%;
-    height: 120px;
+    min-width: 240px;
+    width: 25%;
+    height: 160px;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.location > p {
+    padding: 15px;
+    height: 100%;
     cursor: pointer;
     background: #3C78B5;
-    font-size: 26px;
+    font-size: 32px;
     font-weight: bold;
     color: #fff;
     box-sizing: border-box;
-    padding: 10px;
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
 
 .locations {
-    width: 64%;
+    list-style-type: none;
     display: flex;
     flex-flow: row wrap;
     margin: 0 auto;
@@ -64,12 +69,10 @@
 .location-wrapper {
     background: #171B65;
     width: 100%;
-    /*display: flex;
-    justify-content: center;
-    align-items: center;*/
     padding-top: 40px;
 }
 
-.location-buttons .icon  {
-	float: right;
+.location-wrapper > div {
+    width: 64%;
+    margin: 0 auto;
 }
