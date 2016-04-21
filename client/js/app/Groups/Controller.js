@@ -14,9 +14,6 @@
         initialize: function () {
             this.mediator = app.mediator;
 
-            this.$main = $('.main-section');
-            this.$sidebar = $('#left-side-bar');
-
             //Temporary button start
             $('#createGroup').on('click', function () {
                 app.mediator.publish('Groups: create-request', null);
@@ -25,18 +22,23 @@
 
             this.contentView = new This.ContentView();
             $('#content-section').html(this.contentView.render().$el);
+
+			this.$main = $('.main-section');
+			this.$sidebar = $('#left-side-bar');
         },
 
         start: function () {
 			var userLocation = app.user.get('location');
 
-            this.render(userLocation);
+			app.mediator.publish('Locations: selected', [userLocation]);
+            this.render();
             this.buttonShowAll();
 
             return userLocation;
         },
 
-        render: function () {
+        render: function (location) {
+			console.log('render: ', location);
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
@@ -50,19 +52,20 @@
 
         showPageByRoute: function (location, groupName) {
             if (store.locations.getNames().indexOf(location) > -1) {
-                this.render();
+			console.log('showPageByRoute: ', location);
+			app.mediator.publish('Locations: selected', [location]);
+                this.render(location);
                 this.buttonShowAll();
-
+	
                 if (this.list(location).findGroupByName(groupName)) {
                     this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName));
+					return this.list(location).findGroupByName(groupName);
                 } else {
                     app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'})
                 }
             } else {
                 app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
             }
-
-            return this.list(location).findGroupByName(groupName);
         },
 
 		showLocationByRoute: function (location) {
@@ -70,14 +73,15 @@
 				this.render();
 				this.buttonShowAll();
 			} else {
-				app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
+				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
 			}
 		},
 
         showViewByRoute: function (location, groupName, action) {
-            this.render();
-            this.buttonShowAll();
-            this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
+            var show = this.showPageByRoute(location, groupName);
+			if (show) {
+				this.contentView.showSelectedGroup(show, action);
+			}
         },
 
         showAllLocations: function () {

@@ -18,10 +18,11 @@
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
             'Groups/:location(/)': 'openLocation',
+			'Groups/:location/create(/)': 'openGroupCreate',
             'Groups/:location/:group(/)': 'openGroupInfo',
             'Groups/:location/:group/edit(/)': 'openGroupEdit',
             'Groups/:location/:group/delete(/)': 'openGroupDelete',
-            'Groups/:location/:group/create(/)': 'openGroupCreate',
+            
             'Groups/:location/:group/:action(/)': 'openGroupAction',
             'Groups*path': 'notFound' 
         },
@@ -107,11 +108,16 @@
 
         openGroupEdit: function (location, groupName) {
             var modelGroup = this.controller.showPageByRoute(location, groupName);
-
+			console.log(modelGroup);
             if (modelGroup) {
                 this.controller.showForm(modelGroup);
             }      
         },
+		
+		openGroupCreate: function (location) {
+			this.openLocation(location);
+			this.controller.showForm();
+		},
 
         openGroupAction: function (location, groupName, action) {
             var actions = {

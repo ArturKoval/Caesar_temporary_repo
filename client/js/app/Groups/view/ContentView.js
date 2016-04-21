@@ -18,7 +18,6 @@
             return this;
         },
         showSelectedGroup: function (selected, action) {
-
             this.$el.find('.groupLocation').html(selected.get('location'));
             this.$el.find('.groupName').html(selected.get('name'));
             var groupView = new This.GroupView({
