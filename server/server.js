@@ -1,7 +1,8 @@
 var http = require('http'),
     path = require('path'),
     helper = require('./libs/helper'),
-    router = require('./router');
+    router = require('./router'),
+    socket = require('./socket');
 
 http.createServer(start).listen(3000);
 console.log('server started...');
@@ -29,6 +30,8 @@ function start (request, response, errRoute) {
         urlData,
         action,
         route;
+
+    socket.start();
 	
 	if (errRoute) {
 		route = errRoute;

@@ -1,5 +1,6 @@
 'use strict';
-var _ = require('underscore'),
+var mediator = require('../mediator'),
+    _ = require('underscore'),
     fs = require('fs');
 
 function Controller () {}
@@ -71,6 +72,10 @@ _.extend(Controller.prototype, {
                 this.collection[this.method](action, this.sendResponse, this);
             }, this);
         }
+
+        this.collection.on('add destroy change', function (model) {
+            mediator.publish('Update socket', {collection: req.url});
+        });
         
     },
 
@@ -107,8 +112,8 @@ _.extend(Controller.prototype, {
         var body = [];
     
         request.on('data', function(chunk) {
-                body.push(chunk);
-            });
+            body.push(chunk);
+        });
 
         return body;
     },
