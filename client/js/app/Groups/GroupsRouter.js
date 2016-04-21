@@ -109,7 +109,7 @@
             var modelGroup = this.controller.showPageByRoute(location, groupName);
 
             if (modelGroup) {
-                this.controller.createEdit(modelGroup);
+                this.controller.showForm(modelGroup);
             }      
         },
 
