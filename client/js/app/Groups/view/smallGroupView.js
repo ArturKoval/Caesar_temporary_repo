@@ -10,6 +10,8 @@
 
         initialize: function () {
             app.mediator.subscribe('Groups: rendered', this.remove.bind(this));
+            this.model.on('destroy', this.remove, this);
+            this.model
         },
 
         render: function () {
