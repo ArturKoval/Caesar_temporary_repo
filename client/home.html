@@ -6,6 +6,7 @@
         <link rel="shortcut icon" href="/img/favicon.ico">
         <!-- build:css styles.css -->
         <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/jquery-ui.css">
         <link rel="stylesheet" href="/css/main.css">
         <link rel="stylesheet" href="/css/groupInfoView.css">
         <link rel="stylesheet" href="/css/contentView.css">
@@ -14,6 +15,7 @@
         <link rel="stylesheet" href="/css/locationsView.css">
         <link rel="stylesheet" type="text/css" href="/css/messenger.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/aboutModul.css">
         <link rel="stylesheet" href="/css/User/largeUserViewTpl.css">
         <link rel="stylesheet" href="/css/Groups/GroupCreateEditTpl.css">
         <link rel="stylesheet" href="/css/Groups/GroupDeleteViewTpl.css">
@@ -34,10 +36,12 @@
         <script src="/js/utils/System.js"></script>
         <!-- libs -->
         <script src="/js/lib/jquery.js"></script>
+        <script src="/js/lib/jquery-ui.js"></script>
         <script src="/js/lib/underscore.js"></script>
         <script src="/js/lib/backbone.js"></script>
         <script src="/js/lib/backbone-controller.js"></script>
         <script src="/js/lib/mediator.js"></script>
+        <script src="/js/lib/mediator-multiple-subscriptions.js"></script>
         <script src="/js/lib/bootstrap.js"></script>
         <script src="/js/lib/backbone-validation.js"></script>
 
@@ -57,6 +61,21 @@
         <script src="/js/app/404/404MainTpl.js"></script>
         <script src="/js/app/404/404MainView.js"></script>
 
+        <!--about-->
+        <script src="/js/app/About/AboutRouter.js"></script>
+        <script src="/js/app/About/Controller.js"></script>
+        <script src="/js/app/About/tpl/LeftSideBarTpl.js"></script>
+        <script src="/js/app/About/tpl/GroupContributorsTpl.js"></script>
+        <script src="/js/app/About/tpl/ContributorTpl.js"></script>
+        <script src="/js/app/About/tpl/ListContributorsViewTpl.js"></script>
+        <script src="/js/app/About/model/Contributor.js"></script>
+        <script src="/js/app/About/model/ContributorList.js"></script>
+        <script src="/js/app/About/view/LeftSideBarView.js"></script>
+        <script src="/js/app/About/view/ContributorView.js"></script>
+        <script src="/js/app/About/view/ContentAboutView.js"></script>
+        <script src="/js/app/About/view/GroupContributorsView.js"></script>
+        <script src="/js/app/About/view/ListContributorsView.js"></script>
+        
         <!-- groups -->
         <script src="/js/app/Groups/tpl/StudentListViewTpl.js"></script>
         <script src="/js/app/Groups/tpl/ScheduleViewTpl.js"></script>
@@ -76,10 +95,6 @@
         <script src="/js/app/Groups/view/GroupInfoView.js"></script>
         <script src="/js/app/Groups/view/GroupView.js"></script>
         <script src="/js/app/Groups/view/GroupListView.js"></script>
-        <script src="/js/app/Groups/view/ContentFooterView.js"></script>
-        <script src="/js/app/Groups/view/ContentLocationView.js"></script>
-        <script src="/js/app/Groups/view/ContentGroupNameView.js"></script>
-        <script src="/js/app/Groups/view/ContentLocationView.js"></script>
         <script src="/js/app/Groups/view/ContentView.js"></script>
         <script src="/js/app/Groups/view/GroupListView.js"></script>
         <script src="/js/app/Groups/view/smallGroupView.js"></script>
@@ -96,10 +111,10 @@
         <script src="/js/app/Preload/PreloadViewTpl.js"></script>
         <script src="/js/app/Preload/PreloadView.js"></script>
         <!--Locations -->
-        <script src="/js/app/Locations/LocationListViewTpl.js"></script>
-        <script src="/js/app/Locations/LocationView.js"></script>
-        <script src="/js/app/Locations/LocationListView.js"></script>
-        <script src="/js/app/Locations/ShowButtonView.js"></script>
+        <script src="/js/app/Locations/tpl/LocationListViewTpl.js"></script>
+        <script src="/js/app/Locations/view/LocationView.js"></script>
+        <script src="/js/app/Locations/view/LocationListView.js"></script>
+        <script src="/js/app/Locations/view/ShowButtonView.js"></script>
         
         <!-- users -->
         <script src="/js/app/Users/tpl/largeUserViewTpl.js"></script>
@@ -141,8 +156,6 @@
             <div id="page" class="page">
                 <div id="left-side-bar" class="left-side-bar"></div>
                 <div id="content-section" class="content-section">
-                    <div class="content-header-location"></div>
-                    <div class="content-header-group-name"></div>
                     <div id="main-section" class="main-section"></div>
                     <div id="content-footer" class="content-footer"></div>
                 </div>

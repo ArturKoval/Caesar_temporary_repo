@@ -8,8 +8,8 @@ var LoginView = function (model) {
         form;
 
     form = document.querySelector('.login');
-    loginField = form.querySelector('#login');
-    passwordField = form.querySelector('#password');
+    loginField = form.querySelector('input[name="login"]');
+    passwordField = form.querySelector('input[name="password"]');
     submitBtn = form.querySelector('.submit');
 
     messageEl = form.querySelector('.message');

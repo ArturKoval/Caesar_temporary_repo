@@ -22,16 +22,16 @@
         render: function () {
             this.$el.html(this.template());
             this.$pageNav =  $('.page-nav');
-            this.$pageNav.html(this.page + 1 + '   /   ' + this.lastPage);    //will be in template
+            this.$pageNav.html(templates.navTpl({page: this.page + 1, lastPage: this.lastPage}));
             this.lastPage <= 1? this.$el.addClass('invisible') : this.$el.removeClass('invisible');
-            this.giveBackCollection(this.pageElems[this.page]);
+            this.returnCollection(this.pageElems[this.page]);
             return this;
         },
 
         openPrevPage: function () {
             if (this.page !== 0) {
                 this.page--;
-                this.$pageNav.html(this.page + 1 + ' / ' + this.lastPage);
+                this.$pageNav.html(templates.navTpl({page: this.page + 1, lastPage: this.lastPage}));
                 this.render();
             }
         },
@@ -39,7 +39,7 @@
         openNextPage: function () {
             if (this.page + 1 !== this.lastPage) {
                 this.page++;
-                this.$pageNav.html(this.page + 1 + '   /   ' + this.lastPage);
+                this.$pageNav.html(templates.navTpl({page: this.page + 1, lastPage: this.lastPage}));
                 this.render();
             }
         },
@@ -57,7 +57,7 @@
             this.lastPage = this.pageElems.length;
         },
 
-        giveBackCollection: function(collection) {
+        returnCollection: function(collection) {
             app.mediator.publish('Paginator: page-selected', collection);
         }
     });

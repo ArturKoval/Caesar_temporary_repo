@@ -6,7 +6,7 @@ var CS = {},
     store = {},
     i = {};
 
-System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger']);
+System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger', 'About']);
 System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController']);
 
 $(function () {

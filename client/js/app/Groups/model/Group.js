@@ -34,11 +34,11 @@
             var result;
 
             if (state === 'planned') {
-                result = this.get('stage') === 'boarding' || this.get('stage') === 'before-start';
+                result = this.get('stage') === 'boarding' || this.get('stage') === 'planned';
             }
 
             if (state === 'in-process') {
-                result = this.get('stage') === 'in-process' || this.get('stage') === 'offering';
+                result = this.get('stage') === 'in-process' || this.get('stage') === 'offering' || this.get('stage') === 'before-start';
             }
 
             if (state === 'finished') {

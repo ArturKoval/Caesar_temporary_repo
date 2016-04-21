@@ -25,17 +25,20 @@
     text-align: left;
 }
 
-.backdrop .budget-option {
+.backdrop .btn.budget-option {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.5);
-    margin-right: 7px;
+    margin-left: 5px;
+    width: 95px;
 }
 
 .backdrop .form-control {
     float: right;
+    width: 194px;
 }
 
 hr {
     border-top: 1px dashed #DEDEDE;
+    margin: 15px 90px;
 }
 
 .backdrop .control-label {
@@ -43,20 +46,12 @@ hr {
     margin-right: 10px;
 }
 
-.backdrop [for="stage"] {
-    margin-top: 20px;
-}
-
-.backdrop #stage {
-    margin-top: -30px;
+.backdrop .stage-wrapper {
+    margin-top: 9px;
 }
 
 .backdrop .budgetOptions {
-    margin-top: 30px;
-}
-
-.backdrop .budgetOptions {
-    margin-top: 30px;
+    margin-top: 25px;
 }
 
 .backdrop .create .budgetOptions {
@@ -108,4 +103,33 @@ hr {
 .backdrop .add-teacher-btn,
 .backdrop .add-expert-btn {
     cursor: pointer;
+}
+
+.backdrop .row {
+    margin-bottom: 10px;
+}
+
+.backdrop .button-group {
+    margin-top: 25px;
+}
+
+.backdrop .calendar-wrapper {
+    position: relative;
+}
+
+.backdrop .fa-calendar {
+    position: absolute;
+    bottom: 3px;
+    right: -20px;
+    color: #3C78B5;
+    cursor: pointer;
+}
+
+.backdrop .fa-calendar:hover {
+    color: #171B65;
+}
+
+
+.backdrop input::-webkit-calendar-picker-indicator{
+    display: none;
 }

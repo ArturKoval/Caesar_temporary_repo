@@ -13,10 +13,10 @@ templates.groupSelectTeacherTpl = _.template([
     '    <% }); %>',
     '    </select>',
     '    <span class="input-group-btn">',
-    '       <button id="acceptSelect" class="btn btn-default" type="button">Ok</button>',
+    '       <button id="acceptSelect" class="btn btn-default" type="button">o</button>',
     '    </span>',
     '    <span class="input-group-btn">',
-    '       <button id="cancelSelect" class="btn btn-default" type="button">Cancel</button>',
+    '       <button id="cancelSelect" class="btn btn-default" type="button">x</button>',
     '    </span>',
     '</div>'
 ].join(''));

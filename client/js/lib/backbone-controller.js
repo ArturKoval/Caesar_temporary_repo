@@ -6,7 +6,7 @@ Backbone.Controller = (function () {
 	function Controller (options) {
         _.extend(this, _.pick(options, controllerOptions));
         this.initialize.apply(this, arguments);
-        this.setupSubscribes();
+        this.mediator.multiSubscribe(this.subscribes, this);
     };
 	
     Controller.extend = function (protoProps, staticProps) {
@@ -38,23 +38,9 @@ Backbone.Controller = (function () {
     };	
 
     _.extend(Controller.prototype, {
-        initialize: function () { },
-
-        // setupSubscribes: function () {
-        //     var subscribes = _.result(this, 'subscribes'),
-        //         method;
-
-        //     for (var key in subscribes) {
-        //         method = subscribes[key];
-        //         if (!_.isFunction(method)) {
-        //             method = this[method];
-        //         }
-        //         this.mediator.subscribe(key, _.bind(method, this));
-        //     }
-        // },
+        initialize: function () {  
+        },
         
-        setupSubscribes: System.setupSubscribes,
-		
         start: function () {
             this.$el.append((this.collectionView.render().$el));
         },

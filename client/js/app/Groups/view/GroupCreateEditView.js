@@ -15,7 +15,8 @@
             'click #cancel': 'close',
             'change [name="startDate"]': 'setFinishDate',
             'change [name="direction"]': 'setFinishDate',
-            'click .budget-option': 'setBudgetOwner'
+            'click .budget-option': 'setBudgetOwner',
+            'click .calendar': 'showCalendar'
         },
 
         initialize: function (model) {
@@ -45,6 +46,10 @@
             this.$el.find('#teachers').html(this.teacherView.render().$el);
             this.$el.find('#experts').html(this.expertView.render().$el);
 
+            this.$el.find('[type=date]').datepicker({
+                dateFormat: 'yy-mm-dd'
+            });
+
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
 
@@ -66,7 +71,7 @@
                     courseDurationDays,
                     finishDate;
 
-                if (this.$el.find('[name=direction]').val() === 'MQC') { //ISTQB also 9 weeks
+                if (['MQC', 'ISTQB'].indexOf(this.$el.find('[name=direction]').val()) !== -1) {
                     courseDurationWeeks = 9;
                 } else {
                     courseDurationWeeks = 12;
@@ -97,8 +102,7 @@
                 this.model.save(formData);
                 app.mediator.publish('Groups: saved', this.model);
                 store.groups.add(this.model);
-                this.createInfoMessage();
-                this.createWarningMessage();
+                this.createFlashMessage();
                 this.destroy();
             }
         },
@@ -121,7 +125,7 @@
             this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
                 formData[field.name] = field.value;
             });
-            this.$el.find('#location option:selected, #direction option:selected').each(function (index, field) {
+            this.$el.find('#location option:selected, #direction option:selected, #stage option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
             this.$el.find('.budget-option').each(function (index, button) {
@@ -137,7 +141,7 @@
             _.each(errors, function (value, key) {
                 hints.push({
                     name: key,
-                    message: value
+                    text: value
                 });
             });
 
@@ -148,8 +152,9 @@
             })
         },
 
-        createInfoMessage: function () {
-            var infoMessage;
+        createFlashMessage: function () {
+            var infoMessage,
+                warning;
 
             if (this.model.isNew()) {
                 infoMessage = 'Group ' + this.model.get('name') + ' was created';
@@ -157,29 +162,39 @@
                 infoMessage = 'Group ' + this.model.get('name') + ' was edited';
             }
 
-            app.mediator.publish('Message', {
-                type: 'flash-info',
-                text: infoMessage
-            });
+            warning = this.createWarningMessage();
+
+            if (warning) {
+                app.mediator.publish('Message', {
+                    type: 'flash-warning',
+                    text: infoMessage + ', but ' + warning + ' are not specified'
+                });
+            } else {
+                app.mediator.publish('Message', {
+                    type: 'flash-info',
+                    text: infoMessage
+                });
+            }
         },
 
         createWarningMessage: function () {
             var warningMessage;
 
             if (!formData.teachers.length && !formData.experts.length) {
-                warningMessage = 'Teachers and experts';
+                warningMessage = 'teachers and experts';
             } else if (!formData.teachers.length) {
-                warningMessage = 'Teachers';
+                warningMessage = 'teachers';
             } else if (!formData.experts.length) {
-                warningMessage = 'Experts';
+                warningMessage = 'experts';
             }
 
-            if (warningMessage) {
-                app.mediator.publish('Message', {
-                    type: 'flash-warning',
-                    text: warningMessage + ' are not specified'
-                });
+            if (warningMessage !== '') {
+                return warningMessage;
             }
+        },
+
+        showCalendar: function (event) {
+            $(event.target).siblings('[type=date]').focus();
         }
     });
 })(CS.Groups);

@@ -8,4 +8,7 @@ templates.paginatorTpl = _.template([
     '</div>'
 ].join(''));
 
+templates.navTpl = _.template([
+    '<%= page %>' + ' / ' + '<%= lastPage %>'
+].join(''));
 

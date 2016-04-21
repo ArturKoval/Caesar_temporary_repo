@@ -3,11 +3,9 @@
 (function (This, app, i) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: selected': 'showSelectedGroup',
-            'Groups: saved': 'showSelectedGroup',
-            'Groups: edit-request': 'createEdit',
+            'Groups: edit-request': 'showForm',
             'Groups: delete-request': 'delete',
-            'Groups: create-request': 'showFormCreate',
+            'Groups: create-request': 'showForm',
             'Locations: selected': 'render',
             'Locations: show-request': 'showAllLocations',
             'Paginator: page-selected': 'groupsRender'
@@ -21,9 +19,12 @@
 
             //Temporary button start
             $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request');
+                app.mediator.publish('Groups: create-request', null);
             });
             //Temporary button end
+
+            this.contentView = new This.ContentView();
+            $('#content-section').html(this.contentView.render().$el);
         },
 
         start: function () {
@@ -36,14 +37,10 @@
         },
 
         render: function () {
-			var contentView = new This.ContentView();
-                contentView.render();
-
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
-            this.$main.empty();
             this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
         },
 
@@ -53,16 +50,16 @@
 
         showPageByRoute: function (location, groupName) {
             if (i.locations.indexOf(location) > -1) {
-                this.render(location);
+                this.render();
                 this.buttonShowAll();
 
                 if (this.list(location).findGroupByName(groupName)) {
-                    this.showSelectedGroup(this.list(location).findGroupByName(groupName));
+                    this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName));
                 } else {
-                    app.mediator.publish('Error by route', {elem: this.$main, message: 'such a group is not found'})
+                    app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'})
                 }
             } else {
-                app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
+                app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
             }
 
             return this.list(location).findGroupByName(groupName);
@@ -70,7 +67,7 @@
 
 		showLocationByRoute: function (location) {
 			if (i.locations.indexOf(location) > -1) {
-				this.render(location);
+				this.render();
 				this.buttonShowAll();
 			} else {
 				app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
@@ -78,27 +75,9 @@
 		},
 
         showViewByRoute: function (location, groupName, action) {
-            this.render(location);
+            this.render();
             this.buttonShowAll();
-            this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
-        },
-
-        showSelectedGroup: function (selected, action) {
-            var contentView = new This.ContentView({
-                    model: selected
-                }),
-				groupView = new This.GroupView({
-                    model: selected
-                });
-
-            contentView.render();
-            groupView.stubsListener(typeof action === 'string'? action : 'info');
-        },
-
-		showFormCreate: function () {
-            var createEditView = new This.CreateEditView();
-
-            this.modal(createEditView);
+            this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
         },
 
         showAllLocations: function () {
@@ -107,7 +86,7 @@
             this.modal(locationsView);
         },
 
-        createEdit: function (group) {
+        showForm: function (group) {
             var createEditView = new This.CreateEditView(group);
 
             this.modal(createEditView);

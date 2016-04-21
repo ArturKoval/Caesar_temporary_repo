@@ -9,21 +9,23 @@
         },
 
         initialize: function () {
-            this.model.on('change', this.render, this);
-            this.model.on('add', this.render, this);
-            this.model.on('destroy', this.remove, this);
             app.mediator.subscribe('Groups: rendered', this.remove.bind(this));
+            this.model.on('destroy', this.remove, this);
         },
 
         render: function () {
-            this.$el.html('<div><p>' + this.model.get('name') + '</p></div>');
+            this.$el.html(templates.smallGroupTpl(this.model.toJSON()));
             return this;
         },
 
         selectGroup: function () {
-            app.mediator.publish('Groups: selected', this.model);
-            $('.small-group-view').removeClass('chosen');
-            this.$el.addClass('chosen');
+            if (this.$el.hasClass('chosen')) {
+                $('.small-group-view').removeClass('chosen');
+            } else {
+                $('.small-group-view').removeClass('chosen');
+                this.$el.addClass('chosen');
+                app.mediator.publish('Groups: selected', this.model);
+            }
         }
     });
 })(CS.Groups, app);
