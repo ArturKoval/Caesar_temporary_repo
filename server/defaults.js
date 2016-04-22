@@ -360,7 +360,7 @@ var defaultData = {
     }, {
         "nickname": "Floppy-Drive 8",
         "name": "Dp-09-JS",
-        "logo": "/img/default-photo.png",
+        "logo": "/img/Floppy-Drive-8/logo-floppy-drive-8.png",
         "direction": "javascript",
         "people": {
             "Vladyslava Tyschenko": "/img/Floppy-Drive-8/Tyschenko.jpg",
