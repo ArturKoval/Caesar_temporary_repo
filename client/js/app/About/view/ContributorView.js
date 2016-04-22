@@ -5,7 +5,7 @@
         className: 'contributor col-md-3',
 
         events: {
-            'click .contributorPhoto': 'showName'
+            'mouseover .contributorPhoto': 'showName'
         },
 
         render: function () {
