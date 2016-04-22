@@ -320,33 +320,33 @@ var defaultData = {
     contributors: [{
         "nickname": "Team Doloto",
         "name": "Dp-080-UI",
-        "logo": "/img/logoTeamDoloto.jpg",
+        "logo": "/img/TeamDoloto/logoTeamDoloto.jpg",
         "direction": "javascript",
         "people": {
-            "Karina Chegorko": "/img/Chegorko.jpg",
-            "Alena Borysova": "/img/Borysova.jpg",
-            "Serhii Andronik": "/img/Andronik.jpg",
-            "Ivan Shytikov": "/img/Shytikov.jpg",
-            "Dmytro Selezen": "/img/Selezen.jpg",
-            "Maksim Belinskiy": "/img/Belinskiy.jpg",
-            "Aleksei Lebedianskyi": "/img/Lebedianskyi.jpg"
+            "Karina Chegorko": "/img/TeamDoloto/Chegorko.jpg",
+            "Alena Borysova": "/img/TeamDoloto/Borysova.jpg",
+            "Serhii Andronik": "/img/TeamDoloto/Andronik.jpg",
+            "Ivan Shytikov": "/img/TeamDoloto/Shytikov.jpg",
+            "Dmytro Selezen": "/img/TeamDoloto/Selezen.jpg",
+            "Maksim Belinskiy": "/img/TeamDoloto/Belinskiy.jpg",
+            "Aleksei Lebedianskyi": "/img/TeamDoloto/Lebedianskyi.jpg"
         }
     }, {
         "nickname": "The Light side",
         "name": "Dp-082-MQC",
-        "logo": "/img/logoTheLightSide.jpg",
+        "logo": "/img/TheLightSide/logoTheLightSide.jpg",
         "direction": "mqc",
         "people": {
-            "Artur Chesnokov": "/img/Chesnokov.jpg",
-            "Sergey Tsova": "/img/Tsova.jpg",
-            "Kateryna Bekesh": "/img/Bekesh.jpg",
-            "Mihail Makarenko": "/img/Makarenko.jpg",
-            "Alona Krutin": "/img/Krutin.jpg"
+            "Artur Chesnokov": "/img/TheLightSide/Chesnokov.jpg",
+            "Sergey Tsova": "/img/TheLightSide/Tsova.jpg",
+            "Kateryna Bekesh": "/img/TheLightSide/Bekesh.jpg",
+            "Mihail Makarenko": "/img/TheLightSide/Makarenko.jpg",
+            "Alona Krutin": "/img/TheLightSide/Krutin.jpg"
         }
     }, {
         "nickname": "Fluffy Dots",
         "name": "Dp-088-MQC",
-        "logo": "/img/logoFluffyDots.png",
+        "logo": "/img/FluffyDots/logoFluffyDots.png",
         "direction": "mqc",
         "people": {
             "Liliia Krivsun": "/img/FluffyDots/Krivsun.jpg",
@@ -375,7 +375,7 @@ var defaultData = {
     }, {
         "nickname": "Charming Chaos",
         "name": "Dp-094-MQC",
-        "logo": "/img/default-photo.png",
+        "logo": "/img/CharmingChaos/logoCharmingChaos.jpg",
         "direction": "mqc",
         "people": {
             "Elena Kulynenkova": "/img/CharmingChaos/Kulynenkova.jpg",
