@@ -11,9 +11,10 @@
             app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));
         },
 
-        render: function () {
+        render: function (location) {
+			console.log(location);
             this.$el.html(templates.contentTpl);
-            this.$el.find('.groupLocation').html(app.user.get('location'));
+            this.$el.find('.groupLocation').html(location);
 
             return this;
         },

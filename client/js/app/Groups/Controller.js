@@ -21,7 +21,7 @@
             //Temporary button end
 
             this.contentView = new This.ContentView();
-            $('#content-section').html(this.contentView.render().$el);
+            
 
 			this.$main = $('.main-section');
 			this.$sidebar = $('#left-side-bar');
@@ -29,9 +29,9 @@
 
         start: function () {
 			var userLocation = app.user.get('location');
-
+			$('#content-section').html(this.contentView.render(userLocation).$el);
 			app.mediator.publish('Locations: selected', [userLocation]);
-            this.render();
+            this.render(userLocation);
             this.buttonShowAll();
 
             return userLocation;
@@ -39,6 +39,7 @@
 
         render: function (location) {
 			console.log('render: ', location);
+			
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
@@ -53,6 +54,7 @@
         showPageByRoute: function (location, groupName) {
             if (store.locations.getNames().indexOf(location) > -1) {
 			console.log('showPageByRoute: ', location);
+			$('#content-section').html(this.contentView.render(location).$el);
 			app.mediator.publish('Locations: selected', [location]);
                 this.render(location);
                 this.buttonShowAll();
@@ -70,7 +72,9 @@
 
 		showLocationByRoute: function (location) {
 			if (store.locations.getNames().indexOf(location) > -1) {
-				this.render();
+				this.render(location);
+				$('#content-section').html(this.contentView.render(location).$el);
+				app.mediator.publish('Locations: selected', [location]);
 				this.buttonShowAll();
 			} else {
 				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
