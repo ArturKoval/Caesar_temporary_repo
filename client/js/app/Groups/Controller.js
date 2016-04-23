@@ -7,7 +7,6 @@
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
             'Locations: selected': 'render',
-            'Locations: show-request': 'showAllLocations',
             'Paginator: page-selected': 'groupsRender'
         },
 
@@ -86,12 +85,6 @@
 			if (show) {
 				this.contentView.showSelectedGroup(show, action);
 			}
-        },
-
-        showAllLocations: function () {
-            var locationsView = new CS.Locations.LocationListView({collection: store.locations});
-
-            this.modal(locationsView);
         },
 
         showForm: function (group) {

@@ -20,6 +20,7 @@ $(function () {
         app.userController = new CS.User.Controller();
         app.notFoundController = new CS.ErrorPage.Controller();
 		app.messengerController = new CS.Messenger.Controller();
+        app.locationsController = new CS.Locations.Controller();
 
         Backbone.history.start({pushState: true});
     }

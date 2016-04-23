@@ -36,7 +36,8 @@
 
             model = _.extend({
                 directions: i.directions,
-                locations: i.locations,
+                //the same as "locations: i.locations"
+                locations: store.locations.getNames(),
                 stages: i.stages,
                 isCreate: this.model.isNew(),
                 defaultLocation: app.user.get('location')

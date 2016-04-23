@@ -103,19 +103,26 @@ var defaultData = {
     }],
     			
     locations: [{
-        "city": "Dnipro"
+        "acronym": "Dp",
+        "name": "Dnipro"
     }, {
-        "city": "Kyiv"
+        "acronym": "Kv",
+        "name": "Kyiv"
     }, {
-        "city": "Sofia"
+        "acronym": "Sf",
+        "name": "Sofia"
     }, {
-        "city": "Chernivtsy"
+        "acronym": "Ch",
+        "name": "Chernivtsy"
     }, {
-        "city": "Rivne"
+        "acronym": "Rv",
+        "name": "Rivne"
     }, {
-        "city":"Ivano-Frankivsk"
+        "acronym": "IF",
+        "name":"Ivano-Frankivsk"
     }, {
-        "city": "Lviv"
+        "acronym": "Lv",
+        "name": "Lviv"
     }],
 
     groups: [{

@@ -1,5 +1,5 @@
 templates.locationViewTpl = _.template([
     '<p>',
-        '<%= city %>',
+        '<%= name %>',
     '</p>'
 ].join(''));
