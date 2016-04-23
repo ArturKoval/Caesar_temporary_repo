@@ -60,11 +60,22 @@ var System = (function () {
             i.stages.push(record.name);
         });
     }
+    
+    function _startWebSocket () {
+        var socket = new WebSocket("ws://localhost:8080");
+
+        socket.onmessage = function(event) {
+            var data = event.data,
+                collection = data.collection;
+            
+            // fetch implementation here
+    }
 
     return {
         constants: _constants,
         register: _register,
         preload: _preload,
-        then: _then
+        then: _then,
+        startWebSocket: _startWebSocket
     };
 })();
