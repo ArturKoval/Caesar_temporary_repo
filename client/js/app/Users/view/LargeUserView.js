@@ -2,46 +2,46 @@
 
 (function (This, app) {
     This.LargeUserView = Backbone.View.extend({
-	    template: templates.largeUserViewTpl,
-		
-	    events: {
-	        'click .btn-edit': 'showEditDialog',
-	        'click .btn-logout': 'logout',
-	        'mouseleave': 'hide',
-	        'mouseover': 'show'
-	    },
+        template: templates.largeUserViewTpl,
 
-	    initialize: function () {
-	        this.listenTo(this.model, 'change', this.render);
-	    },
+        events: {
+            'click .btn-edit': 'showEditDialog',
+            'click .btn-logout': 'logout',
+            'mouseleave': 'hide',
+            'mouseover': 'show'
+        },
 
-	    render: function () {
-	    	this.$el.empty();
-	        this.$el.html(this.template(this.model.toJSON()));
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+        },
 
-	        return this;
-	    },
+        render: function () {
+            this.$el.empty();
+            this.$el.html(this.template(this.model.toJSON()));
 
-	    showEditDialog: function () {
-	        app.mediator.publish('User: edit-dialog-called', this.model);
-	    },
+            return this;
+        },
 
-	    logout: function () {
-	        app.mediator.publish('User: logged-out', this.model);
-	    }, 
-	    
-	    show: function () {
-	    	if (this.timerId) {
+        showEditDialog: function () {
+            app.mediator.publish('User: edit-request', this.model);
+        },
+
+        logout: function () {
+            app.mediator.publish('User: logged-out', this.model);
+        },
+
+        show: function () {
+            if (this.timerId) {
                 clearTimeout(this.timerId);
             }
 
             this.$el.addClass('open');
-	    },
+        },
 
-	    hide: function () {
-	    	this.timerId = setTimeout(function () {
+        hide: function () {
+            this.timerId = setTimeout(function () {
                 this.$el.removeClass('open');
             }.bind(this), 1000);
-	    }
+        }
     });
 })(CS.User, app);

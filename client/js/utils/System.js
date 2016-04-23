@@ -43,7 +43,7 @@ var System = (function () {
 
     function setInfoBlocks (response) {
         _registerArray(i, ['teachers', 'directions', 'roles', 'stages']);
-        
+
         response.teachers.forEach(function (record) {
             i.teachers.push(record.name);
         });
@@ -60,14 +60,14 @@ var System = (function () {
             i.stages.push(record.name);
         });
     }
-    
+
     function _startWebSocket () {
         var socket = new WebSocket("ws://localhost:8080");
 
         socket.onmessage = function(event) {
             var data = event.data,
                 collection = data.collection;
-            
+        };
             // fetch implementation here
     }
 
