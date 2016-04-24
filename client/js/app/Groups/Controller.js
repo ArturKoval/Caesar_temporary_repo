@@ -13,22 +13,33 @@
         initialize: function () {
             this.mediator = app.mediator;
 
-            //Temporary button start
+            //Temporary buttons start
             $('#createGroup').on('click', function () {
                 app.mediator.publish('Groups: create-request', null);
             });
-            //Temporary button end
+            $('.timeBarContainer')
+                .on('mouseover', function () {
+                    this.timeBarView = new CS.Messenger.TimeBarView({
+                        model: new CS.Messenger.Clock()
+                    });
+                $('.flashMessage').html(this.timeBarView.render().el);
+            })
+                .on('mouseleave', function () {
+                    this.timeBarView.remove();
+            });
+            //Temporary buttons end
 
             this.contentView = new This.ContentView();
-            
 
 			this.$main = $('.main-section');
 			this.$sidebar = $('#left-side-bar');
+            this.$content = $('#content-section');
         },
 
         start: function () {
 			var userLocation = app.user.get('location');
-			$('#content-section').html(this.contentView.render(userLocation).$el);
+
+			this.$content.html(this.contentView.render(userLocation).$el);
 			app.mediator.publish('Locations: selected', [userLocation]);
             this.render(userLocation);
             this.buttonShowAll();
@@ -51,7 +62,7 @@
         showPageByRoute: function (location, groupName) {
             if (store.locations.getNames().indexOf(location) > -1) {
 			console.log('showPageByRoute: ', location);
-			$('#content-section').html(this.contentView.render(location).$el);
+			this.$content.html(this.contentView.render(location).$el);
 			app.mediator.publish('Locations: selected', [location]);
                 this.render(location);
                 this.buttonShowAll();
@@ -70,7 +81,7 @@
 		showLocationByRoute: function (location) {
 			if (store.locations.getNames().indexOf(location) > -1) {
 				this.render(location);
-				$('#content-section').html(this.contentView.render(location).$el);
+				this.$content.html(this.contentView.render(location).$el);
 				app.mediator.publish('Locations: selected', [location]);
 				this.buttonShowAll();
 			} else {
@@ -102,7 +113,7 @@
         //Helpers
 
         modal: function (view) {
-            $('#modal-window').append(view.render().$el);
+            $('#modal-window').html(view.render().$el);
         },
 
         buttonShowAll: function () {
