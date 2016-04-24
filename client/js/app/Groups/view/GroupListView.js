@@ -14,13 +14,14 @@
 
         initialize: function() {
             this.collection.on('change', this.render, this);
+            this.collection.on('update', this.render, this);
         },
 
         render: function () {
             this.$el.html(templates.groupListTpl);
-            this.$groupList  = $('.group-collection');
-            this.$myGroups = $('.myGroups');
-            this.$paginator = $('.paginator-place-holder');
+            this.$groupList  = this.$el.find('.group-collection');
+            this.$myGroups = this.$el.find('.myGroups');
+            this.$paginator = this.$el.find('.paginator-place-holder');
             app.mediator.publish('GroupsListView: rendered'); //stub, will be deleted with filter update
             this.createPaginator(app.filter.split('groupList'));
 
@@ -29,7 +30,7 @@
 
         createPaginator: function (collection) {
             this.paginatorView = new app.PaginatorView({collection: collection});
-            this.$paginator.html(this.paginatorView.el).append(this.paginatorView.render());
+            this.$paginator.html(this.paginatorView.render().el);
         },
 
         renderGroups: function (collection) {

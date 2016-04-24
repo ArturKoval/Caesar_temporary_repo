@@ -36,14 +36,12 @@
             return userLocation;
         },
 
-        render: function (location) {
-			console.log('render: ', location);
-			
+        render: function () {
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
-            this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
+            this.$sidebar.html(this.groupListView.render().el);
         },
 
         groupsRender: function(collection) {

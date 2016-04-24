@@ -21,7 +21,7 @@
 
         render: function () {
             this.$el.html(this.template());
-            this.$pageNav =  $('.page-nav');
+            this.$pageNav =  this.$el.find('.page-nav');
             this.$pageNav.html(templates.navTpl({page: this.page + 1, lastPage: this.lastPage}));
             this.lastPage <= 1? this.$el.addClass('invisible') : this.$el.removeClass('invisible');
             this.returnCollection(this.pageElems[this.page]);
