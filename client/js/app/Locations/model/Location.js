@@ -2,6 +2,8 @@
 
 (function (This) {
     This.Location = Backbone.Model.extend({
+        urlRoot: '/locations',
+
         defaults: function () {
             return {
                 acronym: '',
@@ -11,17 +13,17 @@
                 isChecked: false
             };
         },
-        
+
         toggleCheck: function () {
             this.set('isChecked', !this.get('isChecked'));
         },
-        
+
         check: function () {
             this.set('isChecked', true);
         },
-        
+
         uncheck: function () {
             this.set('isChecked', false);
         }
-    }); 
+    });
 })(CS.Locations);

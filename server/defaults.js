@@ -101,28 +101,35 @@ var defaultData = {
     	"login": "dmytro",
     	"password": "1234"
     }],
-    			
+
     locations: [{
         "acronym": "Dp",
-        "name": "Dnipro"
+        "name": "Dnipro",
+        "lastGroupNumber": 97
     }, {
         "acronym": "Kv",
-        "name": "Kyiv"
+        "name": "Kyiv",
+        "lastGroupNumber": 99
     }, {
         "acronym": "Sf",
-        "name": "Sofia"
+        "name": "Sofia",
+        "lastGroupNumber": 89
     }, {
         "acronym": "Ch",
-        "name": "Chernivtsy"
+        "name": "Chernivtsy",
+        "lastGroupNumber": 39
     }, {
         "acronym": "Rv",
-        "name": "Rivne"
+        "name": "Rivne",
+        "lastGroupNumber": 91
     }, {
         "acronym": "IF",
-        "name":"Ivano-Frankivsk"
+        "name":"Ivano-Frankivsk",
+        "lastGroupNumber": 89
     }, {
         "acronym": "Lv",
-        "name": "Lviv"
+        "name": "Lviv",
+        "lastGroupNumber": 87
     }],
 
     groups: [{

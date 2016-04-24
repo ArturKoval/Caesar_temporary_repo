@@ -4,6 +4,7 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Locations: show-request': 'showLocations',
+            'Groups: saved': 'addGroup'
         },
 
         initialize: function () {
@@ -12,9 +13,21 @@
         },
 
         showLocations: function () {
-            var locationListView = new CS.Locations.LocationListView({collection: store.locations});
+            var locationListView = new CS.Locations.LocationListView({
+                collection: store.locations
+            });
 
             this.$modalEl.append(locationListView.render().el);
+        },
+
+        //temp
+        addGroup: function (group) {
+            var location;
+
+            if (group.isNew()) {
+                location = store.locations.getByName(group.get('location'));
+                location.save('lastGroupNumber', location.get('lastGroupNumber') + 1);
+            }
         }
     });
 })(CS.Locations, app);

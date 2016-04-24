@@ -3,9 +3,10 @@
 (function (This) {
     This.LocationList = Backbone.Collection.extend({
         model: This.Location,
+        url: '/locations',
 
         getByName: function (name) {
-            return this.findWhere(name);
+            return this.findWhere({'name': name});
         },
 
         getNames: function () {
