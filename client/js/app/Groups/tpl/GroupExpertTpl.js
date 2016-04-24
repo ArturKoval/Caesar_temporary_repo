@@ -17,13 +17,13 @@ templates.groupSelectExpertTpl = _.template([
     '</div>'
 ].join(''));
 
-templates.groupMoreExpertTpl = _.template('<span class="add-expert-btn">+ one more expert</span>');
+templates.groupMoreExpertTpl = _.template('<span class="add-expert-btn"  tabindex="12">+ one more expert</span>');
 
 templates.groupExpertTpl = _.template([
     '<% _(experts).each(function(expert) { %>',
     '<li>',
     '<%= expert %>',
-    '    <button class="remove-expert" class="pull-right" data-expert="<%= expert %>">x</button>',
+    '    <button class="remove-expert" class="pull-right" data-expert="<%= expert %>"  tabindex="11">x</button>',
     '</li>',
     '<% }); %>'
 ].join(''));

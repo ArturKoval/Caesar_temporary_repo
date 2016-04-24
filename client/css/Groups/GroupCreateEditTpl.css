@@ -25,6 +25,19 @@
     text-align: left;
 }
 
+.backdrop .name-wrapper {
+    position: relative;
+}
+
+.backdrop .return-name:before {
+    font-family: FontAwesome;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    content: "\f021";
+}
+
 .backdrop .btn.budget-option {
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.5);
     margin-left: 5px;
@@ -72,7 +85,9 @@ hr {
     cursor: pointer;
 }
 
-.backdrop .btn-icon:hover::before {
+.backdrop .btn-icon:hover::before,
+.backdrop .btn-icon:active::before,
+.backdrop .btn-icon:focus::before {
     background-color: #171B65;
 }
 
@@ -105,6 +120,13 @@ hr {
     cursor: pointer;
 }
 
+.backdrop .add-teacher-btn:focus,
+.backdrop .add-expert-btn:focus,
+.backdrop .remove-teacher:focus,
+.backdrop .remove-expert:focus{
+    text-decoration: underline;
+}
+
 .backdrop .row {
     margin-bottom: 10px;
 }
@@ -128,7 +150,6 @@ hr {
 .backdrop .fa-calendar:hover {
     color: #171B65;
 }
-
 
 .backdrop input::-webkit-calendar-picker-indicator{
     display: none;

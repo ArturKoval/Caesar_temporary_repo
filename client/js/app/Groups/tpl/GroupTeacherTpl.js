@@ -21,13 +21,13 @@ templates.groupSelectTeacherTpl = _.template([
     '</div>'
 ].join(''));
 
-templates.groupMoreTeacherTpl = _.template('<span class="add-teacher-btn">+ one more teacher</span>');
+templates.groupMoreTeacherTpl = _.template('<span class="add-teacher-btn" tabindex="6">+ one more teacher</span>');
 
 templates.groupTeacherTpl = _.template([
     '<% _(teachers).each(function(teacher) { %>',
     '<li>',
     '<%= teacher %>',
-    '    <button class="remove-teacher" class="pull-right" data-teacher="<%= teacher %>">x</button>',
+    '    <button class="remove-teacher" class="pull-right" data-teacher="<%= teacher %>" tabindex="5">x</button>',
     '</li>',
     '<% }); %>'
 ].join(''));
