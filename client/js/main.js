@@ -6,7 +6,7 @@ var CS = {},
     store = {},
     i = {};
 
-System.register(CS, ['ErrorPage', 'Groups', 'User', 'Locations', 'Messenger', 'About']);
+System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'User', 'Locations', 'Messenger', 'About']);
 System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController']);
 
 $(function () {
@@ -21,6 +21,8 @@ $(function () {
         app.notFoundController = new CS.ErrorPage.Controller();
 		app.messengerController = new CS.Messenger.Controller();
         app.locationsController = new CS.Locations.Controller();
+
+        app.contextMenu  = new CS.Menu.ContextMenuView({el: '.left-menu'});
 
         Backbone.history.start({pushState: true});
     }
