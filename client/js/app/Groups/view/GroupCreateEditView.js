@@ -20,7 +20,7 @@
             'change [name="startDate"]': 'setFinishDate',
             'change [name="direction"]': function (e) {
                 this.setFinishDate(e);
-                // this.changeName(e);
+                this.changeName(e);
             },
             'click .budget-option': 'setBudgetOwner',
             'click .calendar': 'showCalendar',
@@ -143,10 +143,10 @@
         getFormData: function () {
             formData = {teachers: this.teachers, experts: this.experts};
 
-            this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
+            this.$el.find('[name=name], [name=startDate], [name=finishDate]').each(function (index, field) {
                 formData[field.name] = field.value;
             });
-            this.$el.find('#location option:selected, #direction option:selected, #stage option:selected').each(function (index, field) {
+            this.$el.find('[name=location] option:selected, [name=direction] option:selected, [name=stage] option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
             this.$el.find('.budget-option').each(function (index, button) {
