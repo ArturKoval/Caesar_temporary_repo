@@ -20,8 +20,8 @@
 			this.listener = {
 				'info': {view: 'GroupInfoView'},
 				'edit': {view: 'GroupCreateEditView'},
-				'shedule': {view: 'ScheduleView'},
-				'students': {view: 'StudentListView', collection: students},
+				'shedule': {view: 'WeekView'},
+				'students': {view: 'StudentListView'},
 				'message': {view: 'MessageView'}
 			};
 
@@ -66,11 +66,16 @@
             }
            
             var data = this.listener[action],
-                stubView = new This[data.view]({model: this.model, collection: data.collection}),
                 $groupContainer = this.$el.find('.groupContainer'),
                 $buttons = this.$el.find('.active'),
                 $el = $('.'+ action + 'Btn');
 
+            if (action === 'shedule') {
+                var stubView = new CS.Schedule[data.view]({model: this.model});
+            } else {
+                var stubView = new This[data.view]({model: this.model});
+            }
+            
             $groupContainer.empty();
             $groupContainer.append(stubView.render().$el);
             $buttons.removeClass('active');
@@ -86,11 +91,3 @@
         }
     });
 })(CS.Groups, app);
-var students = [{'name': 'Anastasyia Serheeva'},
- {'name': 'Vladyslava Tyshchenko'},
- {'name':'Anna Hranovska'},
- {'name':'Denis Poznukhov'},
- {'name':'Yuryi Tataryntsev'},
- {'name':'Artem Zhylko'},
- {'name':'Anastasiia Manilnykova'},
- {'name':'Yana Sharipbaeva'}];

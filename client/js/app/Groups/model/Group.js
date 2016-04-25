@@ -55,17 +55,6 @@
             return result;
         },
 
-        generateName: function (location, direction) {
-            var groupNumber = location.get('lastGroupNumber') + 1,
-                acronym = location.get('acronym');
-
-            if (groupNumber < 100) {
-                groupNumber = '0' + groupNumber;
-            }
-
-            return acronym + '-' + groupNumber + ' ' + direction;
-        },
-
         validation: function () {
             var dateFormat = 'MM/DD/YYYY';
 

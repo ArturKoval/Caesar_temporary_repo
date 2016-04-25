@@ -6,7 +6,8 @@
 
         events: {
             'mouseleave': 'hide',
-            'mouseover': 'show'
+            'mouseover': 'show',
+            'click .addBtn': 'create'
         },
 
         initialize: function () {
@@ -26,6 +27,10 @@
 
         hide: function () {
             this.$el.removeClass('open');
+        },
+
+        create: function () {
+            app.mediator.publish('Groups: create-request', null)
         }
     });
 })(CS.Menu, app);

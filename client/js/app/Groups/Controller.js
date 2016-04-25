@@ -21,7 +21,6 @@
             $('#createGroup').on('click', function () {
                 app.mediator.publish('Groups: create-request', null);
             });
-
             //Temporary button end
             $('.timeBarContainer')
                 .on('mouseover', function () {

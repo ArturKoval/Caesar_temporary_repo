@@ -10,18 +10,11 @@
 
         template: templates.groupEditCreate,
 
-        oldName:'',
-
-        currentName: '',
-
         events: {
             'click #save': 'save',
             'click #cancel': 'close',
             'change [name="startDate"]': 'setFinishDate',
-            'change [name="direction"]': function (e) {
-                this.setFinishDate(e);
-                // this.changeName(e);
-            },
+            'change [name="direction"]': 'setFinishDate',
             'click .budget-option': 'setBudgetOwner',
             'click .calendar': 'showCalendar',
             'change [name="name"]': 'renderNameReturn'
@@ -54,9 +47,22 @@
             this.$el.find('#teachers').html(this.teacherView.render().$el);
             this.$el.find('#experts').html(this.expertView.render().$el);
 
+            this.$nameEl = this.$el.find('[name=name]');
+            this.$returnNameEl = this.$el.find('.return-name'); //удалить el
+            this.$direction = this.$el.find('[name=direction]');
+            this.$location = this.$el.find('[name=location]');
+
             this.$el.find('.date-picker').datepicker({
                 dateFormat: 'mm/dd/yy'
             });
+
+            if (model.isCreate) {
+                this.addAlternativeEvents();
+
+                this.showReturnName = _.once(function () {
+                    this.$returnNameEl.show().on('click', _.bind(this.triggerName, this));
+                });
+            }
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
@@ -70,6 +76,26 @@
             return this;
         },
 
+        save: function () {
+            var errors = {};
+
+            this.getFormData();
+
+            errors = this.model.preValidate(formData);
+
+            if (!_.isEmpty(errors)) {
+                this.createHint(errors);
+            } else {
+                formData['startDate'] = moment(formData['startDate'], 'MM/DD/YYYY').format('X');
+                formData['finishDate'] = moment(formData['finishDate'], 'MM/DD/YYYY').format('X');
+                this.model.save(formData, {validate: false});
+                app.mediator.publish('Groups: saved', this.model);
+                store.groups.add(this.model);
+                this.createFlashMessage();
+                this.destroy();
+            }
+        },
+
         setFinishDate: function () {
             var startDate = this.$el.find('[name=startDate]').val();
 
@@ -78,7 +104,7 @@
                     courseDurationDays,
                     finishDate;
 
-                if (['MQC', 'ISTQB'].indexOf(this.$el.find('[name=direction]').val()) !== -1) {
+                if (['MQC', 'ISTQB'].indexOf(this.$direction.val()) !== -1) {
                     courseDurationWeeks = 9;
                 } else {
                     courseDurationWeeks = 12;
@@ -96,48 +122,18 @@
             $(event.target).addClass('active');
         },
 
-        // changeName: function () {
-        //     var generatedName,
-        //         customName;
-        //
-        //     generatedName = this.model.generate();
-        // },
+        changeName: function () {
+            var generatedName;
 
-        renderName: function () {
-            this.$el.find('[name=name]').val(this.currentName);
-            this.$el.find('.return-name').html('Return ' + this.oldName);
-        },
+            generatedName = this.generateName();
 
-        save: function () {
-            var errors = {};
-
-            this.getFormData();
-
-            errors = this.model.preValidate(formData);
-
-            if (!_.isEmpty(errors)) {
-                this.createHint(errors);
-            } else {
-                formData['startDate'] = moment(formData['startDate'], 'MM/DD/YYYY').format('X');
-                formData['finishDate'] = moment(formData['finishDate'], 'MM/DD/YYYY').format('X');
-                this.model.save(formData,{validate: false});
-                app.mediator.publish('Groups: saved', this.model);
-                store.groups.add(this.model);
-                this.createFlashMessage();
-                this.destroy();
+            if (this.customName) {
+                this.showReturnName();
+                this.$returnNameEl.html(this.customName);
             }
-        },
 
-        close: function () {
-            this.destroy();
-            app.mediator.publish('Groups: dialog-closed');
-        },
+            this.$nameEl.val(generatedName);
 
-        destroy: function () {
-            $(document).off('keydown');
-            this.teacherView.remove();
-            this.expertView.remove();
-            this.remove();
         },
 
         getFormData: function () {
@@ -214,8 +210,73 @@
             }
         },
 
+        generateName: function () {
+            var directionName,
+                locationName,
+                groupNumber,
+                location,
+                acronym;
+
+            locationName = this.$location.find('option:selected').val();
+            directionName = this.$direction.find('option:selected').val();
+
+            location = store.locations.getByName(locationName);
+            groupNumber = location.get('lastGroupNumber') + 1;
+            acronym = location.get('acronym');
+
+            if (groupNumber < 100) {
+                groupNumber = '0' + groupNumber;
+            }
+
+            return acronym + '-' + groupNumber + ' ' + directionName;
+        },
+
         showCalendar: function (event) {
             $(event.target).siblings('.date-picker').focus();
+        },
+
+        addAlternativeEvents: function () {
+            var currentName;
+
+            this.$location.on('change', _.bind(this.changeName, this));
+            this.$direction.on('change', _.bind(this.changeName, this));
+            this.$nameEl.on('focus', _.bind(nameElOnFocus, this));
+            this.$nameEl.on('blur', _.bind(nameElOnBlur, this));
+
+            function nameElOnFocus () {
+                currentName = this.$nameEl.val();
+            }
+
+            function nameElOnBlur () {
+                if (currentName !== this.$nameEl.val()) {
+
+                    if (!this.customName && this.$nameEl.val() && this.$direction.find('option:selected').val()) {
+                        this.showReturnName();
+                    }
+
+                    this.customName = this.$nameEl.val();
+                    this.$returnNameEl.html(this.generateName());
+                }
+            }
+        },
+
+        triggerName: function () {
+            var inputValue = this.$nameEl.val();
+
+            this.$nameEl.val(this.$returnNameEl.html());
+            this.$returnNameEl.html(inputValue);
+        },
+
+        close: function () {
+            this.destroy();
+            app.mediator.publish('Groups: dialog-closed');
+        },
+
+        destroy: function () {
+            $(document).off('keydown');
+            this.teacherView.remove();
+            this.expertView.remove();
+            this.remove();
         }
     });
 })(CS.Groups);

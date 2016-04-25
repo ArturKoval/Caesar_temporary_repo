@@ -12,7 +12,7 @@
 
         render: function () {
             this.$el.empty();
-            this.collection.forEach(function(student) {
+            students.forEach(function(student) {
                 this.$el.append(this.template(student));
             }, this);
 
@@ -20,3 +20,12 @@
         }
     });
 })(CS.Groups);
+
+var students = [{'name': 'Anastasyia Serheeva'},
+ {'name': 'Vladyslava Tyshchenko'},
+ {'name':'Anna Hranovska'},
+ {'name':'Denis Poznukhov'},
+ {'name':'Yuryi Tataryntsev'},
+ {'name':'Artem Zhylko'},
+ {'name':'Anastasiia Manilnykova'},
+ {'name':'Yana Sharipbaeva'}];
