@@ -14,12 +14,7 @@
 
         initialize: function () {
             this.mediator = app.mediator;
-
-            //Temporary buttons start
-            $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request', null);
-            });
-
+            
             //Temporary button end
             this.coll = [{icon:'fa fa-globe fa-2x', description: 'locations'},
                 {icon:'fa fa-file-text-o fa-2x', description: 'add'},
