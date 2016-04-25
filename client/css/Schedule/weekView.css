@@ -1,0 +1,66 @@
+.Table{
+    display: table;
+    table-layout: fixed;
+    border-collapse: collapse; 
+    overflow-y: auto;
+}
+.Title{
+    display: table-caption;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+}
+.Heading{
+    display: table-row;
+    text-align: center;
+    border: solid;
+    border-color: black;
+    width: 5%;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #3C78B5;
+    color: white;
+    height: 15px;
+    vertical-align: middle; 
+}
+.HeadingCell{
+    display: table-cell;
+    border: solid;
+    border-color: black;
+    width: 5%;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #3C78B5;
+    color: white;
+    vertical-align: middle; 
+}
+.Row{
+    display: table-row;
+}
+.Cell{
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    width: 10%;
+    height: 60px;
+}
+.Heading .Cell{
+    height: 25px;
+}
+.activity{
+   background-color: lightgreen;
+   cursor: pointer;
+}
+.activity > p{
+    margin: 0;
+    font-weight: bold;
+}
+.activity:hover{
+    background-color: chartreuse;
+}
+.schedule-view{
+    display: block;
+    overflow: scroll;
+}
