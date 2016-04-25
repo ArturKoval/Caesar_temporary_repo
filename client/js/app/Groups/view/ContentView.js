@@ -9,50 +9,60 @@
             app.mediator.subscribe('Locations: selected', this.showLocationInfo.bind(this));
             app.mediator.subscribe('Groups: selected', this.showSelectedGroup.bind(this));
             app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));
+
+            this.$el.html(templates.contentTpl);
+            this.$groupLocation = this.$el.find('.groupLocation');
+            this.$groupName = this.$el.find('.groupName');
+            this.$groupStage = this.$el.find('.groupStage');
+            this.$groupStageTitle = this.$el.find('.groupStageTitle');
+            this.$mainSection = this.$el.find('#main-section');
         },
 
         render: function (location) {
-            this.$el.html(templates.contentTpl);
-            this.$el.find('.groupLocation').html(location);
+            this.$groupLocation.html(location);
 
             return this;
         },
         showSelectedGroup: function (selected, action) {
-            this.$el.find('.groupLocation').html(selected.get('location'));
-            this.$el.find('.groupName').html(selected.get('name'));
+            this.$groupLocation.html(selected.get('location'));
+            this.$groupName.html(selected.get('name'));
 
-            var groupView = new This.GroupView({
-                model: selected
-            });
-
-            this.$el.find('#main-section').empty();
-            this.$el.find('#main-section').append(groupView.render().$el); 
-
-            this.$el.find('.groupStage').html(selected.get('stage'));
-            this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
-
-            groupView.showStubView(action);
+            this.$groupStage.html(selected.get('stage'));
+            this.$groupStageTitle.html('Stage:&nbsp;');
 
             return this;
         },
 
         showLocationInfo: function (locations) {
-            var numberOfLocations;
+          if (locations.length > 1) {
+                var numberOflocations = locations.length + ' locations'; 
+                this.$groupLocation.html(numberOflocations); 
+                this.showHints(locations);
 
-            if (locations.length > 1) {
-                numberOfLocations = locations.length + ' ' + 'locations';
-                this.$el.find('.groupLocation').html(numberOfLocations)
-                    .attr({
-                        'title': locations
-                    });
             } else {
-                this.$el.find('.groupLocation').html(locations);
+                this.$groupLocation.html(locations);
             }
 
-            this.$el.find('.groupName').empty();
-            this.$el.find('.main-section').empty();
-            this.$el.find('.groupStage').empty();
-            this.$el.find('.groupStageTitle').html('');
+            this.$groupName.empty();
+            this.$mainSection.empty();
+            this.$groupStage.empty();
+            this.$groupStageTitle.html('');
+        },
+
+        showHints: function (locations) {
+            this.$groupLocation.hover(function () {
+                var hints = [{
+                    name: 'groupLocation',
+                    text: locations.toString()
+                }];
+
+                app.mediator.publish('Message', { 
+                    type: 'hints',
+                    $el: this.$el,
+                    hints: hints
+                });
+
+            }.bind(this));
         },
     });
 

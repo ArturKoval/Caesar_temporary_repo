@@ -7,6 +7,8 @@
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
             'Locations: selected': 'render',
+            'Groups: selected': 'showSelectedGroup',
+            'Groups: saved': 'showSelectedGroup',
             'Paginator: page-selected': 'groupsRender'
         },
 
@@ -116,6 +118,15 @@
             });
 
             this.modal(groupDeleteView);
+        },
+
+        showSelectedGroup: function (selected, action) {
+            var groupView = new This.GroupView({
+                model: selected
+            });
+
+            $('.main-section').html(groupView.render().el); 
+            groupView.showStubView(action);
         },
 
         //Helpers
