@@ -7,7 +7,7 @@ templates.groupEditCreate = _.template([
 '                                <div class="form-group name-wrapper col-xs-12">',
 '                                    <label class="control-label">Group name</label>',
 '                                    <input type="text" class="form-control" name="name" value="<%= name %>" tabindex="1">',
-'                                    <span class="return-name"></span>',
+'                                    <span class="return-name" hidden></span>',
 '                                 </div>',
 '                                   <% if (!isCreate) { %>', 
 '                                   <div class="form-group col-xs-12 stage-wrapper">',
