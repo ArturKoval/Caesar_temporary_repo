@@ -1,10 +1,3 @@
-// Backbone.Validation v0.11.5
-//
-// Copyright (c) 2011-2015 Thomas Pedersen
-// Distributed under MIT License
-//
-// Documentation and full license available at:
-// http://thedersen.com/projects/backbone-validation
 Backbone.Validation = (function(_){
   'use strict';
 
@@ -217,20 +210,26 @@ Backbone.Validation = (function(_){
         preValidate: function(attr, value) {
           var self = this,
               result = {},
-              error;
+              error,
+              allAttrs = _.extend({}, this.attributes);
 
           if(_.isObject(attr)){
-            _.each(attr, function(value, key) {
-              error = self.preValidate(key, value);
+            // if multiple attributes are passed at once we would like for the validation functions to
+            // have access to the fresh values sent for all attributes, in the same way they do in the
+            // regular validation
+            _.extend(allAttrs, attr);
+
+            _.each(attr, function(value, attrKey) {
+              error = validateAttr(this, attrKey, value, allAttrs);
               if(error){
-                result[key] = error;
+                result[attrKey] = error;
               }
-            });
+            },this);
 
             return _.isEmpty(result) ? undefined : result;
           }
           else {
-            return validateAttr(this, attr, value, _.extend({}, this.attributes));
+            return validateAttr(this, attr, value, allAttrs);
           }
         },
 

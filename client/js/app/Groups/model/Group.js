@@ -69,18 +69,18 @@
                     maxLength: 20
                 }, {
                     pattern: /^[a-z0-9 \-\/]+$/i,
-                    msg: 'Please enter valid name. Allowed symbols: english alpabeth, digits, "space", "/", "-"'
+                    msg: 'Please enter valid name. Allowed symbols: english alpabeth, digits, "space", "/", "-".'
                 }],
 
                 stage: function (stage) {
                     if (i.stages.indexOf(stage) === -1) {
-                        return 'Direction must be one of: ' + i.stages.join(', ');
+                        return 'Direction must be one of: ' + i.stages.join(', ') + '.';
                     }
                 },
 
                 direction: function (direction) {
                     if (i.directions.indexOf(direction) === -1) {
-                        return 'Direction must be one of: ' + i.directions.join(', ');
+                        return 'Direction must be one of: ' + i.directions.join(', ') + '.';
                     }
                 },
 
@@ -88,12 +88,14 @@
                     var locationNames = store.locations.getNames();
 
                     if (locationNames.indexOf(location) === -1) {
-                        return 'Location must be one of: ' + locationNames.join(', ');
+                        return 'Location must be one of: ' + locationNames.join(', ') + '.';
                     }
                 },
 
-                startDate: function (value) {
-                    var earliestStartDate = moment('01/01/2005', dateFormat),
+                startDate: function (value, attr, computedState) {
+                    var finishDateTime = moment(computedState.finishDate, dateFormat),
+                        earliestDate = '01/01/2005',
+                        earliestStartDate = moment(earliestDate, dateFormat),
                         startDateTime = moment(value, dateFormat),
                         msg = '';
 
@@ -101,8 +103,10 @@
                         msg = 'Start Date is required!';
                     } else if (!moment(value, dateFormat, true).isValid()) {
                         msg = 'Wrong date format!';
-                    } else if (startDateTime.isBefore(earliestStartDate)) {
-                        msg = 'Start Date is earlier than 01/01/2005';
+                    } else if (startDateTime.isSameOrBefore(earliestStartDate)) {
+                        msg = 'Start date should be greater than ' + earliestDate;
+                    } else if (startDateTime.isSameOrAfter(finishDateTime)) {
+                        msg = 'Start date should be less than Finish date!';
                     }
 
                     if (msg) {
@@ -110,14 +114,17 @@
                     }
                 },
 
-                finishDate: function (value) {
-                    var finishDateTime = moment(value, dateFormat),
+                finishDate: function (value, attr, computedState) {
+                    var startDateTime = moment(computedState.startDate, dateFormat),
+                        finishDateTime = moment(value, dateFormat),
                         msg = '';
 
                     if (!value) {
-                        msg = 'Finish Date is required!';
+                        msg = 'Finish date is required!';
                     } else if (!moment(value, dateFormat, true).isValid()) {
                         msg = 'Wrong date format!';
+                    } else if (finishDateTime.isSameOrBefore(startDateTime)) {
+                        msg = 'Finish date should be greater than Start date!';
                     }
 
                     if (msg) {
@@ -133,7 +140,7 @@
                     });
 
                     if (!isTeachersValid) {
-                        return 'Teachers fields are invalid';
+                        return 'Teachers fields are invalid!';
                     }
                 },
 
@@ -146,7 +153,7 @@
                     });
 
                     if (!isExpertsValid) {
-                        return 'Experts fields are invalid';
+                        return 'Experts fields are invalid!';
                     }
                 }
             };
