@@ -4,26 +4,26 @@
     This.SmallUserView = Backbone.View.extend({
         tagName: 'div',
         className: 'user-photo',
-		
-	    template: templates.smallUserViewTpl,
-	    
-		events: {
-	        'click': 'showUserProfile'
-	    },
 
-	    initialize: function () {
-	        this.listenTo(this.model, 'change', this.render);
-	    },
+        template: templates.smallUserViewTpl,
 
-	    render: function () {
+        events: {
+            'click': 'showProfile'
+        },
+
+        initialize: function () {
+            this.listenTo(this.model, 'change', this.render);
+        },
+
+        render: function () {
             this.$el.empty();
-	        this.$el.html(this.template(this.model.toJSON()));
+            this.$el.html(this.template(this.model.toJSON()));
 
-	        return this;
-	    },
+            return this;
+        },
 
-	    showUserProfile: function () {
-	        app.mediator.publish('User: user-profile-called', this.model);
-	    }
+        showProfile: function () {
+            app.mediator.publish('User: profile-request', this.model);
+        }
     });
 })(CS.User, app);

@@ -101,21 +101,35 @@ var defaultData = {
     	"login": "dmytro",
     	"password": "1234"
     }],
-    			
+
     locations: [{
-        "city": "Dnipro"
+        "acronym": "Dp",
+        "name": "Dnipro",
+        "lastGroupNumber": 97
     }, {
-        "city": "Kyiv"
+        "acronym": "Kv",
+        "name": "Kyiv",
+        "lastGroupNumber": 99
     }, {
-        "city": "Sofia"
+        "acronym": "Sf",
+        "name": "Sofia",
+        "lastGroupNumber": 89
     }, {
-        "city": "Chernivtsy"
+        "acronym": "Ch",
+        "name": "Chernivtsy",
+        "lastGroupNumber": 39
     }, {
-        "city": "Rivne"
+        "acronym": "Rv",
+        "name": "Rivne",
+        "lastGroupNumber": 91
     }, {
-        "city":"Ivano-Frankivsk"
+        "acronym": "IF",
+        "name":"Ivano-Frankivsk",
+        "lastGroupNumber": 89
     }, {
-        "city": "Lviv"
+        "acronym": "Lv",
+        "name": "Lviv",
+        "lastGroupNumber": 87
     }],
 
     groups: [{
@@ -123,8 +137,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "WebUI",
-        "startDate": "2016-01-02",
-        "finishDate": "2016-05-01",
+        "startDate": "02/01/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["D. Petin"],
         "experts": ["N. Varenko"],
         "stage": "in-process",
@@ -133,8 +147,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "MQC",
-        "startDate": "2016-04-20",
-        "finishDate": "2016-06-22",
+        "startDate": "04/20/2016",
+        "finishDate": "06/22/2016",
         "teachers": ["D. Petin"],
         "experts": ["I. Kohut"],
         "stage": "in-process"
@@ -143,8 +157,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": ".Net",
-        "startDate": "15-02-2016",
-        "finishDate": "01-05-2016",
+        "startDate": "02/16/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["O. Reuta"],
         "experts": ["V. Koldovskyy"],
         "stage": "finished"
@@ -153,8 +167,8 @@ var defaultData = {
         "location": "Lviv",
         "budgetOwner": "SoftServe",
         "direction": "RDBMS",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["O. Krukchov"],
         "experts": ["A. Pertsov"],
         "stage": "finished"
@@ -163,8 +177,8 @@ var defaultData = {
         "location": "Rivne",
         "budgetOwner": "SoftServe",
         "direction": "LAMP",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-1",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["L. Klakovych"],
         "experts": ["N. Romanenko"],
         "stage": "in-process"
@@ -173,8 +187,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "JavaScript(UI)",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["D. Petin"],
         "experts": ["N. Romanenko"],
         "stage": "boarding"
@@ -183,8 +197,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "ATQC",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["D. Petin"],
         "experts": ["Testman"],
         "stage": "finished"
@@ -193,8 +207,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "WebUI",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["D. Petin"," I. Tsvietkov"],
         "experts": ["I. Tsvietkov"],
         "stage": "finished"
@@ -203,8 +217,8 @@ var defaultData = {
         "location": "Dnipro",
         "budgetOwner": "SoftServe",
         "direction": "MQC",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["D. Petin"],
         "experts": ["M. Omel`chuk"],
         "stage": "boarding"
@@ -213,8 +227,8 @@ var defaultData = {
         "location": "Lviv",
         "budgetOwner": "SoftServe",
         "direction": "ISTQB",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["I. Tsvietkov"],
         "experts": ["M. Omel`chuk"],
         "stage": "offering"
@@ -224,8 +238,8 @@ var defaultData = {
         "location": "Lviv",
         "budgetOwner": "SoftServe",
         "direction": "Delphi",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["I. Tsvietkov"],
         "experts": ["M. Omel`chuk"],
         "stage": "in-process"
@@ -234,8 +248,8 @@ var defaultData = {
         "location": "Lviv",
         "budgetOwner": "SoftServe",
         "direction": "iOS",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["I. Tsvietkov", "M. Omel`chuk"],
         "experts": ["M. Omel`chuk"],
         "stage": "finished"
@@ -244,8 +258,8 @@ var defaultData = {
         "location": "Lviv",
         "budgetOwner": "SoftServe",
         "direction": "UX",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
@@ -255,8 +269,8 @@ var defaultData = {
         "location": "Sofia",
         "budgetOwner": "SoftServe",
         "direction": "UX",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "boarding"
@@ -266,8 +280,8 @@ var defaultData = {
         "location": "Sofia",
         "budgetOwner": "SoftServe",
         "direction": "MQC",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
@@ -277,8 +291,8 @@ var defaultData = {
         "location": "Sofia",
         "budgetOwner": "SoftServe",
         "direction": "WebUI",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "finished"
@@ -288,8 +302,8 @@ var defaultData = {
         "location": "Ivano-Frankivsk",
         "budgetOwner": "SoftServe",
         "direction": "WebUI",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
@@ -299,8 +313,8 @@ var defaultData = {
         "location": "Kyiv",
         "budgetOwner": "SoftServe",
         "direction": "LAMP",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
@@ -310,8 +324,8 @@ var defaultData = {
         "location": "Chernivtsy",
         "budgetOwner": "SoftServe",
         "direction": "iOS",
-        "startDate": "2016-02-15",
-        "finishDate": "2016-05-01",
+        "startDate": "02/15/2016",
+        "finishDate": "05/01/2016",
         "teachers": ["A. Korkuna"],
         "experts": ["I. Tsvietkov"],
         "stage": "in-process"
@@ -320,33 +334,33 @@ var defaultData = {
     contributors: [{
         "nickname": "Team Doloto",
         "name": "Dp-080-UI",
-        "logo": "/img/logoTeamDoloto.jpg",
+        "logo": "/img/TeamDoloto/logoTeamDoloto.jpg",
         "direction": "javascript",
         "people": {
-            "Karina Chegorko": "/img/Chegorko.jpg",
-            "Alena Borysova": "/img/Borysova.jpg",
-            "Serhii Andronik": "/img/Andronik.jpg",
-            "Ivan Shytikov": "/img/Shytikov.jpg",
-            "Dmytro Selezen": "/img/Selezen.jpg",
-            "Maksim Belinskiy": "/img/Belinskiy.jpg",
-            "Aleksei Lebedianskyi": "/img/Lebedianskyi.jpg"
+            "Karina Chegorko": "/img/TeamDoloto/Chegorko.jpg",
+            "Alena Borysova": "/img/TeamDoloto/Borysova.jpg",
+            "Serhii Andronik": "/img/TeamDoloto/Andronik.jpg",
+            "Ivan Shytikov": "/img/TeamDoloto/Shytikov.jpg",
+            "Dmytro Selezen": "/img/TeamDoloto/Selezen.jpg",
+            "Maksim Belinskiy": "/img/TeamDoloto/Belinskiy.jpg",
+            "Aleksei Lebedianskyi": "/img/TeamDoloto/Lebedianskyi.jpg"
         }
     }, {
         "nickname": "The Light side",
         "name": "Dp-082-MQC",
-        "logo": "/img/logoTheLightSide.jpg",
+        "logo": "/img/TheLightSide/logoTheLightSide.jpg",
         "direction": "mqc",
         "people": {
-            "Artur Chesnokov": "/img/Chesnokov.jpg",
-            "Sergey Tsova": "/img/Tsova.jpg",
-            "Kateryna Bekesh": "/img/Bekesh.jpg",
-            "Mihail Makarenko": "/img/Makarenko.jpg",
-            "Alona Krutin": "/img/Krutin.jpg"
+            "Artur Chesnokov": "/img/TheLightSide/Chesnokov.jpg",
+            "Sergey Tsova": "/img/TheLightSide/Tsova.jpg",
+            "Kateryna Bekesh": "/img/TheLightSide/Bekesh.jpg",
+            "Mihail Makarenko": "/img/TheLightSide/Makarenko.jpg",
+            "Alona Krutin": "/img/TheLightSide/Krutin.jpg"
         }
     }, {
         "nickname": "Fluffy Dots",
         "name": "Dp-088-MQC",
-        "logo": "/img/logoFluffyDots.png",
+        "logo": "/img/FluffyDots/logoFluffyDots.png",
         "direction": "mqc",
         "people": {
             "Liliia Krivsun": "/img/FluffyDots/Krivsun.jpg",
@@ -360,7 +374,7 @@ var defaultData = {
     }, {
         "nickname": "Floppy-Drive 8",
         "name": "Dp-09-JS",
-        "logo": "/img/default-photo.png",
+        "logo": "/img/Floppy-Drive-8/logo-floppy-drive-8.png",
         "direction": "javascript",
         "people": {
             "Vladyslava Tyschenko": "/img/Floppy-Drive-8/Tyschenko.jpg",
@@ -375,7 +389,7 @@ var defaultData = {
     }, {
         "nickname": "Charming Chaos",
         "name": "Dp-094-MQC",
-        "logo": "/img/default-photo.png",
+        "logo": "/img/CharmingChaos/logoCharmingChaos.jpg",
         "direction": "mqc",
         "people": {
             "Elena Kulynenkova": "/img/CharmingChaos/Kulynenkova.jpg",

@@ -6,7 +6,7 @@
             '': 'pageGroups',
             'Groups*path': 'pageGroups',
             'About': 'pageAbout',
-            'About*path':'pageAbout',
+            'About*path':'errorPage',
             '*path': 'errorPage'
         },
 

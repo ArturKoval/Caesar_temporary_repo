@@ -7,31 +7,53 @@
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
             'Locations: selected': 'render',
-            'Locations: show-request': 'showAllLocations',
             'Paginator: page-selected': 'groupsRender'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
 
-            this.$main = $('.main-section');
-            this.$sidebar = $('#left-side-bar');
-
-            //Temporary button start
+            //Temporary buttons start
             $('#createGroup').on('click', function () {
                 app.mediator.publish('Groups: create-request', null);
             });
+
             //Temporary button end
+            this.coll = [{icon:'fa fa-globe fa-2x', description: 'locations'},
+                {icon:'fa fa-file-text-o fa-2x', description: 'add'},
+                {icon:'fa fa-calendar fa-2x', description: 'add'},
+                {icon:'fa fa-users fa-2x', description: 'add'},
+                {icon:'fa fa-envelope-o fa-2x', description: 'add'},
+                {icon:'fa fa-info fa-2x', description: 'add'}];
+            this.menuColl = new CS.Menu.Menu(this.coll);
+            this.mainMenu = new CS.Menu.MainMenuView({collection: this.menuColl, el: $('.top-menu')});
+            this.mainMenu.render();
+            
+            $('.timeBarContainer')
+                .on('mouseover', function () {
+                    this.timeBarView = new CS.Messenger.TimeBarView({
+                        model: new CS.Messenger.Clock()
+                    });
+                $('.flashMessage').html(this.timeBarView.render().el);
+            })
+                .on('mouseleave', function () {
+                    this.timeBarView.remove();
+            });
+            //Temporary buttons end
 
             this.contentView = new This.ContentView();
-            $('#content-section').html(this.contentView.render().$el);
+
+			this.$main = $('.main-section');
+			this.$sidebar = $('#left-side-bar');
+            this.$content = $('#content-section');
         },
 
         start: function () {
 			var userLocation = app.user.get('location');
 
+			this.$content.html(this.contentView.render(userLocation).$el);
+			app.mediator.publish('Locations: selected', [userLocation]);
             this.render(userLocation);
-            this.buttonShowAll();
 
             return userLocation;
         },
@@ -41,7 +63,7 @@
                 collection: store.groups
             });
 
-            this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
+            this.$sidebar.html(this.groupListView.render().el);
         },
 
         groupsRender: function(collection) {
@@ -49,41 +71,37 @@
         },
 
         showPageByRoute: function (location, groupName) {
-            if (i.locations.indexOf(location) > -1) {
-                this.render();
-                this.buttonShowAll();
-
+            if (store.locations.getNames().indexOf(location) > -1) {
+			    this.$content.html(this.contentView.render(location).$el);
+			    app.mediator.publish('Locations: selected', [location]);
+                this.render(location);
+	
                 if (this.list(location).findGroupByName(groupName)) {
                     this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName));
+					return this.list(location).findGroupByName(groupName);
                 } else {
                     app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'})
                 }
             } else {
                 app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
             }
-
-            return this.list(location).findGroupByName(groupName);
         },
 
 		showLocationByRoute: function (location) {
-			if (i.locations.indexOf(location) > -1) {
-				this.render();
-				this.buttonShowAll();
+			if (store.locations.getNames().indexOf(location) > -1) {
+				this.render(location);
+				this.$content.html(this.contentView.render(location).$el);
+				app.mediator.publish('Locations: selected', [location]);
 			} else {
-				app.mediator.publish('Error by route', {elem: this.$main, message: 'such a location is not found'})
+				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
 			}
 		},
 
         showViewByRoute: function (location, groupName, action) {
-            this.render();
-            this.buttonShowAll();
-            this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
-        },
-
-        showAllLocations: function () {
-            var locationsView = new CS.Locations.LocationListView({collection: i.locations});
-
-            this.modal(locationsView);
+            var show = this.showPageByRoute(location, groupName);
+			if (show) {
+				this.contentView.showSelectedGroup(show, action);
+			}
         },
 
         showForm: function (group) {
@@ -103,12 +121,8 @@
         //Helpers
 
         modal: function (view) {
-            $('#modal-window').append(view.render().$el);
+            $('#modal-window').html(view.render().$el);
         },
-
-        buttonShowAll: function () {
-			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
-		},
 
 		list: function (data) {
              return store.groups.findGroupsByLocations(data);

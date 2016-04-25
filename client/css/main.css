@@ -2,34 +2,14 @@
     margin-top: 20px;
 }
 
-.locationsWindow {
-    width: 100%;
-    background: #171B65;
-    padding-top: 25px;
-}
-
-.wrapper-location {
-    width: 755px;
-    margin: 0 auto;
-}
-
-.location {
-    width: 170px;
-    height: 100px;
-    background: #3C78B5;
-    display: inline-block;
-    margin-bottom: 40px;
-    font-size: 26px;
-    color: #fff;
-    box-sizing: border-box;
-    vertical-align: top;
-    padding-left: 15px;
-    padding-top: 8px;
-    margin-right: 20px;
-}
-
 .group-controls {
     overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+
+.group-controls .buttons-wrapper {
+    display: flex;
 }
 
 .group-controls .btn-group {
@@ -72,6 +52,11 @@
     border: 0;
     cursor: pointer;
     box-shadow: none !important;
+    padding: 0;
+}
+
+.editBtn {
+    margin-right: 20px;
 }
 
 .editBtn:hover, .deleteBtn:hover,

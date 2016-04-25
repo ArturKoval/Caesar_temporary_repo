@@ -5,6 +5,7 @@ var http = require('http'),
     socket = require('./socket');
 
 http.createServer(start).listen(3000);
+socket.start();
 console.log('server started...');
 socket.start();
 

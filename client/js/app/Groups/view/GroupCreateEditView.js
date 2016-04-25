@@ -10,13 +10,21 @@
 
         template: templates.groupEditCreate,
 
+        oldName:'',
+
+        currentName: '',
+
         events: {
             'click #save': 'save',
             'click #cancel': 'close',
             'change [name="startDate"]': 'setFinishDate',
-            'change [name="direction"]': 'setFinishDate',
+            'change [name="direction"]': function (e) {
+                this.setFinishDate(e);
+                this.changeName(e);
+            },
             'click .budget-option': 'setBudgetOwner',
-            'click .calendar': 'showCalendar'
+            'click .calendar': 'showCalendar',
+            'change [name="name"]': 'renderNameReturn'
         },
 
         initialize: function (model) {
@@ -36,7 +44,8 @@
 
             model = _.extend({
                 directions: i.directions,
-                locations: i.locations,
+                //the same as "locations: i.locations"
+                locations: store.locations.getNames(),
                 stages: i.stages,
                 isCreate: this.model.isNew(),
                 defaultLocation: app.user.get('location')
@@ -46,8 +55,8 @@
             this.$el.find('#teachers').html(this.teacherView.render().$el);
             this.$el.find('#experts').html(this.expertView.render().$el);
 
-            this.$el.find('[type=date]').datepicker({
-                dateFormat: 'yy-mm-dd'
+            this.$el.find('.date-picker').datepicker({
+                dateFormat: 'mm/dd/yy'
             });
 
             $(document).on('keydown', keyEvent.bind(this));
@@ -77,16 +86,28 @@
                     courseDurationWeeks = 12;
                 }
 
-                finishDate = new Date(startDate);
+                finishDate = moment(startDate, 'MM/DD/YYYY');
                 courseDurationDays = courseDurationWeeks * 7;
-                finishDate.setDate(finishDate.getDate() + courseDurationDays);
-                this.$el.find('[name=finishDate]').val(finishDate.toISOString().split('T')[0]);
+                finishDate.add(courseDurationDays, 'days');
+                this.$el.find('[name=finishDate]').val(finishDate.format('MM/DD/YYYY'));
             }
         },
 
         setBudgetOwner: function (event) {
             this.$el.find('.budget-option').removeClass('active');
             $(event.target).addClass('active');
+        },
+
+        changeName: function () {
+            var generatedName,
+                customName;
+
+            generatedName = this.model.generate();
+        },
+
+        renderName: function () {
+            this.$el.find('[name=name]').val(this.currentName);
+            this.$el.find('.return-name').html('Return ' + this.oldName);
         },
 
         save: function () {
@@ -122,10 +143,10 @@
         getFormData: function () {
             formData = {teachers: this.teachers, experts: this.experts};
 
-            this.$el.find('#name, #startDate, #finishDate').each(function (index, field) {
+            this.$el.find('[name=name], [name=startDate], [name=finishDate]').each(function (index, field) {
                 formData[field.name] = field.value;
             });
-            this.$el.find('#location option:selected, #direction option:selected, #stage option:selected').each(function (index, field) {
+            this.$el.find('[name=location] option:selected, [name=direction] option:selected, [name=stage] option:selected').each(function (index, field) {
                 formData[$(field).data('name')] = field.value;
             });
             this.$el.find('.budget-option').each(function (index, button) {
@@ -194,7 +215,7 @@
         },
 
         showCalendar: function (event) {
-            $(event.target).siblings('[type=date]').focus();
+            $(event.target).siblings('.date-picker').focus();
         }
     });
 })(CS.Groups);

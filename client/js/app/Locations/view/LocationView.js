@@ -2,24 +2,27 @@
 
 (function (This, app) {
     This.LocationView = Backbone.View.extend({
-        tagName: 'div',
+        tagName: 'li',
         className: 'location',
+
+        template: templates.locationViewTpl,
+
         events: {
-            'click': 'check',
-            'dblclick':'select'
+            'click p': 'toggleCheck',
+            'dblclick p': 'select'
         },
 
         render: function () {
-            this.$el.html(this.model);
-            
+            this.$el.html(this.template(this.model.toJSON()));
+
             return this;
         },
 
-        check: function () {
+        toggleCheck: function () {
             this.$el.toggleClass('active-location');
-            app.mediator.publish('Locations: checked', this.model);
+            this.model.toggleCheck();
         },
-        
+
         select: function () {
             app.mediator.publish('Locations: one-selected', this.model);
         }

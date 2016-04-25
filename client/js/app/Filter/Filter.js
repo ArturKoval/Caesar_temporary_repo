@@ -6,7 +6,7 @@
         var params = {
                 state: 'in-process',
                 areMyGroups: false,
-                locations: [app.user.get('location')]
+                locations: []
             },
             groupList;
 

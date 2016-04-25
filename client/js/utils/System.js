@@ -32,6 +32,7 @@ var System = (function () {
                 var response = JSON.parse(ajax.responseText);
 
                 store.groups = new CS.Groups.GroupList(response.groups);
+                store.locations = new CS.Locations.LocationList(response.locations);
                 app.user = new CS.User.User(response.users);
                 setInfoBlocks(response);
 
@@ -41,11 +42,7 @@ var System = (function () {
     }
 
     function setInfoBlocks (response) {
-        _registerArray(i, ['locations', 'teachers', 'directions', 'roles', 'stages']);
-
-        response.locations.forEach(function (record) {
-            i.locations.push(record.city);
-        });
+        _registerArray(i, ['teachers', 'directions', 'roles', 'stages']);
 
         response.teachers.forEach(function (record) {
             i.teachers.push(record.name);
@@ -64,10 +61,21 @@ var System = (function () {
         });
     }
 
+    function _startWebSocket () {
+        var socket = new WebSocket("ws://localhost:8080");
+
+        socket.onmessage = function(event) {
+            var data = event.data,
+                collection = data.collection;
+        };
+            // fetch implementation here
+    }
+
     return {
         constants: _constants,
         register: _register,
         preload: _preload,
-        then: _then
+        then: _then,
+        startWebSocket: _startWebSocket
     };
 })();

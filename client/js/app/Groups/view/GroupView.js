@@ -7,82 +7,74 @@
         $groupContainer: null,
 		
         events: {
-            'click .editBtn': 'stubsListener',
-            'click .infoBtn':  'stubsListener',
-            'click .studentsBtn': 'stubsListener',
-            'click .sheduleBtn': 'stubsListener',
-            'click .messageBtn': 'stubsListener',
+            'click .editBtn': 'renderEdit',
+            'click .infoBtn':  'renderInfo',
+            'click .studentsBtn': 'renderStudents',
+            'click .sheduleBtn': 'renderSchedule',
+            'click .messageBtn': 'renderMessage',
             'click .deleteBtn': 'showDeleteDialog'
         },
 		
         initialize: function () {
             this.mediator = app.mediator;
 			this.listener = {
-				'info': {view: 'GroupInfoView', model: this.model},
-				'edit': {view: 'GroupCreateEditView', model: this.model},
-				'shedule': {view: 'ScheduleView', model: this.model},
+				'info': {view: 'GroupInfoView'},
+				'edit': {view: 'GroupCreateEditView'},
+				'shedule': {view: 'ScheduleView'},
 				'students': {view: 'StudentListView', collection: students},
 				'message': {view: 'MessageView'}
 			};
 
             this.model.on('change', this.render, this);
-            this.model.on('destroy', this.remove, this); 				
-			
-			$('#main-section').empty();
-            $('#main-section').append(this.$el); // ContentView responsibility
-            this.render();
-           
+            this.model.on('destroy', this.remove, this); 				           
         },
 
         render: function () {
             this.$el.empty(); 
             this.$el.append(templates.groupTpl(this.model.toJSON()));
-            this.$groupContainer = $('.groupContainer');
-            this.showStubView({view: 'GroupInfoView', model: this.model});
 
             return this;
         },
 
-        stubsListener: function (argument) {
-            var $buttons = $('.groupView .active'),
-                action,
-                $el,
-                defineAction = {
-                    'undefined': function () {
-                        $el = $('.infoBtn');
-                        action = $el.attr('name');
-                    },
-                    'string': function () {
-                        action = argument;
-                        $el = $('.'+ action + 'Btn');
-                    },
-                    'object': function () {
-                        $el = $(argument.currentTarget);
-                        action = $el.attr('name');
-                    }
-                };
-		
-           
-            defineAction[typeof argument]();
-
-            // temporary?
-			if (action === 'edit') {
-				this.mediator.publish('Groups: edit-request', this.model);
-			} else {
-                this.publishEvent(action); 
-                this.showStubView(this.listener[action]);
-            }	
-			//
-
-            $buttons.removeClass('active');
-            $el.addClass('active');
+        renderInfo: function () {
+            this.showStubView('info');
+            this.publishEvent('info'); 
         },
 
-        showStubView: function (data) {
-            var stubView = new This[data.view]({model: data.model, collection: data.collection});
+        renderStudents: function () {
+            this.showStubView('students');
+            this.publishEvent('students'); 
+        },
 
-            this.$groupContainer.empty();
-            this.$groupContainer.append(stubView.render().$el);
+        renderSchedule: function () {
+            this.showStubView('shedule');
+            this.publishEvent('shedule'); 
+        },
+
+        renderMessage: function () {
+            this.showStubView('message');
+            this.publishEvent('message'); 
+        },
+
+        renderEdit: function () {
+            this.mediator.publish('Groups: edit-request', this.model);
+        },
+
+        showStubView: function (action) {
+            if (action === undefined || typeof action === 'object') {
+                action = 'info';
+            }
+           
+            var data = this.listener[action],
+                stubView = new This[data.view]({model: this.model, collection: data.collection}),
+                $groupContainer = this.$el.find('.groupContainer'),
+                $buttons = this.$el.find('.active'),
+                $el = $('.'+ action + 'Btn');
+
+            $groupContainer.empty();
+            $groupContainer.append(stubView.render().$el);
+            $buttons.removeClass('active');
+            $el.addClass('active');
         },
         
         publishEvent: function (stubViewName) {
@@ -94,7 +86,6 @@
         }
     });
 })(CS.Groups, app);
-
 var students = [{'name': 'Anastasyia Serheeva'},
  {'name': 'Vladyslava Tyshchenko'},
  {'name':'Anna Hranovska'},

@@ -11,24 +11,27 @@
             app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));
         },
 
-        render: function () {
+        render: function (location) {
             this.$el.html(templates.contentTpl);
-            this.$el.find('.groupLocation').html(app.user.get('location'));
+            this.$el.find('.groupLocation').html(location);
 
             return this;
         },
         showSelectedGroup: function (selected, action) {
-
             this.$el.find('.groupLocation').html(selected.get('location'));
             this.$el.find('.groupName').html(selected.get('name'));
+
             var groupView = new This.GroupView({
                 model: selected
             });
 
+            this.$el.find('#main-section').empty();
+            this.$el.find('#main-section').append(groupView.render().$el); 
+
             this.$el.find('.groupStage').html(selected.get('stage'));
             this.$el.find('.groupStageTitle').html('Stage:&nbsp;');
 
-            groupView.stubsListener(typeof action === 'string'? action : 'info');
+            groupView.showStubView(action);
 
             return this;
         },

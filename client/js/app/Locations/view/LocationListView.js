@@ -5,89 +5,100 @@
         tagName: 'div',
         className: 'locationsWindow',
         $documentEl: $(document),
-        
+
         template: templates.locationTpl,
-        
+
         events: {
             'click .save': 'select',
             'click .cancel': 'close'
         },
-        
+
         initialize: function () {
-            this.checkedLocations = [];
-            
-            app.mediator.subscribe('Locations: checked', this.updateCheckedLocations, {}, this);
             app.mediator.subscribe('Locations: one-selected', this.selectOne, {}, this);
-            
+
+            this.nestedViews = [];
+
             _.bindAll(this, 'onKeyPress');
             this.$documentEl.bind('keydown', this.onKeyPress);
+            this.listenTo(this.collection, 'change:isChecked', this.toggleSaveBtnEl, this);
         },
 
         render: function () {
-            var collection = [];
-            
             this.$el.html(this.template);
             this.$saveBtnEl = this.$el.find('.save');
-            
-            collection = this.collection.sort();
 
-            _.each(collection, function (location) {
+            this.collection.sort();
+
+            this.collection.forEach(function (location) {
                 var locationView = new This.LocationView({
                     model: location
                 });
-                
-                this.$el.find('.location-buttons').before(locationView.$el.append(location));
-            }, this); 
-			
+
+                this.$el.find('.locations').append(locationView.render().el);
+                this.nestedViews.push(locationView);
+            }.bind(this));
+
             return this;
         },
 
         onKeyPress: function (e) {
-            if (e.keyCode === System.constants.ENTER) {
-                if (this.checkedLocations.length > 0) {
-                   this.select(); 
+            var keyCode = e.keyCode;
+
+            if (keyCode === System.constants.ENTER) {
+                if (this.collection.hasCheckedLocations()) {
+                    this.select();
                 }
-            } else if (e.keyCode === System.constants.ESC) {
+            }
+
+            if (keyCode === System.constants.ESC) {
                 this.close();
             }
         },
-        
-        updateCheckedLocations: function (checkedLocation) {   
-            if (_.contains(this.checkedLocations, checkedLocation)) {
-                this.checkedLocations = this.checkedLocations.filter(isLocationChecked);
+
+        toggleSaveBtnEl: function () {
+            if (this.collection.hasCheckedLocations()) {
+                this.$saveBtnEl.prop('disabled', false)
+                    .removeClass('disabled');
             } else {
-                this.checkedLocations.push(checkedLocation);
-            }
-            
-            if (this.checkedLocations.length > 0) {
-                this.$saveBtnEl.prop('disabled', false);
-                this.$saveBtnEl.removeClass('disabled');
-            } else {
-                this.$saveBtnEl.prop('disabled', true);
-                this.$saveBtnEl.addClass('disabled');
-            }
-           
-            function isLocationChecked (location) {
-                return location !== checkedLocation;
+                this.$saveBtnEl.prop('disabled', true)
+                    .addClass('disabled');
             }
         },
 
         select: function () {
-            app.mediator.publish('Locations: selected', this.checkedLocations.slice());
-            
+            //temp
+            app.mediator.publish('Locations: selected', this.collection.getCheckedLocationsNames());
+
+            //proper
+            // app.mediator.publish('Locations: selected', this.collection.getCheckedLocations());
+
             this.close();
         },
-        
+
         selectOne: function (selectedLocation) {
-            this.checkedLocations = [selectedLocation];
+            this.collection.checkOnlyOneLocation(selectedLocation);
             this.select();
         },
 
+        removeNestedViews: function () {
+            this.nestedViews.forEach(function(nestedView) {
+                nestedView.remove();
+            });
+
+            this.nestedViews = [];
+        },
+
         close: function () {
-            app.mediator.remove('Locations: checked', this.updateCheckedLocations, {}, this);
+            app.mediator.publish('Groups: dialog-closed');
             app.mediator.remove('Locations: one-selected', this.selectOne, {}, this);
-            
+
             this.$documentEl.unbind('keydown', this.onKeyPress);
+
+            if (this.collection.hasCheckedLocations()) {
+                this.collection.uncheckLocations();
+            }
+
+            this.removeNestedViews();
             this.remove();
         }
     });

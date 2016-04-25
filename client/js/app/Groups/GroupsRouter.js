@@ -11,25 +11,27 @@
             'Groups: create-request': 'navToShowFormCreate',
             'Groups: delete-group': 'navToDeleteGroup',
             'Groups: saved': 'navToSaveGroup',
-            'Groups: dialog-closed': 'navToCancelForm'
+            'Groups: dialog-closed': 'navToCancelForm',
+            'Menu: locations': 'navToLocations'
         },
         
         routes: {    
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
+            'Groups/Locations(/)': 'openLocations',
             'Groups/:location(/)': 'openLocation',
+			'Groups/:location/create(/)': 'openGroupCreate',
             'Groups/:location/:group(/)': 'openGroupInfo',
             'Groups/:location/:group/edit(/)': 'openGroupEdit',
             'Groups/:location/:group/delete(/)': 'openGroupDelete',
-            'Groups/:location/:group/create(/)': 'openGroupCreate',
-            'Groups/:location/:group/:action(/)': 'openGroupAction',
-            'Groups*path': 'notFound' 
+            'Groups/:location/:group/:action(/)': 'openGroupAction'
+            
         },
         
         initialize: function () {
             app.mediator.multiSubscribe(this.subscribes, this);
             
-            this.controller = new CS.Groups.Controller();
+            this.controller = new This.Controller();
 			
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
@@ -82,6 +84,11 @@
             this.navigate('Groups/' + location + '/' + groupName + '/info');
         },
 
+        navToLocations: function () {
+            this.currentUrl = window.location.pathname;
+            this.navigate('Groups/' + 'Locations');
+        },
+
         initLocation: function () {
             var location = this.controller.start();
             this.navigate('Groups/' + location);     
@@ -112,6 +119,11 @@
                 this.controller.showForm(modelGroup);
             }      
         },
+		
+		openGroupCreate: function (location) {
+			this.openLocation(location);
+			this.controller.showForm();
+		},
 
         openGroupAction: function (location, groupName, action) {
             var actions = {
@@ -128,8 +140,13 @@
             }   
         },
 
-        notFound: function () {
-            app.mediator.publish('Error: show-page-404');
+        openLocations: function () {
+            var locationsController = new CS.Locations.Controller();
+
+            this.initLocation();
+            locationsController.showLocations();
+
         }
+
     });
 })(CS.Groups, app);
