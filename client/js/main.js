@@ -12,6 +12,7 @@ System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'Schedule', 'User', 'Locatio
 System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController']);
 
 $(function () {
+    System.startWebSocket();
     System.preload().then(main);
     
     function main () {

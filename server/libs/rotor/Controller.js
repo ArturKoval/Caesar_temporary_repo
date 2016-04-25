@@ -1,6 +1,5 @@
 'use strict';
-var mediator = require('../mediator'),
-    _ = require('underscore'),
+var _ = require('underscore'),
     fs = require('fs');
 
 function Controller () {}
@@ -65,17 +64,19 @@ _.extend(Controller.prototype, {
 
                 this.collection.initialize(function (result) {
                     this.collection[this.method](reqBody, action, this.sendResponse, this);
+                    this.collection.on('destroy change', function (model) {
+                        global.mediator.publish('Update socket', {collection: req.url});
+                    });
                 }, this);
             }.bind(this));
         } else {
             this.collection.initialize(function (result) {
                 this.collection[this.method](action, this.sendResponse, this);
+                this.collection.on('destroy change', function (model) {
+                    global.mediator.publish('Update socket', {collection: req.url});
+                });
             }, this);
         }
-
-        this.collection.on('add destroy change', function (model) {
-            mediator.publish('Update socket', {collection: req.url});
-        });
         
     },
 

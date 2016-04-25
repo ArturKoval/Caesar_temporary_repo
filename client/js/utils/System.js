@@ -67,6 +67,7 @@ var System = (function () {
         socket.onmessage = function(event) {
             var data = event.data,
                 collection = data.collection;
+                console.log(event.data);
         };
             // fetch implementation here
     }

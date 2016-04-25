@@ -1,5 +1,4 @@
 var WebSocketServer = new require('ws'),
-    mediator = require('./libs/mediator'),
     _ = require('underscore');
 
 function Socket () {}
@@ -12,20 +11,21 @@ _.extend(Socket.prototype, {
         var id;
         console.log('socket')
         this.webSocketServer.on('connection', function (websocket) {
-            id = 'user: ' + Math.floor(Math.random()*(100000000-1)+1);
+            id = new Date().getTime();
 
             this.users[id] = websocket;
-            console.log(id)
-            mediator.subscribe('Update socket', function (json) {
+
+            global.mediator.subscribe('Update socket', function (json) {
                 for (var user in this.users) {
-                    this.users.send(JSON.stringify(json));
+                    console.log('event fired: ', json)
+                    this.users[user].send(JSON.stringify(json));
                 }
-            });
+            }.bind(this));
 
             websocket.on('close', function() {
                 delete this.users[id];
-            });
-        });
+            }.bind(this));
+        }.bind(this));
     }
 });
 
