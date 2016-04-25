@@ -3,7 +3,7 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Menu: locations': 'showLocations',
+            
             'Groups: saved': 'addGroup'
         },
 

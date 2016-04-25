@@ -11,10 +11,14 @@
 
         initialize: function () {
             this.mediator = app.mediator;
+            this.$content = $('.content-section');
+            this.contentView = new CS.Groups.ContentView();
+            this.$content .html(this.contentView.render().$el);  
             this.$sidebar = $('#left-side-bar');
             this.$menuAbout = $('.menuAbout');
             this.$modalWindow = $('#modal-window');
-            this.$mainSection = $('#main-section');
+            this.$mainSection = $('.main-section');
+            this.$mainSection.empty();
             this.leftSideBarView = new This.LeftSideBarView();
         },
 
@@ -32,7 +36,7 @@
             }, this);
             
             this.$menuAbout.removeClass('chosenDirection');
-            $('.' + direction).addClass('chosenDirection');
+            
         }, 
 
         openListPeopleGroup: function (model) {

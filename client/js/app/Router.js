@@ -5,9 +5,21 @@
         routes: {
             '': 'pageGroups',
             'Groups*path': 'pageGroups',
-            'About': 'pageAbout',
-            'About*path':'errorPage',
+            'Locations(/)': 'pageGroups',
+            'About*path':'pageAbout',
             '*path': 'errorPage'
+        },
+
+        subscribes: {
+            'Menu: SelectedPage': 'navToChangePath'
+        },
+
+        initialize: function () {
+            app.mediator.multiSubscribe(this.subscribes, this);
+        },
+
+        navToChangePath: function (path) {
+            this.navigate(path, {trigger: true});
         },
 
         pageGroups: function () {

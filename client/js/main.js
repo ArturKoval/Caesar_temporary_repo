@@ -9,7 +9,7 @@ var CS = {},
 
 System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'Schedule', 'User', 'Locations', 'Messenger', 'About']);
 
-System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController']);
+System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController', 'menuController']);
 
 $(function () {
     System.startWebSocket();
@@ -24,8 +24,7 @@ $(function () {
         app.notFoundController = new CS.ErrorPage.Controller();
 		app.messengerController = new CS.Messenger.Controller();
         app.locationsController = new CS.Locations.Controller();
-
-        app.contextMenu  = new CS.Menu.ContextMenuView({el: '.left-menu'});
+        app.menuController  = new CS.Menu.Controller();
 
         Backbone.history.start({pushState: true});
     }

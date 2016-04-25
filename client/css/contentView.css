@@ -37,6 +37,7 @@ body {
 
 .content-header-location, .content-header-group-name {
 	display:inline-block;
+	height: 52px;
 }
 
 .content-header-group-name {

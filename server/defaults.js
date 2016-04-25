@@ -335,7 +335,7 @@ var defaultData = {
         "nickname": "Team Doloto",
         "name": "Dp-080-UI",
         "logo": "/img/TeamDoloto/logoTeamDoloto.jpg",
-        "direction": "javascript",
+        "direction": "Development & Research",
         "people": {
             "Karina Chegorko": "/img/TeamDoloto/Chegorko.jpg",
             "Alena Borysova": "/img/TeamDoloto/Borysova.jpg",
@@ -349,7 +349,7 @@ var defaultData = {
         "nickname": "The Light side",
         "name": "Dp-082-MQC",
         "logo": "/img/TheLightSide/logoTheLightSide.jpg",
-        "direction": "mqc",
+        "direction": "Quality Assurance",
         "people": {
             "Artur Chesnokov": "/img/TheLightSide/Chesnokov.jpg",
             "Sergey Tsova": "/img/TheLightSide/Tsova.jpg",
@@ -361,7 +361,7 @@ var defaultData = {
         "nickname": "Fluffy Dots",
         "name": "Dp-088-MQC",
         "logo": "/img/FluffyDots/logoFluffyDots.png",
-        "direction": "mqc",
+        "direction": "Quality Assurance",
         "people": {
             "Liliia Krivsun": "/img/FluffyDots/Krivsun.jpg",
             "Anton Fanygin": "/img/FluffyDots/Fanygin.jpg",
@@ -375,7 +375,7 @@ var defaultData = {
         "nickname": "Floppy-Drive 8",
         "name": "Dp-09-JS",
         "logo": "/img/Floppy-Drive-8/logo-floppy-drive-8.png",
-        "direction": "javascript",
+        "direction": "Development & Research",
         "people": {
             "Vladyslava Tyschenko": "/img/Floppy-Drive-8/Tyschenko.jpg",
             "Anastasyia Serheeva": "/img/Floppy-Drive-8/Serheeva.jpg",
@@ -390,7 +390,7 @@ var defaultData = {
         "nickname": "Charming Chaos",
         "name": "Dp-094-MQC",
         "logo": "/img/CharmingChaos/logoCharmingChaos.jpg",
-        "direction": "mqc",
+        "direction": "Quality Assurance",
         "people": {
             "Elena Kulynenkova": "/img/CharmingChaos/Kulynenkova.jpg",
             "Lylyia Babenko": "/img/CharmingChaos/Babenko.jpg",

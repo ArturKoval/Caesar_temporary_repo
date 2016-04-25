@@ -3,7 +3,7 @@
     This.ListContributorsView = Backbone.View.extend({
         tagName: 'div',
         className: 'modal-wrapper',
-
+        documentEl: $(document),
         events: {
             'click .btn-cancel': 'close'
         },
@@ -11,6 +11,8 @@
         initialize: function () {
             this.people = this.model.get('people');
             this.contributors = _.pairs(this.people);
+             _.bindAll(this, 'onKeyPress');
+            this.documentEl.bind('keydown', this.onKeyPress);
         },
 
         render: function () {
@@ -26,7 +28,14 @@
         },
 
         close: function () {
+            this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
+        },
+
+        onKeyPress: function (e) {
+            if (e.keyCode === System.constants.ESC) {
+                this.close();
+            }
         }
         
     });

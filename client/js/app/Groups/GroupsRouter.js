@@ -12,13 +12,12 @@
             'Groups: delete-group': 'navToDeleteGroup',
             'Groups: saved': 'navToSaveGroup',
             'Groups: dialog-closed': 'navToCancelForm',
-            'Menu: locations': 'navToLocations'
         },
         
         routes: {    
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
-            'Groups/Locations(/)': 'openLocations',
+            'Locations(/)': 'openLocations',
             'Groups/:location(/)': 'openLocation',
 			'Groups/:location/create(/)': 'openGroupCreate',
             'Groups/:location/:group(/)': 'openGroupInfo',
@@ -84,11 +83,6 @@
             this.navigate('Groups/' + location + '/' + groupName + '/info');
         },
 
-        navToLocations: function () {
-            this.currentUrl = window.location.pathname;
-            this.navigate('Groups/' + 'Locations');
-        },
-
         initLocation: function () {
             var location = this.controller.start();
             this.navigate('Groups/' + location);     
@@ -143,9 +137,8 @@
         openLocations: function () {
             var locationsController = new CS.Locations.Controller();
 
-            this.initLocation();
+            this.currentUrl = window.location.pathname;
             locationsController.showLocations();
-
         }
 
     });

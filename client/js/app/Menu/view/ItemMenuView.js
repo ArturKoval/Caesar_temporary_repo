@@ -8,6 +8,10 @@
             'click': 'openPage'
         },
 
+        initialize: function () {
+            this.$itemMenu = $('.itemMenu');
+        },
+
         render: function () {
             this.$el.html(templates.ItemMenuTpl(this.model.toJSON()));
 
@@ -15,9 +19,10 @@
         },
 
         openPage: function () {
-            $('.itemMenu').removeClass('activeItem');
+            this.$itemMenu.removeClass('activeItem');
             this.$el.addClass('activeItem');
-            app.mediator.publish('Menu:' + ' ' + this.model.get('description'));
+            app.mediator.publish('Menu: SelectedPage', this.model.get('description'));
+
         }
         
     });

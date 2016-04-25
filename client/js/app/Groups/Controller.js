@@ -14,6 +14,8 @@
 
         initialize: function () {
             this.mediator = app.mediator;
+            this.$leftMenu = $('.left-menu');
+            this.contextMenu  = new CS.Menu.ContextMenuView({el: this.$leftMenu});
 
             //Temporary buttons start
             $('#createGroup').on('click', function () {
@@ -21,16 +23,6 @@
             });
 
             //Temporary button end
-            this.coll = [{icon:'fa fa-globe fa-2x', description: 'locations'},
-                {icon:'fa fa-file-text-o fa-2x', description: 'add'},
-                {icon:'fa fa-calendar fa-2x', description: 'add'},
-                {icon:'fa fa-users fa-2x', description: 'add'},
-                {icon:'fa fa-envelope-o fa-2x', description: 'add'},
-                {icon:'fa fa-info fa-2x', description: 'add'}];
-            this.menuColl = new CS.Menu.Menu(this.coll);
-            this.mainMenu = new CS.Menu.MainMenuView({collection: this.menuColl, el: $('.top-menu')});
-            this.mainMenu.render();
-            
             $('.timeBarContainer')
                 .on('mouseover', function () {
                     this.timeBarView = new CS.Messenger.TimeBarView({
