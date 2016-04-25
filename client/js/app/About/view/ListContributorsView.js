@@ -21,7 +21,7 @@
         },
 
         renderOne: function (arr) {
-            this.contributorView = new This.ContributorView({model: {arr}});
+            this.contributorView = new This.ContributorView({model: {arr: arr}});
             this.$el.find('.photosContainer').append(this.contributorView.render().el);
         },
 

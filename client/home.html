@@ -20,6 +20,7 @@
         <link rel="stylesheet" href="/css/Groups/GroupCreateEditTpl.css">
         <link rel="stylesheet" href="/css/Groups/GroupDeleteViewTpl.css">
         <link rel="stylesheet" href="/css/Menu/contextMenu.css">
+        <link rel="stylesheet" href="/css/Menu/mainMenu.css">
 
         <link rel="stylesheet" href="/css/fontello.css">
         <link rel="stylesheet" href="/css/animation.css">
@@ -52,8 +53,15 @@
         <script src="/js/app/Router.js"></script>
 
         <!-- menu -->
+        <script src="/js/app/Menu/model/ItemMenu.js"></script>
+        <script src="/js/app/Menu/model/Menu.js"></script>
+        <script src="/js/app/Menu/tpl/ItemMenuTpl.js"></script>
+        <script src="/js/app/Menu/tpl/MainMenuTpl.js"></script>
         <script src="/js/app/Menu/tpl/ContextMenuTpl.js"></script>
         <script src="/js/app/Menu/view/ContextMenuView.js"></script>
+        <script src="/js/app/Menu/view/ItemMenuView.js"></script>
+        <script src="/js/app/Menu/view/MainMenuView.js"></script>
+
 
         <!-- filter -->
         <script src="/js/app/Filter/filter.js"></script>
@@ -118,13 +126,13 @@
         <script src="/js/app/Preload/PreloadView.js"></script>
         <!--Locations -->
         <script src="/js/app/Locations/Controller.js"></script>
+        <script src="/js/app/Locations/LocationsRouter.js"></script>
         <script src="/js/app/Locations/model/Location.js"></script>
         <script src="/js/app/Locations/model/LocationList.js"></script>
         <script src="/js/app/Locations/tpl/LocationListViewTpl.js"></script>
         <script src="/js/app/Locations/tpl/LocationViewTpl.js"></script>
         <script src="/js/app/Locations/view/LocationView.js"></script>
         <script src="/js/app/Locations/view/LocationListView.js"></script>
-        <script src="/js/app/Locations/view/ShowButtonView.js"></script>
         
         <!-- users -->
         <script src="/js/app/Users/tpl/largeUserViewTpl.js"></script>
@@ -152,6 +160,7 @@
         <!-- endbuild -->
     </head>
     <body>
+        <div id="top-menu" class="top-menu"></div>
         <div id="wrapper" class="wrapper">
             <div id="header" class="header">
                 <div id="logo" class="logo">
@@ -161,7 +170,6 @@
                 </div>
                 <div id="icon" class="icon"></div>
                 <div id="left-menu" class="left-menu"></div>
-                <div id="top-menu" class="top-menu"></div>
                 <div id="right-menu" class="right-menu"></div>
             </div>
             <div id="page" class="page">

@@ -15,9 +15,7 @@
         },
 
         showName: function () {
-                $('.contributor').removeClass('chosenPhoto');
-                this.$el.addClass('chosenPhoto');
-                app.mediator.publish('About: selectedContributor', this.model.arr[0]);
+            app.mediator.publish('About: selectedContributor', this.model.arr[0]);
         }
         
     });

@@ -11,7 +11,6 @@
 	font-size: 1.5em;
 	display: flex;
     vertical-align: middle;
-    cursor: pointer;
 }
 
 .menuAbout > p {
@@ -60,6 +59,10 @@
 	cursor: pointer;
 }
 
+.contributor:hover {
+	background: #3C78B5;
+}
+
 .containerContributors {
 	padding: 0px 300px;
 }
@@ -71,7 +74,4 @@
 	float: left;
 }
 
-.chosenPhoto {
-	background: #3C78B5;
-}
 

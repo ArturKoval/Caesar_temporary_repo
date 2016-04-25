@@ -18,10 +18,17 @@
                 app.mediator.publish('Groups: create-request', null);
             });
             //Temporary button end
-
-            this.contentView = new This.ContentView();
+            this.coll = [{icon:'fa fa-globe fa-2x', description: 'locations'},
+                {icon:'fa fa-file-text-o fa-2x', description: 'add'},
+                {icon:'fa fa-calendar fa-2x', description: 'add'},
+                {icon:'fa fa-users fa-2x', description: 'add'},
+                {icon:'fa fa-envelope-o fa-2x', description: 'add'},
+                {icon:'fa fa-info fa-2x', description: 'add'}];
+            this.menuColl = new CS.Menu.Menu(this.coll);
+            this.mainMenu = new CS.Menu.MainMenuView({collection: this.menuColl, el: $('.top-menu')});
+            this.mainMenu.render();
             
-
+            this.contentView = new This.ContentView();
 			this.$main = $('.main-section');
 			this.$sidebar = $('#left-side-bar');
         },
@@ -31,13 +38,11 @@
 			$('#content-section').html(this.contentView.render(userLocation).$el);
 			app.mediator.publish('Locations: selected', [userLocation]);
             this.render(userLocation);
-            this.buttonShowAll();
 
             return userLocation;
         },
 
         render: function (location) {
-			console.log('render: ', location);
 			
             this.groupListView = new This.GroupListView({
                 collection: store.groups
@@ -52,11 +57,9 @@
 
         showPageByRoute: function (location, groupName) {
             if (store.locations.getNames().indexOf(location) > -1) {
-			console.log('showPageByRoute: ', location);
-			$('#content-section').html(this.contentView.render(location).$el);
-			app.mediator.publish('Locations: selected', [location]);
+			    $('#content-section').html(this.contentView.render(location).$el);
+			    app.mediator.publish('Locations: selected', [location]);
                 this.render(location);
-                this.buttonShowAll();
 	
                 if (this.list(location).findGroupByName(groupName)) {
                     this.contentView.showSelectedGroup(this.list(location).findGroupByName(groupName));
@@ -74,7 +77,6 @@
 				this.render(location);
 				$('#content-section').html(this.contentView.render(location).$el);
 				app.mediator.publish('Locations: selected', [location]);
-				this.buttonShowAll();
 			} else {
 				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
 			}
@@ -106,10 +108,6 @@
         modal: function (view) {
             $('#modal-window').append(view.render().$el);
         },
-
-        buttonShowAll: function () {
-			$('#page:not(:has(.btn.btn-primary))').prepend(new SelectButtonView().render().$el.html('Show all locations'));
-		},
 
 		list: function (data) {
              return store.groups.findGroupsByLocations(data);

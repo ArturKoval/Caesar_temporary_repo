@@ -3,7 +3,7 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Locations: show-request': 'showLocations',
+            'Menu: locations': 'showLocations',
         },
 
         initialize: function () {

@@ -89,6 +89,7 @@
         },
 
         close: function () {
+            app.mediator.publish('Groups: dialog-closed');
             app.mediator.remove('Locations: one-selected', this.selectOne, {}, this);
 
             this.$documentEl.unbind('keydown', this.onKeyPress);
