@@ -10,12 +10,12 @@ _.extend(Socket.prototype, {
 
     start: function () {
         var id;
-
+        console.log('socket')
         this.webSocketServer.on('connection', function (websocket) {
             id = 'user: ' + Math.floor(Math.random()*(100000000-1)+1);
 
             this.users[id] = websocket;
-
+            console.log(id)
             mediator.subscribe('Update socket', function (json) {
                 for (var user in this.users) {
                     this.users.send(JSON.stringify(json));

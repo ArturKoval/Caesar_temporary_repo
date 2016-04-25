@@ -6,6 +6,7 @@ var http = require('http'),
 
 http.createServer(start).listen(3000);
 console.log('server started...');
+socket.start();
 
 function start (request, response, errRoute) {
     var types = {
@@ -30,8 +31,6 @@ function start (request, response, errRoute) {
         urlData,
         action,
         route;
-
-    socket.start();
 	
 	if (errRoute) {
 		route = errRoute;
