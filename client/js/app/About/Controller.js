@@ -43,7 +43,6 @@
 
         showNameContributor: function (info) {
             this.$contributorsName.html(info);
-        }
-        
+        }    
     });
 })(CS.About, app);

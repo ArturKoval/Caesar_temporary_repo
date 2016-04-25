@@ -13,21 +13,22 @@
         <link rel="stylesheet" href="/css/studentListView.css">
         <link rel="stylesheet" href="/css/scheduleView.css">
         <link rel="stylesheet" href="/css/Locations/LocationsView.css">
-        <link rel="stylesheet" type="text/css" href="/css/messenger.css">
+        <link rel="stylesheet" href="/css/messenger.css">
         <link rel="stylesheet" href="/css/font-awesome.min.css">
         <link rel="stylesheet" href="/css/aboutModul.css">
         <link rel="stylesheet" href="/css/User/largeUserViewTpl.css">
+        <link rel="stylesheet" href="/css/timeBar.css">
         <link rel="stylesheet" href="/css/Groups/GroupCreateEditTpl.css">
         <link rel="stylesheet" href="/css/Groups/GroupDeleteViewTpl.css">
         <link rel="stylesheet" href="/css/Menu/contextMenu.css">
         <link rel="stylesheet" href="/css/Menu/mainMenu.css">
 
+
+
         <link rel="stylesheet" href="/css/fontello.css">
         <link rel="stylesheet" href="/css/animation.css">
         <link rel="stylesheet" href="/css/preloadView.css">
-
         <link rel="stylesheet" href="/css/grouplist.css">
-
         <link rel="stylesheet" href="/css/User/smallUserViewTpl.css">
 
         <!-- endbuild -->
@@ -146,16 +147,24 @@
 
         <!-- messenger -->
         <script src="/js/app/Messenger/model/Messenger.js"></script>
+        <script src="/js/app/Messenger/model/Clock.js"></script>
 
         <script src="/js/app/Messenger/tpl/FlashMessageTpl.js"></script>
         <script src="/js/app/Messenger/tpl/HintTpl.js"></script>
         <script src="/js/app/Messenger/tpl/ConfirmationMessageTpl.js"></script>
+        <script src="/js/app/Messenger/tpl/TimeBarTpl.js"></script>
         
         <script src="/js/app/Messenger/view/ConfirmationMessageView.js"></script>
         <script src="/js/app/Messenger/view/FlashMessageView.js"></script>
         <script src="/js/app/Messenger/view/HintView.js"></script>
+        <script src="/js/app/Messenger/view/TimeBarView.js"></script>
 
         <script src="/js/app/Messenger/Controller.js"></script>
+
+        <!-- schedule -->
+        <script src="/js/app/Schedule/model/ActivityModel.js"></script>
+        <script src="/js/app/Schedule/model/WeekModel.js"></script>
+        <script src="/js/app/Schedule/model/GroupSchedule.js"></script>
         
         <!-- endbuild -->
     </head>
@@ -183,5 +192,6 @@
         </div>
         <div id="modal-window"></div>
         <span class="glyphicon glyphicon-plus-sign" id="createGroup"></span>
+        <span class="glyphicon glyphicon-time timeBarContainer"></span>
     </body>
 </html>

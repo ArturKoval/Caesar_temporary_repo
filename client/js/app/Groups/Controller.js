@@ -13,10 +13,11 @@
         initialize: function () {
             this.mediator = app.mediator;
 
-            //Temporary button start
+            //Temporary buttons start
             $('#createGroup').on('click', function () {
                 app.mediator.publish('Groups: create-request', null);
             });
+
             //Temporary button end
             this.coll = [{icon:'fa fa-globe fa-2x', description: 'locations'},
                 {icon:'fa fa-file-text-o fa-2x', description: 'add'},
@@ -28,27 +29,41 @@
             this.mainMenu = new CS.Menu.MainMenuView({collection: this.menuColl, el: $('.top-menu')});
             this.mainMenu.render();
             
+            $('.timeBarContainer')
+                .on('mouseover', function () {
+                    this.timeBarView = new CS.Messenger.TimeBarView({
+                        model: new CS.Messenger.Clock()
+                    });
+                $('.flashMessage').html(this.timeBarView.render().el);
+            })
+                .on('mouseleave', function () {
+                    this.timeBarView.remove();
+            });
+            //Temporary buttons end
+
             this.contentView = new This.ContentView();
+
 			this.$main = $('.main-section');
 			this.$sidebar = $('#left-side-bar');
+            this.$content = $('#content-section');
         },
 
         start: function () {
 			var userLocation = app.user.get('location');
-			$('#content-section').html(this.contentView.render(userLocation).$el);
+
+			this.$content.html(this.contentView.render(userLocation).$el);
 			app.mediator.publish('Locations: selected', [userLocation]);
             this.render(userLocation);
 
             return userLocation;
         },
 
-        render: function (location) {
-			
+        render: function () {
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
-            this.$sidebar.html(this.groupListView.$el).append(this.groupListView.render());
+            this.$sidebar.html(this.groupListView.render().el);
         },
 
         groupsRender: function(collection) {
@@ -57,7 +72,7 @@
 
         showPageByRoute: function (location, groupName) {
             if (store.locations.getNames().indexOf(location) > -1) {
-			    $('#content-section').html(this.contentView.render(location).$el);
+			    this.$content.html(this.contentView.render(location).$el);
 			    app.mediator.publish('Locations: selected', [location]);
                 this.render(location);
 	
@@ -75,7 +90,7 @@
 		showLocationByRoute: function (location) {
 			if (store.locations.getNames().indexOf(location) > -1) {
 				this.render(location);
-				$('#content-section').html(this.contentView.render(location).$el);
+				this.$content.html(this.contentView.render(location).$el);
 				app.mediator.publish('Locations: selected', [location]);
 			} else {
 				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'})
@@ -106,7 +121,7 @@
         //Helpers
 
         modal: function (view) {
-            $('#modal-window').append(view.render().$el);
+            $('#modal-window').html(view.render().$el);
         },
 
 		list: function (data) {

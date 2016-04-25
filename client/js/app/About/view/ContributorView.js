@@ -16,7 +16,6 @@
 
         showName: function () {
             app.mediator.publish('About: selectedContributor', this.model.arr[0]);
-        }
-        
+        }  
     });
 })(CS.About, app);
