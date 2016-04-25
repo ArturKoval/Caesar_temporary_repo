@@ -2,15 +2,15 @@
 (function (This, app)  {
     This.Router = Backbone.Router.extend({
         currentUrl: 'Locations',
-        
+
         subscribes: {
             'Menu: locations': 'navToLocations'
         },
-        
-        routes: {    
+
+        routes: {
             'Locations(/)': 'openLocations'
         },
-        
+
         initialize: function () {
             app.mediator.multiSubscribe(this.subscribes, this);
             this.controller = This.Controller();

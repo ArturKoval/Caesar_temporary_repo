@@ -1,14 +1,14 @@
 'use strict';
 
 (function (This, i) {
-    This.GroupSchedule = Backbone.Model.extend({ 
+    This.GroupSchedule = Backbone.Model.extend({
         defaults: function () {
             return {
                 groupName: '',
                 keyDates: {},
                 weeks: {}
-            }
-        }    
+            };
+        }
     });
 })(CS.Schedule, i);
 

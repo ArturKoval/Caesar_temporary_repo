@@ -14,24 +14,20 @@
             };
         },
 
-        sync: function(method, model, options) {
-            var request = '';
+        sync: function (method, model, options) {
+            var newModel = {},
+                request = '';
 
             if (method === 'update' || method === 'create') {
-                model.unset('isChecked', {silent: true});
+                newModel = model.clone();
+                newModel.unset('isChecked', {silent: true});
 
-                request = Backbone.sync.call(model, method, model, options);
+                request = Backbone.sync.call(newModel, method, newModel, options);
             } else {
                 request = Backbone.sync.call(this, method, this, options);
             }
 
             return request;
-        },
-
-        parse: function (data) {
-            data.isChecked = false;
-
-            return data;
         },
 
         toggleCheck: function () {

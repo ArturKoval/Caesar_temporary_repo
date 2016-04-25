@@ -22,7 +22,7 @@
 
         //temp
         addGroup: function (group) {
-            var location;
+            var location = {};
 
             if (group.isNew()) {
                 location = store.locations.getByName(group.get('location'));
