@@ -1,19 +1,15 @@
 templates.groupExpertsTpl = _.template([
     '<ul class="listExpert">',
     '</ul>',
-    '<div class="add-expert"></div>'
+    '<div class="add-expert clearfix"></div>'
 ].join(''));
 
 
 templates.groupSelectExpertTpl = _.template([
-    '<div class="input-group">',
-    '    <input name="experts" class="form-control">',
-    '    <span class="input-group-btn">',
-    '       <button id="acceptInput" class="btn btn-default" type="button">Ok</button>',
-    '    </span>',
-    '    <span class="input-group-btn">',
-    '       <button id="cancelInput" class="btn btn-default" type="button">Cancel</button>',
-    '    </span>',
+    '<div>',
+    '    <input name="experts" class="form-control pull-left">',
+    '    <span class="fa fa-times-circle-o fa-2x pull-right small-btn" id="cancelInput"></span>',
+    '    <span class="fa fa-check-circle-o fa-2x pull-right small-btn" id="acceptInput"></span>',
     '</div>'
 ].join(''));
 
@@ -22,8 +18,8 @@ templates.groupMoreExpertTpl = _.template('<span class="add-expert-btn"  tabinde
 templates.groupExpertTpl = _.template([
     '<% _(experts).each(function(expert) { %>',
     '<li>',
-    '<%= expert %>',
-    '    <button class="remove-expert" class="pull-right" data-expert="<%= expert %>"  tabindex="11">x</button>',
+    '    <span class="list-item"><%= expert %></span>',
+    '    <span class="remove-expert fa fa-times-circle-o fa-2x small-btn" data-expert="<%= expert %>"  tabindex="11"></span>',
     '</li>',
     '<% }); %>'
 ].join(''));

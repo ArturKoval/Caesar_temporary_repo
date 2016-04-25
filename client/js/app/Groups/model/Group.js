@@ -18,6 +18,13 @@
             };
         },
 
+        toClientJSON: function () {
+            var result = _.clone(this.attributes);
+            result.startDate = this.get('startDate') ? moment(this.get('startDate'),'X').format('MM/DD/YYYY') : '';
+            result.finishDate = this.get('finishDate') ? moment(this.get('finishDate'),'X').format('MM/DD/YYYY') : '';
+            return result;
+    },
+
         isMyTeacher: function (teacher) {
             return this.get('teachers').indexOf(teacher) > -1;
         },

@@ -20,7 +20,7 @@
             'change [name="startDate"]': 'setFinishDate',
             'change [name="direction"]': function (e) {
                 this.setFinishDate(e);
-                this.changeName(e);
+                // this.changeName(e);
             },
             'click .budget-option': 'setBudgetOwner',
             'click .calendar': 'showCalendar',
@@ -44,12 +44,11 @@
 
             model = _.extend({
                 directions: i.directions,
-                //the same as "locations: i.locations"
                 locations: store.locations.getNames(),
                 stages: i.stages,
                 isCreate: this.model.isNew(),
                 defaultLocation: app.user.get('location')
-            }, this.model.toJSON());
+            }, this.model.toClientJSON());
 
             this.$el.html(this.template(model));
             this.$el.find('#teachers').html(this.teacherView.render().$el);
@@ -61,7 +60,6 @@
 
             $(document).on('keydown', keyEvent.bind(this));
             function keyEvent (event) {
-
                 if (event.which === System.constants.ENTER) {
                     this.save();
                 } else if (event.which === System.constants.ESC) {
@@ -98,12 +96,12 @@
             $(event.target).addClass('active');
         },
 
-        changeName: function () {
-            var generatedName,
-                customName;
-
-            generatedName = this.model.generate();
-        },
+        // changeName: function () {
+        //     var generatedName,
+        //         customName;
+        //
+        //     generatedName = this.model.generate();
+        // },
 
         renderName: function () {
             this.$el.find('[name=name]').val(this.currentName);
@@ -120,7 +118,9 @@
             if (!_.isEmpty(errors)) {
                 this.createHint(errors);
             } else {
-                this.model.save(formData);
+                formData['startDate'] = moment(formData['startDate'], 'MM/DD/YYYY').format('X');
+                formData['finishDate'] = moment(formData['finishDate'], 'MM/DD/YYYY').format('X');
+                this.model.save(formData,{validate: false});
                 app.mediator.publish('Groups: saved', this.model);
                 store.groups.add(this.model);
                 this.createFlashMessage();

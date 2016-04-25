@@ -101,13 +101,9 @@ hr {
     text-align: right;
 }
 
-.backdrop .remove-teacher,
-.backdrop .remove-expert {
-    background-color: transparent;
-}
-
-.backdrop [name="experts"] {
-    max-width: 130px;
+.backdrop [name="experts"],
+.backdrop [name="teachers"] {
+    width: 145px;
 }
 
 .backdrop .add-teacher,
@@ -121,10 +117,29 @@ hr {
 }
 
 .backdrop .add-teacher-btn:focus,
-.backdrop .add-expert-btn:focus,
-.backdrop .remove-teacher:focus,
-.backdrop .remove-expert:focus{
+.backdrop .add-expert-btn:focus{
     text-decoration: underline;
+}
+
+.backdrop .small-btn {
+    color: #3C78B5;
+    cursor: pointer;
+    font-size: 1.6em;
+}
+
+
+.backdrop .add-teacher .small-btn,
+.backdrop .add-expert .small-btn {
+    padding-top: 6px;
+    margin-left: 5px;
+}
+
+.backdrop .small-btn:hover {
+    color: #171B65;
+}
+
+.backdrop .list-item {
+    vertical-align: text-bottom;
 }
 
 .backdrop .row {
@@ -151,6 +166,6 @@ hr {
     color: #171B65;
 }
 
-.backdrop input::-webkit-calendar-picker-indicator{
+.backdrop input::-webkit-calendar-picker-indicator {
     display: none;
 }
