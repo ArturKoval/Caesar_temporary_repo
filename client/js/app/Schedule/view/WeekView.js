@@ -33,8 +33,20 @@
                 $smallView.html(_.template([
                     '<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
                 ].join(''))(jsonGroup.weeks['04252016'][day][0]));
-
-                $day.append($smallView);
+				
+				$day.append($smallView);
+				
+				if (jsonGroup.weeks['04252016'][day][1]) {
+					var $smallView2 = $('<div class="activity"></div>');
+					$smallView2.html(_.template([
+						'<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
+					].join(''))(jsonGroup.weeks['04252016'][day][1]));
+					$day.append($smallView2);
+					$smallView2.css({'width': '50%'});
+					$smallView2.css({'border-left': '1px solid black'});
+					$smallView.css({'width': '50%'});
+				}
+	
             }
 
             //temp
@@ -79,9 +91,9 @@ var jsonGroup = {
     },
     weeks: {
         '04252016':  {
-            monday: [jsonA1, jsonA2],
-            tuesday: [jsonA3],
-            wednesday: [jsonA1],
+            monday: [jsonA1],
+            tuesday: [jsonA3, jsonA3],
+            wednesday: [jsonA1, jsonA3],
             thursday: [jsonA2],
             friday: [jsonA1, jsonA2]
         }
