@@ -47,20 +47,21 @@
             this.$el.find('#teachers').html(this.teacherView.render().$el);
             this.$el.find('#experts').html(this.expertView.render().$el);
 
-            this.$nameEl = this.$el.find('[name=name]');
-            this.$returnNameEl = this.$el.find('.return-name'); //удалить el
+            this.$name = this.$el.find('[name=name]');
+            this.$returnName = this.$el.find('.return-name');
             this.$direction = this.$el.find('[name=direction]');
             this.$location = this.$el.find('[name=location]');
 
             this.$el.find('.date-picker').datepicker({
-                dateFormat: 'mm/dd/yy'
+                dateFormat: 'mm/dd/yy',
+                beforeShowDay: $.datepicker.noWeekends
             });
 
             if (model.isCreate) {
                 this.addAlternativeEvents();
 
                 this.showReturnName = _.once(function () {
-                    this.$returnNameEl.show().on('click', _.bind(this.triggerName, this));
+                    this.$returnName.show().on('click', _.bind(this.triggerName, this));
                 });
             }
 
@@ -86,8 +87,9 @@
             if (!_.isEmpty(errors)) {
                 this.createHint(errors);
             } else {
-                formData['startDate'] = moment(formData['startDate'], 'MM/DD/YYYY').format('X');
-                formData['finishDate'] = moment(formData['finishDate'], 'MM/DD/YYYY').format('X');
+                formData['startDate'] = this.delayDate(formData['startDate']).format('X');
+                formData['finishDate'] = this.delayDate(formData['finishDate']).format('X');
+
                 this.model.save(formData, {validate: false});
                 app.mediator.publish('Groups: saved', this.model);
                 store.groups.add(this.model);
@@ -129,10 +131,10 @@
 
             if (this.customName) {
                 this.showReturnName();
-                this.$returnNameEl.html(this.customName);
+                this.$returnName.html(this.customName);
             }
 
-            this.$nameEl.val(generatedName);
+            this.$name.val(generatedName);
 
         },
 
@@ -150,6 +152,14 @@
                     formData['budgetOwner'] = $(button).data('value');
                 }
             });
+        },
+
+        delayDate: function (date) {
+            date = moment(date, 'MM/DD/YYYY');
+            while (date.isoWeekday() > 5) { //isoWeekday() === 5 is a Friday; 6 and 7 are weekend
+                date.add(1, 'days')
+            }
+            return date;
         },
 
         createHint: function (errors) {
@@ -205,9 +215,7 @@
                 warningMessage = 'experts';
             }
 
-            if (warningMessage !== '') {
-                return warningMessage;
-            }
+            return warningMessage;
         },
 
         generateName: function () {
@@ -240,31 +248,31 @@
 
             this.$location.on('change', _.bind(this.changeName, this));
             this.$direction.on('change', _.bind(this.changeName, this));
-            this.$nameEl.on('focus', _.bind(nameElOnFocus, this));
-            this.$nameEl.on('blur', _.bind(nameElOnBlur, this));
+            this.$name.on('focus', _.bind(nameElOnFocus, this));
+            this.$name.on('blur', _.bind(nameElOnBlur, this));
 
             function nameElOnFocus () {
-                currentName = this.$nameEl.val();
+                currentName = this.$name.val();
             }
 
             function nameElOnBlur () {
-                if (currentName !== this.$nameEl.val()) {
+                if (currentName !== this.$name.val()) {
 
-                    if (!this.customName && this.$nameEl.val() && this.$direction.find('option:selected').val()) {
+                    if (!this.customName && this.$name.val() && this.$direction.find('option:selected').val()) {
                         this.showReturnName();
                     }
 
-                    this.customName = this.$nameEl.val();
-                    this.$returnNameEl.html(this.generateName());
+                    this.customName = this.$name.val();
+                    this.$returnName.html(this.generateName());
                 }
             }
         },
 
         triggerName: function () {
-            var inputValue = this.$nameEl.val();
+            var inputValue = this.$name.val();
 
-            this.$nameEl.val(this.$returnNameEl.html());
-            this.$returnNameEl.html(inputValue);
+            this.$name.val(this.$returnName.html());
+            this.$returnName.html(inputValue);
         },
 
         close: function () {
