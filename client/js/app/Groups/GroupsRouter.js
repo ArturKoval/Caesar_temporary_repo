@@ -93,7 +93,7 @@
         },
 
         openGroupInfo: function (location, groupName) {
-            var modelGroup = this.controller.showPageByRoute(location, groupName);
+            var modelGroup = this.controller.showGroupViewByRoute(location, groupName, 'info');
 
             if (modelGroup) {
                 this.navigate('Groups/' + location + '/' + groupName + '/info');
@@ -128,7 +128,7 @@
                 };
 
             if (actions[action]) {
-                this.controller.showViewByRoute(location, groupName, action);
+                this.controller.showGroupViewByRoute(location, groupName, action);
             } else {
                 this.openGroupInfo(location, groupName);
             }   
