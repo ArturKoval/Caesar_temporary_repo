@@ -21,13 +21,13 @@
 
         hasCheckedLocations: function () {
             return this.any(function (location) {
-                return location.get('isChecked');
+                return location.isChecked;
             });
         },
 
         getCheckedLocations: function () {
             return this.filter(function (location) {
-                return location.get('isChecked');
+                return location.isChecked;
             });
         },
 

@@ -3,43 +3,34 @@
 (function (This) {
     This.Location = Backbone.Model.extend({
         urlRoot: '/locations',
+		isChecked: false,
 
         defaults: function () {
             return {
                 acronym: '',
                 name: '',
                 teachers: '',
-                groups: '',
-                isChecked: false
+                groups: ''
             };
         },
-
-        sync: function (method, model, options) {
-            var newModel = {},
-                request = '';
-
-            if (method === 'update' || method === 'create') {
-                newModel = model.clone();
-                newModel.unset('isChecked', {silent: true});
-
-                request = Backbone.sync.call(newModel, method, newModel, options);
-            } else {
-                request = Backbone.sync.call(this, method, this, options);
-            }
-
-            return request;
-        },
-
-        toggleCheck: function () {
-            this.set('isChecked', !this.get('isChecked'));
-        },
-
-        check: function () {
-            this.set('isChecked', true);
-        },
-
-        uncheck: function () {
-            this.set('isChecked', false);
-        }
+		
+		toggleCheck: function () {
+			this.isChecked = !this.isChecked;
+			this.triggerCheck();
+		},
+		
+		check: function () {
+			this.isChecked = true;
+			this.triggerCheck();
+		},
+		
+		uncheck: function () {
+			this.isChecked = false;
+			this.triggerCheck();
+		},
+		
+		triggerCheck: function () {
+			this.trigger('change:isChecked');
+		}
     });
 })(CS.Locations);
