@@ -52,6 +52,7 @@
 .activity{
    background-color: lightgreen;
    cursor: pointer;
+   height: 100%;
 }
 .activity > p{
     margin: 0;

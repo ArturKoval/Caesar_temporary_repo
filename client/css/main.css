@@ -68,9 +68,10 @@
 }
 
 .groupContainer {
-    height: 300px;
+    height: 500px;
     margin: 10px auto;
     text-align: center;
+    overflow: auto;
 }
 
 * {
