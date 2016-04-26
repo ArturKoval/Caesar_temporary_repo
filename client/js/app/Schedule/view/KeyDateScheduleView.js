@@ -3,6 +3,7 @@
 (function (This, app) {
     This.KeyDateScheduleView = Backbone.View.extend({
         tagName: 'table',
+        className: 'keydates-schedule',
 
         template: templates.keyDateScheduleViewTpl,
 

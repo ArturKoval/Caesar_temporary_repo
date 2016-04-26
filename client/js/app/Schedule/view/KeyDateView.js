@@ -15,6 +15,7 @@
         },
 
         showKeyDateWeek: function () {
+            console.log('You selected: ' + this.model);
         }
     });
 
