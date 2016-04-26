@@ -7,13 +7,13 @@ templates.groupTeachersTpl = _.template([
 
 templates.groupSelectTeacherTpl = _.template([
     '<div>',
-    '    <select name="teacher" id="teachers" class="form-control pull-left">',
+    '    <select name="teacher" id="teachers" class="form-control pull-left" tabindex="7">',
     '    <% _(allTeachers).each(function(teacher) { %>',
     '       <option value="<%= teacher %>" <%= teacher === defaultTeacher ? \'selected\' : \'\' %>><%= teacher %></option>',
     '    <% }); %>',
     '    </select>',
-    '       <span class="fa fa-times-circle-o fa-2x pull-right small-btn" id="cancelSelect"></span>',
-    '       <span class="fa fa-check-circle-o fa-2x pull-right small-btn" id="acceptSelect"></span>',
+    '       <span class="fa fa-times-circle-o fa-2x pull-right small-btn" id="cancelSelect" tabindex="9"></span>',
+    '       <span class="fa fa-check-circle-o fa-2x pull-right small-btn" id="acceptSelect" tabindex="8"></span>',
     '</div>'
 ].join(''));
 
