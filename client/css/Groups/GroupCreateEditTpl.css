@@ -29,13 +29,23 @@
     position: relative;
 }
 
+.backdrop .return-name {
+    position: absolute;
+    right: 16px;
+    bottom: -22px;
+}
+
 .backdrop .return-name:before {
-    font-family: FontAwesome;
+    font-family: FontAwesome, Tahoma;
     font-weight: normal;
     font-style: normal;
     display: inline-block;
     text-decoration: inherit;
-    content: "\f021";
+    content: "\f021 \00a0 Return '";
+}
+
+.backdrop .return-name:after {
+    content: "'";
 }
 
 .backdrop .btn.budget-option {

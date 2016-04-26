@@ -7,35 +7,40 @@
         template: templates.scheduleViewTpl,
 
         render: function() {
-        	this.$el.html(this.template(jsonGroup));
+            this.$el.html(this.template(jsonGroup));
 
-        	var nodeRouter = {
-        		monday: 1,
-			    tuesday: 2,
-			    wednesday: 3,
-			    thursday: 4,
-			    friday: 5
-        	}, timeRouter = {
-        		'9:00': 'nine',
-        		'9:30': 'nine-half',
-        		'10:00': 'ten'
-        	},
-        	$day;
+            var nodeRouter = {
+                monday: 1,
+                tuesday: 2,
+                wednesday: 3,
+                thursday: 4,
+                friday: 5
+            }, timeRouter = {
+                '9:00': 'nine',
+                '9:30': 'nine-half',
+                '10:00': 'ten'
+            },
+            $day,
+            keyDateScheduleView;
 
             for (var day in jsonGroup.weeks['04252016']) {
 
-            	var $div =  this.$el.find('.'+timeRouter[jsonGroup.weeks['04252016'][day][0].startTime]);
-            	$day = $($div[0].childNodes[nodeRouter[day]]);
-            
+                var $div =  this.$el.find('.'+timeRouter[jsonGroup.weeks['04252016'][day][0].startTime]);
+                $day = $($div[0].childNodes[nodeRouter[day]]);
 
-            	var $smallView = $('<div class="activity"></div>');
-	            $smallView.html(_.template([
-	            	'<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
-	            ].join(''))(jsonGroup.weeks['04252016'][day][0]));
 
-				$day.append($smallView);
+                var $smallView = $('<div class="activity"></div>');
+                $smallView.html(_.template([
+                    '<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
+                ].join(''))(jsonGroup.weeks['04252016'][day][0]));
+
+                $day.append($smallView);
             }
-         
+
+            //temp
+            keyDateScheduleView = new CS.Schedule.KeyDateScheduleView({collection: [jsonGroup.keyDates]});
+            this.$el.append(keyDateScheduleView.render().el);
+
             return this;
         }
     });
@@ -66,19 +71,19 @@ var jsonA3 = {
 var jsonGroup = {
     'groupName': 'DP-093-JS',
     'keyDates': {
-        start: 12355757,
-        demo1: 34215355,
-        demo2: 23466741,
-        demo3: 33545323,
-        finish: 233445211
+        start: '02/01/2016',
+        demo1: '02/22/2016',
+        demo2: '03/14/2016',
+        offering: '04/04/2016',
+        finish:'04/25/2016'
     },
     weeks: {
         '04252016':  {
-			monday: [jsonA1, jsonA2],
-		    tuesday: [jsonA3],
-		    wednesday: [jsonA1],
-		    thursday: [jsonA2],
-		    friday: [jsonA1, jsonA2]
-		}
+            monday: [jsonA1, jsonA2],
+            tuesday: [jsonA3],
+            wednesday: [jsonA1],
+            thursday: [jsonA2],
+            friday: [jsonA1, jsonA2]
+        }
     }
 }
