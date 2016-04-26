@@ -32,11 +32,16 @@
         show: function () {
             this.$el.addClass('open');
             this.$itemMenu.addClass('open');
+            this.timeBarView = new CS.Messenger.TimeBarView({
+                model: new CS.Messenger.Clock()
+            });
+            $('.flashMessage').html(this.timeBarView.render().el);
         },
 
         hide: function () {
             this.$el.removeClass('open');
             this.$itemMenu.removeClass('open');
+            this.timeBarView.remove();
         }
     });
 })(CS.Menu, app);

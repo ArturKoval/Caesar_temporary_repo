@@ -16,26 +16,7 @@
             this.mediator = app.mediator;
             this.$leftMenu = $('.left-menu');
             this.contextMenu  = new CS.Menu.ContextMenuView({el: this.$leftMenu});
-
-            //Temporary buttons start
-            $('#createGroup').on('click', function () {
-                app.mediator.publish('Groups: create-request', null);
-            });
-            //Temporary button end
-            $('.timeBarContainer')
-                .on('mouseover', function () {
-                    this.timeBarView = new CS.Messenger.TimeBarView({
-                        model: new CS.Messenger.Clock()
-                    });
-                $('.flashMessage').html(this.timeBarView.render().el);
-            })
-                .on('mouseleave', function () {
-                    this.timeBarView.remove();
-            });
-            //Temporary buttons end
-
             this.contentView = new This.ContentView();
-
 			this.$main = $('.main-section');
 			this.$sidebar = $('#left-side-bar');
             this.$content = $('#content-section');
