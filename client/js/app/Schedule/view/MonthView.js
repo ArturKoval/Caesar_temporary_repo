@@ -5,17 +5,17 @@
 (function (This, app) {
     This.MonthView = Backbone.View.extend({
 
-        className: 'calendarView',
         months: ["January", "February", "March", "April", "May", "June",
             "July", "August", "September", "October", "November", "December"],
+        shownMonth: new Date().getMonth(),
+        shownYear: new Date().getFullYear(),
+        className: 'calendarView',
 
         events: {
             'click .prevMonth': function () {this.toggleMonth('prev')},
-            'click .nextMonth': function () {this.toggleMonth('next')}
+            'click .nextMonth': function () {this.toggleMonth('next')},
+            'click tr': 'selectWeek'
         },
-
-        shownMonth: new Date().getMonth(),
-        shownYear: new Date().getFullYear(),
 
         render: function (year, month) {
             this.$el.html(templates.calendar({month: this.months[month]}));
@@ -61,25 +61,31 @@
             return this;
         },
 
-        toggleMonth: function(month) {
+        toggleMonth: function (month) {
             if (month === 'prev') {
-            this.shownMonth -=  1;
+                this.shownMonth -= 1;
             } else if (month === 'next') {
                 this.shownMonth += 1;
             }
 
-           if (this.shownMonth === -1) {
-               this.shownMonth = 11;
-               this.shownYear -= 1;
-           }
+            if (this.shownMonth === -1) {
+                this.shownMonth = 11;
+                this.shownYear -= 1;
+            }
 
             if (this.shownMonth === 12) {
                 this.shownMonth = 0;
                 this.shownYear += 1;
             }
 
-            this.render(this.shownYear,  this.shownMonth)
+            this.render(this.shownYear, this.shownMonth)
+        },
 
+        selectWeek: function(e) {
+            var week = $(e.currentTarget).attr("weeknum");
+            if (week !== undefined) {
+                app.mediator.publish('Week: selected', ('month: ' + this.shownMonth + ' week: ' + week));
+            }
         }
     });
 })(CS.Schedule, app);
