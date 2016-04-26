@@ -111,8 +111,8 @@ hr {
     text-align: right;
 }
 
-.backdrop [name="experts"],
-.backdrop [name="teachers"] {
+.backdrop [name="expert"],
+.backdrop [name="teacher"] {
     width: 145px;
 }
 
@@ -137,13 +137,13 @@ hr {
     font-size: 1.6em;
 }
 
-
 .backdrop .add-teacher .small-btn,
 .backdrop .add-expert .small-btn {
     padding-top: 6px;
     margin-left: 5px;
 }
 
+.backdrop .small-btn:focus,
 .backdrop .small-btn:hover {
     color: #171B65;
 }

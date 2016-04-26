@@ -75,11 +75,11 @@ templates.groupEditCreate = _.template([
 '                     <div class="row">',
 '                         <div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
 '                             <label class="control-label">Teachers</label>',
-'                             <div id="teachers" class="pull-right"></div>',
+'                             <div id="teachers" class="pull-right" name="teachers"></div>',
 '                         </div>',
 '                         <div class="form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 ">',
 '                             <label class="control-label">Experts</label>',
-'                             <div id="experts" class="pull-right"></div>',
+'                             <div id="experts" class="pull-right" name="experts"></div>',
 '                         </div>',
 '                     </div>',
 

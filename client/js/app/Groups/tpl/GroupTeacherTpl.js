@@ -7,7 +7,7 @@ templates.groupTeachersTpl = _.template([
 
 templates.groupSelectTeacherTpl = _.template([
     '<div>',
-    '    <select name="teachers" id="teachers" class="form-control pull-left">',
+    '    <select name="teacher" id="teachers" class="form-control pull-left">',
     '    <% _(allTeachers).each(function(teacher) { %>',
     '       <option value="<%= teacher %>" <%= teacher === defaultTeacher ? \'selected\' : \'\' %>><%= teacher %></option>',
     '    <% }); %>',
