@@ -3,6 +3,7 @@
 (function (This, app) {
     This.ContentView = Backbone.View.extend({
         template: templates.contentTpl,
+        className: 'contentSection',
 
     
         initialize: function () {
@@ -21,6 +22,7 @@
 			
             return this;
         },
+        
         showSelectedGroup: function (selected, action) {
             this.$groupLocation.html(selected.get('location'));
             this.$groupName.html(selected.get('name'));

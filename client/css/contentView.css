@@ -16,6 +16,10 @@ body {
 	display: inline-block;
 }
 
+.groupLocation {
+	cursor: pointer;
+}
+
 .groupStageTitle {
 	color: #171B65;
 }
@@ -58,4 +62,15 @@ body {
 #content-section  > div{
     width: 100%;
     height: inherit;
+    position: relative;
+}
+
+.contentSection .hint {
+	width: auto;
+    left: 0px;
+    right: auto;
+    white-space: pre;
+}
+.contentSection .hintTriangle {
+    left: 10px;
 }
