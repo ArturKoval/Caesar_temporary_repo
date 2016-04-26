@@ -49,9 +49,9 @@
         },
 
         showHints: function (locations) {
-            this.$groupLocation.hover(function () {
+            this.$groupLocation.mouseover(function () {
                 var hints = [{
-                    name: 'groupLocation',
+                    name: 'content-header-location',
                     text: locations.toString()
                 }];
 
@@ -60,7 +60,9 @@
                     $el: this.$el,
                     hints: hints
                 });
-
+            }.bind(this));
+            this.$groupLocation.mouseleave( function () {
+                $('.hint').remove();
             }.bind(this));
         },
     });
