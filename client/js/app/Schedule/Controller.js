@@ -17,13 +17,19 @@
                        
             this.contentView = new CS.Groups.ContentView();
             this.$content.html(this.contentView.render().$el);
-            this.$main = $('.main-section');
+            this.$main =  $('.main-section');
         },
 
         start: function () {
             var userLocation = app.user.get('location');
+            this.groupListView = new CS.Groups.GroupListView({
+                collection: store.groups
+            });
+
+            $('#left-side-bar').html(this.groupListView.render().el);
 
             app.mediator.publish('Locations: selected', [userLocation]);
+            
 
             // app.mediator.publish('Locations: selected', [userLocation]);
             
