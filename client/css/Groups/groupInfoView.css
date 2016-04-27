@@ -56,14 +56,17 @@
     margin: 30px auto 0;
 }
 
-.groupInfoView .key-dates td {
+.groupInfoView .key-dates td,
+.groupInfoView .key-dates th {
     border: 1px solid #dedede;
     font-style: normal;
     padding: 10px;
+    font-weight: normal;
 }
 
-.groupInfoView .key-dates thead td {
+.groupInfoView .key-dates thead th {
     font-size: 20px;
+    text-align: center;
 }
 
 .groupInfoView .key-dates tbody td {
