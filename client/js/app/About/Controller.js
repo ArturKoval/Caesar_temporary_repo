@@ -12,31 +12,31 @@
         initialize: function () {
             this.mediator = app.mediator;
             this.$content = $('.content-section');
-            this.contentView = new CS.Groups.ContentView();
-            this.$content .html(this.contentView.render().$el);  
             this.$sidebar = $('#left-side-bar');
             this.$menuAbout = $('.menuAbout');
             this.$modalWindow = $('#modal-window');
-            this.$mainSection = $('.main-section');
-            this.$mainSection.empty();
-            this.leftSideBarView = new This.LeftSideBarView();
-        },
-
-        showDirectionContributors: function () {
-            this.$sidebar.html(this.leftSideBarView.render().$el);
-        },
-
-        openContentView: function (direction) {
+            
             this.list = new This.ContributorList();
             this.list.fetch();
             this.list.on('sync', function () {
                 store.contributors = this.list;
-                this.contentView = new This.ContentAboutView({collection: store.contributors.findByDirection(direction)});
-                this.$mainSection.html(this.contentView.render().$el);
+                
             }, this);
-            
-            this.$menuAbout.removeClass('chosenDirection');
-            
+        },
+
+        showDirectionContributors: function () {
+            this.contentView = new CS.Groups.ContentView(); 
+            this.leftSideBarView = new This.LeftSideBarView();
+            this.$sidebar.html(this.leftSideBarView.render().$el);
+            this.$content.html(this.contentView.render().$el); 
+            this.$mainSection = $('.main-section');  
+            $('#left-menu').css('display','none');
+        },
+
+        openContentView: function (direction) {
+            this.contentView = new This.ContentAboutView({collection: store.contributors.findByDirection(direction)});
+            this.$mainSection.html(this.contentView.render().$el);
+            this.$menuAbout.removeClass('chosenDirection');    
         }, 
 
         openListPeopleGroup: function (model) {

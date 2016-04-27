@@ -5,6 +5,7 @@
         className: 'ContentAbout row',
         
         render: function () {   
+
             this.collection.forEach(this.renderOne, this);
                 
             return this;

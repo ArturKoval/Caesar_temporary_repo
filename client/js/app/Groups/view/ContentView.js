@@ -39,7 +39,6 @@
 
             } else {
                 $('.groupLocation').html(locations[0]);
-				console.log(locations[0])
             }
 
             this.$groupName.empty();

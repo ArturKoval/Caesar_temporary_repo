@@ -1,4 +1,4 @@
-#left-menu {
+.left-menu {
     position: fixed;
     top: -20px;
     right: 99%;
@@ -6,10 +6,9 @@
     transition: 0.4s;
     height: 110%;
     text-align: center;
-    background-color: white;
 }
 
-#left-menu.open {
+.left-menu.open {
     transition: 0.4s;
     right: 93%;
     display: block;
@@ -17,28 +16,28 @@
     background-color: #323232;
 }
 
-#left-menu .contextMenu {
+.left-menu .contextMenu {
     /*background-color: #323232;*/
     height: 100%;
 }
 
-#left-menu button {
+.left-menu button {
     background-color: transparent;
     color: white;
     border: none;
     cursor: pointer;
 }
 
-#left-menu button:hover {
+.left-menu button:hover {
     color: #3C78B5;
 }
 
-#left-menu > .editContextBtn {
+.left-menu > .editContextBtn {
     padding: 0;
     margin: 0;
 }
 
-#left-menu .controls{
+.left-menu .controls{
     position: relative;
     top: 32%;
 }

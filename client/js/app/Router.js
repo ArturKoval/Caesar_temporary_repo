@@ -5,7 +5,6 @@
         routes: {
             '': 'pageGroups',
             'Groups*path': 'pageGroups',
-            'Locations(/)': 'pageGroups',
             'About*path':'pageAbout',
             '*path': 'errorPage'
         },
@@ -19,7 +18,15 @@
         },
 
         navToChangePath: function (path) {
-            this.navigate(path, {trigger: true});
+            var routes = {
+                About: 'About',
+                Schedule: 'Schedule',
+                Groups: 'Groups'
+            };
+
+            if(routes[path]) {
+                this.navigate(routes[path], {trigger: true});
+            }   
         },
 
         pageGroups: function () {
