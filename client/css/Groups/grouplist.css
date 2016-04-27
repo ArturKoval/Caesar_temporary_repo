@@ -9,10 +9,9 @@
     margin: 0;
 }
 
-.search > img {
-    padding-left: 25px;
-    padding-top: 5px;
-    width: 50px;
+.group-list-header .search {
+    font-size: 2em;
+    display: inline-block;
 }
 
 .search > img {
@@ -146,12 +145,12 @@ input[type="radio"] + label {
     vertical-align: middle;
     text-align: center;
     word-wrap: break-word;
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .small-group-view > div > p {
     font-size: 1.5em;
-    padding: 10px; 
+    padding: 10px;
     color: white;
     margin: auto;
     word-wrap: break-word;
