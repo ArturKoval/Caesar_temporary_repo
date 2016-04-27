@@ -4,7 +4,7 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'User: edit-request': 'showEditDialog',
-            'User: profile-request': 'showProfile',
+            'User: profile-request': 'showProfile'
         },
 
         initialize: function () {
