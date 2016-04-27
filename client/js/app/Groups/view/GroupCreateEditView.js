@@ -41,7 +41,7 @@
                 stages: i.stages,
                 isCreate: this.model.isNew(),
                 defaultLocation: app.user.get('location')
-            }, this.model.toClientJSON());
+            }, this.model.toJSON());
 
             this.$el.html(this.template(model));
             this.$el.find('#teachers').html(this.teacherView.render().$el);
@@ -54,6 +54,7 @@
 
             this.$el.find('.date-picker').datepicker({
                 dateFormat: 'mm/dd/yy',
+                firstDay: 1,
                 beforeShowDay: $.datepicker.noWeekends
             });
 

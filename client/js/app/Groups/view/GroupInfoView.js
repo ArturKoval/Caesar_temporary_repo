@@ -24,7 +24,7 @@
         },
 
         render: function () {
-            this.$el.html(this.template(this.model.toClientJSON()));
+            this.$el.html(this.template(this.model.toJSON()));
             this.$keyDatesEl = this.$el.find('.key-dates');
 
             this.$keyDatesEl.append(this.keyDatesView.render().el);

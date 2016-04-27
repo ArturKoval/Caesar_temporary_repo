@@ -18,7 +18,7 @@
             };
         },
 
-        toClientJSON: function () {
+        toJSON: function () {
             var result = _.clone(this.attributes);
 
             result.startDate = this.get('startDate') ? moment(this.get('startDate'),'X').format('MM/DD/YYYY') : '';
