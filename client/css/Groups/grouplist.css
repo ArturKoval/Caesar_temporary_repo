@@ -9,10 +9,9 @@
     margin: 0;
 }
 
-.search > img {
-    padding-left: 25px;
-    padding-top: 5px;
-    width: 50px;
+.group-list-header .search {
+    font-size: 2em;
+    display: inline-block;
 }
 
 .search > img {

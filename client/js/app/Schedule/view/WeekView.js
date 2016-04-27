@@ -46,12 +46,7 @@
 					$smallView2.css({'border-left': '1px solid black'});
 					$smallView.css({'width': '50%'});
 				}
-	
             }
-
-            //temp
-            keyDateScheduleView = new CS.Schedule.KeyDateScheduleView({collection: [jsonGroup.keyDates]});
-            this.$el.append(keyDateScheduleView.render().el);
 
             return this;
         }
