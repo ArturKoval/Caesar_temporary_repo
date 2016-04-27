@@ -6,7 +6,7 @@
             'Groups: edit-request': 'showForm',
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
-            'Locations: selected': 'render',
+            'Locations: selected': 'groupsRender',
             'Groups: selected': 'showSelectedGroup',
             'Groups: saved': 'showSelectedGroup',
             'GroupList paginator: page-selected': 'groupsRender'
