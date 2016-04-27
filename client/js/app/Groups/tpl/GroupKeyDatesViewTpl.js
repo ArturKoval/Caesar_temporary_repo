@@ -2,7 +2,7 @@ templates.groupKeyDatesViewTpl = _.template([
     '<thead>',
         '<tr>',
             '<% for (var key in keyDates) {%>',
-                '<td><%= key %></td>',
+                '<th><%= key %></th>',
             '<% } %>',
         '</tr>',
     '</thead>',
