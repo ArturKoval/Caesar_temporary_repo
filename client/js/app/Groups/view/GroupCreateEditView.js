@@ -41,7 +41,7 @@
                 stages: i.stages,
                 isCreate: this.model.isNew(),
                 defaultLocation: app.user.get('location')
-            }, this.model.toJSON());
+            }, this.model.toClientJSON());
 
             this.$el.html(this.template(model));
             this.$el.find('#teachers').html(this.teacherView.render().$el);
