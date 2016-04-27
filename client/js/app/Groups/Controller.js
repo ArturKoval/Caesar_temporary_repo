@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This, app, i, menu) {
+(function (This, app, i) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Groups: edit-request': 'showForm',
@@ -16,9 +16,11 @@
             this.mediator = app.mediator;
 			this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
-            this.$leftMenu = $('.left-menu');
+			
+			this.$sidebar = $('#left-side-bar');
+            this.$content = $('#content-section');
+			
             this.contentView = new This.ContentView();
-            this.contextMenu  = new CS.Menu.ContextMenuView({el: this.$leftMenu});    
 			this.$content.html(this.contentView.render().$el);
 			this.$main = $('.main-section');
         },
@@ -27,7 +29,6 @@
 			var userLocation = app.user.get('location');
             this.$content.html(this.contentView.render().$el);
 			app.mediator.publish('Locations: selected', [userLocation]);
-            $('#left-menu').css('display','block');
             
             return userLocation;
         },

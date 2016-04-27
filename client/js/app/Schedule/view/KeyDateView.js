@@ -15,6 +15,7 @@
         },
 
         showKeyDateWeek: function () {
+            //app.mediator.publish('Key date selected');
             console.log('You selected: ' + this.model);
         }
     });

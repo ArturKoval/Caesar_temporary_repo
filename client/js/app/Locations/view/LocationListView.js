@@ -70,14 +70,10 @@
             app.mediator.publish('Locations: forRouter', this.collection.getCheckedLocationsNames());
             app.mediator.publish('Locations: selected', this.collection.getCheckedLocationsNames());
 
-            app.mediator.remove('Locations: one-selected', this.selectOne, {}, this);
-            if (this.collection.hasCheckedLocations()) {
-                this.collection.uncheckLocations();
-            }
             //proper
             // app.mediator.publish('Locations: selected', this.collection.getCheckedLocations());
 
-            this.remove();
+            this.onClose();
         },
 
         selectOne: function (selectedLocation) {
@@ -93,8 +89,7 @@
             this.nestedViews = [];
         },
 
-        close: function () {
-            app.mediator.publish('Groups: dialog-closed');
+        onClose: function () {
             app.mediator.remove('Locations: one-selected', this.selectOne, {}, this);
 
             this.$documentEl.unbind('keydown', this.onKeyPress);
@@ -105,6 +100,11 @@
 
             this.removeNestedViews();
             this.remove();
+        },
+
+        close: function () {
+            app.mediator.publish('Groups: dialog-closed');
+            this.onClose();
         }
     });
 })(CS.Locations, app);

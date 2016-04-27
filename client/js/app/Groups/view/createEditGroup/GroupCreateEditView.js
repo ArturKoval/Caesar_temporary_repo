@@ -54,6 +54,7 @@
 
             this.$el.find('.date-picker').datepicker({
                 dateFormat: 'mm/dd/yy',
+                firstDay: 1,
                 beforeShowDay: $.datepicker.noWeekends
             });
 

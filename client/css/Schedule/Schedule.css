@@ -1,0 +1,49 @@
+.schedule-controls {
+    float: right;
+
+}
+
+.scheduleView {
+    margin-top: 20px;
+}
+
+.schedule-controls .btn-schedule {
+    float: right;
+}
+
+.scheduleContainer {
+    margin: 10px auto;
+    overflow: auto;
+}
+
+.scBtn {
+    width: 48px;
+    height: 36px;
+    background-repeat: no-repeat; 
+    background-color: #3C78B5;
+    background-position: center; 
+}
+
+.scBtn:hover {
+    background-color: #171B65;
+}
+
+.monthBtn {
+    background-image: url('../../img/schedule_icons/calendar_month.png');
+    border-radius: 4px 0px 0px 4px;
+    -moz-border-radius: 4px 0px 0px 4px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+}
+
+.weekBtn {
+    background-image: url('../../img/schedule_icons/calendar_week.png');
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+}
+
+.keyDatesBtn {
+    background-image: url('../../img/schedule_icons/calendar_keyDates.png');
+    border-radius: 0px 4px 4px 0px;
+    -moz-border-radius: 0px 4px 4px 0px;
+    -webkit-border-radius: 0px 4px 4px 0px;
+}
