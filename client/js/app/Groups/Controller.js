@@ -9,7 +9,7 @@
             'Locations: selected': 'render',
             'Groups: selected': 'showSelectedGroup',
             'Groups: saved': 'showSelectedGroup',
-            'Paginator: page-selected': 'groupsRender'
+            'GroupList paginator: page-selected': 'groupsRender'
         },
 
         initialize: function () {
@@ -23,6 +23,10 @@
             this.contentView = new This.ContentView();
 			this.$content.html(this.contentView.render().$el);
 			this.$main = $('.main-section');
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
+            this.render();
         },
 
         start: function () {
@@ -34,10 +38,6 @@
         },
 
         render: function () {
-            this.groupListView = new This.GroupListView({
-                collection: store.groups
-            });
-
             this.$sidebar.html(this.groupListView.render().el);
         },
 

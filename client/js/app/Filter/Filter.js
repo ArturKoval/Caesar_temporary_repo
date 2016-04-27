@@ -3,34 +3,54 @@
 (function (This, app) {
 
     This.Filter = function () {
-        var params = {
+        var groupListParams = {
                 state: 'in-process',
                 areMyGroups: false,
-                locations: []
+                locations: [],
+                page: 0,
+                lastPage: 0,
+                pageSize: 10
             },
             groupList;
 
-        app.mediator.subscribe('MyGroups: selected', function (value) {params.areMyGroups = value});
-        app.mediator.subscribe('State: selected', function (value) {params.state = value});
-        app.mediator.subscribe('Locations: selected', function (value) {params.locations = value});
+        app.mediator.subscribe('MyGroups: selected', function (value) {groupListParams.areMyGroups = value});
+        app.mediator.subscribe('State: selected', function (value) {groupListParams.state = value});
+        app.mediator.subscribe('GroupList paginator: page size defined', function (value) {groupListParams.pageSize = value});
+        app.mediator.subscribe('Locations: selected', function (value) {groupListParams.locations = value});
+        app.mediator.subscribe('GroupList paginator: page-selected', function (value) {groupListParams.page = value;});
         app.mediator.subscribe('GroupsListView: rendered', function () {
-            params.state = 'in-process'; params.areMyGroups = false});
-
-
+            groupListParams.state = 'in-process'; groupListParams.areMyGroups = false});
 
         this.split = function (collection) {
             if (collection === 'groupList') {
 
                 groupList = store.groups;
-                groupList = groupList.findGroupsByLocations(params.locations);
-                groupList = groupList.findGroupsByState(params.state);
+                groupList = groupList.findGroupsByLocations(groupListParams.locations);
+                groupList = groupList.findGroupsByState(groupListParams.state);
 
-                if (params.areMyGroups) {
+                if (groupListParams.areMyGroups) {
                     groupList = groupList.findMyGroups(app.user.getShortName());
                 }
             }
+            groupList = splitToPages(groupList);
+
             return groupList;
         };
+
+        function splitToPages (collection) {
+            var chunk;
+
+            var tmp = collection.slice();
+            var pageElems = [];
+            while (tmp.length > 0) {
+                chunk = tmp.splice(0, groupListParams.pageSize);
+                pageElems.push(chunk);
+            }
+
+            groupListParams.lastPage = pageElems.length;
+            app.mediator.publish('GroupList paginator: pages defined', groupListParams);
+            return pageElems[groupListParams.page];
+        }
 
         return this;
     };

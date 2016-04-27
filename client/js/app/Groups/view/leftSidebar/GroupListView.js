@@ -13,8 +13,8 @@
         },
 
         initialize: function() {
-            this.collection.on('change', this.render, this);
-            this.collection.on('update', this.render, this);
+            this.collection.on('change', this.renderGroups, this);
+            this.collection.on('update', this.renderGroups, this);
         },
 
         render: function () {
@@ -22,22 +22,24 @@
             this.$groupList  = this.$el.find('.group-collection');
             this.$myGroups = this.$el.find('.myGroups');
             this.$paginator = this.$el.find('.paginator-place-holder');
-            app.mediator.publish('GroupsListView: rendered'); //stub, will be deleted with filter update
-            this.createPaginator(app.filter.split('groupList'));
+            this.createPaginator();
 
             return this;
         },
 
-        createPaginator: function (collection) {
-            this.paginatorView = new app.PaginatorView({collection: collection});
+        createPaginator: function () {
+            this.paginatorView = new app.PaginatorView({
+                pageSize: 10,
+                channel: 'GroupList'
+            });
+
             this.$paginator.html(this.paginatorView.render().el);
         },
 
-        renderGroups: function (collection) {
+        renderGroups: function () {
             app.mediator.publish('Groups: rendered');
-
-            if (collection) {
-                collection.forEach(this.renderOne, this);
+            if (app.filter.split('groupList')) {
+                app.filter.split('groupList').forEach(this.renderOne, this);
             }
         },
 
@@ -52,15 +54,13 @@
             this.$myGroups.toggleClass('pressed');
             this.areMyGroups = !this.areMyGroups;
             app.mediator.publish('MyGroups: selected', this.areMyGroups);
-            this.paginatorView.remove();
-            this.createPaginator(app.filter.split('groupList'));
+            this.renderGroups();
         },
 
         selectState: function (state) {
             this.state = state;
             app.mediator.publish('State: selected', this.state);
-            this.paginatorView.remove();
-            this.createPaginator(app.filter.split('groupList'));
+            this.renderGroups();
         }
     });
 })(CS.Groups, app);
