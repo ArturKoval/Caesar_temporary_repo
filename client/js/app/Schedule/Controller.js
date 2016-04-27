@@ -4,7 +4,7 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             //'Locations: selected' : 'showMonth',
-            
+            /* 'Menu: Schedule' : 'render' */
         },
 
         initialize: function () {
@@ -25,19 +25,21 @@
 
             app.mediator.publish('Locations: selected', [userLocation]);
 
-            // app.mediator.publish('Locations: selected', [userLocation]);
+            this.render();
             
             return userLocation;
         },
 
         render: function () {
-            
+            var scheduleView = new This.ScheduleView();
+
+            $('.main-section').html(scheduleView.render().el); 
         },
 
-        showMonth: function () {
+/*         showMonth: function () {
             var monthView = new This.MonthView();
             $('#main-section').html(monthView.render(new Date().getFullYear(), new Date().getMonth()).el);
-        }
+        } */
         
     });
 })(CS.Schedule, app);
