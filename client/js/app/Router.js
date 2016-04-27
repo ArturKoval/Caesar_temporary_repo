@@ -5,7 +5,8 @@
         routes: {
             '': 'pageGroups',
             'Groups*path': 'pageGroups',
-            'About*path':'pageAbout',
+            'About*path': 'pageAbout',
+            'Schedule*path': 'pageSchedule',
             '*path': 'errorPage'
         },
 
@@ -35,6 +36,10 @@
 
         pageAbout: function () {
             app.subRouters['About'] || (app.subRouters['About'] = new CS.About.Router());
+        },
+
+        pageSchedule: function () {
+            app.subRouters['Schedule'] || (app.subRouters['Schedule'] = new CS.Schedule.Router());
         },
 
         errorPage: function () {

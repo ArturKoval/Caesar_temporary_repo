@@ -67,12 +67,17 @@
 
         select: function () {
             //temp
+            app.mediator.publish('Locations: forRouter', this.collection.getCheckedLocationsNames());
             app.mediator.publish('Locations: selected', this.collection.getCheckedLocationsNames());
 
+            app.mediator.remove('Locations: one-selected', this.selectOne, {}, this);
+            if (this.collection.hasCheckedLocations()) {
+                this.collection.uncheckLocations();
+            }
             //proper
             // app.mediator.publish('Locations: selected', this.collection.getCheckedLocations());
 
-            this.close();
+            this.remove();
         },
 
         selectOne: function (selectedLocation) {

@@ -101,4 +101,4 @@
              return store.groups.findGroupsByLocations(data);
         }
     });
-})(CS.Groups, app, i, CS.Menu);
+})(CS.Groups, app, i);

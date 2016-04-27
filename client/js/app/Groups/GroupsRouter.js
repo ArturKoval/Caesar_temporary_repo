@@ -4,6 +4,7 @@
         currentUrl: 'Groups',
         
         subscribes: {
+            'Locations: forRouter': 'navToSelectedLocations',
             'Groups: selected': 'navToGroupSelected',
             'Groups: stubView-changed': 'navToGroupAction',
             'Groups: edit-request': 'navToShowFormEdit',
@@ -12,7 +13,8 @@
             'Groups: delete-group': 'navToDeleteGroup',
             'Groups: saved': 'navToSaveGroup',
             'Groups: dialog-closed': 'navToCancelForm',
-            'Menu:Locations': 'navToLocations'
+            'Menu:Locations': 'navToLocations',
+            
         },
         
         routes: {    
@@ -87,6 +89,14 @@
         navToLocations: function () {
             this.currentUrl = window.location.pathname;
             this.navigate('Groups/Locations');
+        },
+
+        navToSelectedLocations: function (arrLocations) {
+            console.log(arrLocations);
+            var a = arrLocations.join('+');
+            
+            console.log(a);
+            this.navigate('Groups/' + a);
         },
 
         initLocation: function () {
