@@ -41,7 +41,7 @@
         hide: function () {
             this.timerId = setTimeout(function () {
                 this.$el.removeClass('open');
-            }.bind(this), 1000);
+            }.bind(this), 500);
         }
     });
 })(CS.User, app);

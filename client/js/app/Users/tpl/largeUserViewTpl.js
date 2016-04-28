@@ -1,7 +1,7 @@
 'use strict';
 
 templates.largeUserViewTpl = _.template([
-    '<div class="profile-container">', 
+    '<div class="profile-container">',
         '<button class="btn-edit" title="Edit profile">',
             '<i class="fa fa-cog fa-2x"></i>',
         '</button>',

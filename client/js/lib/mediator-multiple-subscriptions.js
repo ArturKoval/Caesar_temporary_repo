@@ -6,11 +6,11 @@ _.extend(Mediator.prototype, {
 
         for (var channel in subscribes) {
             handler = subscribes[channel];
-            
+
             if (!_.isFunction(handler)) {
                 handler = context[handler];
             }
-            
+
             this.subscribe(channel, _.bind(handler, context));
         }
     }

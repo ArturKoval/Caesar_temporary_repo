@@ -2,7 +2,6 @@
     border-collapse: collapse;
     width: 80%;
     margin: 0 auto;
-    /*temp*/
     margin-top: 20px;
 }
 
@@ -21,11 +20,15 @@
     font-size: 14px;
     color: #000000;
     padding: 5px;
-    cursor: pointer;
     font-weight: bold;
 }
 
-.keydates-schedule td:hover {
+.keydates-schedule td.key-date {
+    font-weight: normal;
+    cursor: pointer;
+}
+
+.keydates-schedule td.key-date:hover {
     background-color: #171B65;
     color: #FFFFFF;
 }
