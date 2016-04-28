@@ -165,7 +165,7 @@
                 },
 
                 experts: function (experts) {
-                    var regexp = /^[a-z \-\.]{5,25}$/i,
+                    var regexp = /^[a-z \-\.`]{5,25}$/i,
                         isExpertsValid = false;
 
                     isExpertsValid = experts.every(function (expert) {
