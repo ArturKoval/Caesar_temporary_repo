@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.WeekView = Backbone.View.extend({
         tagName: 'div',
         className: 'scheduleWeek-view',
@@ -8,20 +8,21 @@
 
         initialize: function () {
             this.nodeRouter = {'monday': 1, 'tuesday': 2, 'wednesday': 3, 'thursday': 4, 'friday': 5};
-            this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half'};
+            this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half', '11:00': 'eleven'};
             this.multiplierStore = {};
             this.multiplier = 0;
+			this.model = json;
 
         },
 
         preRender: function () {
-            for (var day in jsonGroup.weeks['04252016']) {
+            for (var day in this.model.weeks['04252016']) {
                 this.pushToActivityStore(day);
             }
         },
 
         render: function () {
-            this.$el.html(this.template(jsonGroup));
+            this.$el.html(this.template(this.model));
 
             this.renderIteration();
 
@@ -32,14 +33,14 @@
 
             this.preRender();
 
-            for (var day in jsonGroup.weeks['04252016']) {
-                jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+            for (var day in this.model.weeks['04252016']) {
+                this.model.weeks['04252016'][day].forEach(function (activity, i) {
                     var id = day + i;
 
                     var $div =  this.$el.find('.'+this.timeRouter[activity.startTime]);
                     var $day = $($div[0].childNodes[this.nodeRouter[day]]);
 
-                    var activityView = new This.ActivityView({model: activity, style:  jsonGroup.weeks['04252016'][day].length});
+                    var activityView = new This.ActivityView({model: activity, style:  this.model.weeks['04252016'][day].length});
                     var $a = activityView.render().$el;
 					
 
@@ -64,8 +65,42 @@
                              'margin-left': value
                         });
                     }
+					
+					$day.append($a);
+					
+				if ($a.width() < 50) {
+						console.log('*');
+						$a.find('p').remove();
+					}
+					
+					$a.mouseover(function () {
+						//console.log('*');
+						var hints = [];
+							if ($a.width() < 50) {
+								$a.attr('name', i);
+								hints.push({
+									name: $a.attr('name'),
+									text: activity.title + ' ' + activity.teacher + ' ' + activity.room 
+								});
+								
+								
+							}
+						if (hints !== []) {
+							
+							app.mediator.publish('Message', {
+								type: 'hints',
+								$el: this.$el,
+								hints: hints,
+								coordinates: $a.offset()
+							});
+						}   
+					}.bind(this));
+					
+					$a.mouseleave(function () {
+					   this.$el.find('.hint').remove();
+					}.bind(this));
     
-                    $day.append($a);
+                    
                 }.bind(this));
             }
         },
@@ -80,7 +115,7 @@
             };
 
             
-             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+             this.model.weeks['04252016'][day].forEach(function (activity, i) {
                     for (var time in dayActivityStore) {
                         if (this.isLater(time, activity.startTime) && (this.isLater2(this.defineDuration(activity.startTime, activity.duration), time))) {
                             dayActivityStore[time].push(activity);
@@ -88,7 +123,7 @@
                     }
             }.bind(this));
 
-             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+             this.model.weeks['04252016'][day].forEach(function (activity, i) {
                 var id = day + i;
                 this.multiplierStore[id] = this.defineMultiplier(activity, dayActivityStore);
 
@@ -114,7 +149,6 @@
                 }
             }
 
-            //console.log(store);
             return max;
         },
 
@@ -162,7 +196,7 @@
             return Number(string);
         }
     });
-})(CS.Schedule);
+})(CS.Schedule, app);
 
 var jsonA1 = {
     'title': 'JS Practice',
@@ -189,11 +223,18 @@ var jsonA4 = {
     'title': 'Weekly Report',
     'teacher': 'N. Varenko',
     'startTime': '10:00',
-    'duration': '2',
+    'duration': '0.5',
+    'room': '309'
+}
+var jsonA5 = {
+    'title': 'Weekly Report',
+    'teacher': 'D. Petin',
+    'startTime': '10:30',
+    'duration': '1',
     'room': '309'
 }
 
-var jsonGroup = {
+var json = {
     'groupName': 'DP-093-JS',
     'keyDates': {
         start: '02/01/2016',
@@ -204,9 +245,9 @@ var jsonGroup = {
     },
     weeks: {
         '04252016':  {
-            monday: [jsonA1],
-            tuesday: [jsonA2, jsonA3, jsonA2],
-            wednesday: [jsonA1, jsonA4],
+            monday: [jsonA1, jsonA5],
+            tuesday: [jsonA2, jsonA5, jsonA2, jsonA5],
+            wednesday: [jsonA1, jsonA5],
             thursday: [jsonA2, jsonA2],
             friday: [jsonA1, jsonA3]
         }

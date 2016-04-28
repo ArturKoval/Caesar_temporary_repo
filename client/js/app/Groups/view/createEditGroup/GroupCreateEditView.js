@@ -177,7 +177,7 @@
                 type: 'hints',
                 $el: this.$el,
                 hints: hints
-            })
+            });
         },
 
         createFlashMessage: function () {

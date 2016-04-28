@@ -61,9 +61,9 @@
                     hints: hints
                 });
             }.bind(this));
-            this.$groupLocation.mouseleave( function () {
-                this.$el.find('.hint').remove();
-            }.bind(this));
+            //this.$groupLocation.mouseleave( function () {
+                //this.$el.find('.hint').remove();
+            //}.bind(this));
         },
     });
 
