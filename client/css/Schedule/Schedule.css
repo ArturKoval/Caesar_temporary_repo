@@ -1,5 +1,6 @@
 .week-wrapper{
     overflow: scroll;
+    max-height: 400px;
 }
 
 .schedule-controls {
