@@ -37,7 +37,7 @@
 				}.bind(this),
 
 				'week': function () {
-					var weekView = new This.WeekView();
+					var weekView = new This.WeekView({collection: true});
 
 					this.$container.html(weekView.render().el);
 					this.$weekButton.addClass('active');

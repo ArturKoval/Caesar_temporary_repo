@@ -11,7 +11,12 @@
             this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half', '11:00': 'eleven'};
             this.multiplierStore = {};
             this.multiplier = 0;
-			this.model = json;
+            if (this.collection) {
+                this.model = locationSchedule;
+            } else {
+                this.model = groupSchedule;
+            }
+			
 
         },
 
@@ -202,14 +207,14 @@ var jsonA1 = {
     'title': 'JS Practice',
     'teacher': 'D. Petin',
     'startTime': '09:00',
-    'duration': '0.5',
+    'duration': '2',
     'room': '305'
 }
 var jsonA2 = {
     'title': 'Node.js Lecture',
     'teacher': 'D. Petin',
     'startTime': '09:30',
-    'duration': '1.5',
+    'duration': '2',
     'room': '305'
 }
 var jsonA3 = {
@@ -221,9 +226,9 @@ var jsonA3 = {
 }
 var jsonA4 = {
     'title': 'Weekly Report',
-    'teacher': 'N. Varenko',
+    'teacher': 'D. Petin',
     'startTime': '10:00',
-    'duration': '0.5',
+    'duration': '1',
     'room': '309'
 }
 var jsonA5 = {
@@ -233,8 +238,15 @@ var jsonA5 = {
     'duration': '1',
     'room': '309'
 }
+var jsonA6 = {
+    'title': 'JS Practice',
+    'teacher': 'D. Petin',
+    'startTime': '09:00',
+    'duration': '1',
+    'room': '305'
+}
 
-var json = {
+var groupSchedule = {
     'groupName': 'DP-093-JS',
     'keyDates': {
         start: '02/01/2016',
@@ -245,11 +257,121 @@ var json = {
     },
     weeks: {
         '04252016':  {
-            monday: [jsonA1, jsonA5],
-            tuesday: [jsonA2, jsonA5, jsonA2, jsonA5],
-            wednesday: [jsonA1, jsonA5],
-            thursday: [jsonA2, jsonA2],
-            friday: [jsonA1, jsonA3]
+            monday: [jsonA1],
+            tuesday: [jsonA2],
+            wednesday: [jsonA6],
+            thursday: [jsonA4],
+            friday: [jsonA6]
+        }
+    }
+}
+var locationSchedule = {
+    'groupName': 'DP-093-JS',
+    'keyDates': {
+        start: '02/01/2016',
+        demo1: '02/22/2016',
+        demo2: '03/14/2016',
+        offering: '04/04/2016',
+        finish:'04/25/2016'
+    },
+    weeks: {
+        '04252016':  {
+            monday: [
+            {
+                'title': 'MQC',
+                'teacher': 'D. Petin',
+                'startTime': '09:00',
+                'duration': '0.5',
+                'room': '402'
+            },
+            {
+                'title': 'JS Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:30',
+                'duration': '1',
+                'room': '402'
+            },
+            {
+                'title': '.NET',
+                'teacher': 'O. Shvets',
+                'startTime': '10:30',
+                'duration': '0.5',
+                'room': '405'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
+            tuesday: [
+            {
+                'title': 'MQC Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:00',
+                'duration': '2',
+                'room': '402'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '10:00',
+                'duration': '1',
+                'room': '405'
+            },
+            {
+                'title': 'Node.js',
+                'teacher': 'D. Petin',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '402'
+            }],
+            wednesday: [
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
+            thursday: [
+            {
+                'title': 'MQC Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '402'
+            },
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '403'
+            },
+            {
+                'title': '.NET Lecture',
+                'teacher': 'O. Shvets',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '405'
+            }],
+            friday: [
+            {
+                'title': '.NET',
+                'teacher': 'O. Shvets',
+                'startTime': '10:30',
+                'duration': '0.5',
+                'room': '405'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
         }
     }
 }
