@@ -42,15 +42,18 @@
         },
 
         create: function () {
-            app.mediator.publish('Groups: create-request', null)
+            app.mediator.publish('Groups: create-request', null);
+            app.mediator.publish('Groups: crud-request', 'create');
         },
 
         edit: function () {
-            app.mediator.publish('Groups: edit-request', this.collection.selectedGroupModel)
+            app.mediator.publish('Groups: edit-request', this.collection.selectedGroupModel);
+            app.mediator.publish('Groups: crud-request', 'edit');
         },
 
         delete: function () {
-            app.mediator.publish('Groups: delete-request', this.collection.selectedGroupModel)
+            app.mediator.publish('Groups: delete-request', this.collection.selectedGroupModel);
+            app.mediator.publish('Groups: crud-request', 'delete');
         }
     });
 })(CS.Menu, app);

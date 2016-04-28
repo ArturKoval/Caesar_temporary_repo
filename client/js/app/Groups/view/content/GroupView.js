@@ -58,6 +58,7 @@
 
         renderEdit: function () {
             this.mediator.publish('Groups: edit-request', this.model);
+            this.mediator.publish('Groups: crud-request', 'edit');
         },
 
         showStubView: function (action) {
@@ -91,6 +92,7 @@
 
         showDeleteDialog: function () {
             this.mediator.publish('Groups: delete-request', this.model);
+            this.mediator.publish('Groups: crud-request', 'delete');
         }
     });
 })(CS.Groups, app);
