@@ -4,6 +4,8 @@
     This.ContextMenu = Backbone.Collection.extend({
         model: This.ItemContextMenu,
 
+        context: 'info',
+
         checkPermissions: function (groupModel) {
             this.selectedGroupModel = groupModel;
             
@@ -23,17 +25,25 @@
             }, this)
         },
 
+        changeContext: function (context) {
+            this.context = context;
+        },
+
         getVisible: function () {
             return _(this.models).filter(function (model) {
                 return model.get('isVisible');
             });
         },
 
+        //functions for rules
+
         forbidden: function () {
             return false;
         },
 
-        //functions for rules
+        isSelected: function () {
+            return _.isObject(this.selectedGroupModel);
+        },
 
         isMyTeacher: function (groupModel) {
             if (groupModel) {
