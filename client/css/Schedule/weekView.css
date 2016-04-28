@@ -51,6 +51,7 @@
 }
 .Heading .Cell{
     height: 25px;
+    text-align: center;
 }
 .activity{
    background-color: lightgreen;
