@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.WeekView = Backbone.View.extend({
         tagName: 'div',
         className: 'scheduleWeek-view',
@@ -8,20 +8,26 @@
 
         initialize: function () {
             this.nodeRouter = {'monday': 1, 'tuesday': 2, 'wednesday': 3, 'thursday': 4, 'friday': 5};
-            this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half'};
+            this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half', '11:00': 'eleven'};
             this.multiplierStore = {};
             this.multiplier = 0;
+            if (this.collection) {
+                this.model = locationSchedule;
+            } else {
+                this.model = groupSchedule;
+            }
+			
 
         },
 
         preRender: function () {
-            for (var day in jsonGroup.weeks['04252016']) {
+            for (var day in this.model.weeks['04252016']) {
                 this.pushToActivityStore(day);
             }
         },
 
         render: function () {
-            this.$el.html(this.template(jsonGroup));
+            this.$el.html(this.template(this.model));
 
             this.renderIteration();
 
@@ -32,19 +38,20 @@
 
             this.preRender();
 
-            for (var day in jsonGroup.weeks['04252016']) {
-                jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+            for (var day in this.model.weeks['04252016']) {
+                this.model.weeks['04252016'][day].forEach(function (activity, i) {
                     var id = day + i;
 
                     var $div =  this.$el.find('.'+this.timeRouter[activity.startTime]);
                     var $day = $($div[0].childNodes[this.nodeRouter[day]]);
 
-                    var activityView = new This.ActivityView({model: activity, style:  jsonGroup.weeks['04252016'][day].length});
+                    var activityView = new This.ActivityView({model: activity, style:  this.model.weeks['04252016'][day].length});
                     var $a = activityView.render().$el;
+					
 
                     $a.css({
                         'width': (100/this.multiplierStore[id])+'%',
-                        'height': (activity.duration*200 + 0.8)+'%',
+                        'height': (activity.duration*200 + Number(activity.duration)*1.6945)+'%',
                         'border-left': '1px dashed'
                     });
 
@@ -63,8 +70,42 @@
                              'margin-left': value
                         });
                     }
+					
+					$day.append($a);
+					
+				if ($a.width() < 50) {
+						console.log('*');
+						$a.find('p').remove();
+					}
+					
+					$a.mouseover(function () {
+						//console.log('*');
+						var hints = [];
+							if ($a.width() < 50) {
+								$a.attr('name', i);
+								hints.push({
+									name: $a.attr('name'),
+									text: activity.title + ' ' + activity.teacher + ' ' + activity.room 
+								});
+								
+								
+							}
+						if (hints !== []) {
+							
+							app.mediator.publish('Message', {
+								type: 'hints',
+								$el: this.$el,
+								hints: hints,
+								coordinates: $a.offset()
+							});
+						}   
+					}.bind(this));
+					
+					$a.mouseleave(function () {
+					   this.$el.find('.hint').remove();
+					}.bind(this));
     
-                    $day.append($a);
+                    
                 }.bind(this));
             }
         },
@@ -79,7 +120,7 @@
             };
 
             
-             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+             this.model.weeks['04252016'][day].forEach(function (activity, i) {
                     for (var time in dayActivityStore) {
                         if (this.isLater(time, activity.startTime) && (this.isLater2(this.defineDuration(activity.startTime, activity.duration), time))) {
                             dayActivityStore[time].push(activity);
@@ -87,7 +128,7 @@
                     }
             }.bind(this));
 
-             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+             this.model.weeks['04252016'][day].forEach(function (activity, i) {
                 var id = day + i;
                 this.multiplierStore[id] = this.defineMultiplier(activity, dayActivityStore);
 
@@ -113,7 +154,6 @@
                 }
             }
 
-            //console.log(store);
             return max;
         },
 
@@ -161,20 +201,20 @@
             return Number(string);
         }
     });
-})(CS.Schedule);
+})(CS.Schedule, app);
 
 var jsonA1 = {
     'title': 'JS Practice',
     'teacher': 'D. Petin',
     'startTime': '09:00',
-    'duration': '0.5',
+    'duration': '2',
     'room': '305'
 }
 var jsonA2 = {
     'title': 'Node.js Lecture',
     'teacher': 'D. Petin',
     'startTime': '09:30',
-    'duration': '1.5',
+    'duration': '2',
     'room': '305'
 }
 var jsonA3 = {
@@ -186,13 +226,27 @@ var jsonA3 = {
 }
 var jsonA4 = {
     'title': 'Weekly Report',
-    'teacher': 'N. Varenko',
+    'teacher': 'D. Petin',
     'startTime': '10:00',
-    'duration': '2',
+    'duration': '1',
     'room': '309'
 }
+var jsonA5 = {
+    'title': 'Weekly Report',
+    'teacher': 'D. Petin',
+    'startTime': '10:30',
+    'duration': '1',
+    'room': '309'
+}
+var jsonA6 = {
+    'title': 'JS Practice',
+    'teacher': 'D. Petin',
+    'startTime': '09:00',
+    'duration': '1',
+    'room': '305'
+}
 
-var jsonGroup = {
+var groupSchedule = {
     'groupName': 'DP-093-JS',
     'keyDates': {
         start: '02/01/2016',
@@ -204,10 +258,120 @@ var jsonGroup = {
     weeks: {
         '04252016':  {
             monday: [jsonA1],
-            tuesday: [jsonA2, jsonA3, jsonA2],
-            wednesday: [jsonA1, jsonA4],
-            thursday: [jsonA2, jsonA2],
-            friday: [jsonA1, jsonA3]
+            tuesday: [jsonA2],
+            wednesday: [jsonA6],
+            thursday: [jsonA4],
+            friday: [jsonA6]
+        }
+    }
+}
+var locationSchedule = {
+    'groupName': 'DP-093-JS',
+    'keyDates': {
+        start: '02/01/2016',
+        demo1: '02/22/2016',
+        demo2: '03/14/2016',
+        offering: '04/04/2016',
+        finish:'04/25/2016'
+    },
+    weeks: {
+        '04252016':  {
+            monday: [
+            {
+                'title': 'MQC',
+                'teacher': 'D. Petin',
+                'startTime': '09:00',
+                'duration': '0.5',
+                'room': '402'
+            },
+            {
+                'title': 'JS Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:30',
+                'duration': '1',
+                'room': '402'
+            },
+            {
+                'title': '.NET',
+                'teacher': 'O. Shvets',
+                'startTime': '10:30',
+                'duration': '0.5',
+                'room': '405'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
+            tuesday: [
+            {
+                'title': 'MQC Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:00',
+                'duration': '2',
+                'room': '402'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '10:00',
+                'duration': '1',
+                'room': '405'
+            },
+            {
+                'title': 'Node.js',
+                'teacher': 'D. Petin',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '402'
+            }],
+            wednesday: [
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
+            thursday: [
+            {
+                'title': 'MQC Lecture',
+                'teacher': 'D. Petin',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '402'
+            },
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '403'
+            },
+            {
+                'title': '.NET Lecture',
+                'teacher': 'O. Shvets',
+                'startTime': '09:30',
+                'duration': '2',
+                'room': '405'
+            }],
+            friday: [
+            {
+                'title': '.NET',
+                'teacher': 'O. Shvets',
+                'startTime': '10:30',
+                'duration': '0.5',
+                'room': '405'
+            }, 
+            {
+                'title': 'Java',
+                'teacher': 'Mister X',
+                'startTime': '11:00',
+                'duration': '1',
+                'room': '405'
+            }],
         }
     }
 }

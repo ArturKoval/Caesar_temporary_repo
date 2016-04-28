@@ -17,7 +17,7 @@ body {
 }
 
 .groupLocation {
-	cursor: pointer;
+	cursor: default;
 }
 
 .groupStageTitle {
@@ -71,6 +71,22 @@ body {
     right: auto;
     white-space: pre;
 }
+.contentSection .hintTriangle {
+    left: 10px;
+}
+
+.activity .hint {
+    width: 90px;
+    left: 0px;
+    top: -33px;
+    white-space: pre-wrap;
+    right: auto;
+}
+.activity .hintTriangle {
+    left: 10px;
+    top: 27px;
+}
+
 .contentSection .hintTriangle {
     left: 10px;
 }

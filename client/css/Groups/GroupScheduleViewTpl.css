@@ -1,3 +1,7 @@
+.week-wrapper {
+    overflow: scroll;
+}
+
 .key-dates-wrapper {
     margin-top: 25px;
 }

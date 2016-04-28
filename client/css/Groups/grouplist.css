@@ -165,17 +165,3 @@ input[type="radio"] + label {
     background: #171B65;
     color: white;
 }
-
-input[type="radio"]:checked + label > div:before {
-    width: 20px;
-    height: 20px;
-    background: #3C78B5;
-    border-radius: 50%;
-    margin-right: 5px;
-    cursor: pointer;
-    display: block;
-    content: " ✓";
-    background: #171B65;
-    text-align: center;
-    color: #fff;
-}

@@ -1,0 +1,15 @@
+.errorPage {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.error-logo {
+    text-align: center;
+}
+
+.error-message {
+    text-align: center;
+    font-size: 30px;
+}

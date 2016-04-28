@@ -6,7 +6,7 @@
         className: 'locationsWindow',
         $documentEl: $(document),
 
-        template: templates.locationTpl,
+        template: templates.locationListViewTpl,
 
         events: {
             'click .save': 'select',

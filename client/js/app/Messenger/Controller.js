@@ -16,22 +16,27 @@
         },
 
         showMessage: function (data) {
-            var m, hintName, view, hintView;
+            var hintView, 
+            message, 
+            hintName, 
+            view;
             
             if (data.type === 'hints') {
                 data.hints.forEach(function (hint) {
-                    if (hint.name === 'content-header-location') {
-                        hintName = '.' + hint.name;
+                    hintName = '[name$=' + hint.name + ']';
+                    message = new This.Messenger(hint),
+                    hintView = new This.HintView({model: message}).render().$el;
+
+                    if (['0', '1', '2', '3', '4', '5', '6'].indexOf(hint.name) > -1) {
+                        data.$el.find(hintName).append(hintView);
                     } else {
-                        hintName = '[name$=' + hint.name + ']';
+                        data.$el.find(hintName).before(hintView);
                     }
-                    m = new This.Messenger(hint),
-                    hintView = new This.HintView({model: m}).render().$el;
-                    data.$el.find(hintName).before(hintView);
-                }); 
+                });
+
             } else {
-                m = new This.Messenger(data),
-                view = new This[this.messageRouter[data.type].view]({model: m});
+                message = new This.Messenger(data),
+                view = new This[this.messageRouter[data.type].view]({model: message});
                 $(''+ this.messageRouter[data.type].el).append(view.render().$el);
             }
         }
