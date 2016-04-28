@@ -23,11 +23,11 @@
 
         select: function () {
             if(this.multiSelection) {
+                this.multiSelect();
+            } else {
                 app.mediator.publish('Groups: the only selected', this.model);
                 app.mediator.publish('Groups: selected', this.model);
                 this.$el.addClass('chosen');
-            } else {
-                this.multiSelect();
             }
         },
 
