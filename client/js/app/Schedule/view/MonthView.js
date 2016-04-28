@@ -62,7 +62,7 @@
             }
 
             this.calendar.html(table);
-            $('.stageView').html(this.shownYear); // stub
+            app.mediator.publish('Schedule: select-month', this.shownYear);
             return this;
         },
 
