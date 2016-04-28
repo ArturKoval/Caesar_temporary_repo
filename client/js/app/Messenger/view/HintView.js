@@ -18,8 +18,8 @@
 	    },
 
         removeHint: function () {
-            //this.$el.remove();
-            //this.model.destroy();
+            this.$el.remove();
+            this.model.destroy();
 	    }
     });
 })(CS.Messenger);
