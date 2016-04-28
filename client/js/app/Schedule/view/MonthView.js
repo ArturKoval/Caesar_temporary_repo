@@ -89,5 +89,3 @@
         }
     });
 })(CS.Schedule, app);
-
-
