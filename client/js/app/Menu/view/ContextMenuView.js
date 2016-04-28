@@ -28,8 +28,8 @@
         },
 
         renderOne: function (model) {
-            this.itemContextMenu = new This.ItemContextMenuView({model: model});
-            this.$el.append(this.itemContextMenu.render().$el);
+            var itemContextMenu = new This.ItemContextMenuView({model: model});
+            this.$el.append(itemContextMenu.render().$el);
         },
         
         open: function () {
@@ -46,7 +46,11 @@
         },
 
         edit: function () {
-            app.mediator.publish('Groups: edit-request', this.collection.selectedGroupModel)
+            if(this.collection.context === 'info'){
+                app.mediator.publish('Groups: edit-request', this.collection.selectedGroupModel);
+            } else if(this.collection.context === 'schedule'){
+                //action for calendar editing
+            }
         },
 
         delete: function () {

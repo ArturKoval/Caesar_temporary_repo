@@ -8,7 +8,7 @@
         template: templates.groupScheduleViewTpl,
 
         initialize: function () {
-            this.weekView = new CS.Schedule.WeekView();
+            this.weekView = new CS.Schedule.WeekView({collection: false});
             //temp
             this.groupKeyDatesView = new This.GroupKeyDatesView({
                 model: {

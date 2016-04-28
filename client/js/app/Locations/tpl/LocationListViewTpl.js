@@ -1,4 +1,4 @@
-templates.locationTpl = _.template([
+templates.locationListViewTpl = _.template([
     '<div class="location-wrapper">',
         '<div>',
             '<ul class="locations">',

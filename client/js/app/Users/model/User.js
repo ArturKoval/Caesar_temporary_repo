@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This, i) {
+(function (This) {
     This.User = Backbone.Model.extend({
         defaults: function () {
             return {
@@ -31,20 +31,6 @@
                 msg: 'Please enter valid name. Allowed symbols: a-z ,.\'-'
             }],
 
-            location: function (location) {
-                var locationNames = store.locations.getNames();
-
-                if (locationNames.indexOf(location) === -1) {
-                    return 'Location must be one of: ' + locationNames.join(', ');
-                }
-            },
-
-            role: function (role) {
-                if (i.roles.indexOf(role) === -1) {
-                    return 'Role must be one of: ' + i.roles.join(', ');
-                }
-            },
-
             photo: {
                 pattern: /([a-z0-9\s_\\.\-:])+(.png|.jpe?g|.gif)$/i,
                 msg: 'Please upload image file.'
@@ -67,4 +53,4 @@
             return this.get('role') === role;
         }
     });
-})(CS.User, i);
+})(CS.User);

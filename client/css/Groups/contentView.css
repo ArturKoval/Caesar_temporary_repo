@@ -17,7 +17,7 @@ body {
 }
 
 .groupLocation {
-	cursor: pointer;
+	cursor: default;
 }
 
 .groupStageTitle {

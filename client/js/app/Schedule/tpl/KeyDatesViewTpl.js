@@ -1,8 +1,8 @@
 templates.keyDatesViewTpl = _.template([
-        '<td><%= groupName %></td>',
-        '<td><%= keyDates.start %></td>',
-        '<td><%= keyDates.demo1 %></td>',
-        '<td><%= keyDates.demo2 || \'\' %></td>',
-        '<td><%= keyDates.offering || \'\' %></td>',
-        '<td><%= keyDates.finish %></td>'
+        '<td class="group-name"><%= groupName %></td>',
+        '<td class="key-date"><%= keyDates.start %></td>',
+        '<td class="key-date"><%= keyDates.demo1 %></td>',
+        '<td class="key-date"><%= keyDates.demo2 || \'\' %></td>',
+        '<td class="key-date"><%= keyDates.offering || \'\' %></td>',
+        '<td class="key-date"><%= keyDates.finish %></td>'
 ].join(''));

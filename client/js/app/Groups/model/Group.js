@@ -66,7 +66,8 @@
                 name: function (name, attributeName, attributes) {
                     var nameLength = name.length,
                         regexp = /^[a-z0-9 \-\/\+\.\#\(\)]+$/i,
-                        msg = '';
+                        msg = '',
+                        id;
 
                     if (nameLength < MIN_NAME_LENGTH) {
                         msg = 'Name must be at least 4 characters!';
@@ -75,7 +76,7 @@
                     } else if (!regexp.test(name)) {
                         msg = 'Invalid name! Allowed symbols: a-z, 0-9, "space", "/", "-", "+", ".", "#", "(", ")".';
                     } else if (!store.groups.isNameUnique(name)) {
-                        var id = attributes.id;
+                        id = attributes.id;
 
                         if (id) {
                             if (name !== store.groups.findById(id).get('name')) {
@@ -151,10 +152,9 @@
                     }
                 },
 
-                teachers: function (teachers, attr, computedState) {
+                teachers: function (teachers) {
                     var isTeachersValid = false;
-                    
-                    console.log(computedState)
+
                     isTeachersValid = teachers.every(function (teacher) {
                         return (i.teachers.indexOf(teacher) !== -1);
                     });

@@ -3,11 +3,13 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Groups: selected': 'updateContextMenu'
+            'Groups: selected': 'updateContextMenu',
+            'Groups: stubView-changed': 'changeContext'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
+            
             this.$topMenu = $('.top-menu');
             this.collection = [
                 {icon:'fa fa-globe fa-2x', description: 'Locations'},
@@ -20,27 +22,13 @@
             this.menuCollection = new This.Menu(this.collection);
             this.mainMenu = new This.MainMenuView({collection: this.menuCollection, el: this.$topMenu});
             this.mainMenu.render();
-
-
+            
             this.$leftMenu = $('.left-menu');
             this.contextCollection = [
-                {
-                    icon: 'fa fa-plus-square-o fa-4x create', description: 'Create', rules: {
-                    'Teacher': ['forbidden']
-                }
-                }, {
-                    icon: 'fa fa-search fa-4x search', description: 'Search'
-                }, {
-                    icon: 'fa fa-cog fa-4x edit', description: 'Edit', rules: {
-                        'Coordinator': ['isMyLocation'],
-                        'Teacher': ['isMyTeacher', 'isNotGraduated']
-                    }
-                }, {
-                    icon: 'fa fa-trash-o fa-4x delete', description: 'Delete', rules: {
-                        'Coordinator': ['isMyLocation'],
-                        'Teacher': ['forbidden']
-                    }
-                }
+                {icon: 'fa fa-plus-square-o fa-4x create', description: 'Create', rules: {'Teacher': ['forbidden']}},
+                {icon: 'fa fa-search fa-4x search', description: 'Search'},
+                {icon: 'fa fa-cog fa-4x edit', description: 'Edit', rules: {'Administrator': ['isSelected'],'Coordinator': ['isMyLocation'], 'Teacher': ['isMyTeacher', 'isNotGraduated']}},
+                {icon: 'fa fa-trash-o fa-4x delete', description: 'Delete', rules: {'Administrator': ['isSelected'], 'Coordinator': ['isMyLocation'], 'Teacher': ['forbidden']}}
             ];
             this.contextMenuCollection = new CS.Menu.ContextMenu(this.contextCollection);
             this.contextMenuView = new CS.Menu.ContextMenuView({collection: this.contextMenuCollection});
@@ -50,6 +38,10 @@
 
         updateContextMenu: function (groupModel) {
             this.contextMenuCollection.checkPermissions(groupModel);
+        },
+
+        changeContext: function (context) {
+            this.contextMenuCollection.changeContext(context.stubView);
         }
     });
 })(CS.Menu, app);

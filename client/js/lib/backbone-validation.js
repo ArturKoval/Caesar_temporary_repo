@@ -1,3 +1,5 @@
+// from https://github.com/gmmorris/backbone.validation/blob/preValidate-multiple-attributes/src/backbone-validation.js
+
 Backbone.Validation = (function(_){
   'use strict';
 

@@ -8,11 +8,11 @@
         },
 
         initialize: function () {
+            this.mediator = app.mediator;
+
             this.$photoEl = $('#icon');
             this.$modalEl = $('#modal-window');
             this.$menuEl = $('#right-menu');
-
-            this.mediator = app.mediator;
 
             this.smallUserView = new This.SmallUserView({
                 model: app.user

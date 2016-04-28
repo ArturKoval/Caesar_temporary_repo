@@ -3,7 +3,7 @@
 (function (This) {
     This.Location = Backbone.Model.extend({
         urlRoot: '/locations',
-		isChecked: false,
+        isChecked: false,
 
         defaults: function () {
             return {
@@ -13,24 +13,24 @@
                 groups: ''
             };
         },
-		
-		toggleCheck: function () {
-			this.isChecked = !this.isChecked;
-			this.triggerCheck();
-		},
-		
-		check: function () {
-			this.isChecked = true;
-			this.triggerCheck();
-		},
-		
-		uncheck: function () {
-			this.isChecked = false;
-			this.triggerCheck();
-		},
-		
-		triggerCheck: function () {
-			this.trigger('change:isChecked');
-		}
+
+        toggleCheck: function () {
+            this.isChecked = !this.isChecked;
+            this.triggerCheck();
+        },
+
+        check: function () {
+            this.isChecked = true;
+            this.triggerCheck();
+        },
+
+        uncheck: function () {
+            this.isChecked = false;
+            this.triggerCheck();
+        },
+
+        triggerCheck: function () {
+            this.trigger('change:isChecked');
+        }
     });
 })(CS.Locations);
