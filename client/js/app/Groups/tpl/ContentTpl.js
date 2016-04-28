@@ -1,5 +1,5 @@
 templates.contentTpl = _.template([
-	'<div class="content-header-location">',
+	'<div class="content-header-location" name="content-header-location">',
 		'<p class = "groupLocation"></p>',
 	'</div>',
 	'<div class="content-header-group-name">',

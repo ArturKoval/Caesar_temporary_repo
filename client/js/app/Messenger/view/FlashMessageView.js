@@ -32,7 +32,6 @@
 	    },
 
 	    removeFlash: function () {
-
 			this.model.destroy();
 	    },
 
@@ -44,6 +43,6 @@
 	    removeMessage: function () {
 	        this.$el.remove();
 	    }
-
     });
+    
 })(CS.Messenger, app);

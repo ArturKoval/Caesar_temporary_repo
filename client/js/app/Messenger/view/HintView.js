@@ -8,7 +8,7 @@
 
         initialize: function () {
             this.render();
-		    setTimeout(this.removeHint.bind(this), 5000);
+		    setTimeout(this.removeHint.bind(this), 4000);
         },
 		
         render: function () {
@@ -18,8 +18,8 @@
 	    },
 
         removeHint: function () {
-            //this.$el.remove();
-            //this.model.destroy();
+            this.$el.remove();
+            this.model.destroy();
 	    }
     });
 })(CS.Messenger);

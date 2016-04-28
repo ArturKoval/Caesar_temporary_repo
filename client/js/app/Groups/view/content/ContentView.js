@@ -9,7 +9,7 @@
             app.mediator.subscribe('Locations: selected', this.showLocationInfo.bind(this));
             app.mediator.subscribe('Groups: selected', this.showSelectedGroup.bind(this));
             app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));    
-            this.$mainSection = this.$el.find('#main-section');
+            this.$mainSection = this.$el.find('.main-section');
         },
 
         render: function () {
@@ -22,10 +22,9 @@
             return this;
         },
 
-        showSelectedGroup: function (selected, action) {
+        showSelectedGroup: function (selected) {
             this.$groupLocation.html(selected.get('location'));
             this.$groupName.html(selected.get('name'));
-
             this.$groupStage.html(selected.get('stage'));
             this.$groupStageTitle.html('Stage:&nbsp;');
 
@@ -33,24 +32,27 @@
         },
 
         showLocationInfo: function (locations) {
-          if (locations.length > 1) {
+            if (locations.length > 1) {
                 var numberOflocations = locations.length + ' locations'; 
                 this.$groupLocation.html(numberOflocations); 
                 this.showHints(locations);
 
             } else {
-                $('.groupLocation').html(locations[0]);
+                this.$groupLocation.html(locations[0]);
             }
 
             this.$groupName.empty();
-            this.$mainSection.empty();
+            this.$el.find('.main-section').empty();
             this.$groupStage.empty();
             this.$groupStageTitle.html('');
         },
 
         showHints: function (locations) {
-            this.$groupLocation.mouseover(function () {
-                var hints = [{
+            this.$groupLocation.on('mouseover', showMessage.bind(this));
+            this.$groupLocation.on('mouseleave', removeMessage.bind(this));
+
+            function showMessage () {
+                 var hints = [{
                     name: 'content-header-location',
                     text: locations
                 }];
@@ -60,10 +62,13 @@
                     $el: this.$el,
                     hints: hints
                 });
-            }.bind(this));
-            //this.$groupLocation.mouseleave( function () {
-                //this.$el.find('.hint').remove();
-            //}.bind(this));
+            }
+
+            function removeMessage () {
+                this.$el.find('.hint').remove();
+                this.$groupLocation.off('mouseover', showMessage.bind(this));
+                this.$groupLocation.off('mouseleave', showMessage.bind(this));
+            }
         },
     });
 
