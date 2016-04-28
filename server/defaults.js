@@ -45,6 +45,8 @@ var defaultData = {
         "name": "D. Petin"
     }, {
         "name": "B. Yulian"
+    }, {
+        "name": "A. Korkuna"
     }],
 
     directions: [{
@@ -85,12 +87,12 @@ var defaultData = {
     }],
 
     users: [{
-        "firstName": "John",
-        "lastName": "Doe",
-        "role": "Teacher",
+        "firstName": "Andriy",
+        "lastName": "Pereymybida",
+        "role": "Administrator",
         "location": "Lviv",
-        "photo": "/img/default-photo.png",
-        "login": "john",
+        "photo": "/img/andriy-pereymybida.png",
+        "login": "admin",
         "password": "1234"
     }, {
         "firstName": "Dmytro",
@@ -103,13 +105,12 @@ var defaultData = {
     }, {
         "firstName": "Olexandr",
         "lastName": "Reuta",
-        "role": "Administrator",
+        "role": "Teacher",
         "location": "Dnipro",
-        "photo": "/img/default-photo.png",
-        "login": "admin",
-        "password": "Admin"
-    }
-    ],
+        "photo": "/img/olexander-reuta.png",
+        "login": "sasha",
+        "password": "1234"
+    }],
 
     locations: [{
         "acronym": "Dp",
@@ -241,104 +242,97 @@ var defaultData = {
         "teachers": ["I. Tsvietkov"],
         "experts": ["M. Omel`chuk"],
         "stage": "offering"
-    },
-        {
-            "name": "Lv-045-DL",
-            "location": "Lviv",
-            "budgetOwner": "SoftServe",
-            "direction": "Delphi",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["I. Tsvietkov"],
-            "experts": ["M. Omel`chuk"],
-            "stage": "in-process"
-        }, {
-            "name": "Lv-077-IOS",
-            "location": "Lviv",
-            "budgetOwner": "SoftServe",
-            "direction": "iOS",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["I. Tsvietkov", "M. Omel`chuk"],
-            "experts": ["M. Omel`chuk"],
-            "stage": "finished"
-        }, {
-            "name": "Lv-023-UX",
-            "location": "Lviv",
-            "budgetOwner": "SoftServe",
-            "direction": "UX",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "in-process"
-        },
-        {
-            "name": "Sf-089-UX",
-            "location": "Sofia",
-            "budgetOwner": "SoftServe",
-            "direction": "UX",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "boarding"
-        },
-        {
-            "name": "Sf-089-MQC",
-            "location": "Sofia",
-            "budgetOwner": "SoftServe",
-            "direction": "MQC",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "in-process"
-        },
-        {
-            "name": "Sf-089-JS",
-            "location": "Sofia",
-            "budgetOwner": "SoftServe",
-            "direction": "WebUI",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "finished"
-        },
-        {
-            "name": "IF-089-JS",
-            "location": "Ivano-Frankivsk",
-            "budgetOwner": "SoftServe",
-            "direction": "WebUI",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "in-process"
-        },
-        {
-            "name": "Kv-099-LAMP",
-            "location": "Kyiv",
-            "budgetOwner": "SoftServe",
-            "direction": "LAMP",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "in-process"
-        },
-        {
-            "name": "Ch-039-IOS",
-            "location": "Chernivtsy",
-            "budgetOwner": "SoftServe",
-            "direction": "iOS",
-            "startDate": 1455494400,
-            "finishDate": 1462060800,
-            "teachers": ["A. Korkuna"],
-            "experts": ["I. Tsvietkov"],
-            "stage": "in-process"
-        }],
+    }, {
+        "name": "Lv-045-DL",
+        "location": "Lviv",
+        "budgetOwner": "SoftServe",
+        "direction": "Delphi",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["I. Tsvietkov"],
+        "experts": ["M. Omel`chuk"],
+        "stage": "in-process"
+    }, {
+        "name": "Lv-077-IOS",
+        "location": "Lviv",
+        "budgetOwner": "SoftServe",
+        "direction": "iOS",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["I. Tsvietkov", "M. Omel`chuk"],
+        "experts": ["M. Omel`chuk"],
+        "stage": "finished"
+    }, {
+        "name": "Lv-023-UX",
+        "location": "Lviv",
+        "budgetOwner": "SoftServe",
+        "direction": "UX",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "in-process"
+    }, {
+        "name": "Sf-089-UX",
+        "location": "Sofia",
+        "budgetOwner": "SoftServe",
+        "direction": "UX",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "boarding"
+    }, {
+        "name": "Sf-089-MQC",
+        "location": "Sofia",
+        "budgetOwner": "SoftServe",
+        "direction": "MQC",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "in-process"
+    }, {
+        "name": "Sf-089-JS",
+        "location": "Sofia",
+        "budgetOwner": "SoftServe",
+        "direction": "WebUI",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "finished"
+    }, {
+        "name": "IF-089-JS",
+        "location": "Ivano-Frankivsk",
+        "budgetOwner": "SoftServe",
+        "direction": "WebUI",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "in-process"
+    }, {
+        "name": "Kv-099-LAMP",
+        "location": "Kyiv",
+        "budgetOwner": "SoftServe",
+        "direction": "LAMP",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "in-process"
+    }, {
+        "name": "Ch-039-IOS",
+        "location": "Chernivtsy",
+        "budgetOwner": "SoftServe",
+        "direction": "iOS",
+        "startDate": 1455494400,
+        "finishDate": 1462060800,
+        "teachers": ["A. Korkuna"],
+        "experts": ["I. Tsvietkov"],
+        "stage": "in-process"
+    }],
 
     contributors: [{
         "nickname": "Team Doloto",

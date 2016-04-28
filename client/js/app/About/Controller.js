@@ -25,10 +25,10 @@
         },
 
         showDirectionContributors: function () {
-            this.contentView = new CS.Groups.ContentView(); 
+            this.content = new This.ContentView(); 
             this.leftSideBarView = new This.LeftSideBarView();
             this.$sidebar.html(this.leftSideBarView.render().$el);
-            this.$content.html(this.contentView.render().$el); 
+            this.$content.html(this.content.render().$el); 
             this.$mainSection = $('.main-section');  
             $('#left-menu').css('display','none');
         },

@@ -7,27 +7,21 @@
             'Locations: forRouter': 'navToSelectedLocations',
             'Groups: selected': 'navToGroupSelected',
             'Groups: stubView-changed': 'navToGroupAction',
-            'Groups: edit-request': 'navToShowFormEdit',
-            'Groups: delete-request': 'navToShowFormDelete',
-            'Groups: create-request': 'navToShowFormCreate',
+            'Groups: crud-request': 'navToShowRequest',
             'Groups: delete-group': 'navToDeleteGroup',
             'Groups: saved': 'navToSaveGroup',
             'Groups: dialog-closed': 'navToCancelForm',
-            'Menu:Locations': 'navToLocations',
-            
+            'Menu: Locations': 'navToLocations'    
         },
         
         routes: {    
             '': 'initLocation', 
             'Groups(/)': 'initLocation',
-            'Groups/Locations(/)': 'openLocations',
+            'Groups/Locations(/)': 'openWindowLocations',
             'Groups/:location(/)': 'openLocation',
-			'Groups/:location/create(/)': 'openGroupCreate',
             'Groups/:location/:group(/)': 'openGroupInfo',
-            'Groups/:location/:group/edit(/)': 'openGroupEdit',
-            'Groups/:location/:group/delete(/)': 'openGroupDelete',
-            'Groups/:location/:group/:action(/)': 'openGroupAction'
-            
+   			'Groups/:location/:group/:action(/)': 'openGroupAction',
+            'Groups/:location/:group/:action/:crud(/)': 'opencommandCrud'    
         },
         
         initialize: function () {
@@ -53,22 +47,9 @@
             this.navigate('Groups/' + location + '/' + groupName + '/' + action);
         },
 
-        navToShowFormEdit: function () {
-			/**create function prepareCurrentUrl **/
-            this.currentUrl = window.location.pathname;
-            this.navigate(this.currentUrl.split('/', 4).join('/') + '/edit');
-        },
-
-        navToShowFormDelete: function () {
-			/**create function prepareCurrentUrl **/
-            this.currentUrl = window.location.pathname;
-            this.navigate(this.currentUrl.split('/', 4).join('/') + '/delete');
-        },
-
-        navToShowFormCreate: function () {
-			/**create function prepareCurrentUrl **/
-            this.currentUrl = window.location.pathname;
-            this.navigate(this.currentUrl.split('/', 3).join('/') + '/create');
+        navToShowRequest: function (crud) {
+        	this.currentUrl = window.location.pathname;
+            this.navigate(this.currentUrl + '/' + crud);
         },
 
         navToCancelForm: function () {
@@ -92,51 +73,62 @@
         },
 
         navToSelectedLocations: function (arrLocations) {
-            console.log(arrLocations);
-            var a = arrLocations.join('+');
-            
-            console.log(a);
-            this.navigate('Groups/' + a);
+            var locations = arrLocations.join('+');
+    
+            this.navigate('Groups/' + locations);
         },
 
         initLocation: function () {
-            var location = this.controller.start();
-            this.navigate('Groups/' + location);     
+            var locations = app.locationsController.getLocations(),
+            	arrLocations = locations.join('+');
+            	
+            this.controller.start(locations);
+            this.navigate('Groups/' + arrLocations);     
         },
         
-        openLocation: function (location) {
-            this.controller.showLocationByRoute(location);
+        openLocation: function (locations) {
+        	var arrLocations = locations.split('+');
+        	
+            this.controller.showLocationByRoute(arrLocations);
         },
 
-        openGroupInfo: function (location, groupName) {
-            var modelGroup = this.controller.showGroupViewByRoute(location, groupName, 'info');
+        openGroupInfo: function (locations, groupName) {
+        	var modelGroup = this.controller.showGroupViewByRoute(arrLocations, groupName, 'info'),
+        		arrLocations = locations.split('+');
 
             if (modelGroup) {
-                this.navigate('Groups/' + location + '/' + groupName + '/info');
+                this.navigate('Groups/' + locations + '/' + groupName + '/info');
             }     
         },
 
-        openGroupDelete: function (location, groupName) {
-            var modelGroup = this.controller.showPageByRoute(location, groupName);
+        opencommandCrud: function (locations, groupName, action, crud) {
+        	var modelGroup = this.controller.showGroupViewByRoute(arrLocations, groupName, action);
+        		cruds = {
+        			'delete': function (modelGroup) {
+        				if (modelGroup) {
+        					this.controller.delete(modelGroup);
+        				}
+        			}.bind(this),
 
-            this.controller.delete(modelGroup);
+        			'create': function () {
+        				this.controller.showForm();
+        			}.bind(this),
+
+        			'edit': function (modelGroup) {
+        				if (modelGroup) {
+                			this.controller.showForm(modelGroup);
+            			} 
+        			}.bind(this)
+        		};
+        	if (cruds[crud]) {
+        		cruds[crud](modelGroup);
+        		this.currentUrl = window.location.pathname;
+        	} 
         },
 
-        openGroupEdit: function (location, groupName) {
-            var modelGroup = this.controller.showPageByRoute(location, groupName);
-
-            if (modelGroup) {
-                this.controller.showForm(modelGroup);
-            }      
-        },
-		
-		openGroupCreate: function (location) {
-			this.openLocation(location);
-			this.controller.showForm();
-		},
-
-        openGroupAction: function (location, groupName, action) {
-            var actions = {
+        openGroupAction: function (locations, groupName, action) {
+        	var arrLocations = locations.split('+'),
+            	actions = {
                     'info': true,
                     'students': true,
                     'shedule': true,
@@ -144,16 +136,14 @@
                 };
 
             if (actions[action]) {
-                this.controller.showGroupViewByRoute(location, groupName, action);
+                this.controller.showGroupViewByRoute(arrLocations, groupName, action);
             } else {
-                this.openGroupInfo(location, groupName);
-            }   
+                this.controller.showGroupViewByRoute(arrLocations, groupName, 'info');
+            } 
         },
 
-        openLocations: function () {
-            var locationsController = new CS.Locations.Controller();
-
-            locationsController.showLocations();
+        openWindowLocations: function () {
+            app.locationsController.showLocations();
         }
 
     });

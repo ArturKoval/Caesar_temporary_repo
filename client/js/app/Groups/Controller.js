@@ -29,12 +29,10 @@
             this.render();
         },
 
-        start: function () {
-			var userLocation = app.user.get('location');
+        start: function (locations) {
             this.$content.html(this.contentView.render().$el);
-			app.mediator.publish('Locations: selected', [userLocation]);
-            
-            return userLocation;
+            this.render();
+			app.mediator.publish('Locations: selected', locations);
         },
 
         render: function () {
@@ -45,28 +43,40 @@
             this.groupListView.renderGroups(collection);
         },
 
-		showLocationByRoute: function (location) {
-			if (store.locations.getNames().indexOf(location) > -1) {
-				app.mediator.publish('Locations: selected', [location]);
-			} else {
-				app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'});
+		showLocationByRoute: function (arrLocations) {
+            if (isLocation(arrLocations)) {
+                app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'});
 
                 return false;
-			}
+            } else {
+                app.mediator.publish('Locations: selected', arrLocations);
+            }
+
+            function isLocation (locations) {
+                var arr = [];
+                
+                locations.forEach(function (location) {    
+                    if (store.locations.getNames().indexOf(location) < 0) {
+                        arr.push(location);
+                    }
+                });
+                
+                return arr.length    
+            }
 
             return true;
 		},
 
-        showGroupViewByRoute: function (location, groupName, action) {
-            if (this.showLocationByRoute(location)) {
-                if(this.list(location).findGroupByName(groupName)) {
-                    this.showSelectedGroup(this.list(location).findGroupByName(groupName), action);
+        showGroupViewByRoute: function (locations, groupName, action) {
+            if (this.showLocationByRoute(locations)) {
+                if(store.groups.findGroupByName(groupName)) {
+                    this.showSelectedGroup(this.list(locations).findGroupByName(groupName), action);
                 } else {
                     app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'});
                 }
             }
 
-			return this.list(location).findGroupByName(groupName);
+			return store.groups.findGroupByName(groupName);
         },
 
         showForm: function (group) {
