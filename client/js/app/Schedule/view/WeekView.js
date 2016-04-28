@@ -41,10 +41,11 @@
 
                     var activityView = new This.ActivityView({model: activity, style:  jsonGroup.weeks['04252016'][day].length});
                     var $a = activityView.render().$el;
+					
 
                     $a.css({
                         'width': (100/this.multiplierStore[id])+'%',
-                        'height': (activity.duration*200 + 0.8)+'%',
+                        'height': (activity.duration*200 + Number(activity.duration)*1.6945)+'%',
                         'border-left': '1px dashed'
                     });
 
