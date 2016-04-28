@@ -35,11 +35,33 @@
 				}.bind(this),
 
 				'week': function () {
+					var weekView = new This.WeekView();
+
+					this.$container.html(weekView.render().el);
 					this.$weekButton.addClass('active');
 				}.bind(this),
 
 				'keyDates': function () {
-					this.$keyDatesButton.addClass('active')
+					var keyDatesListView = new This.KeyDatesListView({
+						collection: [{
+							groupName: 'GROUP',
+							keyDates: {
+								start: '12/12/2015',
+								offering: '12/12/2015',
+								finish: '12/12/2014'
+							}
+						}, {
+							groupName: 'GROUP22123123',
+							keyDates: {
+								start: '12/12/2015',
+								offering: '12/12/2015',
+								finish: '12/12/2014'
+							}
+						}]
+					});
+					
+					this.$container.html(keyDatesListView.render().el);
+					this.$keyDatesButton.addClass('active');
 				}.bind(this)
 			};
 
