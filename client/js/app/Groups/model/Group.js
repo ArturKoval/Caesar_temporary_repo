@@ -151,9 +151,10 @@
                     }
                 },
 
-                teachers: function (teachers) {
+                teachers: function (teachers, attr, computedState) {
                     var isTeachersValid = false;
-
+                    
+                    console.log(computedState)
                     isTeachersValid = teachers.every(function (teacher) {
                         return (i.teachers.indexOf(teacher) !== -1);
                     });

@@ -209,7 +209,7 @@ var defaultData = {
         "direction": "WebUI",
         "startDate": 1455494400,
         "finishDate": 1462060800,
-        "teachers": ["D. Petin"," I. Tsvietkov"],
+        "teachers": ["D. Petin","I. Tsvietkov"],
         "experts": ["I. Tsvietkov"],
         "stage": "finished"
     }, {

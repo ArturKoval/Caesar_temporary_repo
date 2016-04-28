@@ -13,7 +13,7 @@
 
             _.each(this.collection, function (keyDates) {
                 var keyDatesView = new This.KeyDatesView({
-                    model: keyDateList
+                    model: keyDates
                 });
 
                 this.$tbody.append(keyDatesView.render().el);

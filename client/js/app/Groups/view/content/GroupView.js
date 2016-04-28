@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.GroupView = Backbone.View.extend({
         tagName: 'div',
         className: 'groupView',
@@ -12,7 +12,6 @@
             'click .studentsBtn': 'renderStudents',
             'click .sheduleBtn': 'renderSchedule',
             'click .messageBtn': 'renderMessage',
-            'click .deleteBtn': 'showDeleteDialog'
         },
 
         initialize: function () {
@@ -71,12 +70,6 @@
                 $el = $('.'+ action + 'Btn'),
                 stubView;
 
-            // if (action === 'shedule') {
-            //     stubView = new CS.Schedule[data.view]({model: this.model});
-            // } else {
-            //     stubView = new This[data.view]({model: this.model});
-            // }
-
             stubView = new This[data.view]({model: this.model});
 
             $groupContainer.empty();
@@ -88,9 +81,5 @@
         publishEvent: function (stubViewName) {
             this.mediator.publish('Groups: stubView-changed', {group: this.model, stubView: stubViewName});
         },
-
-        showDeleteDialog: function () {
-            this.mediator.publish('Groups: delete-request', this.model);
-        }
     });
 })(CS.Groups, app);
