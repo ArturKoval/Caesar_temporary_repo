@@ -27,11 +27,11 @@
                     message = new This.Messenger(hint),
                     hintView = new This.HintView({model: message}).render().$el;
 
-                    if (['0', '1', '2', '3', '4', '5', '6'].indexOf(hint.name) > -1) {
-                        data.$el.find(hintName).append(hintView);
-                    } else {
-                        data.$el.find(hintName).before(hintView);
-                    }
+					if (['0', '1', '2', '3', '4', '5', '6'].indexOf(hint.name) > -1) {
+						data.$el.find(hintName).append(hintView);
+					} else {
+						data.$el.find(hintName).before(hintView);
+					}
                 });
 
             } else {

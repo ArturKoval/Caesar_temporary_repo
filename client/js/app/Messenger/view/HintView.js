@@ -8,7 +8,7 @@
 
         initialize: function () {
             this.render();
-		    setTimeout(this.removeHint.bind(this), 5000);
+		    setTimeout(this.removeHint.bind(this), 4000);
         },
 		
         render: function () {
