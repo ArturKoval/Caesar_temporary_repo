@@ -22,12 +22,7 @@
 
         start: function () {
             var userLocation = app.user.get('location');
-            this.groupListView = new CS.Groups.GroupListView({
-                collection: store.groups
-            });
-
-            $('#left-side-bar').html(this.groupListView.render().el);
-
+                     
             app.mediator.publish('Locations: selected', [userLocation]);
             
 

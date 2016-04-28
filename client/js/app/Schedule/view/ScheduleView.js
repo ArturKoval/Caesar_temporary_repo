@@ -44,14 +44,14 @@
 				'keyDates': function () {
 					var keyDatesListView = new This.KeyDatesListView({
 						collection: [{
-							groupName: 'GROUP',
+							groupName: 'DP-093-JS',
 							keyDates: {
 								start: '12/12/2015',
 								offering: '12/12/2015',
 								finish: '12/12/2014'
 							}
 						}, {
-							groupName: 'GROUP22123123',
+							groupName: 'DP-094-MQC',
 							keyDates: {
 								start: '12/12/2015',
 								offering: '12/12/2015',
