@@ -8,7 +8,7 @@
         template: templates.scheduleTpl,
     
         events: {
-            'click .monthBtn': function () { this.show('month'), this },
+            'click .monthBtn': function () { this.show('month') },
             'click .weekBtn':  function () { this.show('week') },
             'click .keyDatesBtn': function () { this.show('keyDates') }
         },

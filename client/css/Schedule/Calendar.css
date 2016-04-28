@@ -1,12 +1,18 @@
+.calendar {
+    display: block;
+	margin: 0 auto;
+	display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .calendarView {
-    margin-top:10%;
-    margin-left: 25%;
+    margin-top: 7%;
 }
 
 .calendar table {
     border-collapse: collapse;
     background-color: #3C78B5;
-
 }
 
 .calendar td {
@@ -30,18 +36,12 @@
 }
 
 .calendar tr:hover {
-background-color: #171B65;
+	background-color: #171B65;
 }
 
 .month-toggle {
     margin-top:50px;
-    margin-left: 25%;
-    top:65%;
-    left:26%;
-    min-width:300px;
-    height:50px;
-    display: inline-block;
-	overflow: hidden;
+	text-align: center;
 }
 .month-toggle p {
     display: inline-block;
