@@ -18,6 +18,11 @@
         },
 
         render: function (year, month) {
+			if (!year) {
+				year = new Date().getFullYear();
+				month = new Date().getMonth();
+			}
+			
             this.$el.html(templates.calendar({month: this.months[month]}));
             this.calendar = this.$el.find('.calendar');
 

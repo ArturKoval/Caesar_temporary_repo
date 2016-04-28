@@ -1,3 +1,7 @@
+.btn-schedule .active, .scBtn:hover  {
+    background-color: #171B65;
+}
+
 .week-wrapper{
     overflow-y: scroll;
     max-height: 380px;
@@ -28,10 +32,6 @@
     background-repeat: no-repeat; 
     background-color: #3C78B5;
     background-position: center; 
-}
-
-.scBtn:hover {
-    background-color: #171B65;
 }
 
 .monthBtn {

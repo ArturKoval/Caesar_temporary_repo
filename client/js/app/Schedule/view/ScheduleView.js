@@ -17,6 +17,10 @@
             this.$el.append(this.template);
 
 			this.$container = this.$el.find('.scheduleContainer');
+			this.$monthButton = this.$el.find('.monthBtn');
+			this.$weekButton = this.$el.find('.weekBtn');
+			this.$keyDatesButton = this.$el.find('.keyDatesBtn');
+			this.$btn = this.$el.find('.scBtn');
 
             return this;
         },
@@ -26,16 +30,20 @@
 				'month': function () {
 					var monthView = new This.MonthView();
 
-					this.$container.html(monthView.render(new Date().getFullYear(), new Date().getMonth()).el);
+					this.$container.html(monthView.render().el);
+					this.$monthButton.addClass('active');
 				}.bind(this),
 
 				'week': function () {
-					return console.log('week');
-				},
+					this.$weekButton.addClass('active');
+				}.bind(this),
+
 				'keyDates': function () {
-					return console.log('keyDates');
-				}
+					this.$keyDatesButton.addClass('active')
+				}.bind(this)
 			};
+
+			this.$btn.removeClass('active');
 
 			return schedule[selected]();
         }
