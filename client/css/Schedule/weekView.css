@@ -2,6 +2,7 @@
     display: table;
     border-collapse: collapse; 
     overflow: auto;
+    width: 100%;
 }
 .Title{
     display: table-caption;

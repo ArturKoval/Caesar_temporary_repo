@@ -23,7 +23,6 @@
             }, this)
         },
 
-        //functions for rules
         getVisible: function () {
             return _(this.models).filter(function (model) {
                 return model.get('isVisible');
@@ -33,6 +32,8 @@
         forbidden: function () {
             return false;
         },
+
+        //functions for rules
 
         isMyTeacher: function (groupModel) {
             if (groupModel) {
