@@ -3,75 +3,192 @@
 (function (This) {
     This.WeekView = Backbone.View.extend({
         tagName: 'div',
-        className: 'schedule-view',
+        className: 'scheduleWeek-view',
         template: templates.scheduleViewTpl,
 
-        render: function() {
+        initialize: function () {
+            this.nodeRouter = {'monday': 1, 'tuesday': 2, 'wednesday': 3, 'thursday': 4, 'friday': 5};
+            this.timeRouter = {'09:00': 'nine', '09:30': 'nine-half', '10:00': 'ten', '10:30': 'ten-half'};
+            this.multiplierStore = {};
+            this.multiplier = 0;
+
+        },
+
+        preRender: function () {
+            for (var day in jsonGroup.weeks['04252016']) {
+                this.pushToActivityStore(day);
+            }
+        },
+
+        render: function () {
             this.$el.html(this.template(jsonGroup));
 
-            var nodeRouter = {
-                monday: 1,
-                tuesday: 2,
-                wednesday: 3,
-                thursday: 4,
-                friday: 5
-            }, timeRouter = {
-                '9:00': 'nine',
-                '9:30': 'nine-half',
-                '10:00': 'ten'
-            },
-            $day,
-            keyDateScheduleView;
-
-            for (var day in jsonGroup.weeks['04252016']) {
-
-                var $div =  this.$el.find('.'+timeRouter[jsonGroup.weeks['04252016'][day][0].startTime]);
-                $day = $($div[0].childNodes[nodeRouter[day]]);
-
-
-                var $smallView = $('<div class="activity"></div>');
-                $smallView.html(_.template([
-                    '<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
-                ].join(''))(jsonGroup.weeks['04252016'][day][0]));
-				
-				$day.append($smallView);
-				
-				if (jsonGroup.weeks['04252016'][day][1]) {
-					var $smallView2 = $('<div class="activity"></div>');
-					$smallView2.html(_.template([
-						'<p> <%= title %> <br> <%= teacher %> <br> <%= room %> </p>'
-					].join(''))(jsonGroup.weeks['04252016'][day][1]));
-					$day.append($smallView2);
-					$smallView2.css({'width': '50%'});
-					$smallView2.css({'border-left': '1px solid black'});
-					$smallView.css({'width': '50%'});
-				}
-            }
+            this.renderIteration();
 
             return this;
+        },
+
+        renderIteration: function () {
+
+            this.preRender();
+
+            for (var day in jsonGroup.weeks['04252016']) {
+                jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+                    var id = day + i;
+
+                    var $div =  this.$el.find('.'+this.timeRouter[activity.startTime]);
+                    var $day = $($div[0].childNodes[this.nodeRouter[day]]);
+
+                    var activityView = new This.ActivityView({model: activity, style:  jsonGroup.weeks['04252016'][day].length});
+                    var $a = activityView.render().$el;
+
+                    $a.css({
+                        'width': (100/this.multiplierStore[id])+'%',
+                        'height': (activity.duration*200 + 0.8)+'%',
+                        'border-left': '1px dashed'
+                    });
+
+                    var value;
+
+                    if (this.multiplierStore[id] > 1){
+                        if (i % 2 !== 0 || i !== 0) {
+                            value = (100/this.multiplierStore[id])+'%';
+                        } else {
+                            value = '0%';
+                        }
+                    }
+
+                    if (day !== 'thursday'){
+                        $a.css({
+                             'margin-left': value
+                        });
+                    }
+    
+                    $day.append($a);
+                }.bind(this));
+            }
+        },
+
+        pushToActivityStore: function (day) {
+            var dayActivityStore = {
+                '09:00': [],
+                '09:30': [],
+                '10:00': [],
+                '10:30': [],
+                '11:00': []
+            };
+
+            
+             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+                    for (var time in dayActivityStore) {
+                        if (this.isLater(time, activity.startTime) && (this.isLater2(this.defineDuration(activity.startTime, activity.duration), time))) {
+                            dayActivityStore[time].push(activity);
+                        }
+                    }
+            }.bind(this));
+
+             jsonGroup.weeks['04252016'][day].forEach(function (activity, i) {
+                var id = day + i;
+                this.multiplierStore[id] = this.defineMultiplier(activity, dayActivityStore);
+
+            }.bind(this));
+        },
+
+        isLater: function (stringA, stringB) {
+            return this.convertToNumber(stringA) >= this.convertToNumber(stringB);
+        },
+
+        isLater2: function (stringA, stringB) {
+            return this.convertToNumber(stringA) > this.convertToNumber(stringB);
+        },
+
+        defineMultiplier: function (activity, store) {
+            var max = 0;
+            for (var time in store) {
+                if (store[time].indexOf(activity) > -1) {
+                    var arr = store[time];
+                    if (max < arr.length) {
+                        max = arr.length;
+                    }
+                }
+            }
+
+            //console.log(store);
+            return max;
+        },
+
+        defineCss: function (multiplier, $div, duration) {
+            $div.css({
+                'width': (100/multiplier)+'%',
+                'height': (duration*200)+'%',
+                'margin-top': (duration*200)+'%',
+                'margin-left': (multiplier*10)+'%'
+            });
+        },
+
+        defineDuration: function (str, duration) {
+            var number = this.convertToNumber(str);
+
+            if (str.substr(3,1) === '3') {
+                if (String(duration).length > 1) {
+                    number+= 70 + String(duration).substr(0,1)* 100;
+                } else {
+                    number+= duration * 100;
+                }
+            } else {
+                if (String(duration).length > 1) {
+                    number+= 30 + String(duration).substr(0,1)* 100;
+                } else {
+                    number+= duration * 100;
+                }
+            }
+            return this.convertToTimeString(number);
+        },
+
+        convertToTimeString: function (number) {
+            var string = String(number);
+            var result = '';
+            if (string.length === 4) {
+                result = string.substr(0,2) + ':' + string.substr(2,2);
+            } else {
+                result = '0'+ string.substr(0,1) + ':' + string.substr(1,2);
+            }
+            return result;
+        },
+
+        convertToNumber: function (timeString) {
+            var string = timeString.replace(':', '');
+            return Number(string);
         }
     });
 })(CS.Schedule);
 
 var jsonA1 = {
-    'title': 'JS Lecture',
+    'title': 'JS Practice',
     'teacher': 'D. Petin',
-    'startTime': '9:00',
-    'duration': '30',
+    'startTime': '09:00',
+    'duration': '0.5',
     'room': '305'
 }
 var jsonA2 = {
     'title': 'Node.js Lecture',
     'teacher': 'D. Petin',
-    'startTime': '9:00',
-    'duration': '30',
+    'startTime': '09:30',
+    'duration': '1.5',
     'room': '305'
 }
 var jsonA3 = {
     'title': 'Expert Meeting',
     'teacher': 'N. Varenko',
-    'startTime': '9:30',
-    'duration': '30',
+    'startTime': '10:00',
+    'duration': '2',
+    'room': '309'
+}
+var jsonA4 = {
+    'title': 'Weekly Report',
+    'teacher': 'N. Varenko',
+    'startTime': '10:00',
+    'duration': '2',
     'room': '309'
 }
 
@@ -87,10 +204,10 @@ var jsonGroup = {
     weeks: {
         '04252016':  {
             monday: [jsonA1],
-            tuesday: [jsonA3, jsonA3],
-            wednesday: [jsonA1, jsonA3],
-            thursday: [jsonA2],
-            friday: [jsonA1, jsonA2]
+            tuesday: [jsonA2, jsonA3, jsonA2],
+            wednesday: [jsonA1, jsonA4],
+            thursday: [jsonA2, jsonA2],
+            friday: [jsonA1, jsonA3]
         }
     }
 }

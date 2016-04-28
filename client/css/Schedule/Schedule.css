@@ -1,3 +1,9 @@
+.week-wrapper{
+    overflow: scroll;
+    height: 300px;
+    width: 600px;
+}
+
 .schedule-controls {
     float: right;
 
