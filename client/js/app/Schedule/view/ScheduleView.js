@@ -21,6 +21,8 @@
 			this.$weekButton = this.$el.find('.weekBtn');
 			this.$keyDatesButton = this.$el.find('.keyDatesBtn');
 			this.$btn = this.$el.find('.scBtn');
+            
+            this.show('month');
 
             return this;
         },
@@ -47,6 +49,8 @@
 							groupName: 'DP-093-JS',
 							keyDates: {
 								start: '12/12/2015',
+                                demo1: '12/12/2015',
+                                demo2: '12/12/2015',
 								offering: '12/12/2015',
 								finish: '12/12/2014'
 							}
@@ -54,6 +58,8 @@
 							groupName: 'DP-094-MQC',
 							keyDates: {
 								start: '12/12/2015',
+                                demo1: '12/12/2015',
+                                demo2: '12/12/2015',
 								offering: '12/12/2015',
 								finish: '12/12/2014'
 							}
