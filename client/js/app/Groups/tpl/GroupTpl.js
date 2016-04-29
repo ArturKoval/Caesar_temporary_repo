@@ -1,7 +1,7 @@
 templates.groupTpl = _.template([
     '<header class="group-controls">',
         '<div class="buttons-wrapper">',
-            '<% if ((app.user.isRole(\'Teacher\')) && (_.contains(teachers, app.user.getShortName())) ||',
+            '<% if ((app.user.isRole(\'Teacher\')) && (_.contains(teachers, app.user.getShortName()) && (stage !== \'finished\')) ||',
                 '((app.user.isRole(\'Coordinator\')) && (app.user.isLocation(location))) ||',
                 '(app.user.isRole(\'Administrator\'))) { %>',
                 '<button class="btn editBtn" name="edit"> <i class="fa fa-cog fa-2x"></i></button>',

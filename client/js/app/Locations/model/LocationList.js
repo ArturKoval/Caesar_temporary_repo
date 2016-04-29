@@ -42,7 +42,6 @@
             location.check();
         },
 
-        //temp
         getCheckedLocationsNames: function () {
             return this.getCheckedLocations().map(function (checkedLocation) {
                 return checkedLocation.get('name');

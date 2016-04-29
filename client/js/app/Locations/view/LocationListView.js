@@ -26,6 +26,7 @@
         render: function () {
             this.$el.html(this.template);
             this.$saveBtnEl = this.$el.find('.save');
+            this.$ul = this.$el.find('ul');
 
             this.collection.sort();
 
@@ -34,9 +35,9 @@
                     model: location
                 });
 
-                this.$el.find('.locations').append(locationView.render().el);
+                this.$ul.append(locationView.render().el);
                 this.nestedViews.push(locationView);
-            }.bind(this));
+            }, this);
 
             return this;
         },
@@ -66,12 +67,8 @@
         },
 
         select: function () {
-            //temp
             app.mediator.publish('Locations: forRouter', this.collection.getCheckedLocationsNames());
             app.mediator.publish('Locations: selected', this.collection.getCheckedLocationsNames());
-
-            //proper
-            // app.mediator.publish('Locations: selected', this.collection.getCheckedLocations());
 
             this.onClose();
         },

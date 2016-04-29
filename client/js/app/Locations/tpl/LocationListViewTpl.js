@@ -1,7 +1,7 @@
 templates.locationListViewTpl = _.template([
     '<div class="location-wrapper">',
         '<div>',
-            '<ul class="locations">',
+            '<ul>',
             '</ul>',
             '<div class="location-buttons">',
                 '<button class="save disabled" disabled>',

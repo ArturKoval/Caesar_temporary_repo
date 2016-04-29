@@ -20,7 +20,7 @@
     margin: 0 auto;
 }
 
-.locations {
+.location-wrapper ul {
     list-style-type: none;
     display: flex;
     flex-flow: row wrap;

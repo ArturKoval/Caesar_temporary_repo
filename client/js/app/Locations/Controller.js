@@ -4,16 +4,14 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Menu: Locations': 'showLocations',
-            'Groups: saved': 'addGroup',
-            'Locations: selected': function (locations) {
-                this.selectedLocation = locations;
-            }
+            'Groups: saved': 'updateLastGroupNumber',
+            'Locations: selected': 'setSelectedLocations'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
             this.$modalEl = $('#modal-window');
-            this.selectedLocation = [app.user.get('location')];
+            this.selectedLocations = [app.user.get('location')];
         },
 
         showLocations: function () {
@@ -24,12 +22,15 @@
             this.$modalEl.append(locationListView.render().el);
         },
 
-        getLocations: function (locations) {
-            return this.selectedLocation;
+        getSelectedLocations: function () {
+            return this.selectedLocations;
         },
-        
-        //temp
-        addGroup: function (group) {
+
+        setSelectedLocations: function (selectedLocations) {
+            this.selectedLocations = selectedLocations;
+        },
+
+        updateLastGroupNumber: function (group) {
             var location = {};
 
             if (group.isNew()) {

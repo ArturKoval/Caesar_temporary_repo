@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This, app, i) {
+(function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Groups: edit-request': 'showForm',
@@ -14,15 +14,15 @@
 
         initialize: function () {
             this.mediator = app.mediator;
-			this.$sidebar = $('.left-side-bar');
+            this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
-			
-			this.$sidebar = $('#left-side-bar');
+
+            this.$sidebar = $('#left-side-bar');
             this.$content = $('#content-section');
-			
+
             this.contentView = new This.ContentView();
-			this.$content.html(this.contentView.render().$el);
-			this.$main = $('.main-section');
+            this.$content.html(this.contentView.render().$el);
+            this.$main = $('.main-section');
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
@@ -31,8 +31,7 @@
 
         start: function (locations) {
             this.$content.html(this.contentView.render().$el);
-            this.render();
-			app.mediator.publish('Locations: selected', locations);
+            app.mediator.publish('Locations: selected', locations);
         },
 
         render: function () {
@@ -43,7 +42,7 @@
             this.groupListView.renderGroups(collection);
         },
 
-		showLocationByRoute: function (arrLocations) {
+        showLocationByRoute: function (arrLocations) {
             if (isLocation(arrLocations)) {
                 app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'});
 
@@ -54,29 +53,29 @@
 
             function isLocation (locations) {
                 var arr = [];
-                
-                locations.forEach(function (location) {    
+
+                locations.forEach(function (location) {
                     if (store.locations.getNames().indexOf(location) < 0) {
                         arr.push(location);
                     }
                 });
-                
-                return arr.length    
+
+                return arr.length;
             }
 
             return true;
-		},
+        },
 
         showGroupViewByRoute: function (locations, groupName, action) {
             if (this.showLocationByRoute(locations)) {
-                if(store.groups.findGroupByName(groupName)) {
+                if (store.groups.findGroupByName(groupName)) {
                     this.showSelectedGroup(this.list(locations).findGroupByName(groupName), action);
                 } else {
                     app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'});
                 }
             }
 
-			return store.groups.findGroupByName(groupName);
+            return store.groups.findGroupByName(groupName);
         },
 
         showForm: function (group) {
@@ -98,7 +97,7 @@
                 model: selected
             });
 
-            $('.main-section').html(groupView.render().el); 
+            $('.main-section').html(groupView.render().el);
             groupView.showStubView(action);
         },
 
@@ -108,8 +107,8 @@
             $('#modal-window').html(view.render().$el);
         },
 
-		list: function (data) {
-             return store.groups.findGroupsByLocations(data);
+        list: function (data) {
+            return store.groups.findGroupsByLocations(data);
         }
     });
-})(CS.Groups, app, i);
+})(CS.Groups, app);

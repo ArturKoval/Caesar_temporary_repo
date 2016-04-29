@@ -79,7 +79,7 @@
         },
 
         initLocation: function () {
-            var locations = app.locationsController.getLocations(),
+            var locations = app.locationsController.getSelectedLocations(),
             	arrLocations = locations.join('+');
             	
             this.controller.start(locations);
