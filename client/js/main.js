@@ -25,7 +25,6 @@ $(function () {
         app.messengerController = new CS.Messenger.Controller();
         app.locationsController = new CS.Locations.Controller();
         app.menuController  = new CS.Menu.Controller();
-        app.scheduleController = new CS.Schedule.Controller();
 
         Backbone.history.start({pushState: true});
     }
