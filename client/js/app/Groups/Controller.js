@@ -21,7 +21,7 @@
             this.$content = $('#content-section');
 
             this.contentView = new This.ContentView();
-            this.$content.html(this.contentView.render().$el);
+            this.$content.html(this.contentView.render().el);
             this.$main = $('.main-section');
             this.groupListView = new This.GroupListView({
                 collection: store.groups
@@ -30,7 +30,7 @@
         },
 
         start: function (locations) {
-            this.$content.html(this.contentView.render().$el);
+            this.$content.html(this.contentView.render().el);
             app.mediator.publish('Locations: selected', locations);
         },
 
@@ -104,7 +104,7 @@
         //Helpers
 
         modal: function (view) {
-            $('#modal-window').html(view.render().$el);
+            $('#modal-window').html(view.render().el);
         },
 
         list: function (data) {

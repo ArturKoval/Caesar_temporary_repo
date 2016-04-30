@@ -68,8 +68,9 @@
                         regexp = /^[a-z0-9 \-\/\+\.\#\(\)]+$/i,
                         msg = '',
                         id;
-
-                    if (nameLength < MIN_NAME_LENGTH) {
+                    if (nameLength === 0) {
+                        msg = 'Please, enter group name!';
+                    } else if (nameLength < MIN_NAME_LENGTH) {
                         msg = 'Name must be at least 4 characters!';
                     } else if (nameLength > MAX_NAME_LENGTH) {
                         msg = 'Name must be at most 21 characters!';
@@ -100,7 +101,7 @@
 
                 direction: function (direction) {
                     if (i.directions.indexOf(direction) === -1) {
-                        return 'Wrong direction!';
+                        return 'Please, select direction!';
                     }
                 },
 
@@ -112,21 +113,18 @@
                     }
                 },
 
-                startDate: function (startDate, attributeName, attributes) {
-                    var finishDateTime = moment(attributes.finishDate, DATE_FORMAT),
-                        earliestDate = '01/01/2005',
+                startDate: function (startDate) {
+                    var earliestDate = '01/01/2005',
                         earliestStartDate = moment(earliestDate, DATE_FORMAT),
                         startDateTime = moment(startDate, DATE_FORMAT),
                         msg = '';
 
                     if (!startDate) {
-                        msg = 'Start Date is required!';
+                        msg = 'Start date is required!';
                     } else if (!moment(startDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
                     } else if (startDateTime.isSameOrBefore(earliestStartDate)) {
-                        msg = 'Start date should be after ' + earliestDate + '!';
-                    } else if (startDateTime.isSameOrAfter(finishDateTime)) {
-                        msg = 'Start date should be before Finish date!';
+                        msg = 'Start date can\'t be earlier than ' + earliestDate + '!';
                     }
 
                     if (msg) {
@@ -144,7 +142,7 @@
                     } else if (!moment(finishDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
                     } else if (finishDateTime.isSameOrBefore(startDateTime)) {
-                        msg = 'Finish date should be after Start date!';
+                        msg = 'Finish date can\'t be earlier than Start date';
                     }
 
                     if (msg) {
