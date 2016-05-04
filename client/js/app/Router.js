@@ -25,8 +25,9 @@
                 Groups: 'Groups'
             };
 
-            if(routes[path]) {
-                this.navigate(routes[path], {trigger: true});
+            if (routes[path]) {
+                app.mediator.publish('Menu: changed-page');
+                this.navigate(routes[path], {trigger: true}); 
             }   
         },
 

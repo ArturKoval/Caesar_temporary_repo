@@ -8,13 +8,14 @@
         },
 
         initialize: function () {
-            this.controller = new CS.Schedule.Controller();
-            Backbone.history.loadUrl(Backbone.history.fragment); 
-            
+            this.controller = new This.Controller();
+            Backbone.history.loadUrl(Backbone.history.fragment);    
         },
 
         renderPageSchedule: function () {
-            this.controller.start();
+            var locations = app.locationsController.getSelectedLocations();
+
+            this.controller.start(locations);
         },
 
         notFound: function () {

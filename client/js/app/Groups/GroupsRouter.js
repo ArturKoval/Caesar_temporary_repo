@@ -21,7 +21,8 @@
             'Groups/:location(/)': 'openLocation',
             'Groups/:location/:group(/)': 'openGroupInfo',
             'Groups/:location/:group/:action(/)': 'openGroupAction',
-            'Groups/:location/:group/:action/:crud(/)': 'opencommandCrud'
+            'Groups/:location/:group/:action/:crud(/)': 'opencommandCrud',
+            'Groups*path': 'notFound'
         },
 
         initialize: function () {
@@ -88,7 +89,7 @@
 
         openLocation: function (locations) {
             var arrLocations = locations.split('+');
-
+           
             this.controller.showLocationByRoute(arrLocations);
         },
 
@@ -145,6 +146,10 @@
 
         openWindowLocations: function () {
             app.locationsController.showLocations();
+        },
+
+        notFound: function () {
+            app.mediator.publish('Error: show-page-404');
         }
     });
 })(CS.Groups, app);

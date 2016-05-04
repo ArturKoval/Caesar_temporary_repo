@@ -9,46 +9,51 @@
             'Locations: selected': 'groupsRender',
             'Groups: selected': 'showSelectedGroup',
             'Groups: saved': 'showSelectedGroup',
-            'GroupList paginator: page-selected': 'groupsRender'
+            'GroupList paginator: page-selected': 'groupsRender',
+            'Menu: changed-page': 'deleteView'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
+            this.trigger = true;
             this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
-
             this.$sidebar = $('#left-side-bar');
             this.$content = $('#content-section');
-
             this.contentView = new This.ContentView();
             this.$content.html(this.contentView.render().el);
             this.$main = $('.main-section');
-            this.groupListView = new This.GroupListView({
-                collection: store.groups
-            });
-            this.render();
         },
 
         start: function (locations) {
             this.$content.html(this.contentView.render().el);
+            this.render();
             app.mediator.publish('Locations: selected', locations);
+
+            this.trigger = true;
         },
 
         render: function () {
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
             this.$sidebar.html(this.groupListView.render().el);
         },
 
-        groupsRender: function(collection) {
-            this.groupListView.renderGroups(collection);
+        groupsRender: function() {
+            this.groupListView.renderGroups();
         },
 
         showLocationByRoute: function (arrLocations) {
+            this.render();
             if (isLocation(arrLocations)) {
                 app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'});
 
                 return false;
             } else {
                 app.mediator.publish('Locations: selected', arrLocations);
+
+                return true;
             }
 
             function isLocation (locations) {
@@ -61,9 +66,7 @@
                 });
 
                 return arr.length;
-            }
-
-            return true;
+            }   
         },
 
         showGroupViewByRoute: function (locations, groupName, action) {
@@ -99,6 +102,14 @@
 
             $('.main-section').html(groupView.render().el);
             groupView.showStubView(action);
+        },
+
+        deleteView: function () {
+            if (this.trigger) {
+                this.trigger = false;
+                this.contentView.remove();
+                this.groupListView.remove();
+            }
         },
 
         //Helpers

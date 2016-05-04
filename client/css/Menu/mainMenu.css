@@ -6,10 +6,19 @@
     transition: 0.4s;
    	width: 100%;
     text-align: center;
+    padding-right: 25px;
 }
 
-.top-menu div {
+.containerMainMenu {
+    float: left;
+    width: 95%;
+}
 
+.logout {
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 5px 0 5px 0;
 }
 
 .top-menu.open {

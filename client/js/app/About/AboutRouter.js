@@ -8,9 +8,8 @@
         },
 
         initialize: function () {
-            this.controller = new CS.About.Controller();
-            Backbone.history.loadUrl(Backbone.history.fragment); 
-            
+            this.controller = new This.Controller();
+            Backbone.history.loadUrl(Backbone.history.fragment);    
         },
 
         renderPageAbout: function () {
@@ -20,6 +19,6 @@
         notFound: function () {
             app.mediator.publish('Error: show-page-404');
         }
-        
+
     });
 })(CS.About, app);

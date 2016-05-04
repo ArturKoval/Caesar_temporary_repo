@@ -14,7 +14,7 @@
         },
     
         render: function () {
-            this.$el.append(this.template);
+            this.$el.html(this.template);
 
 			this.$container = this.$el.find('.scheduleContainer');
 			this.$monthButton = this.$el.find('.monthBtn');
