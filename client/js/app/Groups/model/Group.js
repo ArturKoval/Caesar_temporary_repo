@@ -1,10 +1,16 @@
 'use strict';
 
-(function (This, i) {
+(function(This, i) {
+    var DATE_FORMAT = 'MM/DD/YYYY',
+        EARLIEST_DATE = '01/01/2005',
+        EARLIEST_START_DATE = moment(EARLIEST_DATE, DATE_FORMAT),
+        MIN_NAME_LENGTH = 4,
+        MAX_NAME_LENGTH = 21;
+
     This.Group = Backbone.Model.extend({
         urlRoot: '/groups',
 
-        defaults: function () {
+        defaults: function() {
             return {
                 name: '',
                 location: '',
@@ -18,28 +24,28 @@
             };
         },
 
-        toClientJSON: function () {
+        toClientJSON: function() {
             var result = _.clone(this.attributes);
 
-            result.startDate = this.get('startDate') ? moment(this.get('startDate'),'X').format('MM/DD/YYYY') : '';
-            result.finishDate = this.get('finishDate') ? moment(this.get('finishDate'),'X').format('MM/DD/YYYY') : '';
+            result.startDate = this.get('startDate') ? moment(this.get('startDate'), 'X').format('MM/DD/YYYY') : '';
+            result.finishDate = this.get('finishDate') ? moment(this.get('finishDate'), 'X').format('MM/DD/YYYY') : '';
 
             return result;
         },
 
-        isMyTeacher: function (teacher) {
+        isMyTeacher: function(teacher) {
             return this.get('teachers').indexOf(teacher) > -1;
         },
 
-        isMyStage: function (stage) {
+        isMyStage: function(stage) {
             return this.get('stage') === stage;
         },
 
-        isMyLocation: function (locations) {
+        isMyLocation: function(locations) {
             return locations.indexOf(this.get('location')) > -1;
         },
 
-        isMyState: function (state) {
+        isMyState: function(state) {
             var result;
 
             if (state === 'planned') {
@@ -57,13 +63,9 @@
             return result;
         },
 
-        validation: function () {
-            var DATE_FORMAT = 'MM/DD/YYYY',
-                MIN_NAME_LENGTH = 4,
-                MAX_NAME_LENGTH = 21;
-
+        validation: function() {
             return {
-                name: function (name, attributeName, attributes) {
+                name: function(name, attributeName, attributes) {
                     var nameLength = name.length,
                         regexp = /^[a-z0-9 \-\/\+\.\#\(\)]+$/i,
                         msg = '',
@@ -93,19 +95,19 @@
                     }
                 },
 
-                stage: function (stage) {
+                stage: function(stage) {
                     if (i.stages.indexOf(stage) === -1) {
                         return 'Wrong stage!';
                     }
                 },
 
-                direction: function (direction) {
+                direction: function(direction) {
                     if (i.directions.indexOf(direction) === -1) {
                         return 'Please, select direction!';
                     }
                 },
 
-                location: function (location) {
+                location: function(location) {
                     var locationNames = store.locations.getNames();
 
                     if (locationNames.indexOf(location) === -1) {
@@ -113,18 +115,18 @@
                     }
                 },
 
-                startDate: function (startDate) {
-                    var earliestDate = '01/01/2005',
-                        earliestStartDate = moment(earliestDate, DATE_FORMAT),
-                        startDateTime = moment(startDate, DATE_FORMAT),
+                startDate: function(startDate) {
+                    var startDateTime = moment(startDate, DATE_FORMAT),
                         msg = '';
 
                     if (!startDate) {
                         msg = 'Start date is required!';
                     } else if (!moment(startDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
-                    } else if (startDateTime.isSameOrBefore(earliestStartDate)) {
-                        msg = 'Start date can\'t be earlier than ' + earliestDate + '!';
+                    } else if (startDateTime.isBefore(EARLIEST_START_DATE)) {
+                        msg = 'Start date can\'t be earlier than ' + EARLIEST_DATE + '!';
+                    } else if (startDateTime.isAfter(getMaxStartDate())) {
+                        msg = 'Start date should be before the end of next year!';
                     }
 
                     if (msg) {
@@ -132,7 +134,7 @@
                     }
                 },
 
-                finishDate: function (finishDate, attributeName, attributes) {
+                finishDate: function(finishDate, attributeName, attributes) {
                     var startDateTime = moment(attributes.startDate, DATE_FORMAT),
                         finishDateTime = moment(finishDate, DATE_FORMAT),
                         msg = '';
@@ -142,7 +144,7 @@
                     } else if (!moment(finishDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
                     } else if (finishDateTime.isSameOrBefore(startDateTime)) {
-                        msg = 'Finish date can\'t be earlier than Start date';
+                        msg = 'Finish date can\'t be earlier than Start date!';
                     }
 
                     if (msg) {
@@ -150,10 +152,10 @@
                     }
                 },
 
-                teachers: function (teachers) {
+                teachers: function(teachers) {
                     var isTeachersValid = false;
 
-                    isTeachersValid = teachers.every(function (teacher) {
+                    isTeachersValid = teachers.every(function(teacher) {
                         return (i.teachers.indexOf(teacher) !== -1);
                     });
 
@@ -162,11 +164,11 @@
                     }
                 },
 
-                experts: function (experts) {
+                experts: function(experts) {
                     var regexp = /^[a-z \-\.`]{5,25}$/i,
                         isExpertsValid = false;
 
-                    isExpertsValid = experts.every(function (expert) {
+                    isExpertsValid = experts.every(function(expert) {
                         return regexp.test(expert);
                     });
 
@@ -177,4 +179,14 @@
             };
         }
     });
+
+    function getMaxStartDate () {
+        var currentYear = moment().year(),
+            nextYearDate = moment().year(currentYear + 1),
+            maxStartDate;
+
+        maxStartDate = nextYearDate.endOf('year');
+
+        return maxStartDate;
+    }
 })(CS.Groups, i);
