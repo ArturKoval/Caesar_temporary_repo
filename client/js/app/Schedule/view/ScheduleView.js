@@ -16,11 +16,11 @@
         render: function () {
             this.$el.html(this.template);
 
-			this.$container = this.$el.find('.scheduleContainer');
-			this.$monthButton = this.$el.find('.monthBtn');
-			this.$weekButton = this.$el.find('.weekBtn');
-			this.$keyDatesButton = this.$el.find('.keyDatesBtn');
-			this.$btn = this.$el.find('.scBtn');
+			this.$container = this.$('.scheduleContainer');
+			this.$monthButton = this.$('.monthBtn');
+			this.$weekButton = this.$('.weekBtn');
+			this.$keyDatesButton = this.$('.keyDatesBtn');
+			this.$btn = this.$('.scBtn');
             
             this.show('month');
 

@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This, app) {
+(function (This, messenger) {
     This.MainMenuView = Backbone.View.extend({
         tagName: 'div',
         className: 'MainMenu',
@@ -32,8 +32,8 @@
         show: function () {
             this.$el.addClass('open');
             this.$itemMenu.addClass('open');
-            this.timeBarView = new CS.Messenger.TimeBarView({
-                model: new CS.Messenger.Clock()
+            this.timeBarView = new messenger.TimeBarView({
+                model: new messenger.Clock()
             });
             $('.flashMessage').html(this.timeBarView.render().el);
         },
@@ -44,4 +44,4 @@
             this.timeBarView.remove();
         }
     });
-})(CS.Menu, app);
+})(CS.Menu, CS.Messenger);

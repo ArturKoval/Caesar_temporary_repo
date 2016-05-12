@@ -15,7 +15,9 @@
 
         initialize: function () {
             this.mediator = app.mediator;
+
             this.trigger = true;
+
             this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
             this.$sidebar = $('#left-side-bar');
