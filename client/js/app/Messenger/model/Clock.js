@@ -31,7 +31,7 @@
         getDay: function() {
             var currentDay = this.get('day');
 
-            return  {
+            return {
                 0: 'Sunday',
                 1: 'Monday',
                 2: 'Tuesday',

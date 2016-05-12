@@ -15,13 +15,15 @@
 
         initialize: function () {
             this.mediator = app.mediator;
+
             this.trigger = true;
+
             this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
-            this.$sidebar = $('#left-side-bar');
-            this.$content = $('#content-section');
+            
             this.contentView = new This.ContentView();
             this.$content.html(this.contentView.render().el);
+
             this.$main = $('.main-section');
         },
 
