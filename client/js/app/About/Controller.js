@@ -7,7 +7,8 @@
             'About: selected': 'openContentView',
             'About: show-request': 'openListPeopleGroup',
             'About: selectedContributor': 'showNameContributor',
-            'Menu: changed-page': 'deleteView'
+            'Menu: changed-page': 'deleteView',
+            'Locations: selected': 'openPageGroup'
         },
 
         initialize: function () {
@@ -22,10 +23,10 @@
             this.list.on('sync', function () {
                 store.contributors = this.list;     
             }, this);
-            this.content = new This.ContentView(); 
         },
 
         showDirectionContributors: function () {
+            this.content = new This.ContentView(); 
             this.leftSideBarView = new This.LeftSideBarView();
             this.$sidebar.html(this.leftSideBarView.render().$el);
             this.$content.html(this.content.render().$el); 
@@ -48,6 +49,12 @@
 
         showNameContributor: function (info) {
             this.$contributorsName.html(info);
+        },
+
+        openPageGroup: function () {
+            if (this.trigger) {
+                app.router.navigate('Groups', {trigger: true});
+            }
         },
 
         deleteView: function () {

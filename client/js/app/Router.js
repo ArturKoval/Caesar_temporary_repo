@@ -11,7 +11,10 @@
         },
 
         subscribes: {
-            'Menu: SelectedPage': 'navToChangePath'
+            'Menu: SelectedPage': 'navToChangePath',
+            'Menu: Locations': 'navToLocations',
+            'Locations: dialog-closed': 'navToCancelForm',
+            'Locations: forRouter': 'navToSelectedLocations',
         },
 
         initialize: function () {
@@ -29,6 +32,22 @@
                 app.mediator.publish('Menu: changed-page');
                 this.navigate(routes[path], {trigger: true}); 
             }   
+        },
+
+        navToLocations: function () {
+            this.currentUrl = window.location.pathname;
+            this.navigate(this.currentUrl + '/' + 'Locations');
+        },
+
+        navToCancelForm: function () {
+            
+            this.navigate(this.currentUrl);
+        },
+
+        navToSelectedLocations: function (arrLocations) {
+            var locations = arrLocations.join('+');
+
+            this.navigate(this.currentUrl.split('/', 2).join('/') + '/' + locations);
         },
 
         pageGroups: function () {

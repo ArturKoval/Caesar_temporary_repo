@@ -4,14 +4,12 @@
         currentUrl: 'Groups',
 
         subscribes: {
-            'Locations: forRouter': 'navToSelectedLocations',
             'Groups: selected': 'navToGroupSelected',
             'Groups: stubView-changed': 'navToGroupAction',
             'Groups: crud-request': 'navToShowRequest',
             'Groups: delete-group': 'navToDeleteGroup',
             'Groups: saved': 'navToSaveGroup',
-            'Groups: dialog-closed': 'navToCancelForm',
-            'Menu: Locations': 'navToLocations'
+            'Groups: dialog-closed': 'navToCancelForm'
         },
 
         routes: {
@@ -27,9 +25,7 @@
 
         initialize: function () {
             app.mediator.multiSubscribe(this.subscribes, this);
-
             this.controller = new This.Controller();
-
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
@@ -54,7 +50,12 @@
         },
 
         navToCancelForm: function () {
-            this.navigate(this.currentUrl);
+            var previousUrl;
+
+            this.currentUrl = window.location.pathname;
+            previousUrl = this.currentUrl.split('/');
+            previousUrl.pop();
+            this.navigate(previousUrl.join('/'));
         },
 
         navToDeleteGroup: function () {
@@ -66,17 +67,6 @@
                 location = model.get('location');
 
             this.navigate('Groups/' + location + '/' + groupName + '/info');
-        },
-
-        navToLocations: function () {
-            this.currentUrl = window.location.pathname;
-            this.navigate('Groups/Locations');
-        },
-
-        navToSelectedLocations: function (arrLocations) {
-            var locations = arrLocations.join('+');
-
-            this.navigate('Groups/' + locations);
         },
 
         initLocation: function () {

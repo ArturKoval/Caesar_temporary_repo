@@ -20,20 +20,19 @@
             this.$content = $('.content-section');
             this.$sidebar = $('#left-side-bar');
             this.$content = $('#content-section');
-            this.contentView = new This.ContentView();
-            this.$content.html(this.contentView.render().el);
             this.$main = $('.main-section');
         },
 
         start: function (locations) {
-            this.$content.html(this.contentView.render().el);
             this.render();
-            app.mediator.publish('Locations: selected', locations);
-
             this.trigger = true;
+            app.mediator.publish('Locations: selected', locations);
+            $('#left-menu').css('display','block');
         },
 
         render: function () {
+            this.contentView = new This.ContentView();
+            this.$content.html(this.contentView.render().el);
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
@@ -41,7 +40,9 @@
         },
 
         groupsRender: function() {
-            this.groupListView.renderGroups();
+            if (this.trigger) {
+                this.groupListView.renderGroups();
+            }
         },
 
         showLocationByRoute: function (arrLocations) {

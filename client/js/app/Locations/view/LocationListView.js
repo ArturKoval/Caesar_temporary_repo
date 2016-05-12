@@ -100,7 +100,7 @@
         },
 
         close: function () {
-            app.mediator.publish('Groups: dialog-closed');
+            app.mediator.publish('Locations: dialog-closed');
             this.onClose();
         }
     });
