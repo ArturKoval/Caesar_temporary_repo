@@ -20,8 +20,6 @@
 
             this.$sidebar = $('.left-side-bar');
             this.$content = $('.content-section');
-            this.$sidebar = $('#left-side-bar');
-            this.$content = $('#content-section');
             this.$main = $('.main-section');
         },
 
