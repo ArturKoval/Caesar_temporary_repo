@@ -4,7 +4,7 @@ templates.paginatorTpl = _.template([
     '</div>',
     '<div class="page-nav"></div>',
     '<div class="right-nav">',
-    ' <i class="fa fa-caret-right" aria-hidden="true"></i>',
+    '<i class="fa fa-caret-right" aria-hidden="true"></i>',
     '</div>'
 ].join(''));
 

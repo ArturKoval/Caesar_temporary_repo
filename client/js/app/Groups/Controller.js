@@ -6,7 +6,7 @@
             'Groups: edit-request': 'showForm',
             'Groups: delete-request': 'delete',
             'Groups: create-request': 'showForm',
-            'Locations: selected': 'groupsRender',
+            'Locations: selected': 'render',
             'Groups: selected': 'showSelectedGroup',
             'Groups: saved': 'showSelectedGroup',
             'GroupList paginator: page-selected': 'groupsRender',
@@ -24,31 +24,51 @@
         },
 
         start: function (locations) {
-            this.render();
             this.trigger = true;
             app.mediator.publish('Locations: selected', locations);
-            $('#left-menu').css('display','block');
+            $('#left-menu').css('display', 'block');
         },
 
         render: function () {
             this.contentView = new This.ContentView();
             this.$content.html(this.contentView.render().el);
+
+            if (this.groupListView) {
+                this.groupListView.remove();
+                this.groupListView.paginatorView.remove();
+            }
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
+
             this.$sidebar.html(this.groupListView.render().el);
         },
 
-        groupsRender: function() {
+        groupsRender: function () {
             if (this.trigger) {
                 this.groupListView.renderGroups();
             }
         },
 
+        scheduleGroupsViewRender: function () {
+            if (this.groupListView) {
+                this.groupListView.remove();
+                this.groupListView.paginatorView.remove();
+            }
+            this.groupListView = new This.ScheduleGroupListView({
+                collection: store.groups
+            });
+
+            this.$sidebar.html(this.groupListView.render().el);
+        },
+
         showLocationByRoute: function (arrLocations) {
             this.render();
             if (isLocation(arrLocations)) {
-                app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a location is not found'});
+                app.mediator.publish('Error: show-error-page', {
+                    elem: this.$main,
+                    message: 'such a location is not found'
+                });
 
                 return false;
             } else {
@@ -57,7 +77,7 @@
                 return true;
             }
 
-            function isLocation (locations) {
+            function isLocation(locations) {
                 var arr = [];
 
                 locations.forEach(function (location) {
@@ -67,7 +87,7 @@
                 });
 
                 return arr.length;
-            }   
+            }
         },
 
         showGroupViewByRoute: function (locations, groupName, action) {
@@ -75,7 +95,10 @@
                 if (store.groups.findGroupByName(groupName)) {
                     this.showSelectedGroup(this.list(locations).findGroupByName(groupName), action);
                 } else {
-                    app.mediator.publish('Error: show-error-page', {elem: this.$main, message: 'such a group is not found'});
+                    app.mediator.publish('Error: show-error-page', {
+                        elem: this.$main,
+                        message: 'such a group is not found'
+                    });
                 }
             }
 
@@ -110,6 +133,7 @@
                 this.trigger = false;
                 this.contentView.remove();
                 this.groupListView.remove();
+                this.groupListView.paginatorView.remove();
             }
         },
 

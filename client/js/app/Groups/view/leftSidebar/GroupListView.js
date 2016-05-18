@@ -23,6 +23,7 @@
             this.$myGroups = this.$el.find('.myGroups');
             this.$paginator = this.$el.find('.paginator-place-holder');
             this.createPaginator();
+            this.renderGroups();
 
             return this;
         },

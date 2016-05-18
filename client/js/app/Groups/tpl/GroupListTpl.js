@@ -19,6 +19,18 @@ templates.groupListTpl = ([
 	'</div>'
 ].join(''));
 
+templates.groupListScheduleTpl = ([
+	'<div class="group-list-header row">',
+	'<div class="search">',
+	'<img src = "/img/search.png">',
+	'</div>',
+	'<div class="paginator-place-holder"></div>',
+	'</div>',
+	'<div class="group-collection row"></div>',
+	'<div class="group-list-footer">',
+	'<button class="myGroups">My Groups</button>'
+].join(''));
+
 templates.smallGroupTpl = _.template([
 	'<div><p>' + '<%= name %>' + '</p></div>'
 ].join(''));

@@ -13,6 +13,7 @@
             },
             groupList;
 
+        app.mediator.subscribe('Locations: selected', setDefault);
         app.mediator.subscribe('MyGroups: selected', function (value) {groupListParams.areMyGroups = value});
         app.mediator.subscribe('State: selected', function (value) {groupListParams.state = value});
         app.mediator.subscribe('GroupList paginator: page size defined', function (value) {groupListParams.pageSize = value});
@@ -50,6 +51,15 @@
             groupListParams.lastPage = pageElems.length;
             app.mediator.publish('GroupList paginator: pages defined', groupListParams);
             return pageElems[groupListParams.page];
+        }
+
+        function setDefault (){
+            groupListParams.state = 'in-process';
+            groupListParams.areMyGroups = false;
+            groupListParams.locations = store.groups.findGroupsByLocations(app.user.get('location'));
+            groupListParams.page = 0;
+            groupListParams.lastPage = 0;
+            groupListParams.pageSize = 10
         }
 
         return this;
