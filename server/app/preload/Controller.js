@@ -1,5 +1,5 @@
 'use strict';
-var Rotor = require('../../libs/rotor/rotor'),
+var Rotor = require('rotor-backbone'),
     Directions = require('../directions/Models/DirectionsList'),
 	Locations = require('../locations/Models/CoursesList'),
     Teachers = require('../teachers/Models/TeachersList'),

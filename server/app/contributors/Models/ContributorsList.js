@@ -1,6 +1,6 @@
 'use strict';
 
-var Rotor = require('../../../libs/rotor/rotor'),
+var Rotor = require('rotor-backbone'),
 	Contributor = require('./Contributor');
 
 var ContributorsList = Rotor.Collection.extend({

@@ -2,13 +2,13 @@ var http = require('http'),
     path = require('path'),
     helper = require('./libs/helper'),
     router = require('./router'),
-    socket = require('./socket'),
-    mediator = require('./libs/mediator');
+    socket = require('./socket');
+    //mediator = require('./libs/mediator');
 
 http.createServer(start).listen(3000);
-global.mediator = mediator;
+//global.mediator = mediator;
 
-socket.start();
+//socket.start();
 console.log('server started...');
 
 function start (request, response, errRoute) {

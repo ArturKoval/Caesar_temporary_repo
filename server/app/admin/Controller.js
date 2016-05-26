@@ -1,6 +1,6 @@
 'use strict';
 
-var Rotor = require('../../libs/rotor/rotor'),
+var Rotor = require('rotor-backbone'),
 	path = require('path'),
 	helper = require('../../libs/helper');
 

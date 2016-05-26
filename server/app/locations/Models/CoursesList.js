@@ -1,6 +1,6 @@
 'use strict';
 
-var Rotor = require('../../../libs/rotor/rotor'),
+var Rotor = require('rotor-backbone'),
 	Course = require('./Course');
 
 var CoursesList = Rotor.Collection.extend({

@@ -1,5 +1,5 @@
 'use strict';
-var Rotor = require('../../libs/rotor/rotor');
+var Rotor = require('rotor-backbone');
 
 var Controller = Rotor.Controller.extend({
 	collection: require('./Models/TeachersList'),

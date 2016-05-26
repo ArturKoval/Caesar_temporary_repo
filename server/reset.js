@@ -35,7 +35,7 @@ function reset (defaultInfo) {
 
 function getConnection (name, callback) {
     var MongoClient = mongodb.MongoClient,
-        url = 'mongodb://localhost:27017/caeser';
+        url = 'mongodb://localhost:27017/caesar';
 
     MongoClient.connect(url, function (err, db) {
         if (err !== null) {

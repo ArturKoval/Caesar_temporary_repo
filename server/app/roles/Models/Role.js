@@ -1,5 +1,5 @@
 'use strict';
-var Rotor = require('../../../libs/rotor/rotor');
+var Rotor = require('rotor-backbone');
 
 var Role = Rotor.Model.extend({
 	name: 'roles',
