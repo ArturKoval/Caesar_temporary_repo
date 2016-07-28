@@ -27,5 +27,7 @@ $(function () {
         app.menuController  = new CS.Menu.Controller();
 
         Backbone.history.start({pushState: true});
+
+        console.log(app.mediator);
     }
 });

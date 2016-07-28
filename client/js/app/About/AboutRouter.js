@@ -4,7 +4,8 @@
 
         routes: {    
             'About(/)': 'renderPageAbout',
-            'About*path': 'notFound' 
+            'About*path': 'notFound',
+            'About/:direction': 'showDirection' //edition
         },
 
         initialize: function () {
@@ -18,7 +19,15 @@
 
         notFound: function () {
             app.mediator.publish('Error: show-page-404');
+        },
+
+        //edition
+        showDirection: function (direction) {
+            app.mediator.publish('showDirection',direction)
         }
 
     });
 })(CS.About, app);
+
+
+//не прописаны роуты для команд и подяк

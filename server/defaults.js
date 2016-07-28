@@ -87,6 +87,16 @@ var defaultData = {
     }],
 
     users: [{
+        "firstName": "Petr",
+        "lastName": "Kucher",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "/img/peter_kucher.jpg",
+        "login": "hello",
+        "password": "1234"
+    },
+
+    {
         "firstName": "Andriy",
         "lastName": "Pereymybida",
         "role": "Administrator",

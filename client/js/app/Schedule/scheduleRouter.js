@@ -9,7 +9,8 @@
 
         initialize: function () {
             this.controller = new This.Controller();
-            Backbone.history.loadUrl(Backbone.history.fragment);    
+
+            Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
         renderPageSchedule: function () {

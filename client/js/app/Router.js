@@ -7,7 +7,7 @@
             'Groups*path': 'pageGroups',
             'About*path': 'pageAbout',
             'Schedule*path': 'pageSchedule',
-            '*path': 'errorPage'
+            '*path': 'errorPage',
         },
 
         subscribes: {

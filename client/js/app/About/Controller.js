@@ -34,6 +34,10 @@
             $('#left-menu').css('display','none');
             this.trigger = true;
         },
+        //edition
+        // app.mediator.subscribe('showDirection', function (direction) {
+        //     openContentView(direction);
+        // });
 
         openContentView: function (direction) {
             this.contentView = new This.ContentAboutView({collection: store.contributors.findByDirection(direction)});
