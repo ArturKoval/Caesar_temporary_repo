@@ -24,7 +24,7 @@
             this.$content.html(this.contentView.render().$el);  
             this.$sidebar.html(this.groupListView.render().el);
 
-            this.$main = $('#main-section');
+            this.$main = $('.main-section');
             app.mediator.publish('Locations: selected', locations);
             this.groupListView.renderGroups();
             this.render();
@@ -33,7 +33,6 @@
         },
 
         render: function () { 
-            console.log(this.$main);
             this.$main.html(this.scheduleView.render().el); 
             this.$sidebar.html(this.groupListView.render().el);              
             this.$main = $('.main-section');                         
@@ -41,16 +40,17 @@
             // this.groupListView.renderGroups();                      
             this.render();
             $('#left-menu').css('display','block');
+            $('.main-section').html(this.scheduleView.render().el);
+            this.$main.html(this.scheduleView.render().el); 
         },
 
         render: function () {
-            $('.main-section').html(this.scheduleView.render().el);
         },
 
         groupsRender: function() {
             if (this.trigger) {
                 this.groupListView.renderGroups();
-                this.groupListView.render().el;                        
+                this.groupListView.render().el;
             }
         },
 

@@ -95,6 +95,16 @@ var defaultData = {
         "login": "qwerty",
         "password": "1234"
     }, {
+        "firstName": "Petr",
+        "lastName": "Kucher",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "/img/peter_kucher.jpg",
+        "login": "hello",
+        "password": "1234"
+    },
+
+    {
         "firstName": "Andriy",
         "lastName": "Pereymybida",
         "role": "Administrator",

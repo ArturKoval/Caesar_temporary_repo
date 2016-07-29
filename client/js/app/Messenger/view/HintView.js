@@ -22,4 +22,5 @@
             this.model.destroy();
 	    }
     });
+    
 })(CS.Messenger);
