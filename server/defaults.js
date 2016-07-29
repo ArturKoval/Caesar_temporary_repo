@@ -118,6 +118,14 @@ var defaultData = {
         "photo": "/img/olexander-reuta.png",
         "login": "sasha",
         "password": "1234"
+    }, {
+        "firstName": "Artur",
+        "lastName": "Koval",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "",
+        "login": "artur",
+        "password": "1234"
     }],
 
     locations: [{

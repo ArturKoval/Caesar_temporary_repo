@@ -15,7 +15,6 @@
     
         render: function () {
             this.$el.html(this.template);
-
 			this.$container = this.$('.scheduleContainer');
 			this.$monthButton = this.$('.monthBtn');
 			this.$weekButton = this.$('.weekBtn');

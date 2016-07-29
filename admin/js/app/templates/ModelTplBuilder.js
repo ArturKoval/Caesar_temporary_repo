@@ -18,6 +18,7 @@ templates.model.build = function (module) {
 			
 			if (type.control === 'date') {
 				fieldTpl = '<td><%= ' + field + ' %></td>';
+				fieldTpl = '<td><%= moment(' + field + ', "X").format("MM/DD/YYYY") %></td>';
 			    tpl.push(fieldTpl);
 			}
 			
