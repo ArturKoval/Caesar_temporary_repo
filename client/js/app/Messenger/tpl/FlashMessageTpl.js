@@ -10,5 +10,4 @@ templates.flashWarningTpl = _.template([
 			'<div class="pictureWarning">!</div>',
 		    '<div class="textWarning"> <%=text%></div>',
 		    '<button class="close"><i class="fa fa-close fa-2x"></i></button>',
->>>>>>> Petr
 ].join(''));

@@ -37,7 +37,7 @@
             this.$sidebar.html(this.groupListView.render().el);              
             this.$main = $('.main-section');                         
             app.mediator.publish('Locations: selected', locations);   
-            // this.groupListView.renderGroups();                      
+            this.groupListView.renderGroups();                  
             this.render();
             $('#left-menu').css('display','block');
             $('.main-section').html(this.scheduleView.render().el);
@@ -45,6 +45,7 @@
         },
 
         render: function () {
+            $('.main-section').html(this.scheduleView.render().el);
         },
 
         groupsRender: function() {
