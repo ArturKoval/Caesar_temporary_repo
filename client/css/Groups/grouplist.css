@@ -1,0 +1,168 @@
+.group-list-view {
+    height: 100%;
+}
+
+.group-list-header {
+    display: block;
+    width: 100%;
+    height: 45px;
+    margin: 0;
+}
+
+.group-list-header .search {
+    font-size: 2em;
+    display: inline-block;
+}
+
+.search > img {
+    padding-left: 25px;
+    padding-top: 5px;
+    width: 50px;
+}
+
+.paginator-place-holder {
+    display:inline-block;
+    float: right;
+    margin: 20px;
+    margin-right: 34px;
+    right: 40px;
+}
+
+.left-nav, .right-nav {
+    cursor: pointer;
+}
+
+.paginator {
+    position: relative;
+    border: 1px solid #3C78B5;
+    min-width:75px;
+    height:22px;
+    display: inline-block;
+    border-radius: 5px;
+}
+
+.left-nav {
+    display: inline-block;
+    border-right: 1px solid #3C78B5;
+    width:15px;
+    height:21px;
+    background-color: #3C78B5;
+    color:white;
+    border-radius: 3px 0 0 3px;
+}
+
+.right-nav {
+    display: inline-block;
+    border-left: 1px solid #3C78B5;
+    width: 15px;
+    position: absolute;
+    right: 0;
+    height: 21px;
+    background-color: #3C78B5;
+    color:white;
+    border-radius: 0 3px 3px 0 ;
+}
+
+.page-nav {
+    display: inline-block;
+    padding-left: 10%;
+    text-align: center;
+    height:20px;
+    color:#3C78B5;
+}
+
+.paginator .left-nav i {
+    padding-top:1px;
+    padding-right: 3px;
+    padding-left: 3px;
+    height:20px;
+}
+
+.paginator .right-nav i {
+    padding-top:1px;
+    padding-right: 3px;
+    padding-left: 5px;
+    height:20px;
+}
+
+.invisible {
+    visibility: hidden;
+}
+
+.group-collection {
+    margin: 0;
+    width: 100%;
+    height: 81%;
+    padding: 0 10px;
+    clear: both;
+}
+
+.group-list-footer {
+    width: 100%;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.myGroups {
+    background: #3C78B5;
+    color: white;
+    border-radius: 0.2em;
+    width: 32%;
+    height: 40px;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label div {
+    background: #171B65;
+}
+
+input[type="radio"] + label > div {
+    width: 20px;
+    height: 20px;
+    background: #3C78B5;
+    border-radius: 50%;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+input[type="radio"] + label {
+    margin-bottom: 0;
+    vertical-align: middle;
+}
+
+.small-group-view {
+    padding: 5px 10px;
+}
+
+.small-group-view > div {
+    height: 85px;
+    background: #3C78B5;
+    vertical-align: middle;
+    text-align: center;
+    word-wrap: break-word;
+    cursor: pointer;
+}
+
+.small-group-view > div > p {
+    font-size: 1.5em;
+    padding: 10px;
+    color: white;
+    margin: auto;
+    word-wrap: break-word;
+}
+
+.chosen > div {
+    background: #171B65;
+    color: white;
+}
+
+.pressed {
+    background: #171B65;
+    color: white;
+}
+

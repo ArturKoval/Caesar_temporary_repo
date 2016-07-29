@@ -1,0 +1,37 @@
+.week-wrapper {
+    overflow: scroll;
+}
+
+.key-dates-wrapper {
+    margin-top: 25px;
+}
+
+.key-dates-wrapper table {
+    width: 80%;
+    margin: 0 auto;
+    width: 80%;
+}
+
+.key-dates-wrapper table th {
+    text-align: center;
+    font-weight: bold;
+    background-color: #3C78B5;
+    border: 1px solid #000000;
+    color: #FFFFFF;
+    font-size: 14px;
+}
+
+.key-dates-wrapper table td {
+    border: 1px solid #000000;
+    text-align: center;
+    font-size: 14px;
+    color: #000000;
+    padding: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.key-dates-wrapper table td:hover {
+    background-color: #171B65;
+    color: #FFFFFF;
+}

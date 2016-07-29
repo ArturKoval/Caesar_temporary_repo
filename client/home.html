@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Caesar</title>
+        <meta charset="utf-8">
+        <link rel="shortcut icon" href="/img/favicon.ico">
+        <!-- build:css styles.css -->
+        
+        <!-- libs -->
+        <link rel="stylesheet" href="/css/libs/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/libs/fontello.css">
+        <link rel="stylesheet" href="/css/libs/animation.css">
+        <link rel="stylesheet" href="/css/libs/bootstrap.css">
+        <link rel="stylesheet" href="/css/libs/jquery-ui.css">
+
+        <link rel="stylesheet" href="/css/login/preloadView.css">
+        
+        <!-- groups -->
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/Groups/groupInfoView.css">
+        <link rel="stylesheet" href="/css/Groups/contentView.css">
+        <link rel="stylesheet" href="/css/Groups/studentListView.css">
+        <link rel="stylesheet" href="/css/Groups/grouplist.css">
+        <link rel="stylesheet" href="/css/Groups/GroupCreateEditTpl.css">
+        <link rel="stylesheet" href="/css/Groups/GroupDeleteViewTpl.css">
+        <link rel="stylesheet" href="/css/Groups/scheduleView.css">
+        <link rel="stylesheet" href="/css/Groups/GroupScheduleViewTpl.css">
+
+        <!--locations -->
+        <link rel="stylesheet" href="/css/Locations/LocationsView.css">
+
+        <!-- messenger -->
+        <link rel="stylesheet" href="/css/Messenger/messenger.css">
+        <link rel="stylesheet" href="/css/Messenger/timeBar.css">
+
+        <!-- users -->
+        <link rel="stylesheet" href="/css/User/largeUserViewTpl.css">
+        <link rel="stylesheet" href="/css/User/smallUserViewTpl.css">
+
+        <!-- menu -->
+        <link rel="stylesheet" href="/css/Menu/contextMenu.css">
+        <link rel="stylesheet" href="/css/Menu/mainMenu.css">
+
+        <!--  about  -->
+        <link rel="stylesheet" href="/css/About/aboutModul.css">
+
+        <!-- schedule -->
+        <link rel="stylesheet" href="/css/Schedule/Schedule.css">
+        <link rel="stylesheet" href="/css/Schedule/Calendar.css">
+        <link rel="stylesheet" href="/css/Schedule/KeyDatesScheduleView.css">
+        <link rel="stylesheet" href="/css/Schedule/weekView.css">
+
+        <!-- 404 -->
+        <link rel="stylesheet" href="/css/404/404.css">
+
+        <!-- endbuild -->
+
+        <!-- build:js scripts.js -->
+
+        <!-- utils -->
+        <script src="/js/utils/System.js"></script>
+        <!-- libs -->
+        <script src="/js/lib/jquery.js"></script>
+        <script src="/js/lib/jquery-ui.js"></script>
+        <script src="/js/lib/underscore.js"></script>
+        <script src="/js/lib/backbone.js"></script>
+        <script src="/js/lib/backbone-controller.js"></script>
+        <script src="/js/lib/mediator.js"></script>
+        <script src="/js/lib/mediator-multiple-subscriptions.js"></script>
+        <script src="/js/lib/bootstrap.js"></script>
+        <script src="/js/lib/backbone-validation.js"></script>
+        <script src="/js/lib/moment.js"></script>
+
+        <!-- app -->
+        <script src="/js/main.js"></script>
+        <script src="/js/app/Router.js"></script>
+
+        <!-- menu -->
+        <script src="/js/app/Menu/Controller.js"></script>
+        <script src="/js/app/Menu/model/ItemMenu.js"></script>
+        <script src="/js/app/Menu/model/Menu.js"></script>
+        <script src="/js/app/Menu/model/ItemContextMenu.js"></script>
+        <script src="/js/app/Menu/model/ContextMenu.js"></script>
+        <script src="/js/app/Menu/tpl/ItemMenuTpl.js"></script>
+        <script src="/js/app/Menu/tpl/MainMenuTpl.js"></script>
+        <script src="/js/app/Menu/tpl/ItemContextMenuTpl.js"></script>
+        <script src="/js/app/Menu/tpl/ContextMenuTpl.js"></script>
+        <script src="/js/app/Menu/view/ItemContextMenuView.js"></script>
+        <script src="/js/app/Menu/view/ContextMenuView.js"></script>
+        <script src="/js/app/Menu/view/ItemMenuView.js"></script>
+        <script src="/js/app/Menu/view/MainMenuView.js"></script>
+
+
+        <!-- filter -->
+        <script src="/js/app/Filter/filter.js"></script>
+        <script src="/js/app/Filter/paginatorTpl.js"></script>
+        <script src="/js/app/Filter/paginator.js"></script>
+
+        <!-- error -->
+        <script src="/js/app/404/404Controller.js"></script>
+        <script src="/js/app/404/404Tpl.js"></script>
+        <script src="/js/app/404/404View.js"></script>
+        <script src="/js/app/404/404MainTpl.js"></script>
+        <script src="/js/app/404/404MainView.js"></script>
+
+        <!--  about  -->
+        <script src="/js/app/About/tpl/LeftSideBarTpl.js"></script>
+        <script src="/js/app/About/tpl/GroupContributorsTpl.js"></script>
+        <script src="/js/app/About/tpl/ContributorTpl.js"></script>
+        <script src="/js/app/About/tpl/ListContributorsViewTpl.js"></script>
+        <script src="/js/app/About/tpl/ContentTpl.js"></script>
+
+        <script src="/js/app/About/model/Contributor.js"></script>
+        <script src="/js/app/About/model/ContributorList.js"></script>
+        
+        <script src="/js/app/About/view/ContentView.js"></script>
+        <script src="/js/app/About/view/LeftSideBarView.js"></script>
+        <script src="/js/app/About/view/ContributorView.js"></script>
+        <script src="/js/app/About/view/ContentAboutView.js"></script>
+        <script src="/js/app/About/view/GroupContributorsView.js"></script>
+        <script src="/js/app/About/view/ListContributorsView.js"></script>
+
+        <script src="/js/app/About/AboutRouter.js"></script>
+        <script src="/js/app/About/Controller.js"></script>
+
+        <!-- schedule -->
+        <script src="/js/app/Schedule/tpl/activityTpl.js"></script>
+        <script src="/js/app/Schedule/tpl/weekViewTpl.js"></script>
+        <script src="/js/app/Schedule/tpl/KeyDatesViewTpl.js"></script>
+        <script src="/js/app/Schedule/tpl/KeyDatesListViewTpl.js"></script>
+        <script src="/js/app/Schedule/tpl/Calendar.js"></script>
+        <script src="/js/app/Schedule/tpl/scheduleTpl.js"></script>
+
+        <script src="/js/app/Schedule/model/ActivityModel.js"></script>
+        <script src="/js/app/Schedule/model/WeekModel.js"></script>
+        <script src="/js/app/Schedule/model/GroupSchedule.js"></script>
+
+        <script src="/js/app/Schedule/view/ScheduleView.js"></script>        
+        <script src="/js/app/Schedule/view/KeyDatesView.js"></script>
+        <script src="/js/app/Schedule/view/KeyDatesListView.js"></script>
+        <script src="/js/app/Schedule/view/ActivityView.js"></script>        
+        <script src="/js/app/Schedule/view/WeekView.js"></script>
+        <script src="/js/app/Schedule/view/MonthView.js"></script>
+
+        <script src="/js/app/Schedule/ScheduleRouter.js"></script>
+        <script src="/js/app/Schedule/Controller.js"></script>
+
+        <!-- groups -->
+        <script src="/js/app/Groups/tpl/StudentListViewTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupInfoViewTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupListTpl.js"></script>
+        <script src="/js/app/Groups/tpl/ContentTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupListTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupCreateEditTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupTeacherTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupExpertTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupDeleteViewTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupKeyDatesViewTpl.js"></script>
+        <script src="/js/app/Groups/tpl/GroupScheduleViewTpl.js"></script>
+
+        <script src="/js/app/Groups/view/content/groupInfoView/MessageView.js"></script>
+        <script src="/js/app/Groups/view/content/groupInfoView/StudentListView.js"></script>
+        <script src="/js/app/Groups/view/content/groupInfoView/GroupInfoView.js"></script>
+        <script src="/js/app/Groups/view/content/groupInfoView/GroupKeyDatesView.js"></script>
+        <script src="/js/app/Groups/view/content/groupInfoView/GroupScheduleView.js"></script>
+        <script src="/js/app/Groups/view/content/GroupView.js"></script>
+        <script src="/js/app/Groups/view/content/ContentView.js"></script>
+        <script src="/js/app/Groups/view/leftSidebar/GroupListView.js"></script>
+        <script src="/js/app/Groups/view/leftSidebar/smallGroupView.js"></script>
+        <script src="/js/app/Groups/view/leftSidebar/ScheduleGroupListView.js"></script>
+        <script src="/js/app/Groups/view/leftSidebar/ScheduleSmallGroupView.js"></script>
+        <script src="/js/app/Groups/view/createEditGroup/GroupCreateEditView.js"></script>
+        <script src="/js/app/Groups/view/createEditGroup/GroupTeacherView.js"></script>
+        <script src="/js/app/Groups/view/createEditGroup/GroupExpertView.js"></script>
+        <script src="/js/app/Groups/view/deleteGroup/GroupDeleteView.js"></script>
+
+
+        <script src="/js/app/Groups/model/Group.js"></script>
+        <script src="/js/app/Groups/model/GroupList.js"></script>
+
+        <script src="/js/app/Groups/GroupsRouter.js"></script>
+        <script src="/js/app/Groups/Controller.js"></script>
+
+        <!--preloadView-->
+        <script src="/js/app/Preload/PreloadViewTpl.js"></script>
+        <script src="/js/app/Preload/PreloadView.js"></script>
+
+        <!--locations -->
+        <script src="/js/app/Locations/Controller.js"></script>
+
+        <script src="/js/app/Locations/model/Location.js"></script>
+        <script src="/js/app/Locations/model/LocationList.js"></script>
+
+        <script src="/js/app/Locations/tpl/LocationListViewTpl.js"></script>
+        <script src="/js/app/Locations/tpl/LocationViewTpl.js"></script>
+
+        <script src="/js/app/Locations/view/LocationView.js"></script>
+        <script src="/js/app/Locations/view/LocationListView.js"></script>
+
+        <!-- users -->
+        <script src="/js/app/Users/tpl/largeUserViewTpl.js"></script>
+        <script src="/js/app/Users/tpl/smallUserViewTpl.js"></script>
+
+        <script src="/js/app/Users/view/SmallUserView.js"></script>
+        <script src="/js/app/Users/view/LargeUserView.js"></script>
+
+        <script src="/js/app/Users/model/User.js"></script>
+        <script src="/js/app/Users/Controller.js"></script>
+
+        <!-- messenger -->
+        <script src="/js/app/Messenger/model/Messenger.js"></script>
+        <script src="/js/app/Messenger/model/Clock.js"></script>
+
+        <script src="/js/app/Messenger/tpl/FlashMessageTpl.js"></script>
+        <script src="/js/app/Messenger/tpl/HintTpl.js"></script>
+        <script src="/js/app/Messenger/tpl/ConfirmationMessageTpl.js"></script>
+        <script src="/js/app/Messenger/tpl/TimeBarTpl.js"></script>
+
+        <script src="/js/app/Messenger/view/ConfirmationMessageView.js"></script>
+        <script src="/js/app/Messenger/view/FlashMessageView.js"></script>
+        <script src="/js/app/Messenger/view/HintView.js"></script>
+        <script src="/js/app/Messenger/view/TimeBarView.js"></script>
+
+        <script src="/js/app/Messenger/Controller.js"></script>
+
+      <!--   <script src="/js/app/Schedule/view/GroupWeekScheduleView.js"></script> -->
+
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div id="top-menu" class="top-menu"></div>
+        <div id="wrapper" class="wrapper">
+            <div id="header" class="header">
+                <div id="logo" class="logo">
+                    <a href="/Groups/">
+                        <img src="/../img/logo.png" alt="Caesar">
+                    </a>
+                </div>
+                <div id="icon" class="icon"></div>
+                <div id="left-menu" class="left-menu"></div>
+                <div id="right-menu" class="right-menu"></div>
+            </div>
+            <div id="page" class="page">
+                <div id="left-side-bar" class="left-side-bar"></div>
+                <div id="content-section" class="content-section"></div>
+                <div id="right-side-bar" class="right-side-bar"></div>
+            </div>
+        </div>
+        <div id="modal-window"></div>
+    </body>
+</html>

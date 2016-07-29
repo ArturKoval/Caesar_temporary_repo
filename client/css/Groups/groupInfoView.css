@@ -1,0 +1,74 @@
+.groupInfoView > div {
+    display: flex;
+    justify-content: space-between;
+}
+
+.group_coordination {
+    margin-right: auto;
+}
+
+.groupInfoView h3 {
+    margin: 12px 0px;
+    text-align: left;
+    font-size: 24px;
+    font-family: Tahoma;
+    font-weight: bold;
+}
+
+.groupInfoView .tg {
+    border-collapse: collapse;
+    border-spacing: 0;
+    color: #333333;
+    font-size: 24px;
+}
+
+.groupInfoView .tg td {
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    border-color: #dedede;
+    padding: 10px 18px;
+    text-align: left;
+}
+
+.groupInfoView .tg th {
+    border-color: #dedede;
+    height: 14px;
+    padding: 10px 5px;
+    border-style: solid;
+    border-width: 1px;
+    overflow: hidden;
+    word-break: normal;
+    background-color: #f0f0f0;
+    height: 53px;
+}
+
+.groupInfoView td:nth-child(2) {
+    font-style: italic;
+}
+
+.groupInfoView .group_info td:nth-child(2) {
+    font-style: normal;
+}
+
+.groupInfoView .key-dates {
+    margin: 30px auto 0;
+}
+
+.groupInfoView .key-dates td,
+.groupInfoView .key-dates th {
+    border: 1px solid #dedede;
+    font-style: normal;
+    padding: 10px;
+    font-weight: normal;
+}
+
+.groupInfoView .key-dates thead th {
+    font-size: 20px;
+    text-align: center;
+}
+
+.groupInfoView .key-dates tbody td {
+    font-size: 16px;
+}

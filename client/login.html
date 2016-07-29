@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Log in - Caesar</title>
+        <link rel="shortcut icon" href="/img/favicon.ico">
+
+		<!-- build:css login.css -->
+        <link rel="stylesheet" href="/css/libs/font-awesome.min.css">
+        <link rel="stylesheet" href="/css/main.css">
+        <link rel="stylesheet" href="/css/login/login.css">
+		<!-- endbuild -->
+
+        <!-- build:js login.js -->
+        <script src="/js/app/Login/LoginView.js"></script>
+        <script src="/js/app/Login/Login.js"></script>
+        <script src="/js/app/Login/LoginController.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="wrapper">
+            <div id="header" class="header">
+                <div id="logo" class="logo"></div>
+                <div id="top-menu" class="top-menu"></div>
+                <div id="right-menu" class="right-menu"></div>
+            </div>
+            <div id="page" class="page">
+                <div id="left-side-bar" class="left-side-bar"></div>
+                <div id="content-section" class="content-section">
+                    <div id="content-header" class="content-header"></div>
+                    <div id="main-section" class="main-section"></div>
+                    <div id="content-footer" class="content-footer"></div>
+                </div>
+                <div id="right-side-bar" class="right-side-bar"></div>
+            </div>
+        </div>
+        <div class="app">
+            <div class="modal">
+                <div class="login_wrapper">
+                    <div class="login">
+                        <span class="message"></span>
+                        <span>
+                            <label>Login</label>
+                            <input type="text" name="login" autofocus>
+                        </span>
+                        <span>
+                            <label>Password</label>
+                            <input type="password" name="password">
+                        </span>
+                        <button class="submit fa fa-check-circle-o fa-3x"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

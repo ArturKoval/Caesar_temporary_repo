@@ -1,0 +1,9 @@
+data/db/*
+server/public
+node_modules
+npm-debug.log
+.idea
+.DS_Store
+
+
+

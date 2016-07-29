@@ -1,0 +1,13 @@
+#icon .user-photo {
+    position: absolute;
+    right: 10px;
+    top: -5px;
+    cursor: pointer;
+}
+
+    #icon .user-photo img {
+        display: inline-block;
+        height: 50px;
+        width: 50px;
+        border: 1px solid #171B65;
+    }
