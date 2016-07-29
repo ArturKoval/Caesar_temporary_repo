@@ -41,7 +41,12 @@
             app.mediator.publish('Groups: rendered');
             if (app.filter.split('groupList')) {
                 app.filter.split('groupList').forEach(this.renderOne, this);
+            } else if (!app.filter.split('groupList')) {
+                $('.myGroups').remove();
+                $('.group-collection').html('');
+                $('.group-collection').append('<div class = "no-groups">You have no active groups</div>');
             }
+            
         },
 
         renderOne: function (group) {
