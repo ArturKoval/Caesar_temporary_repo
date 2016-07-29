@@ -1,0 +1,92 @@
+body {
+	font-family: Tahoma;
+}
+.groupName, .groupLocation {
+	color: #171B65;
+	font-size: 30px;
+	font-weight: bold;
+}
+.groupName {
+	text-align: right;
+	display: inline-block;
+}
+
+.groupLocation, .groupStageTitle, .groupStage {
+	text-align: left;
+	display: inline-block;
+}
+
+.groupLocation {
+	cursor: default;
+}
+
+.groupStageTitle {
+	color: #171B65;
+}
+
+.groupStage {
+	color: #3C78B5;
+}
+
+.groupStage, .groupStageTitle {
+	font-weight: bold;
+	font-size: 24px;
+	height: 50px;
+	line-height: 60px;
+}
+
+.contentGroupName {
+	float: right;
+}
+
+.content-header-location, .content-header-group-name {
+	display:inline-block;
+	height: 52px;
+}
+
+.content-header-group-name {
+	float: right;
+}
+.stageView, .flashMessage{
+	display: inline-block;
+	vertical-align: top;
+}
+.stageView {
+	width: 40%;
+}
+
+.flashMessage{ 
+	width: 59%;
+}
+
+#content-section  > div{
+    width: 100%;
+    height: inherit;
+    position: relative;
+}
+
+.contentSection .hint {
+	width: auto;
+    left: 0px;
+    right: auto;
+    white-space: pre;
+}
+.contentSection .hintTriangle {
+    left: 10px;
+}
+
+.activity .hint {
+    width: 90px;
+    left: 0px;
+    top: -33px;
+    white-space: pre-wrap;
+    right: auto;
+}
+.activity .hintTriangle {
+    left: 10px;
+    top: 27px;
+}
+
+.contentSection .hintTriangle {
+    left: 10px;
+}

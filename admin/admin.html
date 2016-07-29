@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        
+		<title>Caesar Admin Panel</title>
+
+        <link rel="stylesheet" href="admin/css/bootstrap.css">        
+        <link rel="stylesheet" href="admin/css/main.css">
+
+        <script src="admin/lib/moment.js"></script>
+		<script src="admin/lib/jquery.js"></script>
+        <script src="admin/lib/underscore.js"></script>
+        <script src="admin/lib/backbone.js"></script>
+        <script src="admin/lib/mediator.js"></script>
+        <script src="admin/lib/bootstrap.js"></script>
+    
+        <script src="admin/js/main.js"></script>
+        <script src="admin/js/app/map.json"></script>
+		
+        <!-- TEMPLATES -->
+        <script src="admin/js/app/templates/CreateEditTplBuilder.js"></script>
+		<script src="admin/js/app/templates/ModelTplBuilder.js"></script>
+        <script src="admin/js/app/templates/ListTplBuilder.js"></script>        
+        <script src="admin/js/app/templates/TabTplBuilder.js"></script>        
+
+        <!-- MODELS -->
+        <script src="admin/js/app/model/Model.js"></script>
+        <script src="admin/js/app/model/Collections.js"></script>
+
+        <!-- VIEWS -->
+        <script src="admin/js/app/view/CreateEditView.js"></script>		
+        <script src="admin/js/app/view/ListView.js"></script>
+        <script src="admin/js/app/view/ModelView.js"></script>
+		
+		<script src="admin/js/app/Controller.js"></script>
+    </head>
+    <body>
+        <div class="container">		    
+            <h2>Caesar Admin Panel</h2>			
+			
+			<!-- Navigators -->
+            <ul class="nav nav-tabs" role="tablist">
+            </ul>
+			
+ 		    <!-- Tab panes -->
+            <div class="tab-content">
+            </div>            
+        </div>
+        <div id="modal-wrap"></div>
+		
+		<button class="btn btn-warning home">Escape to Home</button>
+    </body>
+</html>

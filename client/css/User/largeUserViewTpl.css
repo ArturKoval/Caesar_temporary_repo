@@ -1,0 +1,66 @@
+#right-menu {
+    height: 100%;
+    position: fixed;
+}
+
+    #right-menu .profile-container {
+        background-color: #323232;
+        height: 100%;
+    }
+
+    #right-menu button,
+    #right-menu a {
+        background-color: transparent;
+        color: #FFFFFF;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+    }
+
+    #right-menu .btn-edit {
+        top: 9%;
+        right: 15%;
+    }
+
+    #right-menu .btn-edit:hover,
+    #right-menu .logout:hover {
+        color: #3C78B5;
+    }
+    
+    #right-menu .btn-edit:focus,
+    #right-menu .logout:focus {
+        border: 0;
+        outline: 0;
+    }
+    
+    #right-menu img {
+        height: 65%;
+        width: 65%;
+    }
+    
+    #right-menu .user-info {
+        text-align: center;
+        position: relative;
+        top: 20%;
+    }
+    
+    #right-menu .name {
+        font-size: 2em;
+        margin-top: 40px;
+        line-height: 1.2;
+    }
+
+    #right-menu .role {
+        margin-top: 10px;
+        font-size: 1.5em;
+    }
+
+    #right-menu .logout {
+        bottom: 3%;
+        right: 11%;
+    }
+
+    #right-menu p {
+        text-align: center;
+        color: #FFFFFF;
+    }
