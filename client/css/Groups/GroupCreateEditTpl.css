@@ -1,0 +1,181 @@
+.backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(255, 255, 255, .5);
+}
+
+.backdrop .modal-window {
+    width: 100%;
+    background-color: #171B65;
+    padding: 20px 0;
+}
+
+.backdrop .form-wrapper {
+    background-color: #fff;
+    padding: 30px 50px 5px;
+}
+
+.backdrop .form-wrapper .control-label {
+    text-align: left;
+}
+
+.backdrop .name-wrapper {
+    position: relative;
+}
+
+.backdrop .return-name {
+    position: absolute;
+    right: 16px;
+    bottom: -22px;
+}
+
+.backdrop .return-name:before {
+    font-family: FontAwesome, Tahoma;
+    font-weight: normal;
+    font-style: normal;
+    display: inline-block;
+    text-decoration: inherit;
+    content: "\f021 \00a0 Return '";
+}
+
+.backdrop .return-name:after {
+    content: "'";
+}
+
+.backdrop .btn.budget-option {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5), 0 3px 6px rgba(0, 0, 0, 0.5);
+    margin-left: 5px;
+    width: 95px;
+}
+
+.backdrop .form-control {
+    float: right;
+    width: 194px;
+}
+
+hr {
+    border-top: 1px dashed #DEDEDE;
+    margin: 15px 90px;
+}
+
+.backdrop .control-label {
+    padding: 6px 0;
+    margin-right: 10px;
+}
+
+.backdrop .stage-wrapper {
+    margin-top: 9px;
+}
+
+.backdrop .budgetOptions {
+    margin-top: 25px;
+}
+
+.backdrop .create .budgetOptions {
+    margin-top: 0;
+}
+
+.backdrop .btn-icon {
+    color: #fff;
+    margin: 0 5px;
+}
+
+.backdrop .btn-icon::before {
+    background-color: #3C78B5;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: block;
+    cursor: pointer;
+}
+
+.backdrop .btn-icon:hover::before,
+.backdrop .btn-icon:active::before,
+.backdrop .btn-icon:focus::before {
+    background-color: #171B65;
+}
+
+.backdrop ul {
+    list-style: none;
+    margin: 0;
+}
+
+.backdrop .list,
+.backdrop .listExpert {
+    text-align: right;
+}
+
+.backdrop [name="expert"],
+.backdrop [name="teacher"] {
+    width: 145px;
+}
+
+.backdrop .add-teacher,
+.backdrop .add-expert {
+    padding: 6px 0;
+}
+
+.backdrop .add-teacher-btn,
+.backdrop .add-expert-btn {
+    cursor: pointer;
+}
+
+.backdrop .add-teacher-btn:focus,
+.backdrop .add-expert-btn:focus{
+    text-decoration: underline;
+}
+
+.backdrop .small-btn {
+    color: #3C78B5;
+    cursor: pointer;
+    font-size: 1.6em;
+}
+
+.backdrop .add-teacher .small-btn,
+.backdrop .add-expert .small-btn {
+    padding-top: 6px;
+    margin-left: 5px;
+}
+
+.backdrop .small-btn:focus,
+.backdrop .small-btn:hover {
+    color: #171B65;
+}
+
+.backdrop .list-item {
+    vertical-align: text-bottom;
+}
+
+.backdrop .row {
+    margin-bottom: 10px;
+}
+
+.backdrop .button-group {
+    margin-top: 25px;
+}
+
+.backdrop .calendar-wrapper {
+    position: relative;
+}
+
+.backdrop .fa-calendar {
+    position: absolute;
+    bottom: 3px;
+    right: -20px;
+    color: #3C78B5;
+    cursor: pointer;
+}
+
+.backdrop .fa-calendar:hover {
+    color: #171B65;
+}
+
+.backdrop input::-webkit-calendar-picker-indicator {
+    display: none;
+}

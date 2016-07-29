@@ -1,0 +1,60 @@
+var map = {
+    users: {
+	    settings: {
+		    url: '/users',
+			urlRoot: '/users'
+		},
+		fields: {		
+	        firstName: '',
+		    lastName: '',
+		    role: {
+			    control: 'select',
+				options: ['Teacher', 'Coordinator', 'Administrator']
+			},
+		    location: {
+			    control: 'select',
+				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
+			},
+		    photo: '',
+		    login: '',
+			password: ''		    
+		}
+	},	
+	groups: {
+	    settings: {
+		    url: '/groups',
+			urlRoot: '/groups'
+		},
+		fields: {		
+	        name: '',
+		    location: {
+			    control: 'select',
+				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
+			},
+			budgetOwner: {
+			    control: 'bool',
+				option: 'SoftServe'
+			},
+			direction: {
+			    control: 'select',
+				options: ['MQC', 'UI']
+			},
+			startDate: {
+			    control: 'date'
+			},
+			finishDate: {
+			    control: 'date'
+			},
+			teachers: {
+			    control: 'array'
+			},
+			experts: {
+			    control: 'array'
+			},
+			stage: {
+			    control: 'select',
+				options: ['boarding', 'before-start', 'in-process', 'offering', 'finished']
+			}
+		}
+	}
+};
