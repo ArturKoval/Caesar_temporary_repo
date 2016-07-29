@@ -30,8 +30,8 @@
 
             if (routes[path]) {
                 app.mediator.publish('Menu: changed-page');
-                this.navigate(routes[path], {trigger: true}); 
-            }   
+                this.navigate(routes[path], {trigger: true});
+            }
         },
 
         navToLocations: function () {
@@ -40,13 +40,11 @@
         },
 
         navToCancelForm: function () {
-            
             this.navigate(this.currentUrl);
         },
 
         navToSelectedLocations: function (arrLocations) {
             var locations = arrLocations.join('+');
-
             this.navigate(this.currentUrl.split('/', 2).join('/') + '/' + locations);
         },
 
@@ -66,4 +64,5 @@
            app.mediator.publish('Error: show-page-404');
         }
     });
+
 })(CS, app);

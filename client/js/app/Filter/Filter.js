@@ -16,13 +16,11 @@
         app.mediator.subscribe('Locations: selected', setDefault);
         app.mediator.subscribe('MyGroups: selected', function (value) {groupListParams.areMyGroups = value});
         app.mediator.subscribe('State: selected', function (value) {groupListParams.state = value});
-
         app.mediator.subscribe('GroupList paginator: page size defined', function (value) {groupListParams.pageSize = value});
         app.mediator.subscribe('Locations: selected', function (value) {groupListParams.locations = value});
         app.mediator.subscribe('GroupList paginator: page-selected', function (value) {groupListParams.page = value;});
         app.mediator.subscribe('GroupsListView: rendered', function () {
             groupListParams.state = 'in-process'; groupListParams.areMyGroups = false});
-
 
         this.split = function (collection) {
             if (collection === 'groupList') {

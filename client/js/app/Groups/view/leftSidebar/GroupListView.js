@@ -18,6 +18,11 @@
         },
 
         render: function () {
+            if (this.areMyGroups) {
+                this.$el.html(templates.groupListTpl);
+            } else {
+                this.$el.html(templates.groupListTplNoGroups);
+            }
             this.$el.html(templates.groupListTpl);
             this.$groupList  = this.$el.find('.group-collection');
             this.$myGroups = this.$el.find('.myGroups');
@@ -30,7 +35,7 @@
 
         createPaginator: function () {
             this.paginatorView = new app.PaginatorView({
-                pageSize: 10,
+                pageSize: 8,
                 channel: 'GroupList'
             });
 
