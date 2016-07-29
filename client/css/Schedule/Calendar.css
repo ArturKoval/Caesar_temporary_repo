@@ -1,0 +1,71 @@
+.calendarView {
+    margin-top: 7%;
+}
+
+.calendarView .calendar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 322px;
+}
+
+.calendar table {
+    border-collapse: collapse;
+    background-color: #3C78B5;
+}
+
+.calendar td {
+    border: 1px solid black;
+    text-align: center;
+    width: 70px;
+    height: 50px;
+    font-size: 2em;
+    color: white;
+}
+
+.calendar th {
+    text-align: center;
+    font-weight: bold;
+    background-color: #E6E6E6;
+    border: 1px solid black;
+}
+
+.calendar tr {
+    cursor: pointer;
+}
+
+.calendar tr:hover {
+	background-color: #171B65;
+}
+
+.month-toggle {
+    margin-top:50px;
+	text-align: center;
+}
+.month-toggle p {
+    display: inline-block;
+    font-size: 2.5em;
+    color:#171B65;
+}
+
+.prevMonth {
+    color: #3C78B5;
+    font-size: 2.5em;
+    margin-right: 40px;
+}
+
+.nextMonth {
+    color: #3C78B5;
+    font-size: 2.5em;
+    padding-left: 40px;
+}
+
+.prevMonth:hover {
+    color:#171B65;
+    cursor: pointer;
+}
+
+.nextMonth:hover {
+    color:#171B65;
+    cursor: pointer;
+}

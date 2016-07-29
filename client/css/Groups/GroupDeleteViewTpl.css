@@ -1,0 +1,49 @@
+.modal-wrapper {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    display: flex;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.modal-wrapper .modal-body {
+    color: #FFFFFF;
+    background-color: #171B65;
+    width: 100%;
+    margin: auto;
+    text-align: center;
+}
+
+.modal-wrapper .modal-body .message-body {
+    display: inline-block;
+}
+
+.modal-wrapper .modal-body p {
+    font-size: 30px;
+    text-align: left;
+    margin: 0;
+}
+
+.modal-wrapper .modal-body button {
+    background-color: transparent;
+    padding: 0;
+}
+
+.modal-wrapper .modal-body button.btn-delete {
+    margin-right: 15px;
+}
+
+.modal-wrapper .modal-body button:hover,
+.modal-wrapper .modal-body button:focus {
+    color: #3C78B5;
+}
+
+.modal-wrapper .modal-body button:focus {
+    outline: none;
+}
+
+.modal-wrapper .modal-body .controls {
+    text-align: right;
+}

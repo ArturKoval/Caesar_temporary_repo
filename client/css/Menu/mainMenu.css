@@ -1,0 +1,56 @@
+.top-menu {
+    position: fixed;
+    top: -30px;
+    bottom: 99%;
+    height: 60px;
+    transition: 0.4s;
+   	width: 100%;
+    text-align: center;
+    padding-right: 25px;
+}
+
+.containerMainMenu {
+    float: left;
+    width: 95%;
+}
+
+.logout {
+    color: white;
+    cursor: pointer;
+    font-size: 17px;
+    padding: 5px 0 5px 0;
+}
+
+.top-menu.open {
+	top: 0px;
+    transition: 0.4s;
+    display: block;
+    z-index: 5;
+    background-color: #323232;
+    bottom: 82%;
+    width: 100%;
+}
+
+.itemMenu {
+	padding: 10px 10px;
+	display: inline-block;
+	background-color: transparent;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 12px;
+    width: 65px;
+    height: 60px;
+}
+
+.itemMenu:hover {
+	background-color:#3C78B5;
+}
+
+.itemMenu > p {
+	margin: 0;
+}
+
+.activeItem.open {
+	background-color:#3C78B5;
+}

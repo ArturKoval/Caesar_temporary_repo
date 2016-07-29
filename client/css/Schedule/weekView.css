@@ -1,0 +1,87 @@
+.Table{
+    display: table;
+    border-collapse: collapse; 
+    overflow: auto;
+	border: none;
+    width: 100%;
+}
+.Title{
+    display: table-caption;
+    text-align: center;
+    font-weight: bold;
+    font-size: larger;
+}
+.Heading{
+    display: table-row;
+    text-align: center;
+    border: solid;
+    border-color: black;
+    border-collapse: collapse; 
+    width: 5%;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #3C78B5;
+    color: white;
+    height: 15px;
+    vertical-align: middle; 
+}
+.HeadingCell{
+    display: table-cell;
+    border: solid;
+    border-color: #171B65;
+    width: 5%;
+    border-width: thin;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: #3C78B5;
+    color: white;
+    vertical-align: middle; 
+	border-top: none;
+}
+.Row{
+    display: table-row;
+}
+.Cell{
+    display: table-cell;
+    border: 1px solid black;
+    border-width: thin;
+    border-collapse: collapse; 
+    width: 20%;
+    height: 60px;
+    text-align: left;
+}
+.Heading .Cell{
+    height: 25px;
+    text-align: center;
+}
+.activity{
+   background-color: lightgreen;
+   cursor: pointer;
+   width: 100%;
+   position: relative;
+   text-align: center;
+   vertical-align: middle;
+   display: inline-block;
+}
+.activity > p{
+    margin: 0;
+    font-weight: bold;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+	display: flex;
+	align-items:center;
+	justify-content: center;
+}
+.activity:hover{
+    background-color: chartreuse;
+}
+.scheduleWeek-view{
+    text-align: center;
+    width: 100%;
+	margin-top: 20px;
+}
+.null {
+    width: 1%;
+}

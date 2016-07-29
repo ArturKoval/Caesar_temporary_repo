@@ -1,0 +1,70 @@
+.main-section {
+    width: initial;
+}
+
+.app .modal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.app .login_wrapper{
+    display: inherit;
+    width: 100%;
+    background: #171B65;
+    font-size: 17px;
+}
+
+.login {
+    padding: 7px 15px 8px 15px;
+    margin: 0 auto;
+}
+
+.login .message {
+    text-align: center;
+    color: #fff;
+}
+
+.login span {
+    display: block;
+    padding: 5px;
+}
+
+.login label{
+    font-family: 'Tahoma', sans-serif;
+    font-size: 21px;
+    text-align: left;
+    display: inline-block;
+    font-weight: 700;
+    color: #fff;
+}
+
+.login input {
+    margin-left:15px;
+    float: right;
+    padding: 4px 5px;
+    border: 0;
+    font-size: 16px;
+}
+
+.login button {
+    float: right;
+    padding: 6px 0px 0px 0px;
+    margin-right: 6px;
+    border: 0;
+    outline: 0;
+    background: none;
+    color: #fff;
+    font-size: 2.6em;
+}
+
+.login button:hover {
+    color: #3C78B5;
+    cursor: pointer;
+}
