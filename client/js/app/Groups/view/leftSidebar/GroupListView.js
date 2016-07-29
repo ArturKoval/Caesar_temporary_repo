@@ -24,7 +24,7 @@
             this.$paginator = this.$el.find('.paginator-place-holder');
             this.createPaginator();
             this.renderGroups();
-
+          
             return this;
         },
 
@@ -38,13 +38,15 @@
         },
 
         renderGroups: function () {
+            var $groupCollection = $('.group-collection');
+
             app.mediator.publish('Groups: rendered');
             if (app.filter.split('groupList')) {
+                $groupCollection.html('');
                 app.filter.split('groupList').forEach(this.renderOne, this);
             } else if (!app.filter.split('groupList')) {
-                $('.myGroups').remove();
-                $('.group-collection').html('');
-                $('.group-collection').append('<div class = "no-groups">You have no active groups</div>');
+                $groupCollection.html('');
+                $groupCollection.append('<div class = "no-groups">You have no active groups</div>');
             }
             
         },
