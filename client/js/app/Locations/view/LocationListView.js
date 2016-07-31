@@ -10,7 +10,8 @@
 
         events: {
             'click .save': 'select',
-            'click .cancel': 'close'
+            'click .cancel': 'close',
+            'click': 'outsideClick'
         },
 
         initialize: function () {
@@ -97,6 +98,12 @@
 
             this.removeNestedViews();
             this.remove();
+        },
+
+        outsideClick: function (e) {
+            if (this.$el.has(e.target).length === 0){               
+                this.close();
+            }
         },
 
         close: function () {
