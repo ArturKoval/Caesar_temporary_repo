@@ -13,41 +13,41 @@ var defaultData = {
         "name": "planned"
     }],
 
-    teachers: [{
-        "name": "M. Demchyna"
-    }, {
-        "name": "M. Lopatynska"
-    }, {
-        "name": "M. Plesha"
-    }, {
-        "name": "V. Ryazhska"
-    }, {
-        "name": "L. Halamaha"
-    }, {
-        "name": "I. Kohut"
-    }, {
-        "name": "L. Klakovych"
-    }, {
-        "name": "V. Koldovskyy"
-    }, {
-        "name": "N. Romanenko"
-    }, {
-        "name": "A. Pertsov"
-    }, {
-        "name": "O. Shvets"
-    }, {
-        "name": "O. Reuta"
-    }, {
-        "name": "I. Tsvietkov"
-    }, {
-        "name": "Y. Bezgachnyuk"
-    }, {
-        "name": "D. Petin"
-    }, {
-        "name": "B. Yulian"
-    }, {
-        "name": "A. Korkuna"
-    }],
+    // teachers: [{
+    //     "name": "M. Demchyna"
+    // }, {
+    //     "name": "M. Lopatynska"
+    // }, {
+    //     "name": "M. Plesha"
+    // }, {
+    //     "name": "V. Ryazhska"
+    // }, {
+    //     "name": "L. Halamaha"
+    // }, {
+    //     "name": "I. Kohut"
+    // }, {
+    //     "name": "L. Klakovych"
+    // }, {
+    //     "name": "V. Koldovskyy"
+    // }, {
+    //     "name": "N. Romanenko"
+    // }, {
+    //     "name": "A. Pertsov"
+    // }, {
+    //     "name": "O. Shvets"
+    // }, {
+    //     "name": "O. Reuta"
+    // }, {
+    //     "name": "I. Tsvietkov"
+    // }, {
+    //     "name": "Y. Bezgachnyuk"
+    // }, {
+    //     "name": "D. Petin"
+    // }, {
+    //     "name": "B. Yulian"
+    // }, {
+    //     "name": "A. Korkuna"
+    // }],
 
     directions: [{
         "name": "WebUI"
