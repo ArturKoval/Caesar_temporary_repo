@@ -12,9 +12,9 @@
     display: flex;
 }
 
-.group-controls .btn-group {
+/*.group-controls .btn-group {
     float: right;
-}
+}*/
 
 .group-controls .btn-group .btn {
     color: white;
@@ -118,8 +118,8 @@ html, body {
 
 .icon {
     width: 50%;
-    height: 100%;
-    float: left;
+    /*height: 100%;*/
+    /*float: left;*/
 }
 
 .top-menu {

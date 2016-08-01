@@ -1,25 +1,30 @@
 .top-menu {
     position: fixed;
-    top: -30px;
+    /*top: -30px;*/
     bottom: 99%;
     /*height: 60px;*/
-    height: 9rem;
+    height: 7rem;
     transition: 0.4s;
    	width: 100%;
     text-align: center;
-    padding-right: 25px;
+    /*padding-right: 25px;*/
 }
 
 .containerMainMenu {
-    float: left;
-    width: 95%;
+    /*float: left;*/
+    display: inline-flex;
+    justify-content: center;
+    width: 90%;
 }
 
 .logout {
     color: white;
+    width: 10%;
     cursor: pointer;
     font-size: 17px;
-    padding: 5px 0 5px 0;
+    /*padding: 5px 0 5px 0;*/
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .top-menu.open {
