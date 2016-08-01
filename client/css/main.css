@@ -87,10 +87,12 @@ html, body {
 
 .wrapper {
     height: 100%;
-    min-width: 1024px;
-    margin: 0 auto;
+    min-width: 1200px;
+    max-width: 2000px;
+    /*margin: 0 auto;*/
     box-sizing: border-box;
-    padding: 15px 20px 0 20px;
+    /*padding: 15px 20px 0 20px;*/
+    padding-top: 0.5em; 
 }
 
 .header {
@@ -118,8 +120,8 @@ html, body {
 
 .icon {
     width: 50%;
-    /*height: 100%;*/
-    /*float: left;*/
+    height: 100%;
+    float: left;
 }
 
 .top-menu {
@@ -152,7 +154,7 @@ html, body {
     border: #171B65 1px solid;
     border-radius: 10px;
     box-sizing: border-box;
-    float: left;
+    float: left; 
 }
 
 .content-section {
@@ -173,7 +175,7 @@ html, body {
     height: 80%;
     border: #171B65 1px solid;
     border-radius: 10px;
-    padding: 0 6%;
+    padding: 0% 6%;
 }
 
 .content-footer {

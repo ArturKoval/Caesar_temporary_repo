@@ -3,7 +3,7 @@
     /*top: -30px;*/
     bottom: 99%;
     /*height: 60px;*/
-    height: 7rem;
+    height: 6rem;
     transition: 0.4s;
    	width: 100%;
     text-align: center;
@@ -21,7 +21,7 @@
     color: white;
     width: 10%;
     cursor: pointer;
-    font-size: 17px;
+    font-size: 1.2em;
     /*padding: 5px 0 5px 0;*/
     display: inline-block;
     vertical-align: middle;
