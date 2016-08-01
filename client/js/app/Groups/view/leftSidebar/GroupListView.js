@@ -18,16 +18,16 @@
         },
 
         render: function () {
-             var $groupCollection = $('.group-collection'),
+            var $groupCollection = $('.group-collection'),
                 $button = $('.myGroups');
+
             this.$el.html(templates.groupListTpl);
             this.$groupList  = this.$el.find('.group-collection');
             this.$myGroups = this.$el.find('.myGroups');
             this.$paginator = this.$el.find('.paginator-place-holder');
             this.createPaginator();
+            this.renderGroups();
 
-            console.log(this.collection.findMyGroups(app.user.getShortName()));
-            debugger;
             if (app.user.attributes.role == "Teacher") {
                 if (this.collection.findMyGroups(app.user.getShortName()).length <= 0) {
                     $button.hide();
@@ -36,14 +36,6 @@
                 }
             } else {
                  $button.hide();
-            }
-
-            if (app.filter.split('groupList')) {
-                $groupCollection.html('');
-                app.filter.split('groupList').forEach(this.renderOne, this);
-            } else if (!app.filter.split('groupList')) {
-                $groupCollection.html('');
-                $groupCollection.append('<div class = "no-groups">You have no active groups</div>');
             }
           
             return this;
@@ -59,26 +51,17 @@
         },
 
         renderGroups: function () {
-            // var $groupCollection = $('.group-collection'),
-            //     $button = $('.myGroups');
-            // debugger;
-
-            // if (app.user.attributes.role !== "Teacher") {
-            //     $button.hide();
-            // } else if (app.user.attributes.role === "Teacher") {
-            //     if (this.collection.findMyGroups(app.user.getShortName()).length <= 0) {
-            //         $button.hide();
-            //     }
-            // }
             app.mediator.publish('Groups: rendered');
+            var $groupCollection = $('.group-collection'),
+                $button = $('.myGroups');
             
-            // if (app.filter.split('groupList')) {
-            //     $groupCollection.html('');
-            //     app.filter.split('groupList').forEach(this.renderOne, this);
-            // } else if (!app.filter.split('groupList')) {
-            //     $groupCollection.html('');
-            //     $groupCollection.append('<div class = "no-groups">You have no active groups</div>');
-            // }
+            if (app.filter.split('groupList')) {
+                $groupCollection.html('');
+                app.filter.split('groupList').forEach(this.renderOne, this);
+            } else if (!app.filter.split('groupList')) {
+                $groupCollection.html('');
+                $groupCollection.append('<div class = "no-groups">You have no active groups</div>');
+            }
         },
 
         renderOne: function (group) {
