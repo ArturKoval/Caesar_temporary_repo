@@ -155,14 +155,16 @@ html, body {
     border-radius: 10px;
     box-sizing: border-box;
     float: left; 
+     margin-left:1%;
 }
 
 .content-section {
-    width: 65%;
+    width: 63%;
     height: 100%;
     float: left;
     box-sizing: border-box;
     padding: 0 14px;
+    /*margin-left:3%;*/
 }
 
 .content-header {
@@ -190,6 +192,7 @@ html, body {
     border-radius: 10px;
     float: right;
     box-sizing: border-box;
+    margin-right: 1%;
 }
 
 @font-face {
@@ -216,4 +219,10 @@ html, body {
     margin-right: .2em;
     text-align: center;
     /* opacity: .8; */
+}
+
+.students_list {
+    font-family: Helvetica;
+    font-size: 2rem;
+    font-style: italic;
 }
