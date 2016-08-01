@@ -44,9 +44,9 @@ var System = (function () {
     function setInfoBlocks (response) {
         _registerArray(i, ['teachers', 'directions', 'roles', 'stages']);
 
-        response.teachers.forEach(function (record) {
-            i.teachers.push(record.name);
-        });
+        // response.teachers.forEach(function (record) {
+        //     i.teachers.push(record.name);
+        // });
 
         response.directions.forEach(function (record) {
             i.directions.push(record.name);
@@ -59,6 +59,10 @@ var System = (function () {
         response.stages.forEach(function (record) {
             i.stages.push(record.name);
         });
+    }
+
+    function _setInfoBlock (name, where) {
+        i[where].push(name);
     }
 
     function _startWebSocket () {
@@ -77,6 +81,7 @@ var System = (function () {
         register: _register,
         preload: _preload,
         then: _then,
+        setInfoBlock: _setInfoBlock,
         startWebSocket: _startWebSocket
     };
 })();
