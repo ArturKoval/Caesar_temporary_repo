@@ -111,6 +111,7 @@
     border-radius: 0.2em;
     width: 32%;
     height: 40px;
+    margin: 20px;
 }
 
 input[type="radio"] {
@@ -167,8 +168,8 @@ input[type="radio"] + label {
 }
 
 .no-groups {
-    font-weight: bold;
-    font-size: 2.2em;
+    font-size: 1.8em;
+    margin-top: 80%;
     color: #171B65;
-    margin-top: 8em;
+    font-weight: bold;
 }

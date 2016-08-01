@@ -7,7 +7,6 @@ templates.groupListTpl = ([
 	'</div>',
 	'<div class="group-collection row"></div>',
 	'<div class="group-list-footer">',
-		'<button class="myGroups">My Groups</button>',
 		'<div class="stage-toggle">',
 			'<input id="futureGroups" type="radio" name="group-status" value="planed">',
 			'<label for="futureGroups"><div></div></label>',

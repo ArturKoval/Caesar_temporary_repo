@@ -19,6 +19,7 @@
 
         render: function () {
             var $groupCollection = $('.group-collection'),
+                $leftSideBar = $('.group-list-footer'),
                 $button = $('.myGroups');
 
             this.$el.html(templates.groupListTpl);
@@ -26,17 +27,10 @@
             this.$myGroups = this.$el.find('.myGroups');
             this.$paginator = this.$el.find('.paginator-place-holder');
             this.createPaginator();
-            this.renderGroups();
 
-            if (app.user.attributes.role == "Teacher") {
-                if (this.collection.findMyGroups(app.user.getShortName()).length <= 0) {
-                    $button.hide();
-                } else {
-                    this.renderGroups();
-                }
-            } else {
-                 $button.hide();
-            }
+            if (app.user.attributes.role == "Teacher" && this.collection.findMyGroups(app.user.getShortName()).length > 0) {
+                this.$el.append('<button class="myGroups">My Groups</button>');
+            } 
           
             return this;
         },
@@ -51,16 +45,16 @@
         },
 
         renderGroups: function () {
+            var $groupCollection = $('.group-collection');
+            
             app.mediator.publish('Groups: rendered');
-            var $groupCollection = $('.group-collection'),
-                $button = $('.myGroups');
             
             if (app.filter.split('groupList')) {
                 $groupCollection.html('');
                 app.filter.split('groupList').forEach(this.renderOne, this);
             } else if (!app.filter.split('groupList')) {
                 $groupCollection.html('');
-                $groupCollection.append('<div class = "no-groups">You have no active groups</div>');
+                $groupCollection.append('<div class = "no-groups">There is no active groups in this area</div>');
             }
         },
 
