@@ -87,14 +87,6 @@ var defaultData = {
     }],
 
     users: [{
-        "firstName": "Kirill",
-        "lastName": "Kozak",
-        "role": "Administrator",
-        "location": "Dnipro",
-        "photo": "/img/andriy-pereymybida.png",
-        "login": "qwerty",
-        "password": "1234"
-    }, {
         "firstName": "Dmitriy",
         "lastName": "Pavlovskyi",
         "role": "Administrator",
@@ -136,7 +128,17 @@ var defaultData = {
         "photo": "",
         "login": "artur",
         "password": "1234"
-    }],
+    },
+    {
+        "firstName": "Petr",
+        "lastName": "Kucher",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "",
+        "login": "petr",
+        "password": "1234"
+    }
+    ],
 
     locations: [{
         "acronym": "Dp",

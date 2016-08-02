@@ -90,7 +90,8 @@ html, body {
     min-width: 1024px;
     margin: 0 auto;
     box-sizing: border-box;
-    padding: 15px 20px 0 20px;
+    /*padding: 15px 20px 0 20px;*/
+    padding-top: 1em;
 }
 
 .header {
