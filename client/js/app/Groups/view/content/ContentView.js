@@ -38,7 +38,6 @@
                 var numberOflocations = locations.length + ' locations';
                 this.$groupLocation.html(numberOflocations);
                 this.showHints(locations);
-
             } else {
                 this.$groupLocation.html(locations[0]);
             }

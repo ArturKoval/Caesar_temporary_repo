@@ -45,6 +45,7 @@
 
         navToSelectedLocations: function (arrLocations) {
             var locations = arrLocations.join('+');
+
             this.navigate(this.currentUrl.split('/', 2).join('/') + '/' + locations);
         },
 
@@ -64,5 +65,5 @@
            app.mediator.publish('Error: show-page-404');
         }
     });
-
+    
 })(CS, app);

@@ -36,8 +36,9 @@
 				    }
 					
 				    if (type.control === 'date') {
-						this.$el.find('input[name="' + name + '"]').val(value);	
 						var date = moment(value, 'X').format('YYYY-MM-DD');
+
+						this.$el.find('input[name="' + name + '"]').val(value);	
 						this.$el.find('input[name="' + name + '"]').val(date);	
 				    }				
 					
@@ -79,8 +80,9 @@
 				    }
 					
 				    if (type.control === 'date') {
-				        attributes[name] = this.$el.find('input[name="' + name + '"]').val();	
 						var date = this.$el.find('input[name="' + name + '"]').val();
+						
+				        attributes[name] = this.$el.find('input[name="' + name + '"]').val();	
 						attributes[name] = moment(date).format('X');
 				    }				
 					

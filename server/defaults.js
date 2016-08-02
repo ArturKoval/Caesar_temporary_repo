@@ -13,41 +13,41 @@ var defaultData = {
         "name": "planned"
     }],
 
-    // teachers: [{
-    //     "name": "M. Demchyna"
-    // }, {
-    //     "name": "M. Lopatynska"
-    // }, {
-    //     "name": "M. Plesha"
-    // }, {
-    //     "name": "V. Ryazhska"
-    // }, {
-    //     "name": "L. Halamaha"
-    // }, {
-    //     "name": "I. Kohut"
-    // }, {
-    //     "name": "L. Klakovych"
-    // }, {
-    //     "name": "V. Koldovskyy"
-    // }, {
-    //     "name": "N. Romanenko"
-    // }, {
-    //     "name": "A. Pertsov"
-    // }, {
-    //     "name": "O. Shvets"
-    // }, {
-    //     "name": "O. Reuta"
-    // }, {
-    //     "name": "I. Tsvietkov"
-    // }, {
-    //     "name": "Y. Bezgachnyuk"
-    // }, {
-    //     "name": "D. Petin"
-    // }, {
-    //     "name": "B. Yulian"
-    // }, {
-    //     "name": "A. Korkuna"
-    // }],
+    teachers: [{
+        "name": "M. Demchyna"
+    }, {
+        "name": "M. Lopatynska"
+    }, {
+        "name": "M. Plesha"
+    }, {
+        "name": "V. Ryazhska"
+    }, {
+        "name": "L. Halamaha"
+    }, {
+        "name": "I. Kohut"
+    }, {
+        "name": "L. Klakovych"
+    }, {
+        "name": "V. Koldovskyy"
+    }, {
+        "name": "N. Romanenko"
+    }, {
+        "name": "A. Pertsov"
+    }, {
+        "name": "O. Shvets"
+    }, {
+        "name": "O. Reuta"
+    }, {
+        "name": "I. Tsvietkov"
+    }, {
+        "name": "Y. Bezgachnyuk"
+    }, {
+        "name": "D. Petin"
+    }, {
+        "name": "B. Yulian"
+    }, {
+        "name": "A. Korkuna"
+    }],
 
     directions: [{
         "name": "WebUI"
@@ -95,12 +95,12 @@ var defaultData = {
         "login": "qwerty",
         "password": "1234"
     }, {
-        "firstName": "Petr",
-        "lastName": "Kucher",
+        "firstName": "Dmitriy",
+        "lastName": "Pavlovskyi",
         "role": "Administrator",
         "location": "Dnipro",
-        "photo": "/img/peter_kucher.jpg",
-        "login": "hello",
+        "photo": "",
+        "login": "dima",
         "password": "1234"
     },
 

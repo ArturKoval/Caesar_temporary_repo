@@ -84,4 +84,5 @@ var System = (function () {
         setInfoBlock: _setInfoBlock,
         startWebSocket: _startWebSocket
     };
+
 })();
