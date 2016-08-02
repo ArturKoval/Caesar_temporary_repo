@@ -12,9 +12,9 @@
     display: flex;
 }
 
-/*.group-controls .btn-group {
+.group-controls .btn-group {
     float: right;
-}*/
+}
 
 .group-controls .btn-group .btn {
     color: white;
@@ -147,21 +147,22 @@ html, body {
 }
 
 .left-side-bar {
-    width: 23%;
+    width: 22%;
     height: 100%;
     border: #171B65 1px solid;
     border-radius: 10px;
     box-sizing: border-box;
     float: left; 
-     margin-left:1%;
+     margin-left:2%;
 }
 
 .content-section {
-    width: 63%;
+    width: 60%;
     height: 100%;
     float: left;
     box-sizing: border-box;
     padding: 0 14px;
+    margin-left: 1.6%;
 }
 
 .content-header {
@@ -183,13 +184,13 @@ html, body {
 }
 
 .right-side-bar {
-    width: 12%;
+    width: 11%;
     height: 100%;
     border: #171B65 1px solid;
     border-radius: 10px;
     float: right;
     box-sizing: border-box;
-    margin-right: 1%;
+    margin-right: 2%;
 }
 
 @font-face {
