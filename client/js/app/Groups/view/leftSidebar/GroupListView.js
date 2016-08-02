@@ -31,13 +31,13 @@
             if (app.user.attributes.role == "Teacher" && this.collection.findMyGroups(app.user.getShortName()).length > 0) {
                 this.$el.append('<button class="myGroups">My Groups</button>');
             } 
-          
+
             return this;
         },
 
         createPaginator: function () {
             this.paginatorView = new app.PaginatorView({
-                pageSize: 10,
+                pageSize: 8,
                 channel: 'GroupList'
             });
 
@@ -78,4 +78,5 @@
             this.renderGroups();
         }
     });
+
 })(CS.Groups, app);

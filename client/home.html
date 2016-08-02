@@ -5,8 +5,6 @@
         <meta charset="utf-8">
         <link rel="shortcut icon" href="/img/favicon.ico">
         <!-- build:css styles.css -->
-
-
         <!-- libs -->
         <link rel="stylesheet" href="/css/libs/font-awesome.min.css">
         <link rel="stylesheet" href="/css/libs/fontello.css">
@@ -184,8 +182,12 @@
         <script src="/js/app/Groups/Controller.js"></script>
 
         <!--preloadView-->
-        <script src="/js/app/Preload/PreloadViewTpl.js"></script>
-        <script src="/js/app/Preload/PreloadView.js"></script>
+        <script src="/js/app/Preload/Controller.js"></script>
+        <script src="/js/app/Preload/model/Teachers.js"></script>
+        <script src="/js/app/Preload/model/Users.js"></script>
+        <script src="/js/app/Preload/view/PreloadViewTpl.js"></script>
+        <script src="/js/app/Preload/view/PreloadView.js"></script>
+
 
         <!--locations -->
         <script src="/js/app/Locations/Controller.js"></script>
@@ -230,6 +232,10 @@
         <!-- endbuild -->
     </head>
     <body>
+        <div class="row">
+            <div id="top-menu" class="top-menu col-md-12 col-sm-12 col-xs-12"></div>
+        </div>
+        <div id="wrapper" class="wrapper container-fluid">
         <div id="top-menu" class="top-menu"></div>
         <div id="wrapper" class="wrapper">
             <div id="header" class="header">

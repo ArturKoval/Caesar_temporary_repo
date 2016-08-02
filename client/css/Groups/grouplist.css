@@ -111,7 +111,6 @@
     border-radius: 0.2em;
     width: 32%;
     height: 40px;
-    margin: 20px;
 }
 
 input[type="radio"] {
@@ -173,3 +172,4 @@ input[type="radio"] + label {
     color: #171B65;
     font-weight: bold;
 }
+

@@ -33,7 +33,10 @@
             var groupName = model.get('name'),
                 location = model.get('location');
 
-            this.navigate('Groups/' + location + '/' + groupName + '/info');
+            if (Backbone.history.fragment.indexOf('+') === -1) {
+                this.navigate('Groups/' + location + '/' + groupName + '/info');
+            }
+
         },
 
         navToGroupAction: function (args) {
@@ -79,7 +82,7 @@
 
         openLocation: function (locations) {
             var arrLocations = locations.split('+');
-           
+
             this.controller.showLocationByRoute(arrLocations);
         },
 
@@ -142,4 +145,5 @@
             app.mediator.publish('Error: show-page-404');
         }
     });
+
 })(CS.Groups, app);

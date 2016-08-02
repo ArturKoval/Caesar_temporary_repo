@@ -19,7 +19,7 @@ _.extend(Router.prototype, {
         groups: {module:'groups', auth: true},
         contributors: {module:'contributors', auth: false}
     },
-
+    
     init: function (request, response, action, route) {
         var currSession;
 

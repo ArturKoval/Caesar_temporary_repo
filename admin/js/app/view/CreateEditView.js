@@ -37,6 +37,8 @@
 					
 				    if (type.control === 'date') {
 						var date = moment(value, 'X').format('YYYY-MM-DD');
+
+						this.$el.find('input[name="' + name + '"]').val(value);	
 						this.$el.find('input[name="' + name + '"]').val(date);	
 				    }				
 					
@@ -79,6 +81,8 @@
 					
 				    if (type.control === 'date') {
 						var date = this.$el.find('input[name="' + name + '"]').val();
+						
+				        attributes[name] = this.$el.find('input[name="' + name + '"]').val();	
 						attributes[name] = moment(date).format('X');
 				    }				
 					

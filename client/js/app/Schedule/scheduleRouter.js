@@ -20,7 +20,7 @@
 
         notFound: function () {
             app.mediator.publish('Error: show-page-404');
-        }
-        
+        }   
+
     });
 })(CS.Schedule, app);

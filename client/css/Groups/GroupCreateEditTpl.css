@@ -33,6 +33,7 @@
     position: absolute;
     right: 16px;
     bottom: -22px;
+    cursor: pointer;
 }
 
 .backdrop .return-name:before {

@@ -87,6 +87,24 @@ var defaultData = {
     }],
 
     users: [{
+        "firstName": "Kirill",
+        "lastName": "Kozak",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "/img/andriy-pereymybida.png",
+        "login": "qwerty",
+        "password": "1234"
+    }, {
+        "firstName": "Dmitriy",
+        "lastName": "Pavlovskyi",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "",
+        "login": "dima",
+        "password": "1234"
+    },
+
+    {
         "firstName": "Andriy",
         "lastName": "Pereymybida",
         "role": "Administrator",
@@ -110,14 +128,13 @@ var defaultData = {
         "photo": "/img/olexander-reuta.png",
         "login": "sasha",
         "password": "1234"
-    },
-    {
-        "firstName": "Dmitriy",
-        "lastName": "Pavlovskyi",
-        "role": "Teacher",
+    }, {
+        "firstName": "Artur",
+        "lastName": "Koval",
+        "role": "Administrator",
         "location": "Dnipro",
-        "photo": "/img/olexander-reuta.png",
-        "login": "dima",
+        "photo": "",
+        "login": "artur",
         "password": "1234"
     }],
 
