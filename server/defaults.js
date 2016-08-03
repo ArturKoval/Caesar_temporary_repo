@@ -103,7 +103,6 @@ var defaultData = {
         "login": "hello",
         "password": "1234"
     },
-
     {
         "firstName": "Andriy",
         "lastName": "Pereymybida",

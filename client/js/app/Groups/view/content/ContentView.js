@@ -54,6 +54,7 @@
         },
 
         showHints: function (locations) {
+            if (locations.length > 1) {
             this.$groupLocation.on('mouseover', showMessage.bind(this));
             this.$groupLocation.on('mouseleave', removeMessage.bind(this));
 
@@ -75,6 +76,7 @@
                 this.$groupLocation.off('mouseover', showMessage.bind(this));
                 this.$groupLocation.off('mouseleave', showMessage.bind(this));
             }
+        }
         },
     });
 
