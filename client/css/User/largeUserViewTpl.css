@@ -45,14 +45,14 @@
     }
     
     #right-menu .name {
-        font-size: 2em;
+        font-size: 24px;
         margin-top: 40px;
         line-height: 1.2;
     }
 
     #right-menu .role {
+        font-size: 24px;
         margin-top: 10px;
-        font-size: 1.5em;
     }
 
     #right-menu .logout {

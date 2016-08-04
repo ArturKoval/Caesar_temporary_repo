@@ -149,7 +149,7 @@ input[type="radio"] + label {
 }
 
 .small-group-view > div > p {
-    font-size: 1.5em;
+    font-size: 24px;
     padding: 10px;
     color: white;
     margin: auto;

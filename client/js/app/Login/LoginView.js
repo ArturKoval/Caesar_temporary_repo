@@ -32,10 +32,10 @@ var LoginView = function (model) {
         if (model.validate(loginField.value, passwordField.value)) {
             model.sendRequest(function () {
                 passwordField.value = '';
-                messageEl.innerHTML = 'Incorrect login or password. Please, try again';
+                messageEl.innerHTML = 'Incorrect login or password. Please, try again.';
             }, {login: loginField.value.toLowerCase(), password: passwordField.value});
         } else {
-            messageEl.innerText = 'Incorrect login or password. Please, try again';
+            messageEl.innerText = 'Incorrect login or password. Please, try again.';
             passwordField.value = '';
         }
     }
