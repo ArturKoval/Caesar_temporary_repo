@@ -25,7 +25,8 @@
         },
 
         showSelectedGroup: function (selected) {
-            //this.$groupLocation.html(selected.get('location'));
+            // console.log(this.$groupLocation.html(selected.get('location')));
+            this.$groupLocation.html(selected.get('location'));
             this.$groupName.html(selected.get('name'));
             this.$groupStage.html(selected.get('stage'));
             this.$groupStageTitle.html('Stage:&nbsp;');
@@ -34,7 +35,7 @@
         },
 
         showLocationInfo: function (locations) {
-            if (locations.length > 1 || Backbone.history.fragment.indexOf('+') === -1) {
+            if (locations.length > 1) {
                 var numberOflocations = locations.length + ' locations';
                 this.$groupLocation.html(numberOflocations);
                 this.showHints(locations);
