@@ -133,7 +133,7 @@ var defaultData = {
         "lastName": "Koval",
         "role": "Administrator",
         "location": "Dnipro",
-        "photo": "",
+        "photo": "/img/batman_icon.png",
         "login": "artur",
         "password": "1234"
     }],

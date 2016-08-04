@@ -67,7 +67,7 @@
             return {
                 name: function(name, attributeName, attributes) {
                     var nameLength = name.length,
-                        regexp = /^[a-z0-9 \-\/]+$/i,
+                        regexp = /^[a-z0-9 \.\-\/\(\)]+$/i,
                         msg = '',
                         id;
                     if (nameLength === 0) {
