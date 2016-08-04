@@ -87,20 +87,12 @@ var defaultData = {
     }],
 
     users: [{
-        "firstName": "Kirill",
-        "lastName": "Kozak",
+        "firstName": "Dmitriy",
+        "lastName": "Pavlovskyi",
         "role": "Administrator",
         "location": "Dnipro",
-        "photo": "/img/andriy-pereymybida.png",
-        "login": "qwerty",
-        "password": "1234"
-    }, {
-        "firstName": "Petr",
-        "lastName": "Kucher",
-        "role": "Administrator",
-        "location": "Dnipro",
-        "photo": "/img/peter_kucher.jpg",
-        "login": "hello",
+        "photo": "",
+        "login": "dima",
         "password": "1234"
     },
     {
@@ -135,7 +127,17 @@ var defaultData = {
         "photo": "",
         "login": "artur",
         "password": "1234"
-    }],
+    },
+    {
+        "firstName": "Petr",
+        "lastName": "Kucher",
+        "role": "Administrator",
+        "location": "Dnipro",
+        "photo": "",
+        "login": "petr",
+        "password": "1234"
+    }
+    ],
 
     locations: [{
         "acronym": "Dp",

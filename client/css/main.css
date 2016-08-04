@@ -90,7 +90,8 @@ html, body {
     min-width: 1200px;
     max-width: 2000px;
     box-sizing: border-box;
-    padding-top: 0.5em; 
+    /*padding: 15px 20px 0 20px;*/
+    padding-top: 1em;
 }
 
 .header {

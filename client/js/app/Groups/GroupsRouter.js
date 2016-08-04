@@ -32,9 +32,11 @@
         navToGroupSelected: function (model) {
             var groupName = model.get('name'),
                 location = model.get('location');
+
             if (Backbone.history.fragment.indexOf('+') === -1) {
                 this.navigate('Groups/' + location + '/' + groupName + '/info');
             }
+
         },
 
         navToGroupAction: function (args) {
@@ -66,7 +68,7 @@
         navToSaveGroup: function (model) {
             var groupName = model.get('name'),
                 location = model.get('location');
-                
+
             this.navigate('Groups/' + location + '/' + groupName + '/info');
         },
 
@@ -143,4 +145,5 @@
             app.mediator.publish('Error: show-page-404');
         }
     });
+
 })(CS.Groups, app);

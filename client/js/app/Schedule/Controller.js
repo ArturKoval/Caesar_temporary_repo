@@ -21,6 +21,7 @@
             this.groupListView = new CS.Groups.GroupListView({
                 collection: store.groups
             });
+
             this.$content.html(this.contentView.render().$el);              
             this.$sidebar.html(this.groupListView.render().el);              
             this.$main = $('.main-section');                         
@@ -49,4 +50,3 @@
         }        
     });
 })(CS.Schedule, app);
-
