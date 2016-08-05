@@ -40,7 +40,7 @@
 
 .login label{
     font-family: 'Tahoma', sans-serif;
-    font-size: 21px;
+    font-size: 24px;
     text-align: left;
     display: inline-block;
     font-weight: 700;
@@ -52,7 +52,8 @@
     float: right;
     padding: 4px 5px;
     border: 0;
-    font-size: 16px;
+    font-size: 14px;
+    font-family: Tahoma;
 }
 
 .login button {

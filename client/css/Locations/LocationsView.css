@@ -52,8 +52,8 @@
 }
 
 .active-location > p {
-    background: #fff!important;
-    color: #3C78B5!important;
+    background: #003366;
+    border: 3px solid #3C78B5;
 }
 
 .location-buttons {

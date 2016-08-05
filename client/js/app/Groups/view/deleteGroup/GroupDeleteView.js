@@ -26,7 +26,7 @@
             app.mediator.publish('Groups: delete-group');
             app.mediator.publish('Message', {
                  type: 'flash-warning',
-                 text: 'Group '+ this.model.get('name') + ' was destroyed.'
+                 text: 'Group '+ this.model.get('name') + ' is deleted.'
              });
             this.model.destroy();
             this.documentEl.unbind('keydown', this.onKeyPress);

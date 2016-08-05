@@ -1,7 +1,7 @@
 templates.groupDeleteViewTpl = _.template([
 	'<div class="modal-body">',
 		'<div class="message-body">',
-		    '<p>Group <%= name %> will be deleted</p>',
+		    '<p>Group <%= name %> will be deleted.</p>',
 		    '<p>Are you sure?</p>',
 		    '<div class="controls">',
 			    '<button class="btn btn-delete">',
