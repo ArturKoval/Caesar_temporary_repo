@@ -27,6 +27,8 @@
 }
 
 .login .message {
+    font-family: Tahoma;
+    font-size: 14px;
     text-align: center;
     color: #fff;
 }
