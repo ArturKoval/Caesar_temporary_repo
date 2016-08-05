@@ -18,12 +18,11 @@
         },
 
         render: function () {
-            if (this.areMyGroups) {
+            if (app.user.attributes.role == "Teacher" && this.collection.findMyGroups(app.user.getShortName()).length > 0) {
                 this.$el.html(templates.groupListTpl);
             } else {
                 this.$el.html(templates.groupListTplNoGroups);
             }
-            this.$el.html(templates.groupListTpl);
             this.$groupList  = this.$el.find('.group-collection');
             this.$myGroups = this.$el.find('.myGroups');
             this.$paginator = this.$el.find('.paginator-place-holder');
@@ -43,9 +42,15 @@
         },
 
         renderGroups: function () {
+            var $groupCollection = $('.group-collection');
+
             app.mediator.publish('Groups: rendered');
             if (app.filter.split('groupList')) {
+                $groupCollection.html('');
                 app.filter.split('groupList').forEach(this.renderOne, this);
+            } else {
+                $groupCollection.html('');
+                $groupCollection.append('<div class = "no-groups">There are no active groups in this area</div>');
             }
         },
 

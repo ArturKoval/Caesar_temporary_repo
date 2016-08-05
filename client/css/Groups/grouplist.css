@@ -166,3 +166,8 @@ input[type="radio"] + label {
     color: white;
 }
 
+.no-groups {
+    font-size: 1.8em;
+    color: #171B65;
+    font-weight: bold;
+}
