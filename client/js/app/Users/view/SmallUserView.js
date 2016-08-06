@@ -16,6 +16,9 @@
         },
 
         render: function () {
+            if (this.model.toJSON().photo === "") {
+                this.model.attributes.photo = "/img/default-photo.png"
+            }
             this.$el.empty();
             this.$el.html(this.template(this.model.toJSON()));
 
