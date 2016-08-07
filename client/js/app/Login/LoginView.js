@@ -43,5 +43,6 @@ var LoginView = function (model) {
     function clear () {
         loginField.value = '';
         passwordField.value = '';
+        messageEl.innerText = '';
     }
 };
