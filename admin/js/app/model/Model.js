@@ -1,5 +1,6 @@
 'use strict';
 (function (This) {
-    This.Model = Backbone.Model.extend({        
+    This.Model = Backbone.Model.extend({
+
     });
 })(CSAdmin);

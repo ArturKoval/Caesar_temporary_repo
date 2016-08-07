@@ -12,6 +12,21 @@
             };
         },
 
+        initialize: function () {
+            this.on('validated:invalid', this.onInvalid, this);
+        },
+
+        onInvalid: function (model, errors) {
+            for (let error in errors) {
+
+                if (error === 'photo') { //This is a crutch. Need fix map func in admin
+                    this.set('photo', this.defaults().photo).save(); 
+                }
+
+                app.mediator.publish('User: on-invalid', errors[error]);
+            }
+        },
+
         validation: {
             firstName: [{
                 maxLength: 20
@@ -33,11 +48,11 @@
 
             photo: {
                 pattern: /([a-z0-9\s_\\.\-:])+(.png|.jpe?g|.gif)$/i,
-                msg: 'Please upload image file.'
-            }
+                msg: 'Please upload correct image file.'
+            } 
         },
 
-        getFullName: function () {
+        getFullName: function () { 
             return this.get('firstName') + ' ' + this.get('lastName');
         },
 
@@ -51,6 +66,8 @@
 
         isRole: function (role) {
             return this.get('role') === role;
-        }
+        },
+
+        urlRoot: '/users'
     });
 })(CS.User);
