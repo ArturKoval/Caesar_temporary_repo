@@ -98,7 +98,7 @@
                 modelGroup = this.controller.showGroupViewByRoute(arrLocations, groupName, action),
                 cruds = {
                     'delete': function (modelGroup) {
-                        if (modelGroup) {
+                        if (modelGroup && app.user.attributes.role !== "Teacher") {
                             this.controller.delete(modelGroup);
                         }
                     }.bind(this),

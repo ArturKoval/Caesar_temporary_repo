@@ -16,7 +16,7 @@
     width: 95%;*/
     display: inline-flex;
     justify-content: center;
-    width: 95%;
+    width: 90%;
 }
 
 .logout {
@@ -25,7 +25,7 @@
     font-size: 17px;*/
     padding: 5px 0 5px 0;
      color: white;
-    width: 5%;
+    width: 10%;
     cursor: pointer;
     /*font-size: 1.2em;*/
     display: inline-block;
