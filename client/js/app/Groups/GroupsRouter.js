@@ -98,7 +98,7 @@
                 modelGroup = this.controller.showGroupViewByRoute(arrLocations, groupName, action),
                 cruds = {
                     'delete': function (modelGroup) {
-                        if (modelGroup && app.user.attributes.role !== "Teacher") {
+                        if (modelGroup) {
                             this.controller.delete(modelGroup);
                         }
                     }.bind(this),
@@ -113,7 +113,7 @@
                         }
                     }.bind(this)
                 };
-            if (cruds[crud]) {
+            if (cruds[crud] && app.user.attributes.role !== "Teacher") {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
             }
