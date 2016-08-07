@@ -4,7 +4,8 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'User: edit-request': 'showEditDialog',
-            'User: profile-request': 'showProfile'
+            'User: profile-request': 'showProfile',
+            'User: on-invalid': 'showErrorAlert'
         },
 
         initialize: function () {
@@ -28,6 +29,14 @@
 
         showEditDialog: function () {
             //add editView here
+        },
+
+        showErrorAlert: function (error) {
+            var messager = new CS.Messenger.ConfirmationView({
+                model: new This.User({value: error})
+            });
+
+            $('#modal-window').html(messager.render().el);
         },
 
         showProfile: function () {

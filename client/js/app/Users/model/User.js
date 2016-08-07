@@ -13,12 +13,12 @@
         },
 
         initialize: function () {
-            this.on('validated:invalid', this.error, this);
+            this.on('validated:invalid', this.onInvalid, this);
         },
 
-        error: function (model, errors) {
+        onInvalid: function (model, errors) {
             for (let erorr in errors) {
-                alert(errors[erorr]);
+                app.mediator.publish('User: on-invalid', errors[erorr]);
             }
         },
 
@@ -43,11 +43,11 @@
 
             photo: {
                 pattern: /([a-z0-9\s_\\.\-:])+(.png|.jpe?g|.gif)$/i,
-                msg: 'Please upload image file.'
-            }
+                msg: 'Please upload correct image file.'
+            } 
         },
 
-        getFullName: function () {
+        getFullName: function () { 
             return this.get('firstName') + ' ' + this.get('lastName');
         },
 
