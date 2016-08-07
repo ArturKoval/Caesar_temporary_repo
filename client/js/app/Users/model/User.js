@@ -12,6 +12,16 @@
             };
         },
 
+        initialize: function () {
+            this.on('validated:invalid', this.error, this);
+        },
+
+        error: function (model, errors) {
+            for (let erorr in errors) {
+                alert(errors[erorr]);
+            }
+        },
+
         validation: {
             firstName: [{
                 maxLength: 20

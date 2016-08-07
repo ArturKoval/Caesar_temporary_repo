@@ -13,10 +13,18 @@
 
         initialize: function () {
             this.listenTo(this.model, 'change', this.render);
+
+            Backbone.Validation.bind(this);
         },
 
         render: function () {
             this.$el.empty();
+
+            if (!this.model.validate()) {
+                console.log(this.model.toJSON());
+                console.log(this.model.isValid('photo'));
+            }
+
             this.$el.html(this.template(this.model.toJSON()));
 
             return this;
