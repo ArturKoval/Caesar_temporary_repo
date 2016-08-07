@@ -17,8 +17,13 @@
         },
 
         onInvalid: function (model, errors) {
-            for (let erorr in errors) {
-                app.mediator.publish('User: on-invalid', errors[erorr]);
+            for (let error in errors) {
+
+                if (error === 'photo') { //This is a crutch. Need fix map func in admin
+                    this.set('photo', this.defaults().photo).save(); 
+                }
+
+                app.mediator.publish('User: on-invalid', errors[error]);
             }
         },
 
@@ -61,6 +66,8 @@
 
         isRole: function (role) {
             return this.get('role') === role;
-        }
+        },
+
+        urlRoot: '/users'
     });
 })(CS.User);

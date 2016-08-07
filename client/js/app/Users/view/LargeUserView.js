@@ -18,9 +18,9 @@
         },
 
         render: function () {
-            this.$el.empty();
-
             this.model.validate();
+
+            this.$el.empty();
 
             this.$el.html(this.template(this.model.toJSON()));
 

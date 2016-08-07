@@ -33,7 +33,7 @@
 
         showErrorAlert: function (error) {
             var messager = new CS.Messenger.ConfirmationView({
-                model: new This.User({value: error})
+                model: new This.Error({value: error})
             });
 
             $('#modal-window').html(messager.render().el);
