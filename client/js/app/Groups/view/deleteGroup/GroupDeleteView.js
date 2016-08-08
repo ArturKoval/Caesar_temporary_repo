@@ -23,6 +23,11 @@
         },
 
         deleteGroup: function () {
+            var $groupName = $('.groupName'),
+                $groupStage = $('.groupStage'),
+                $groupTitle = $('.groupStageTitle');
+
+            debugger;
             app.mediator.publish('Groups: delete-group');
             app.mediator.publish('Message', {
                  type: 'flash-warning',
@@ -31,6 +36,10 @@
             this.model.destroy();
             this.documentEl.unbind('keydown', this.onKeyPress);
             this.remove();
+
+            $groupName.html('');
+            $groupStage.html('');
+            $groupTitle.html('');
         },
 
         close: function () {

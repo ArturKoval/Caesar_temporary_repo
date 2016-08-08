@@ -17,9 +17,9 @@
 
         showMessage: function (data) {
             var hintView, 
-            message, 
-            hintName, 
-            view;
+                message, 
+                hintName, 
+                view;
             
             if (data.type === 'hints') {
                 data.hints.forEach(function (hint) {

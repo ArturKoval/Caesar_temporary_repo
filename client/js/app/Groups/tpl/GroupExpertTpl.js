@@ -6,7 +6,7 @@ templates.groupExpertsTpl = _.template([
 
 
 templates.groupSelectExpertTpl = _.template([
-    '<div>',
+    '<div name="groupSelectExpert">',
     '    <input name="expert" class="form-control pull-left" tabindex="16">',
     '    <span class="fa fa-times-circle-o fa-2x pull-right small-btn" id="cancelInput" tabindex="18"></span>',
     '    <span class="fa fa-check-circle-o fa-2x pull-right small-btn" id="acceptInput" tabindex="17"></span>',

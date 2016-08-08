@@ -33,16 +33,37 @@
         },
 
         addExpert: function () {
-            var newExpert = this.$el.find('[name=expert]').val();
-            this.experts.push(newExpert);
-            this.renderList();
-            this.renderAddBtn();
+            var newExpert = this.$el.find('[name=expert]').val(),
+                regExpSymbols = /^[a-zA-Z /./-]*$/;
+
+            if (!regExpSymbols.test(newExpert)) {
+                this.showHints(this, 'Special symbols are not allowed.');
+            } else if (newExpert.length < 5 || newExpert.length > 20 ) {
+                this.showHints(this, 'Name should be from 5 to 20 chars.');
+            } else {
+                this.experts.push(newExpert);
+                this.renderList();
+                this.renderAddBtn();
+            }
         },
 
         removeExpert: function (event) {
             var expertIndex = this.experts.indexOf($(event.target).data('expert'));
             this.experts.splice(expertIndex,1);
             this.renderList()
-        }
+        },
+
+        showHints: function (self, message) {
+            var hints = [{
+                    name: 'groupSelectExpert',
+                    text: message
+                }];
+               
+            app.mediator.publish('Message', { 
+                type: 'hints',
+                $el: self.$el,
+                hints: hints
+            });
+        },
     });
 })(CS.Groups);
