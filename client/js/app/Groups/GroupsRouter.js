@@ -113,12 +113,10 @@
                         }
                     }.bind(this)
                 };
-            if (cruds[crud] && (app.user.attributes.role !== "Teacher")) {
+            if (cruds[crud] && (!app.user.isRole('Coordinator')) || app.user.isRole('Coordinator') && app.user.isLocation(locations)) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
-               // (app.user.attributes.location == arrLocations[0]))
-            }
-            else {
+            } else {
                 this.navigate('Groups/' + locations + '/' + groupName + '/info');
             }
         },
