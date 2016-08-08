@@ -25,7 +25,6 @@
         },
 
         showSelectedGroup: function (selected) {
-            // console.log(this.$groupLocation.html(selected.get('location')));
             this.$groupLocation.html(selected.get('location'));
             this.$groupName.html(selected.get('name'));
             this.$groupStage.html(selected.get('stage'));
