@@ -12,21 +12,6 @@
             };
         },
 
-        initialize: function () {
-            this.on('validated:invalid', this.onInvalid, this);
-        },
-
-        onInvalid: function (model, errors) {
-            for (let error in errors) {
-
-                if (error === 'photo') { //This is a crutch. Need fix map func in admin
-                    this.set('photo', this.defaults().photo).save(); 
-                }
-
-                app.mediator.publish('User: on-invalid', errors[error]);
-            }
-        },
-
         validation: {
             firstName: [{
                 maxLength: 20

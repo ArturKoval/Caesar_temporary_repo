@@ -13,7 +13,7 @@ var map = {
 			},
 		    location: {
 			    control: 'select',
-				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
+				options: ['Chernivtsy', 'Dnipro', 'Ivano-Frankivsk', 'Kyiv', 'Lviv', 'Rivne', 'Sofia']
 			},
 		    photo: '',
 		    login: '',
@@ -29,7 +29,7 @@ var map = {
 	        name: '',
 		    location: {
 			    control: 'select',
-				options: ['Dnipro', 'Lviv', 'Kyiv', 'Rivne']
+				options: ['Chernivtsy', 'Dnipro', 'Ivano-Frankivsk', 'Kyiv', 'Lviv', 'Rivne', 'Sofia']
 			},
 			budgetOwner: {
 			    control: 'bool',
@@ -37,7 +37,7 @@ var map = {
 			},
 			direction: {
 			    control: 'select',
-				options: ['MQC', 'UI']
+				options: ['WebUI', 'JavaScript(UI)', 'LAMP', '.Net', 'Java', 'iOS', 'C/C++', 'Delphi', 'RDBMS', 'MQC', 'ATQC', 'ISTQB', 'DevOps', 'UX']
 			},
 			startDate: {
 			    control: 'date'
@@ -53,7 +53,7 @@ var map = {
 			},
 			stage: {
 			    control: 'select',
-				options: ['boarding', 'before-start', 'in-process', 'offering', 'finished']
+				options: ['planned', 'boarding', 'before-start', 'in-process', 'offering', 'finished']
 			}
 		}
 	}
