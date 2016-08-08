@@ -113,9 +113,13 @@
                         }
                     }.bind(this)
                 };
-            if (cruds[crud] && app.user.attributes.role !== "Teacher") {
+            if (cruds[crud] && (app.user.attributes.role !== "Teacher")) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
+               // (app.user.attributes.location == arrLocations[0]))
+            }
+            else {
+                this.navigate('Groups/' + locations + '/' + groupName + '/info');
             }
         },
 
