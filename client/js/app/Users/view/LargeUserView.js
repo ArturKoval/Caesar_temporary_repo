@@ -13,10 +13,15 @@
 
         initialize: function () {
             this.listenTo(this.model, 'change', this.render);
+
+            Backbone.Validation.bind(this);
         },
 
         render: function () {
+            this.model.validate();
+
             this.$el.empty();
+
             this.$el.html(this.template(this.model.toJSON()));
 
             return this;

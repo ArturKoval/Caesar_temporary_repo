@@ -64,6 +64,11 @@
 				this.collection.add(this.model);
 		    }
             
+            //This is a crutch. Need fix map func in admin
+		    if (this.model.get('photo').length == 0 ) {
+		    	alert('No image found!')
+		    }
+
 			this.model.save();
 
             this.$el.find('.modal').modal('hide');
@@ -91,6 +96,7 @@
 				    if (type.control === 'bool') {
 				        attributes[name] = this.$el.find('input[name="' + name + '"]:checked').val();	
 				    }
+
 				}
 			}, this);
 		}
