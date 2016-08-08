@@ -113,11 +113,11 @@
                         }
                     }.bind(this)
                 };
-            if (cruds[crud] && (!app.user.isRole('Coordinator')) || app.user.isRole('Coordinator') && app.user.isLocation(locations)) {
+            if (cruds[crud] && (!app.user.isRole('Coordinator')) && (!app.user.isRole('Teacher')) || (app.user.isRole('Coordinator')) && (app.user.isLocation(locations))) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
             } else {
-                this.navigate('Groups/' + locations + '/' + groupName + '/info');
+                 app.mediator.publish('Error: show-page-404');
             }
         },
 
