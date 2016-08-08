@@ -56,3 +56,4 @@
         urlRoot: '/users'
     });
 })(CS.User);
+

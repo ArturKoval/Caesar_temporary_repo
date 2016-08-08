@@ -113,9 +113,11 @@
                         }
                     }.bind(this)
                 };
-            if (cruds[crud]) {
+            if (cruds[crud] && (!app.user.isRole('Coordinator')) || app.user.isRole('Coordinator') && app.user.isLocation(locations)) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
+            } else {
+                this.navigate('Groups/' + locations + '/' + groupName + '/info');
             }
         },
 

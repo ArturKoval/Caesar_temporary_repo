@@ -115,7 +115,7 @@
             var groupDeleteView = new This.GroupDeleteView({
                 model: group
             });
-
+            
             this.modal(groupDeleteView);
         },
 
