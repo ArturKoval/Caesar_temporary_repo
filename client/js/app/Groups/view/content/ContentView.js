@@ -9,7 +9,7 @@
             app.mediator.subscribe('Locations: selected', this.showLocationInfo.bind(this));
             app.mediator.subscribe('Groups: selected', this.showSelectedGroup.bind(this));
             app.mediator.subscribe('Groups: saved', this.showSelectedGroup.bind(this));
-            app.mediator.subscribe('Schedule: select-month', this.showScheduleYear.bind(this));        
+            app.mediator.subscribe('Schedule: select-month', this.showScheduleYear.bind(this));
 
             this.$mainSection = this.$el.find('.main-section');
         },
@@ -26,7 +26,7 @@
 
         showSelectedGroup: function (selected) {
             // console.log(this.$groupLocation.html(selected.get('location')));
-            this.$groupLocation.html(selected.get('location'));
+            //sthis.$groupLocation.html(selected.get('location'));
             this.$groupName.html(selected.get('name'));
             this.$groupStage.html(selected.get('stage'));
             this.$groupStageTitle.html('Stage:&nbsp;');
@@ -64,7 +64,7 @@
                     text: locations
                 }];
 
-                app.mediator.publish('Message', { 
+                app.mediator.publish('Message', {
                     type: 'hints',
                     $el: this.$el,
                     hints: hints

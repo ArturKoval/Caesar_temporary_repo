@@ -88,6 +88,8 @@
             if (!_.isEmpty(errors)) {
                 this.createHint(errors);
             } else {
+                formData['stage'] = this.setStage(formData['startDate'], formData['finishDate']);
+
                 formData['startDate'] = this.delayDate(formData['startDate']).format('X');
                 formData['finishDate'] = this.delayDate(formData['finishDate']).format('X');
 
@@ -161,6 +163,26 @@
                 date.add(1, 'days')
             }
             return date;
+        },
+
+        setStage: function (start, finish) {
+            var currentDate = moment().format('MM/DD/YYYY'),
+                respondStage;
+            if (moment(currentDate).isBefore(moment(start).subtract('days', 10))){
+                respondStage = 'planned';
+            } else if (moment(currentDate).isBefore(moment(start).subtract('days', 7))) {
+                respondStage = 'boarding';
+            } else if (moment(currentDate).isBefore(moment(start))){
+                respondStage = 'before-start';
+            } else if (moment(currentDate).isBefore(moment(finish).subtract('days', 21))){
+                respondStage = 'in-process';
+            } else if (moment(currentDate).isBefore(moment(finish))){
+                respondStage = 'offering';
+            }else {
+                respondStage = 'finished';
+            }
+
+            return respondStage;
         },
 
         createHint: function (errors) {
