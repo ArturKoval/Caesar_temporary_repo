@@ -14,7 +14,9 @@
 
 		function makeTeachers (collection) {
 			collection.each(function (user) {
-				app.infoblock.users.teachers.add(user);
+				if (user.get('location') === app.user.get('location')) {
+					app.infoblock.users.teachers.add(user);
+				}
 			});
 		}
 
