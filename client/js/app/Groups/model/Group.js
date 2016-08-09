@@ -143,7 +143,7 @@
                         msg = 'Finish date is required!';
                     } else if (!moment(finishDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
-                    } else if (finishDateTime.isSameOrBefore(startDateTime)) {
+                    } else if (finishDateTime.isBefore(startDateTime)) {
                         msg = 'Finish date can\'t be earlier than Start date!';
                     }
 
