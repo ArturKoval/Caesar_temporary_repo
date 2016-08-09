@@ -12,14 +12,20 @@
             this.mediator = app.mediator;
             this.$modalEl = $('#modal-window');
             this.selectedLocations = [app.user.get('location')];
+
+            this.locationListCount = 0;
         },
 
         showLocations: function () {
-            var locationListView = new CS.Locations.LocationListView({
-                collection: store.locations
-            });
+            if (this.locationListCount < 1) {
+                var locationListView = new CS.Locations.LocationListView({
+                    collection: store.locations
+                });
 
-            this.$modalEl.append(locationListView.render().el);
+                this.locationListCount++;
+
+                this.$modalEl.append(locationListView.render().el);
+            }
         },
 
         getSelectedLocations: function () {
@@ -27,6 +33,8 @@
         },
 
         setSelectedLocations: function (selectedLocations) {
+            this.locationListCount = 0;
+
             this.selectedLocations = selectedLocations;
         },
 

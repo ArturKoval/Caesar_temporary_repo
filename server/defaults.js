@@ -63,6 +63,8 @@ var defaultData = {
         "name": "C/C++"
     }, {
         "name": "Delphi"
+    },{
+        "name": "Java"
     }, {
         "name": "RDBMS"
     }, {

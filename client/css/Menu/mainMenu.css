@@ -2,8 +2,7 @@
     position: fixed;
     top: -30px;
     bottom: 99%;
-    /*height: 60px;*/
-    height: 7rem;
+    height: 6rem;
     transition: 0.4s;
    	width: 100%;
     text-align: center;
@@ -11,15 +10,19 @@
 }
 
 .containerMainMenu {
-    float: left;
-    width: 95%;
+    display: inline-flex;
+    justify-content: center;
+    width: 90%;
 }
 
 .logout {
-    color: white;
-    cursor: pointer;
-    font-size: 17px;
+    font-size: 17px;*/
     padding: 5px 0 5px 0;
+     color: white;
+    width: 10%;
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
 }
 
 .top-menu.open {

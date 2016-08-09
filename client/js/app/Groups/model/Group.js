@@ -67,7 +67,7 @@
             return {
                 name: function(name, attributeName, attributes) {
                     var nameLength = name.length,
-                        regexp = /^[a-z0-9 \.\-\/\(\)]+$/i,
+                        regexp = /^[a-z0-9 \.\-\/\(\)\+]+$/i,
                         msg = '',
                         id;
                     if (nameLength === 0) {
@@ -143,7 +143,7 @@
                         msg = 'Finish date is required!';
                     } else if (!moment(finishDate, DATE_FORMAT, true).isValid()) {
                         msg = 'Wrong date format!';
-                    } else if (finishDateTime.isSameOrBefore(startDateTime)) {
+                    } else if (finishDateTime.isBefore(startDateTime)) {
                         msg = 'Finish date can\'t be earlier than Start date!';
                     }
 

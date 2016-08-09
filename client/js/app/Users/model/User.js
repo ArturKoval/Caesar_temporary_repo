@@ -33,11 +33,11 @@
 
             photo: {
                 pattern: /([a-z0-9\s_\\.\-:])+(.png|.jpe?g|.gif)$/i,
-                msg: 'Please upload image file.'
-            }
+                msg: 'Please upload correct image file.'
+            } 
         },
 
-        getFullName: function () {
+        getFullName: function () { 
             return this.get('firstName') + ' ' + this.get('lastName');
         },
 
@@ -51,6 +51,9 @@
 
         isRole: function (role) {
             return this.get('role') === role;
-        }
+        },
+
+        urlRoot: '/users'
     });
 })(CS.User);
+

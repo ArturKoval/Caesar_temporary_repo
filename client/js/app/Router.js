@@ -35,8 +35,13 @@
         },
 
         navToLocations: function () {
+            let urlName = 'Locations';
+
             this.currentUrl = window.location.pathname;
-            this.navigate(this.currentUrl + '/' + 'Locations');
+
+            if (!~this.currentUrl.indexOf(urlName)) { //No matches
+                this.navigate(this.currentUrl + '/' + urlName);
+            }
         },
 
         navToCancelForm: function () {

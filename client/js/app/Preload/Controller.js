@@ -14,7 +14,7 @@
 
 		function makeTeachers (collection) {
 			collection.each(function (user) {
-				if (user.get('role') === 'Teacher') {
+				if (user.get('location') === app.user.get('location')) {
 					app.infoblock.users.teachers.add(user);
 				}
 			});
