@@ -117,7 +117,7 @@
             if (cruds[crud] && (!app.user.isRole('Coordinator')) && (!app.user.isRole('Teacher')) || (app.user.isRole('Coordinator')) && (app.user.isLocation(locations))) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
-            } else if ((app.user.isRole('Teacher'))) {
+            } else if ((app.user.isRole('Teacher')) && (app.user.isLocation(locations))) {
                 var teachersgGoups = store.groups.findMyGroups(app.user.getShortName()).models;
                 teachersgGoups.forEach(function (models) {
                     if (models.attributes.name==groupName) {
