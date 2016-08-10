@@ -88,6 +88,8 @@
             if (!_.isEmpty(errors)) {
                 this.createHint(errors);
             } else {
+                formData['stage'] = this.setStage(formData);
+
                 formData['startDate'] = this.delayDate(formData['startDate']).format('X');
                 formData['finishDate'] = this.delayDate(formData['finishDate']).format('X');
 
@@ -116,6 +118,17 @@
                 finishDate = moment(startDate, 'MM/DD/YYYY');
                 courseDurationDays = courseDurationWeeks * 7;
                 finishDate.add(courseDurationDays, 'days');
+                if ((finishDate.dayOfYear() === 1)                        // exclude New Year's Day
+                    || (finishDate.dayOfYear() === 7)                        // exclude Christmas
+                    || (finishDate.date() === 8 && finishDate.month() === 2)
+                    || (finishDate.date() === 1 && finishDate.month() === 4)
+                    || (finishDate.date() === 2 && finishDate.month() === 4)
+                    || (finishDate.date() === 9 && finishDate.month() === 4)
+                    || (finishDate.date() === 28 && finishDate.month() === 5)
+                    || (finishDate.date() === 24 && finishDate.month() === 7)
+                    || (finishDate.date() === 14 && finishDate.month() === 9)){
+                        finishDate.add(1, 'days');
+                    }
                 this.$el.find('[name=finishDate]').val(finishDate.format('MM/DD/YYYY'));
             }
         },
@@ -161,6 +174,39 @@
                 date.add(1, 'days')
             }
             return date;
+        },
+
+        setStage: function (formData) {
+            var currentDate = moment(),
+                respondStage,
+
+                start = toFormat(formData.startDate),
+                finish = toFormat(formData.finishDate);
+            function toFormat (start){
+                var arrTmp = start.split('/');
+                return arrTmp.join('-');
+            }
+            start = moment(start, 'MM-DD-YYYY');
+            finish = moment(finish, 'MM-DD-YYYY');
+            currentDate = currentDate.format('MM-DD-YYYY');
+            if (moment(currentDate).isBefore(moment(start).subtract(1, 'mounths'))) {
+                respondStage = 'boarding';
+            } else if (moment(currentDate).isBefore(moment(start).subtract(7, 'days'))) {
+                respondStage = 'boarding';
+            } else if (moment(currentDate).isBefore(moment(start))){
+                respondStage = 'before-start';
+            } else if (moment(currentDate).isBefore(moment(finish).subtract(21, 'days'))){
+                respondStage = 'in-process';
+            } else if (moment(currentDate).isBefore(moment(finish))){
+                respondStage = 'offering';
+                if (formData.direction === 'MQC' || formData.direction === 'ISTQB'){
+                    respondStage = 'in-process';
+                }
+            } else {
+                respondStage = 'finished';
+            }
+
+            return respondStage;
         },
 
         createHint: function (errors) {
