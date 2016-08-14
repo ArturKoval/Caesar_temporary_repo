@@ -32,8 +32,10 @@ var System = (function () {
                 var response = JSON.parse(ajax.responseText);
 
                 store.groups = new CS.Groups.GroupList(response.groups);
+                // store.students = new CS.Students.Students(response.students); // CSWD-621
                 store.locations = new CS.Locations.LocationList(response.locations);
                 app.user = new CS.User.User(response.users);
+
                 setInfoBlocks(response);
 
                 callback();
