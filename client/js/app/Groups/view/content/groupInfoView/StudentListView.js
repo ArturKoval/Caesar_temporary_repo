@@ -2,7 +2,7 @@
 
 (function (This) {
     This.StudentListView = Backbone.View.extend({
-        tagName: 'div',
+        tagName: 'table',
         className: 'students_list',
         template: templates.studentListViewTpl,
 
@@ -12,20 +12,32 @@
 
         render: function () {
             this.$el.empty();
-            students.forEach(function(student) {
-                this.$el.append(this.template(student));
-            }, this);
+            this.$el.append(this.template({'students': students}));
 
             return this;
         }
     });
 })(CS.Groups);
 
-var students = [{'name': 'Anastasyia Serheeva'},
- {'name': 'Vladyslava Tyshchenko'},
- {'name':'Anna Hranovska'},
- {'name':'Denis Poznukhov'},
- {'name':'Yuryi Tataryntsev'},
- {'name':'Artem Zhylko'},
- {'name':'Anastasiia Manilnykova'},
- {'name':'Yana Sharipbaeva'}];
+var students = [
+    {'name': 'Anastasyia Serheeva',
+    'englishLevel': 'Upper-intermediate'},
+    {'name': 'Vladyslava Tyshchenko',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low'},
+    {'name':'Anna Hranovska',
+    'englishLevel': 'Advanced'},
+    {'name':'Denis Poznukhov',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low'},
+    {'name':'Yuryi Tataryntsev',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low'},
+    {'name':'Artem Zhylko',
+    'englishLevel': 'Advanced'},
+    {'name':'Anastasiia Manilnykova',
+    'avatar': 'photo url',
+    'englishLevel': 'Upper-intermediate'},
+    {'name':'Yana Sharipbaeva',
+    'englishLevel': 'Intermediate'}
+    ];

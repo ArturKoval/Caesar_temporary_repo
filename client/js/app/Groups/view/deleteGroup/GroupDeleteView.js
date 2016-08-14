@@ -27,7 +27,6 @@
                 $groupStage = $('.groupStage'),
                 $groupTitle = $('.groupStageTitle');
 
-            debugger;
             app.mediator.publish('Groups: delete-group');
             app.mediator.publish('Message', {
                  type: 'flash-warning',
