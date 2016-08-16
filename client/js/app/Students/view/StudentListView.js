@@ -38,6 +38,10 @@
                     rowsArray = [].slice.call(tbody.rows),
                     compare;
 
+                addClassRange(rowsArray);
+
+
+
                 if (colNum === 0) {
                     compare = function (rowA, rowB) {
         
@@ -51,7 +55,25 @@
                     return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
                     };
                 }
-    
+                
+                function addClassRange(rowsArray) {
+                    rowsArray.forEach(function(row) {
+                        if (row.cells[colNum].innerHTML === 'Beginer') {
+                            row.cells[colNum].classList.add('0');
+                        } else if (row.cells[colNum].innerHTML === 'Elementary') {
+                            row.cells[colNum].classList.add('1');
+                        } else if (row.cells[colNum].innerHTML === 'Pre-intermediate') {
+                            row.cells[colNum].classList.add('2');
+                        } else if (row.cells[colNum].innerHTML === 'Intermediate') {
+                            row.cells[colNum].classList.add('3');
+                        } else if (row.cells[colNum].innerHTML === 'Upper-intermediate') {
+                            row.cells[colNum].classList.add('4');
+                        } else if (row.cells[colNum].innerHTML === 'Advanced') {
+                            row.cells[colNum].classList.add('5');
+                        }
+                    });
+                }
+
                 rowsArray.sort(compare);
 
                 $grid.removeChild(tbody);
