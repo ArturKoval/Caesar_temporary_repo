@@ -63,12 +63,14 @@
                             valueClass.add('1');
                         } else if (value === 'Pre-intermediate') {
                             valueClass.add('2');
-                        } else if (value === 'Intermediate') {
+                        } else if (value === 'Intermediate low') {
                             valueClass.add('3');
-                        } else if (value === 'Upper-intermediate') {
+                        } else if (value === 'Intermediate') {
                             valueClass.add('4');
-                        } else if (value === 'Advanced') {
+                        } else if (value === 'Upper-intermediate') {
                             valueClass.add('5');
+                        } else if (value === 'Advanced') {
+                            valueClass.add('6');
                         }
                     });
                 }
