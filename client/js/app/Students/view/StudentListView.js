@@ -15,8 +15,10 @@
         template: templates.studentListViewTpl,
 
         events: {
-            'click [name="studName"]': 'showStudent'
+            'click [name="studName"]': 'showStudent',
+            'click th': 'tableSort'
         },
+
 
         initialize: function () {
             // app.mediator.subscribe('Students: selected', this....);
@@ -24,6 +26,42 @@
             // app.mediator.subscribe('Students: saved', this....);
 
            // this.collection.on('change', this.render, this);
+        },
+
+        tableSort: function (e) {
+            var $grid = document.querySelector('.students_list');
+
+            sortGrid(e.target.cellIndex);
+
+            function sortGrid (colNum) {
+                var tbody = $('tbody')[0],
+                    rowsArray = [].slice.call(tbody.rows),
+                    compare;
+
+                if (colNum === 0) {
+                    compare = function (rowA, rowB) {
+        
+                    return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+                    };
+                }
+    
+                if (colNum === 2) {
+                    compare = function (rowA, rowB) { 
+        
+                    return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                    };
+                }
+    
+                rowsArray.sort(compare);
+
+                $grid.removeChild(tbody);
+
+                for (var i = 0; i < rowsArray.length; i++) {
+                    tbody.appendChild(rowsArray[i]);
+                }
+
+                $grid.appendChild(tbody);
+            }
 
         },
 
@@ -41,6 +79,7 @@
 
             return this;
         }
+
     });
 })(CS.Groups);
 

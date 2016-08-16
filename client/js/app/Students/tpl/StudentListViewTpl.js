@@ -1,9 +1,9 @@
 templates.studentListViewTpl = _.template([
     '<thead>',
         '<tr>',
-            '<td>Name</td>',
-            '<td>Photo</td>',
-            '<td>English level</td>',
+            '<th class="name">Name</th>',
+            '<th>Photo</th>',
+            '<th class="range">English level</th>',
         '</tr>',
     '</thead>',
     '<tbody class = "tableBodyStudents">',
