@@ -1,3 +1,88 @@
+.students_list {
+    width: 100%;
+}
+
 .students_list li {
     list-style: decimal;
+}
+
+.students_list td {
+    border: 1px solid #B9CEE0;
+}
+
+.students_list tbody td:nth-child(1) {
+    cursor: pointer;
+    text-decoration: underline;
+    color: #493BB7;
+}
+
+.students_list tbody td:nth-child(1):hover {
+    color: #747BAD;
+}
+
+.students_list tbody tr:nth-child(even) {
+    background: #F5FEFF;
+}
+
+.students_list thead tr td:nth-child(1) {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.students_list tbody tr td:nth-child(1) {
+    text-align: left;
+    padding-left: 10px;
+}
+
+.students_list thead>tr {
+    height: 50px;
+    background: rgba(224,234,251,1);
+    background: -moz-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(224,234,251,1)), color-stop(28%, rgba(224,234,251,1)), color-stop(59%, rgba(179,214,227,1)), color-stop(94%, rgba(219,231,245,1)), color-stop(98%, rgba(226,242,248,1)), color-stop(100%, rgba(226,242,248,1)));
+    background: -webkit-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
+    background: -o-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
+    background: -ms-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
+    background: linear-gradient(to bottom, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0eafb', endColorstr='#e2f2f8', GradientType=0 );
+}
+
+.students_list tbody>tr {
+    height: 40px;
+}
+
+.students_list tbody tr td img {
+    max-height: 25px;
+    max-width: 25px;
+}
+
+.editStudentBtn {
+    color: #3C78B5;
+    display: inline-block;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    box-shadow: none !important;
+    padding: 0;
+}
+
+.editStudentBtn:active {    
+    border: none;
+    outline:none !important;
+}
+
+.header-modal-editStudentlist > button {
+    font-size: 40px;
+    color: #3C78B5;
+}
+
+.header-modal-editStudentlist > button,
+.modal_editStudentlist > section > .exit  {
+    float: right;
+    margin-right: 30px;
+    background: inherit;
+}
+
+.header-modal-editStudentlist > span {
+    font-size: 30px;
 }

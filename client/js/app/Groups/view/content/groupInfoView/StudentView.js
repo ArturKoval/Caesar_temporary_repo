@@ -10,11 +10,11 @@
         },
 
         exit: function () {
-            // this.remove();...  //go...
+            // this.remove();... 
         },
 
         render: function () {
-            this.$el.append(template(this.model));
+            this.$el.html(this.template(this.model));
 
             return this;
         }

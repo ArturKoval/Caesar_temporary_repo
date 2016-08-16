@@ -41,7 +41,7 @@
         },
 
         renderStudents: function () {
-            this.showStubView('students');
+            this.showStudentListView('students');
             this.publishEvent('students');
         },
 
@@ -68,6 +68,7 @@
             var data = this.listener[action],
                 $groupContainer = this.$el.find('.groupContainer'),
                 $buttons = this.$el.find('.active'),
+                $editBtn = this.$el.find('.editStudentBtn'),
                 $el = $('.'+ action + 'Btn'),
                 stubView;
 
@@ -77,6 +78,36 @@
             $groupContainer.append(stubView.render().$el);
             $buttons.removeClass('active');
             $el.addClass('active');
+            $editBtn.removeClass('editStudentBtn');
+            $editBtn.addClass('editBtn');
+
+            $editBtn.off('click', this.editStudentList);
+
+        },
+
+        editStudentList: function () {
+            this.editStudentListView = new This.EditStudentListView({model: this.model});
+
+            $('#modal-window').html(this.editStudentListView.render().el);
+        },
+
+        showStudentListView: function () {
+            var $groupContainer = this.$el.find('.groupContainer'),
+                $buttons = this.$el.find('.active'),
+                $buttnStud = this.$el.find('.studentsBtn'),
+                $editBtn = this.$el.find('.editBtn'),
+                studentListView;
+
+            studentListView = new This.StudentListView({model: this.model});
+
+            $groupContainer.empty();
+            $groupContainer.append(studentListView.render().$el);
+            $buttons.removeClass('active');
+            $buttnStud.addClass('active');
+            $editBtn.removeClass('editBtn');
+            $editBtn.addClass('editStudentBtn');
+
+            $editBtn.on('click', this.editStudentList);
         },
 
         publishEvent: function (stubViewName) {

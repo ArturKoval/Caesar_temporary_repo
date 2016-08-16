@@ -37,7 +37,7 @@
             // this.createStudent = new CreateStudentVeiw();
             // $('#modal-window').html(createStudent.render().el);
             
-            console.log('I`ll create a Student. I promise:)')
+            alert('I`ll create a Student. I promise:)')
         },
 
         downloadCV: function () {
