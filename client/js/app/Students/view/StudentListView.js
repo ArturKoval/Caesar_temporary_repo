@@ -40,36 +40,35 @@
 
                 addClassRange(rowsArray);
 
-
-
                 if (colNum === 0) {
-                    compare = function (rowA, rowB) {
-        
+                    compare = function (rowA, rowB) {   
                     return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
                     };
                 }
     
                 if (colNum === 2) {
-                    compare = function (rowA, rowB) { 
-        
+                    compare = function (rowA, rowB) {        
                     return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
-                function addClassRange(rowsArray) {
+                function addClassRange (rowsArray) {
                     rowsArray.forEach(function(row) {
-                        if (row.cells[colNum].innerHTML === 'Beginer') {
-                            row.cells[colNum].classList.add('0');
-                        } else if (row.cells[colNum].innerHTML === 'Elementary') {
-                            row.cells[colNum].classList.add('1');
-                        } else if (row.cells[colNum].innerHTML === 'Pre-intermediate') {
-                            row.cells[colNum].classList.add('2');
-                        } else if (row.cells[colNum].innerHTML === 'Intermediate') {
-                            row.cells[colNum].classList.add('3');
-                        } else if (row.cells[colNum].innerHTML === 'Upper-intermediate') {
-                            row.cells[colNum].classList.add('4');
-                        } else if (row.cells[colNum].innerHTML === 'Advanced') {
-                            row.cells[colNum].classList.add('5');
+                        var value = row.cells[colNum].innerHTML,
+                            valueClass = row.cells[colNum].classList;
+
+                        if (value === 'Beginer') {
+                            valueClass.add('0');
+                        } else if (value === 'Elementary') {
+                            valueClass.add('1');
+                        } else if (value === 'Pre-intermediate') {
+                            valueClass.add('2');
+                        } else if (value === 'Intermediate') {
+                            valueClass.add('3');
+                        } else if (value === 'Upper-intermediate') {
+                            valueClass.add('4');
+                        } else if (value === 'Advanced') {
+                            valueClass.add('5');
                         }
                     });
                 }
