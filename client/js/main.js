@@ -7,7 +7,7 @@ var CS = {},
     i = {};
 
 
-System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'Schedule', 'User', 'Locations', 'Messenger', 'About', 'Storage']);
+System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'Students', 'Schedule', 'User', 'Locations', 'Messenger', 'About', 'Storage']);
 
 System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController', 'menuController', 'infoblock', 'preload']);
 
