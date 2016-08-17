@@ -87,3 +87,7 @@
 .header-modal-editStudentlist > span {
     font-size: 30px;
 }
+
+th {
+    text-align: center;
+}
