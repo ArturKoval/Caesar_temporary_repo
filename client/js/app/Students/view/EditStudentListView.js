@@ -58,4 +58,4 @@
             this.remove();
         }
     });
-})(CS.Groups);
+})(CS.Students);
