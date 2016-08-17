@@ -1,13 +1,7 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.StudentListView = Backbone.View.extend({
-        // subscribes: {
-        //     'Students: edit-request': '',
-        //     'Students: delete-request': '',
-        //     'Students: create-request': '',
-        // },
-
         tagName: 'table',
 
         className: 'students_list',
@@ -42,7 +36,7 @@
             return this;
         }
     });
-})(CS.Groups);
+})(CS.Groups, app);
 
 var students = [
     {'name': 'Anastasyia Serheeva',

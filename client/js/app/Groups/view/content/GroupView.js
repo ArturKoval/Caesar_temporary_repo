@@ -12,6 +12,7 @@
             'click .studentsBtn': 'renderStudents',
             'click .sheduleBtn': 'renderSchedule',
             'click .messageBtn': 'renderMessage',
+            'click .editStudentBtn': 'renderEditStudent'
         },
 
         initialize: function () {
@@ -21,8 +22,10 @@
                 'edit': {view: 'GroupCreateEditView'},
                 'shedule': {view: 'GroupScheduleView'},
                 'students': {view: 'StudentListView'},
-                'message': {view: 'MessageView'}
+                'message': {view: 'MessageView'},
+                'editStudent': {view: 'EditStudentListView'}
             };
+            // this.triggerEditBtn = false;
 
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
@@ -41,7 +44,7 @@
         },
 
         renderStudents: function () {
-            this.showStudentListView('students');
+            this.showStubView('students');
             this.publishEvent('students');
         },
 
@@ -60,54 +63,49 @@
             this.mediator.publish('Groups: crud-request', 'edit');
         },
 
+        renderEditStudent: function () {
+            this.mediator.publish('Students: edit-request', this.model);
+            this.mediator.publish('Students: crud-request', 'edit');
+        },
+
         showStubView: function (action) {
             if (action === undefined || typeof action === 'object') {
                 action = 'info';
+            } if (action === 'students' || action === 'editStudentBtn') {
+                var $editBtn = this.$el.find('.editBtn');
+
+                $editBtn.removeClass('editBtn');
+                $editBtn.addClass('editStudentBtn');
+
+                // this.triggerEditBtn = true;
+            } else {
+                var $editBtn = this.$el.find('.editStudentBtn');
+
+                $editBtn.removeClass('editStudentBtn');
+                $editBtn.addClass('editBtn');
+
+                // this.triggerEditBtn = false;
             }
 
             var data = this.listener[action],
                 $groupContainer = this.$el.find('.groupContainer'),
                 $buttons = this.$el.find('.active'),
-                $editBtn = this.$el.find('.editStudentBtn'),
                 $el = $('.'+ action + 'Btn'),
                 stubView;
 
             stubView = new This[data.view]({model: this.model});
 
             $groupContainer.empty();
-            $groupContainer.append(stubView.render().$el);
+
+            // if (this.triggerEditBtn && action === 'editStudentBtn'){
+            //     $('#modal-window').html(stubView.render().el);
+            // } else {
+                $groupContainer.append(stubView.render().$el);
+            // }
+
             $buttons.removeClass('active');
             $el.addClass('active');
-            $editBtn.removeClass('editStudentBtn');
-            $editBtn.addClass('editBtn');
 
-            $editBtn.off('click', this.editStudentList);
-
-        },
-
-        editStudentList: function () {
-            this.editStudentListView = new This.EditStudentListView({model: this.model});
-
-            $('#modal-window').html(this.editStudentListView.render().el);
-        },
-
-        showStudentListView: function () {
-            var $groupContainer = this.$el.find('.groupContainer'),
-                $buttons = this.$el.find('.active'),
-                $buttnStud = this.$el.find('.studentsBtn'),
-                $editBtn = this.$el.find('.editBtn'),
-                studentListView;
-
-            studentListView = new This.StudentListView({model: this.model});
-
-            $groupContainer.empty();
-            $groupContainer.append(studentListView.render().$el);
-            $buttons.removeClass('active');
-            $buttnStud.addClass('active');
-            $editBtn.removeClass('editBtn');
-            $editBtn.addClass('editStudentBtn');
-
-            $editBtn.on('click', this.editStudentList);
         },
 
         publishEvent: function (stubViewName) {
