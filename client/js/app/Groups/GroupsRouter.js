@@ -26,7 +26,7 @@
         initialize: function () {
             app.mediator.multiSubscribe(this.subscribes, this);
             this.controller = new This.Controller();
-            this.studentsController = new CS.Students.Controller();   ///this is not finished
+            this.studentsController = new CS.Students.Controller();   /// <-- this is not finished. It`s crutch:)
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 

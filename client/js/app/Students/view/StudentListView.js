@@ -14,8 +14,6 @@
 
         initialize: function () {
             // app.mediator.subscribe('Students: selected', this....);
-            // app.mediator.subscribe('Students: selected', this....);
-            // app.mediator.subscribe('Students: saved', this....);
 
            // this.collection.on('change', this.render, this);
 
@@ -23,7 +21,6 @@
 
         showStudent: function () {
             // this.showStudent = new This.StudentView({model: this.model});
-
             // $('#modal-window').html(this.showStudent.render().el);
 
             alert('I will be showing a student');

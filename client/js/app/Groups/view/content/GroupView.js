@@ -25,7 +25,6 @@
                 'message': {view: 'MessageView'},
                 'editStudent': {view: 'EditStudentListView'}
             };
-            // this.triggerEditBtn = false;
 
             this.model.on('change', this.render, this);
             this.model.on('destroy', this.remove, this);
@@ -76,15 +75,11 @@
 
                 $editBtn.removeClass('editBtn');
                 $editBtn.addClass('editStudentBtn');
-
-                // this.triggerEditBtn = true;
             } else {
                 var $editBtn = this.$el.find('.editStudentBtn');
 
                 $editBtn.removeClass('editStudentBtn');
                 $editBtn.addClass('editBtn');
-
-                // this.triggerEditBtn = false;
             }
 
             var data = this.listener[action],
@@ -96,13 +91,7 @@
             stubView = new This[data.view]({model: this.model});
 
             $groupContainer.empty();
-
-            // if (this.triggerEditBtn && action === 'editStudentBtn'){
-            //     $('#modal-window').html(stubView.render().el);
-            // } else {
-                $groupContainer.append(stubView.render().$el);
-            // }
-
+            $groupContainer.append(stubView.render().$el);
             $buttons.removeClass('active');
             $el.addClass('active');
 

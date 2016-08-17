@@ -3,9 +3,9 @@
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
         subscribes: {
-            'Students: edit-request': 'showForm'
+            'Students: edit-request': 'showForm',
+            'Students: create-request': 'createForm'
             // 'Students: delete-request': 'delete'
-            // 'Students: create-request': ''
         },
 
         initialize: function () {
@@ -18,13 +18,15 @@
             this.modal(editStudentListView);
         },
 
-        delete: function () {
-            //....
+        createForm: function () {
+            this.createStudent = new This.CreateStudentView();
+
+            this.modal(this.createStudent);
         },
 
-        render: function () {
-
-        },   
+        delete: function () {
+            //....
+        }, 
 
     // helper
 

@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.EditStudentListView = Backbone.View.extend({
         tagName: 'section',
 
@@ -17,7 +17,7 @@
         },
 
         initialize: function (collection) {
-
+            this.mediator = app.mediator;
         },
 
         render: function () {
@@ -34,10 +34,7 @@
         },
 
         createStudent: function () {
-            // this.createStudent = new CreateStudentVeiw();
-            // $('#modal-window').html(createStudent.render().el);
-            
-            alert('I`ll create a Student. I promise:)')
+            this.mediator.publish('Students: create-request', this.model);
         },
 
         downloadCV: function () {
@@ -58,4 +55,4 @@
             this.remove();
         }
     });
-})(CS.Students);
+})(CS.Students, app);

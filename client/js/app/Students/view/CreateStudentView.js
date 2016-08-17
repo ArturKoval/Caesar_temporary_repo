@@ -1,7 +1,7 @@
 'use strict';
 
 (function (This) {
-    This.StudentView = Backbone.View.extend({
+    This.CreateStudentView = Backbone.View.extend({
         tag: 'div',
         className: 'student',
         // template: template.studentRecordTpl,
@@ -9,14 +9,19 @@
             'click .exit': 'exit' 
         },
 
+        initialize: function () {
+
+        },
+
         exit: function () {
             // this.remove();... 
         },
 
         render: function () {
-            this.$el.html(this.template(this.model));
+            alert('hello, I`ll be a new Student');
+            // this.$el.html(this.template(this.model));
 
             return this;
         }
     });
-})(CS.Groups);
+})(CS.Students);
