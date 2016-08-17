@@ -14,16 +14,10 @@
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
             'click .deleteStudent': 'deleteStudent',
-            'click .exit': 'exit'
+            'click .close-modal-window': 'exit'
         },
 
         initialize: function (collection) {
-            var student = {
-                    groupId: 123,
-                    name: false,
-                    lastName: false,
-                    entryScore: false
-                };
 
         },
 
@@ -46,7 +40,6 @@
       
 
             this.$el.html(this.templateCreateStudent(this.student));
-            // alert('I`ll create a Student. I promise:)')
         },
 
         downloadCV: function () {
