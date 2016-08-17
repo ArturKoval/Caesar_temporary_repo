@@ -1,0 +1,54 @@
+.header-modal-singleStudent {
+	font-size: 20px;
+	margin-bottom: 50px;
+}
+
+.header-modal-singleStudent input {
+	width: 50%;
+	    border: 2px solid #cfd6d8;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.header-modal-singleStudent span {
+	margin-right: 70px;
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.header-modal-singleStudent div {
+	margin: 10px 0;
+}
+
+.singleStudent-leftSide {
+    padding-left: 50px;
+    width: 50%;
+    display: inline-block;
+}
+
+.singleStudent-rightSide {
+    display: inline-block;
+    padding-left: 50px;
+    width: 50%;
+}
+
+.singleStudent-rightSide select,
+.singleStudent-leftSide select {
+	border: 2px solid #cfd6d8;
+    border-radius: 5px;
+    height: 35px;
+}
+
+.singleStudent-rightSide button {
+	padding: 3px 15px;
+    border-radius: 5px;
+    border: 2px solid #bababa;
+}
+
+.buttons {
+    text-align: center;
+}
+
+.buttons button {
+	background: transparent;
+}

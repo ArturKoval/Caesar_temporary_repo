@@ -2,10 +2,6 @@
 	width: 100%;
 }
 
-.students_list li {
-    list-style: decimal;
-}
-
 .students_list td {
     border: 1px solid #B9CEE0;
 }
@@ -34,6 +30,9 @@
     padding-left: 10px;
 }
 
+.modal_editStudentlist {
+    text-align: center;
+}
 .students_list thead>tr {
     height: 50px;
     background: rgba(224,234,251,1);
@@ -86,4 +85,6 @@
 
 .header-modal-editStudentlist > span {
     font-size: 30px;
+    float: left;
+    clear: both;
 }

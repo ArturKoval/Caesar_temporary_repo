@@ -7,6 +7,7 @@
         className: 'backdrop',
 
         template: templates.studentListModalViewTpl,
+        templateCreateStudent: templates.studentEditTpl,
 
         events: {
             'click .createStudent': 'createStudent',
@@ -17,6 +18,12 @@
         },
 
         initialize: function (collection) {
+            var student = {
+                    groupId: 123,
+                    name: false,
+                    lastName: false,
+                    entryScore: false
+                };
 
         },
 
@@ -36,8 +43,10 @@
         createStudent: function () {
             // this.createStudent = new CreateStudentVeiw();
             // $('#modal-window').html(createStudent.render().el);
-            
-            alert('I`ll create a Student. I promise:)')
+      
+
+            this.$el.html(this.templateCreateStudent(this.student));
+            // alert('I`ll create a Student. I promise:)')
         },
 
         downloadCV: function () {
