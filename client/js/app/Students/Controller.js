@@ -28,6 +28,12 @@
             //....
         }, 
 
+        start: function (locations) {
+            this.trigger = true;
+            app.mediator.publish('Locations: selected', locations);
+            $('#left-menu').css('display', 'block');
+        },
+
     // helper
 
         modal: function (view) {
