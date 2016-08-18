@@ -418,6 +418,19 @@ var defaultData = {
             "Yana Sharipbaeva": "/img/Floppy-Drive-8/Sharipbaeva.jpg"
         }
     }, {
+        "nickname": "Fix Machine",
+        "name": "Dp-099-JS",
+        "logo": "/img/Fix-Machine/logo.jpg",
+        "direction": "Development & Research",
+        "people": {
+            "Anastasyia Kolomoiets": "/img/Fix-Machine/Nastya.jpg",
+            "Chung Alpha Manfoumbi": "/img/Fix-Machine/Alpha.jpg",
+            "Artur Koval": "/img/Fix-Machine/Artur.jpg",
+            "Kirill Kozak": "/img/Fix-Machine/Kirill.jpg",
+            "Dmitriy Pavlovski": "/img/Fix-Machine/Dima.jpg",
+            "Petr Kucher": "/img/Fix-Machine/peter.jpg"
+        }
+    },{
         "nickname": "Charming Chaos",
         "name": "Dp-094-MQC",
         "logo": "/img/CharmingChaos/logoCharmingChaos.jpg",
@@ -430,7 +443,7 @@ var defaultData = {
             "Kateryna Buzykina": "/img/CharmingChaos/Buzykina.jpg",
             "Olena Petrusha": "/img/CharmingChaos/Petrusha.jpg"
         }
-    }]
+}]
 };
 
 module.exports = defaultData;
