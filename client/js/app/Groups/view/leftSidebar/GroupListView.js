@@ -44,7 +44,7 @@
         renderGroups: function () {
             var $groupCollection = $('.group-collection');
 
-            app.mediator.publish('Groups: rendered');
+            // app.mediator.publish('Groups: rendered');
             if (app.filter.split('groupList')) {
                 $groupCollection.html('');
                 app.filter.split('groupList').forEach(this.renderOne, this);

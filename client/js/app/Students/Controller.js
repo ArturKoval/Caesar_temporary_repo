@@ -32,7 +32,8 @@
         }, 
 
         start: function (locations) {
-            console.dir(store.groups);
+            
+            app.mediator.publish('Locations: selected', locations);
 
             // this.contentView = new CS.Groups.ContentView();
             this.groupListView = new This.GroupListView({

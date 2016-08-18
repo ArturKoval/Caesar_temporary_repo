@@ -25,8 +25,7 @@
 
         this.split = function (collection) {
             if (collection === 'groupList') {
-                var groupList;
-
+                console.log('WWW')
                 groupList = store.groups;
                 groupList = groupList.findGroupsByLocations(groupListParams.locations);
                 groupList = groupList.findGroupsByState(groupListParams.state);
