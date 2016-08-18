@@ -60,6 +60,7 @@
         },
 
         pageStudents: function () {
+            console.log('Here');
             app.subRouters['Students'] || (app.subRouters['Students'] = new CS.Students.Router());
         },
 

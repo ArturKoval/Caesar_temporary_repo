@@ -15,6 +15,7 @@
         },
 
         render: function () {
+            console.log('render in CV');
             this.$el.html(templates.contentTpl);
 			this.$groupLocation = this.$el.find('.groupLocation');
 			this.$groupName = this.$el.find('.groupName');
@@ -25,6 +26,8 @@
         },
 
         showSelectedGroup: function (selected) {
+            console.log('render Group');
+            console.dir($('.groupStage'));
             this.$groupName.html(selected.get('name'));
             this.$groupStage.html(selected.get('stage'));
             this.$groupStageTitle.html('Stage:&nbsp;');

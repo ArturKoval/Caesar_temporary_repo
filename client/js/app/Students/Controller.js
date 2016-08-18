@@ -4,12 +4,15 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Students: edit-request': 'showForm',
-            'Students: create-request': 'createForm'
-            // 'Students: delete-request': 'delete'
+            'Students: create-request': 'createForm',
+            'Students: groups selected': 'showSelectedGroup',
         },
 
         initialize: function () {
             this.mediator = app.mediator;
+
+            this.$content = $('#content-section');  
+            this.$sidebar = $('#left-side-bar');
         },
 
         showForm: function (students) {
@@ -29,9 +32,19 @@
         }, 
 
         start: function (locations) {
-            this.trigger = true;
-            app.mediator.publish('Locations: selected', locations);
-            $('#left-menu').css('display', 'block');
+            console.dir(store.groups);
+
+            // this.contentView = new CS.Groups.ContentView();
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
+            // console.dir($('#content-section'));
+            $('#content-section').html("HEELOOO");              
+            $('#left-side-bar').html(this.groupListView.render().el);              
+        },
+
+        showSelectedGroup: function (group) {
+            console.dir(group.toJSON());
         },
 
     // helper

@@ -9,8 +9,8 @@
         },
 
         initialize: function () {
-            app.mediator.subscribe('Groups: rendered', this.remove, {}, this);
-            app.mediator.subscribe('Groups: the only selected', this.deselect, {}, this);
+            app.mediator.subscribe('Students: rendered', this.remove, {}, this);
+            app.mediator.subscribe('Students: the only selected', this.deselect, {}, this);
         },
 
         render: function () {
@@ -19,8 +19,7 @@
         },
 
         select: function () {
-            app.mediator.publish('Groups: the only selected', this.model);
-            app.mediator.publish('Groups: selected', this.model);
+            app.mediator.publish('Students: the only selected', this.model);
             // SS.log
             app.mediator.publish('Students: groups selected', this.model);
             this.$el.addClass('chosen');
@@ -32,4 +31,4 @@
             }
         }
     });
-})(CS.Groups, app);
+})(CS.Students, app);
