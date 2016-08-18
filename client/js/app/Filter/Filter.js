@@ -13,14 +13,28 @@
             },
             groupList;
 
-        app.mediator.subscribe('MyGroups: selected', function (value) {groupListParams.areMyGroups = value; console.log(value)});
-        app.mediator.subscribe('State: selected', function (value) {groupListParams.state = value});
-        app.mediator.subscribe('GroupList paginator: page size defined', function (value) {groupListParams.pageSize = value});
-        app.mediator.subscribe('GroupList paginator: page-selected', function (value) {groupListParams.page = value;});
-        
+        app.mediator.subscribe('GroupList paginator: page size defined', onPageChange);
+        app.mediator.subscribe('GroupList paginator: page-selected', onPageSelected);
         app.mediator.subscribe('Locations: selected', onLocationsSelect);
         app.mediator.subscribe('Locations student: selected', onLocationsSelect);
+        app.mediator.subscribe('MyGroups: selected', onMyGroups);
+        app.mediator.subscribe('State: selected', onStateChange);
 
+        function onPageSelected (value) {
+            groupListParams.page = value;
+        }
+
+        function onPageChange (value) {
+            groupListParams.pageSize = value;
+        }
+
+        function onStateChange (value) {
+            groupListParams.state = value;
+        }
+
+        function onMyGroups (value) {
+            groupListParams.areMyGroups = value;
+        }
 
         function onLocationsSelect (value) {
             setDefault();
