@@ -21,8 +21,6 @@
         select: function () {
             app.mediator.publish('Groups: the only selected', this.model);
             app.mediator.publish('Groups: selected', this.model);
-            // SS.log
-            app.mediator.publish('Students: groups selected', this.model);
             this.$el.addClass('chosen');
         },
 

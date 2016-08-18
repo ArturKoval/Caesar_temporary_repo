@@ -24,7 +24,6 @@
         },
 
         findGroupsByLocations: function (locations) {
-            console.log('we are here' + locations);
             return new This.GroupList(this.filter(function (group) {
                 return group.isMyLocation(locations);
             }));

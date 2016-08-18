@@ -46,7 +46,6 @@
 
             app.mediator.publish('Students: rendered');
             if (app.filter.split('groupList')) {
-                console.log(123);
                 $groupCollection.html('');
                 app.filter.split('groupList').forEach(this.renderOne, this);
             } else {

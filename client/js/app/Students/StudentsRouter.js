@@ -8,26 +8,29 @@
             '': 'initLocation',
 			'Students(/)': 'initLocation',
 			'Students/Locations(/)': 'openWindowLocations',
+            'Students/:location(/)': 'openLocation',
             'Students/:location/:group(/)': 'openGroupInfo',
+            'Students/:location/:group/:action(/)': 'openGroupAction',
+            'Students*path': 'notFound'
 		},
 
 		subscribes: {
-            'Students: group selected': 'navToGroupSelected'
+            'Students: groups selected': 'navToGroupSelected'
         },
 
 		initialize: function () {
-            console.log('And here');
             app.mediator.multiSubscribe(this.subscribes, this);
 
             this.controller = new This.Controller();
-            this.initLocation();
+
+            Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
         navToGroupSelected: function (model) {
             var groupName = model.get('name'),
                 location = model.get('location');
 
-            if (Backbone.history.fragment.indexOf('+') === -1) {
+            if (~Backbone.history.getFragment().indexOf(this.currentUrl) && Backbone.history.fragment.indexOf('+') === -1) {
                 this.navigate('Students/' + location + '/' + groupName + '/info');
             }
         },
@@ -36,30 +39,32 @@
             var locations = app.locationsController.getSelectedLocations(),
                 arrLocations = locations.join('+');
 
-            console.dir(locations);
-
             this.controller.start(locations);
 
             this.navigate('Students/' + arrLocations);
         },
 
-        openGroupInfo: function (loc, gN) {
-            console.log(loc);
-            console.log(gN);
+        openLocation: function (locations) {
+            var arrLocations = locations.split('+');
+
+            this.controller.showLocationByRoute(arrLocations);
+        },        
+
+		openGroupAction: function (loc, gN) {
+            //
         },
 
-        // openGroupInfo: function (locations, groupName) {
-        //     var arrLocations = locations.split('+'),
-        //         modelGroup = this.controller.showGroupViewByRoute(arrLocations, groupName, 'info');
-
-        //     if (modelGroup) {
-        //         this.navigate('Groups/' + locations + '/' + groupName + '/info');
-        //     }
-        // },
+        openGroupInfo: function (loc, gN) {
+            //
+        },
 
         openWindowLocations: function () {
             app.locationsController.showLocations();
         },
+
+        notFound: function () {
+            app.mediator.publish('Error: show-page-404');
+        }
 
 	});
 })(CS.Students, app);

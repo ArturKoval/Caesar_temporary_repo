@@ -6,6 +6,7 @@
             'Students: edit-request': 'showForm',
             'Students: create-request': 'createForm',
             'Students: groups selected': 'showSelectedGroup',
+            'Locations student: selected': 'render'
         },
 
         initialize: function () {
@@ -33,19 +34,64 @@
 
         start: function (locations) {
             
-            app.mediator.publish('Locations: selected', locations);
+            app.mediator.publish('Locations student: selected', locations);
 
-            // this.contentView = new CS.Groups.ContentView();
+            // this.contentView = new This.ContentView();
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
-            // console.dir($('#content-section'));
-            $('#content-section').html("HEELOOO");              
+
+            $('#content-section').html("Here need implementation #content-section");              
             $('#left-side-bar').html(this.groupListView.render().el);              
         },
 
         showSelectedGroup: function (group) {
-            console.dir(group.toJSON());
+            console.dir("Need implementation -> you click on -> " + group.get('name'));
+        },
+
+        render: function () {
+            // this.contentView = new This.ContentView();
+            // this.$content.html(this.contentView.render().el);
+            console.log('RENDER IN STUDENTS');
+            
+            if (this.groupListView) {
+                this.groupListView.remove();
+                // this.groupListView.paginatorView.remove();
+            }
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
+
+            this.$sidebar.html(this.groupListView.render().el);
+        },
+
+        showLocationByRoute: function (arrLocations) {
+            this.render();
+
+            if (isLocation(arrLocations)) {
+                app.mediator.publish('Error: show-error-page', {
+                    elem: this.$main,
+                    message: 'such a location is not found'
+                });
+
+                return false;
+            } else {
+                app.mediator.publish('Locations student: selected', arrLocations);
+
+                return true;
+            }
+
+            function isLocation(locations) {
+                var arr = [];
+
+                locations.forEach(function (location) {
+                    if (store.locations.getNames().indexOf(location) < 0) {
+                        arr.push(location);
+                    }
+                });
+
+                return arr.length;
+            }
         },
 
     // helper
