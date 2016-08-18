@@ -4,7 +4,7 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Students: edit-request': 'showForm',
-            'Students: create-request': 'createForm'
+            'Students: create-request': 'createStudent'
             // 'Students: delete-request': 'delete'
         },
 
@@ -18,7 +18,7 @@
             this.modal(this.editStudentListView);
         },
 
-        createForm: function () {
+        createStudent: function () {
             this.createStudent = new This.CreateStudentView();
 
             this.modal(this.createStudent);

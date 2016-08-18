@@ -12,8 +12,7 @@
             'click .createStudent': 'createStudent',
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
-            'click .deleteStudent': 'deleteStudent',
-            'click .exit': 'exit'
+            'click .deleteStudent': 'deleteStudent'
         },
 
         initialize: function (collection) {

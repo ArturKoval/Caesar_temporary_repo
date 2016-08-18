@@ -1,0 +1,14 @@
+.buttons {
+    text-align: center;
+    margin-top: 60px;
+}
+
+.buttons button {
+	background: transparent;
+}
+
+.BrowseCV,
+.BrowsePhoto {
+	width: 120% !important;
+    margin-right: 157%;
+}
