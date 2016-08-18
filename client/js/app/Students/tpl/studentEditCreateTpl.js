@@ -17,7 +17,7 @@ templates.studentEditTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">First name</label>',
-                    '<input name = "First name" class = "form-control">',
+                    '<input name = "FirstName" class = "form-control">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
@@ -36,7 +36,7 @@ templates.studentEditTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Last name</label>',
-                    '<input name = "Last name" class = "form-control">',
+                    '<input name = "LastName" class = "form-control">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',

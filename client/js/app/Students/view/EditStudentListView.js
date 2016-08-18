@@ -14,7 +14,8 @@
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
             'click .deleteStudent': 'deleteStudent',
-            'click .close-modal-window': 'exit'
+            'click .close-modal-window': 'exit',
+            'click .save-changes': 'createNewStudent'
         },
 
         initialize: function (collection) {
@@ -58,6 +59,34 @@
             $(document).off('keydown');
             $(document).off('click');
             this.remove();
-        }
+        },
+
+        createNewStudent: function () {
+            var studentName = this.$el.find('[name=FirstName]').val(),
+                studentSurname = this.$el.find('[name=LastName]').val(),
+                nameValidation = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/;
+debugger;
+            if (!nameValidation.test(studentName) || !nameValidation.test(studentSurname)) {
+                this.showHints(this, 'Name not valid');
+            } else {
+                alert('validation passed!')
+                // this.experts.push(newExpert);
+                // this.renderList();
+                // this.renderAddBtn();
+            }
+        },
+
+        showHints: function (self, message) {
+            var hints = [{
+                    name: 'groupSelectExpert',
+                    text: message
+                }];
+               
+            app.mediator.publish('Message', { 
+                type: 'hints',
+                $el: self.$el,
+                hints: hints
+            });
+        },
     });
 })(CS.Groups);
