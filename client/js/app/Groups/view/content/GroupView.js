@@ -86,7 +86,7 @@
         },
 
         editStudentList: function () {
-            this.editStudentListView = new This.EditStudentListView({model: this.model});
+            this.editStudentListView = new This.EditStudentListView();
 
             $('#modal-window').html(this.editStudentListView.render().el);
         },

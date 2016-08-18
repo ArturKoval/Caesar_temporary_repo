@@ -19,7 +19,7 @@
         },
 
         initialize: function (collection) {
-
+            console.log(this.model);
         },
 
         render: function () {
@@ -65,10 +65,12 @@
             var studentName = this.$el.find('[name=FirstName]').val(),
                 studentSurname = this.$el.find('[name=LastName]').val(),
                 nameValidation = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/;
-debugger;
-            if (!nameValidation.test(studentName) || !nameValidation.test(studentSurname)) {
-                this.showHints(this, 'Name not valid');
-            } else {
+
+            if (!nameValidation.test(studentName) ) {
+                this.showHints(this, 'You can use only letters, space and "-" ', 'FirstName');
+            } if (!nameValidation.test(studentSurname)) {
+                  this.showHints(this, 'You can use only letters, space and "-" ', 'LastName');
+            } else if (nameValidation.test(studentSurname) && nameValidation.test(studentName)) {
                 alert('validation passed!')
                 // this.experts.push(newExpert);
                 // this.renderList();
@@ -76,9 +78,9 @@ debugger;
             }
         },
 
-        showHints: function (self, message) {
+        showHints: function (self, message, input) {
             var hints = [{
-                    name: 'groupSelectExpert',
+                    name: input,
                     text: message
                 }];
                

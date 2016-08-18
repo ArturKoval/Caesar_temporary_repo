@@ -15,7 +15,7 @@ templates.studentEditTpl = _.template([
             '</div>',
 
             '<div class = "row">',
-                '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
+                '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
                     '<label class = "control-label">First name</label>',
                     '<input name = "FirstName" class = "form-control">',
                 '</div>',
