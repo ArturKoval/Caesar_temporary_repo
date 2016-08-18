@@ -15,9 +15,9 @@
 
 
         initialize: function () {
-            // app.mediator.subscribe('Students: selected', this....);
+            // app.mediator.subscribe('Students: renderStudentList', this.render);
 
-           // this.collection.on('change', this.render, this);
+           // this.model.on('change', this.render, this);
         },
 
         tableSort: function (e) {

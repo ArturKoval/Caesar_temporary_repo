@@ -12,8 +12,11 @@
             'click .createStudent': 'createStudent',
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
-            'click .deleteStudent': 'deleteStudent'
+            'click .deleteStudent': 'deleteStudent',
+            'click .closeModalWindow': 'closeModalWindow'
         },
+        
+
 
         initialize: function (collection) {
             this.mediator = app.mediator;
@@ -48,10 +51,13 @@
 
         },
 
-        exit: function () {
+        closeModalWindow: function () {
             $(document).off('keydown');
             $(document).off('click');
             this.remove();
+            // app.mediator.publish('Students: renderStudentList');
+            // this.$el.html('');
+            // this.$el.append(this.template({'students': students}));
         }
     });
 })(CS.Students, app);

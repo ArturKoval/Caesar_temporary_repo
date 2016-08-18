@@ -8,7 +8,7 @@
 			lastName: '',
 			englishLevel: '',
 			CvUrl: '',
-			imageUrl: '',
+			avatar: '',
 			entryScore: '',
 			approvedBy: ''
 		}

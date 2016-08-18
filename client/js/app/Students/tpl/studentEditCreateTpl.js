@@ -10,7 +10,7 @@ templates.studentEditTpl = _.template([
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Incoming score</label>',
-                    '<input name = "Incoming score" class = "form-control">',
+                    '<input name = "Incoming score" class = "form-control incomingScore">',
                 '</div>',
             '</div>',
 
@@ -22,7 +22,7 @@ templates.studentEditTpl = _.template([
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Approved by</label>',
-                    '<select class = "form-control">',
+                    '<select class = "form-control approvedBy">',
                       '<option value=Not approved">Not approved</option>',
                       '<option value="Exptert #1">Exptert #1</option>',
                       '<option value="Exptert #2">Exptert #2</option>',
@@ -54,13 +54,13 @@ templates.studentEditTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">English level</label>',
-                    '<select class = "form-control">',
-                      '<option value="Intermediate">Intermediate (B1)</option>',
-                      '<option value="Elementary">Elementary (A1)</option>',
-                      '<option value="Pre-intermediate">Pre-intermediate (A2)</option>',
-                      '<option value="Upper-intermediate">Upper-intermediate (B2)</option>',
-                      '<option value="Pre-advanced">Pre-advanced (C1)</option>',
-                      '<option value="Advanced">Advanced (C2)</option>',
+                    '<select class = "form-control englishLevel">',
+                      '<option value="Intermediate">Intermediate</option>',
+                      '<option value="Elementary">Elementary</option>',
+                      '<option value="Pre-intermediate">Pre-intermediate</option>',
+                      '<option value="Upper-intermediate">Upper-intermediate</option>',
+                      '<option value="Pre-advanced">Pre-advanced</option>',
+                      '<option value="Advanced">Advanced</option>',
                     '</select>',
                 '</div>', 
 
