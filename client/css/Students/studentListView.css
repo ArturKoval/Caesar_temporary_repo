@@ -46,6 +46,15 @@
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0eafb', endColorstr='#e2f2f8', GradientType=0 );
 }
 
+.students_list thead> tr> .name, .range {
+    cursor: pointer;
+}
+
+.students_list thead> tr> .name:hover, .range:hover {
+    color: #3C78B5;
+ 
+}
+
 .students_list tbody>tr {
     height: 40px;
 }

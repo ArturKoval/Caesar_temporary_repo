@@ -13,9 +13,9 @@
         },
 
         showForm: function (students) {
-            var editStudentListView = new This.EditStudentListView(students);
+            this.editStudentListView = new This.EditStudentListView(students);
 
-            this.modal(editStudentListView);
+            this.modal(this.editStudentListView);
         },
 
         createForm: function () {
