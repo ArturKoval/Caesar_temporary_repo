@@ -26,12 +26,14 @@
         initialize: function () {
             app.mediator.multiSubscribe(this.subscribes, this);
             this.controller = new This.Controller();
+            this.studentsController = new CS.Students.Controller();   /// <-- this is not finished. It`s crutch:)
             Backbone.history.loadUrl(Backbone.history.fragment);
         },
 
         navToGroupSelected: function (model) {
             var groupName = model.get('name'),
                 location = model.get('location');
+                
             if (Backbone.history.fragment.indexOf('+') === -1) {
                 this.navigate('Groups/' + location + '/' + groupName + '/info');
             }

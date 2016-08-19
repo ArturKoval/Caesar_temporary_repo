@@ -13,18 +13,37 @@
             },
             groupList;
 
-        app.mediator.subscribe('Locations: selected', setDefault);
-        app.mediator.subscribe('MyGroups: selected', function (value) {groupListParams.areMyGroups = value});
-        app.mediator.subscribe('State: selected', function (value) {groupListParams.state = value});
-        app.mediator.subscribe('GroupList paginator: page size defined', function (value) {groupListParams.pageSize = value});
-        app.mediator.subscribe('Locations: selected', function (value) {groupListParams.locations = value});
-        app.mediator.subscribe('GroupList paginator: page-selected', function (value) {groupListParams.page = value;});
-        app.mediator.subscribe('GroupsListView: rendered', function () {
-            groupListParams.state = 'in-process'; groupListParams.areMyGroups = false});
+        app.mediator.subscribe('GroupList paginator: page size defined', onPageChange);
+        app.mediator.subscribe('GroupList paginator: page-selected', onPageSelected);
+        app.mediator.subscribe('Locations: selected', onLocationsSelect);
+        app.mediator.subscribe('Locations student: selected', onLocationsSelect);
+        app.mediator.subscribe('MyGroups: selected', onMyGroups);
+        app.mediator.subscribe('State: selected', onStateChange);
+
+        function onPageSelected (value) {
+            groupListParams.page = value;
+        }
+
+        function onPageChange (value) {
+            groupListParams.pageSize = value;
+        }
+
+        function onStateChange (value) {
+            groupListParams.state = value;
+        }
+
+        function onMyGroups (value) {
+            groupListParams.areMyGroups = value;
+        }
+
+        function onLocationsSelect (value) {
+            setDefault();
+
+            groupListParams.locations = value;
+        }
 
         this.split = function (collection) {
             if (collection === 'groupList') {
-
                 groupList = store.groups;
                 groupList = groupList.findGroupsByLocations(groupListParams.locations);
                 groupList = groupList.findGroupsByState(groupListParams.state);
@@ -33,6 +52,7 @@
                     groupList = groupList.findMyGroups(app.user.getShortName());
                 }
             }
+
             groupList = splitToPages(groupList);
 
             return groupList;

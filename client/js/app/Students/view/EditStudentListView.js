@@ -1,6 +1,6 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.EditStudentListView = Backbone.View.extend({
         tagName: 'section',
 
@@ -12,12 +12,11 @@
             'click .createStudent': 'createStudent',
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
-            'click .deleteStudent': 'deleteStudent',
-            'click .exit': 'exit'
+            'click .deleteStudent': 'deleteStudent'
         },
 
         initialize: function (collection) {
-
+            this.mediator = app.mediator;
         },
 
         render: function () {
@@ -34,10 +33,7 @@
         },
 
         createStudent: function () {
-            // this.createStudent = new CreateStudentVeiw();
-            // $('#modal-window').html(createStudent.render().el);
-            
-            alert('I`ll create a Student. I promise:)')
+            this.mediator.publish('Students: create-request', this.model);
         },
 
         downloadCV: function () {
@@ -58,4 +54,4 @@
             this.remove();
         }
     });
-})(CS.Groups);
+})(CS.Students, app);

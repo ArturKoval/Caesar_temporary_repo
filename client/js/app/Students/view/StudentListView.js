@@ -1,13 +1,7 @@
 'use strict';
 
-(function (This) {
+(function (This, app) {
     This.StudentListView = Backbone.View.extend({
-        // subscribes: {
-        //     'Students: edit-request': '',
-        //     'Students: delete-request': '',
-        //     'Students: create-request': '',
-        // },
-
         tagName: 'table',
 
         className: 'students_list',
@@ -22,8 +16,6 @@
 
         initialize: function () {
             // app.mediator.subscribe('Students: selected', this....);
-            // app.mediator.subscribe('Students: selected', this....);
-            // app.mediator.subscribe('Students: saved', this....);
 
            // this.collection.on('change', this.render, this);
         },
@@ -90,7 +82,6 @@
 
         showStudent: function () {
             // this.showStudent = new This.StudentView({model: this.model});
-
             // $('#modal-window').html(this.showStudent.render().el);
 
             alert('I will be showing a student');
@@ -104,7 +95,7 @@
         }
 
     });
-})(CS.Groups);
+})(CS.Groups, app);
 
 var students = [
     {'name': 'Anastasyia Serheeva',
