@@ -50,8 +50,8 @@
             this.controller.showLocationByRoute(arrLocations);
         },        
 
-		openGroupAction: function (loc, gN) {
-            //
+		openGroupAction: function (location, group, action) {
+            // console.log(action);    
         },
 
         openGroupInfo: function (loc, gN) {
@@ -59,6 +59,7 @@
         },
 
         openWindowLocations: function () {
+            console.log('and here');
             app.locationsController.showLocations();
         },
 

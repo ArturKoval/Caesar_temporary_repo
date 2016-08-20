@@ -33,26 +33,24 @@
         }, 
 
         start: function (locations) {
-            
-            app.mediator.publish('Locations student: selected', locations);
-
-            // this.contentView = new This.ContentView();
-            this.groupListView = new This.GroupListView({
-                collection: store.groups
-            });
-
-            $('#content-section').html("Here need implementation #content-section");              
-            $('#left-side-bar').html(this.groupListView.render().el);              
+            app.mediator.publish('Locations student: selected', locations);       
         },
 
         showSelectedGroup: function (group) {
-            console.dir("Need implementation -> you click on -> " + group.get('name'));
+            // var groupView = new This.GroupView({
+            //     model: selected
+            // });
+
+            $('.main-section').html(group.get('name'));
+            // groupView.showStubView(action);
+            // console.dir("Need implementation -> you click on -> " + group.get('name'));
         },
 
         render: function () {
-            // this.contentView = new This.ContentView();
-            // this.$content.html(this.contentView.render().el);
             console.log('RENDER IN STUDENTS');
+
+            this.contentView = new This.ContentView();
+            this.$content.html(this.contentView.render().el);
             
             if (this.groupListView) {
                 this.groupListView.remove();
@@ -76,6 +74,7 @@
 
                 return false;
             } else {
+                console.log('here');
                 app.mediator.publish('Locations student: selected', arrLocations);
 
                 return true;
