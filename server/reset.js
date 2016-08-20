@@ -21,7 +21,7 @@ function reset (defaultInfo) {
     resetTable('locations', data.locations);
     resetTable('roles', data.roles);
     resetTable('directions', data.directions);
-    resetTable('teachers', data.teachers);
+    resetTable('englishLevels', data.englishLevels);
     resetTable('stages', data.stages);
     resetTable('contributors', data.contributors);
 

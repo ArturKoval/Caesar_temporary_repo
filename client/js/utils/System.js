@@ -44,11 +44,11 @@ var System = (function () {
     }
 
     function setInfoBlocks (response) {
-        _registerArray(i, ['teachers', 'directions', 'roles', 'stages']);
+        _registerArray(i, ['englishLevels', 'teachers', 'directions', 'roles', 'stages']);
 
-        // response.teachers.forEach(function (record) {
-        //     i.teachers.push(record.name);
-        // });
+        response.englishLevels.forEach(function (record) {
+             i.englishLevels.push(record.name);
+        });
 
         response.directions.forEach(function (record) {
             i.directions.push(record.name);

@@ -2,7 +2,7 @@
 var Rotor = require('rotor-backbone');
 
 var Controller = Rotor.Controller.extend({
-	collection: require('./Models/TeachersList'),
+	collection: require('./Models/EnglishLevelsList'),
 });
 
 module.exports = new Controller();
