@@ -105,3 +105,8 @@
     clear: both;
 }
 
+
+.modal_editStudentlist > section > .exit {
+    margin: 30px 200px 0 0;
+}
+
