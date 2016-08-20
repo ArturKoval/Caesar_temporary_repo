@@ -15,6 +15,8 @@
             'click .deleteStudent': 'deleteStudent',
             'click .exit': 'exit'
         },
+        
+
 
         initialize: function (collection) {
             this.mediator = app.mediator;
@@ -53,6 +55,9 @@
             $(document).off('keydown');
             $(document).off('click');
             this.remove();
+            // app.mediator.publish('Students: renderStudentList');
+            // this.$el.html('');
+            // this.$el.append(this.template({'students': students}));
         }
     });
 })(CS.Students, app);
