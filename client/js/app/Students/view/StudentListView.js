@@ -21,7 +21,7 @@
         },
 
         tableSort: function (e) {
-            var $grid = $('.students_list');
+            var $grid = document.querySelector('.students_list');
 
             sortGrid(e.target.cellIndex);
 
@@ -118,7 +118,7 @@
         },
 
         tableSort: function (e) {
-            var $grid = $('.students_list');
+            var $grid = document.querySelector('.students_list');
 
             sortGrid(e.target.cellIndex);
 
