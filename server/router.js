@@ -17,6 +17,7 @@ _.extend(Router.prototype, {
         logout: {module: 'login', auth: true},
         users: {module: 'users', auth: true},
         groups: {module:'groups', auth: true},
+        students: {module:'students', auth: true},
         contributors: {module:'contributors', auth: false}
     },
     

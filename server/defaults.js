@@ -362,6 +362,26 @@ var defaultData = {
         "stage": "in-process"
     }],
 
+	students: [{
+		groupId: 'DP-093-JS',
+		name: 'Vladyslava',
+		lastName: 'Tyschenko',
+		englishLevel: 'Upper-intermediate',
+		CvUrl: '',
+		imageUrl: '',
+		entryScore: '4.5',
+		approvedBy: 'N. Varenko'
+	}, {
+		groupId: 'DP-093-JS',
+		name: 'Denys',
+		lastName: 'Poznukhov',
+		englishLevel: 'Intermediate strong',
+		CvUrl: '',
+		imageUrl: '',
+		entryScore: '4',
+		approvedBy: 'N. Varenko'
+	}],
+	
     contributors: [{
         "nickname": "Team Doloto",
         "name": "Dp-080-UI",

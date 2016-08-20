@@ -1,6 +1,7 @@
 var map = {
-    users: {
-	    settings: {
+    users: {	    
+		settings: {
+		    item: 'user',
 		    url: '/users',
 			urlRoot: '/users'
 		},
@@ -22,6 +23,7 @@ var map = {
 	},	
 	groups: {
 	    settings: {
+		    item: 'group',
 		    url: '/groups',
 			urlRoot: '/groups'
 		},
