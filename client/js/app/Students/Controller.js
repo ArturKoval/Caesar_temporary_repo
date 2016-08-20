@@ -36,13 +36,13 @@
             app.mediator.publish('Locations student: selected', locations);       
         },
 
-        showSelectedGroup: function (group) {
-            // var groupView = new This.GroupView({
-            //     model: selected
-            // });
+        showSelectedGroup: function (group, action) {
+            var groupView = new This.StudentsView({
+                model: group
+            });
 
-            $('.main-section').html(group.get('name'));
-            // groupView.showStubView(action);
+            $('.main-section').html(groupView.render().el);
+            groupView.showStubView(action);
             // console.dir("Need implementation -> you click on -> " + group.get('name'));
         },
 
@@ -63,8 +63,24 @@
             this.$sidebar.html(this.groupListView.render().el);
         },
 
+
+        showGroupViewByRoute: function (locations, groupName, action) {
+            if (this.showLocationByRoute(locations)) {
+                if (store.groups.findGroupByName(groupName)) {
+                    this.showSelectedGroup(this.list(locations).findGroupByName(groupName), action);
+                } else {
+                    app.mediator.publish('Error: show-error-page', {
+                        elem: this.$main,
+                        message: 'such a group is not found'
+                    });
+                }
+            }
+
+            return store.groups.findGroupByName(groupName);
+        },
+
         showLocationByRoute: function (arrLocations) {
-            this.render();
+            // this.render();
 
             if (isLocation(arrLocations)) {
                 app.mediator.publish('Error: show-error-page', {
@@ -74,7 +90,6 @@
 
                 return false;
             } else {
-                console.log('here');
                 app.mediator.publish('Locations student: selected', arrLocations);
 
                 return true;

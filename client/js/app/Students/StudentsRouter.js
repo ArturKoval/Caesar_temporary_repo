@@ -15,6 +15,7 @@
 		},
 
 		subscribes: {
+            'Students: stubView-changed': 'navToGroupAction',
             'Students: groups selected': 'navToGroupSelected'
         },
 
@@ -31,8 +32,16 @@
                 location = model.get('location');
 
             if (~Backbone.history.getFragment().indexOf(this.currentUrl) && Backbone.history.fragment.indexOf('+') === -1) {
-                this.navigate('Students/' + location + '/' + groupName + '/info');
+                this.navigate('Students/' + location + '/' + groupName + '/list');
             }
+        },
+
+        navToGroupAction: function (args) {
+            var groupName = args.group.get('name'),
+                location = args.group.get('location'),
+                action = args.stubView; /**rename stub**/
+
+            this.navigate('Students/' + location + '/' + groupName + '/' + action);
         },
 
         initLocation: function () {
@@ -50,8 +59,17 @@
             this.controller.showLocationByRoute(arrLocations);
         },        
 
-		openGroupAction: function (location, group, action) {
-            // console.log(action);    
+		openGroupAction: function (locations, group, action) {
+            var arrLocations = locations.split('+'),
+                actions = {
+                    'list': true
+                };
+
+            if (actions[action]) {
+                this.controller.showGroupViewByRoute(arrLocations, group, action);
+            } else {
+                this.controller.showGroupViewByRoute(arrLocations, groupName, 'list');
+            }
         },
 
         openGroupInfo: function (loc, gN) {
