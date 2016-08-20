@@ -3,24 +3,31 @@
     margin-top: 60px;
 }
 
+.students_list thead tr td {
+    text-align: left;
+    padding-left: 10px;
+}
+
 .buttons button {
 	background: transparent;
 }
 
-.BrowseCV,
-.BrowsePhoto {
-	width: 120% !important;
-    margin-right: 157%;
-}
-
 .fa-trash {
 	font-size: xx-large;
+	cursor: pointer;
 }
 
 .fa-download {
 	font-size: x-large;
+	cursor: pointer;
 }
 
 .gear {
 	font-size: x-large;
+	cursor: pointer;
+}
+.gear:hover,
+.fa-download:hover,
+.fa-trash:hover {
+	color: #3C78B5;
 }

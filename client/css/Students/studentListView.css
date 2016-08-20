@@ -2,7 +2,7 @@
 	width: 100%;
 }
 
-.students_list td {
+.students_list td, th {
     border: 1px solid #B9CEE0;
 }
 
@@ -20,12 +20,13 @@
     background: #F5FEFF;
 }
 
-.students_list thead tr td:nth-child(1) {
+.students_list thead tr th {
     text-align: left;
     padding-left: 10px;
 }
 
-.students_list tbody tr td:nth-child(1) {
+.students_list tbody tr td:nth-child(1),
+.students_list tbody tr td:nth-child(3) {
     text-align: left;
     padding-left: 10px;
 }
@@ -35,14 +36,7 @@
 }
 .students_list thead>tr {
     height: 50px;
-    background: rgba(224,234,251,1);
-    background: -moz-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
-    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(224,234,251,1)), color-stop(28%, rgba(224,234,251,1)), color-stop(59%, rgba(179,214,227,1)), color-stop(94%, rgba(219,231,245,1)), color-stop(98%, rgba(226,242,248,1)), color-stop(100%, rgba(226,242,248,1)));
-    background: -webkit-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
-    background: -o-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
-    background: -ms-linear-gradient(top, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
-    background: linear-gradient(to bottom, rgba(224,234,251,1) 0%, rgba(224,234,251,1) 28%, rgba(179,214,227,1) 59%, rgba(219,231,245,1) 94%, rgba(226,242,248,1) 98%, rgba(226,242,248,1) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e0eafb', endColorstr='#e2f2f8', GradientType=0 );
+    background: #DEDEDE
 }
 
 .students_list thead> tr> .name, .range {
