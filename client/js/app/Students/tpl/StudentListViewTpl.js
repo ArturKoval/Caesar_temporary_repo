@@ -56,7 +56,7 @@ templates.studentListModalViewTpl = _.template([
                     '<% }); %>',
             '</tdoby>',
             '</table>',
-            '<button class = "fa fa-times-circle-o fa-3x btn-icon closeModalWindow"></button>',
+            '<button class = "fa fa-times-circle-o fa-3x btn-icon exit closeModalWindow"></button>',
         '</section>',
     '</section>'
 ].join(''));

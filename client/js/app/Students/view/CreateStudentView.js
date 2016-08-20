@@ -27,7 +27,7 @@
                 studentSurname = this.$el.find('[name=LastName]').val(),
                 nameValidation = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/,
                 englishLevel = this.$el.find('.englishLevel').val(),
-                incomingScore = this.$el.find('.incomingScore').val(),
+                incomingScore = this.$el.find('.incomingTest').val(),
                 approvedBy = this.$el.find('.approvedBy').val(),
                 newStudent;
 
@@ -78,7 +78,11 @@
         },
 
         render: function () {
+            var customApproval = "Custom",
+                customInput = $('.custom-approval');
+
             this.$el.html(this.template(this.student));
+
             return this;
         }
     });
