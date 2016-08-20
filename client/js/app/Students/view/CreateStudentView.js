@@ -86,9 +86,6 @@
         },
 
         render: function () {
-            var customApproval = "Custom",
-                customInput = $('.custom-approval');
-
             this.$el.html(this.template(this.student));
 
             return this;
