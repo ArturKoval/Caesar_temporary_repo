@@ -22,7 +22,7 @@ templates.studentEditTpl = _.template([
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
                     '<label class = "control-label">Entry score</label>',
-                    '<input name = "EntryScore" class = "form-control">',
+                    '<input name = "EntryScore" class = "form-control entryScore">',
                 '</div>',
             '</div>',
 

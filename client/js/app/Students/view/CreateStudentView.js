@@ -14,7 +14,6 @@
         },
 
         initialize: function () {
-            // this.mediator = app.mediator;
             this.mediator = app.mediator;
             this.listener = {
                 'students': {view: 'StudentListView'},
@@ -28,14 +27,22 @@
                 nameValidation = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/,
                 englishLevel = this.$el.find('.englishLevel').val(),
                 incomingScore = this.$el.find('.incomingTest').val(),
-                approvedBy = this.$el.find('.approvedBy').val(),
-                newStudent;
+                entryScore = this.$el.find('.entryScore').val(),
+                newStudent,
+                approvedBy;
 
             if (!nameValidation.test(studentName) ) {
                 this.showHints(this, 'You can use only letters, space and "-" ', 'FirstName');
             } if (!nameValidation.test(studentSurname)) {
                   this.showHints(this, 'You can use only letters, space and "-" ', 'LastName');
             } else if (nameValidation.test(studentSurname) && nameValidation.test(studentName)) {
+              
+                if( this.$el.find('.custom-approval-input').prop('disabled')) {
+                    approvedBy = this.$el.find('.approvedBy').val();
+                } else {
+                    approvedBy = this.$el.find('.custom-approval-input').val();
+                };
+
                 newStudent = {
                     groupId: '',
                     name: studentName,
@@ -43,12 +50,13 @@
                     englishLevel: englishLevel,
                     CvUrl: '',
                     avatar: '',
-                    entryScore: incomingScore,
+                    entryScore: entryScore,
+                    incomingScore: incomingScore,
                     approvedBy: approvedBy
                 }
 
+
                 students.push(newStudent);
-                console.log(students);
                 $(document).off('keydown');
                 $(document).off('click');
                 this.remove();

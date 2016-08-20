@@ -51,6 +51,7 @@
                     customApprovalInput.prop('disabled', false);
                 } else if ( $('.approvedBy').val() !== customApproval) {
                     customInput.html('');
+                    // customApprovalInput.html(''); doesn't clearing input
                     customApprovalInput.prop('disabled', true);
                 }
 
