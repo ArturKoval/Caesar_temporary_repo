@@ -19,9 +19,11 @@
                     icon:'fa fa-users fa-2x', description: 'Groups'
                 },
                 {
+                    icon:'fa fa-graduation-cap fa-2x', description: 'Students'
+                },
+                {
                     icon:'fa fa-calendar fa-2x', description: 'Schedule'
                 },
-
                 {
                     icon:'fa fa-envelope-o fa-2x', description: 'add'
                 },{

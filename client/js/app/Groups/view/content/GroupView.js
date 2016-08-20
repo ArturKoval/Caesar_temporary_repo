@@ -70,7 +70,9 @@
         showStubView: function (action) {
             if (action === undefined || typeof action === 'object') {
                 action = 'info';
-            } if (action === 'students' || action === 'editStudentBtn') {
+            } 
+
+            if (action === 'students' || action === 'editStudentBtn') {
                 var $editBtn = this.$el.find('.editBtn');
 
                 $editBtn.removeClass('editBtn');
@@ -94,7 +96,6 @@
             $groupContainer.append(stubView.render().$el);
             $buttons.removeClass('active');
             $el.addClass('active');
-
         },
 
         publishEvent: function (stubViewName) {

@@ -13,7 +13,7 @@
             'click .downloadCV': 'downloadCV',
             'click .editStudent': 'editStudent',
             'click .deleteStudent': 'deleteStudent',
-            'click .closeModalWindow': 'closeModalWindow'
+            'click .exit': 'exit'
         },
         
 
@@ -51,7 +51,7 @@
 
         },
 
-        closeModalWindow: function () {
+        exit: function () {
             $(document).off('keydown');
             $(document).off('click');
             this.remove();

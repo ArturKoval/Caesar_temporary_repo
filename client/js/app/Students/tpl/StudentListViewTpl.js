@@ -49,14 +49,14 @@ templates.studentListModalViewTpl = _.template([
                         '<td><img class="photo img-circle" src="/img/default-photo.png"/></td>',
                     '<% } %>',
                     '<td><%= student.englishLevel %></td>',
-                    '<td>CV<img class = "cvDownload" src="" alt=""/></td>',
-                    '<td>Edit<img class = "editStudent" src="" alt="" /></td>',
-                    '<td>Delete<img class = "deleteStudent" src="" alt="" /></td>',
+                    '<td><i class="fa fa-download" aria-hidden="true" alt="" title="Download CV"></i></td>',
+                    '<td><i class="fa fa-cog fa-2x gear" src="" alt="" title="Edit"></i></td>',
+                    '<td><i class="fa fa-trash" aria-hidden="true" src="" alt="" title="Delete"></i></td>',
                     '</tr>',
                     '<% }); %>',
             '</tdoby>',
             '</table>',
-            '<button class = "fa fa-times-circle-o fa-3x btn-icon exit closeModalWindow"></button>',
+            '<button class = "fa fa-times-circle-o fa-3x btn-icon exit"></button>',
         '</section>',
     '</section>'
 ].join(''));

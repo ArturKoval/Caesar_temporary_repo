@@ -5,7 +5,8 @@
         subscribes: {
             'Menu: Locations': 'showLocations',
             'Groups: saved': 'updateLastGroupNumber',
-            'Locations: selected': 'setSelectedLocations'
+            'Locations: selected': 'setSelectedLocations',
+            'Locations student: selected': 'setSelectedLocations'
         },
 
         initialize: function () {

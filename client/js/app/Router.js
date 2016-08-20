@@ -5,6 +5,7 @@
         routes: {
             '': 'pageGroups',
             'Groups*path': 'pageGroups',
+            'Students*path': 'pageStudents',
             'About*path': 'pageAbout',
             'Schedule*path': 'pageSchedule',
             '*path': 'errorPage'
@@ -25,7 +26,8 @@
             var routes = {
                 About: 'About',
                 Schedule: 'Schedule',
-                Groups: 'Groups'
+                Groups: 'Groups',
+                Students: 'Students'
             };
 
             if (routes[path]) {
@@ -55,6 +57,10 @@
 
         pageGroups: function () {
             app.subRouters['Groups'] || (app.subRouters['Groups'] = new CS.Groups.Router());
+        },
+
+        pageStudents: function () {
+            app.subRouters['Students'] || (app.subRouters['Students'] = new CS.Students.Router());
         },
 
         pageAbout: function () {
