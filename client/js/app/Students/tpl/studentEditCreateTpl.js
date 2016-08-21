@@ -10,7 +10,7 @@ templates.studentEditTpl = _.template([
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Incoming test</label>',
-                    '<input name = "Incoming test" class = "form-control incomingTest">',
+                    '<input name = "IncomingTest" class = "form-control incomingTest">',
                 '</div>',
             '</div>',
 
@@ -35,7 +35,7 @@ templates.studentEditTpl = _.template([
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Approved by</label>',
                     '<select class = "form-control approvedBy">',
-                      '<option value=Not approved">Not approved</option>',
+                      '<option value="Not approved">Not approved</option>',
                       '<option value=Custom>Custom</option>',
                       '<option value="Exptert #1">Exptert #1</option>',
                       '<option value="Exptert #2">Exptert #2</option>',
@@ -57,7 +57,7 @@ templates.studentEditTpl = _.template([
                       '<option value="Pre-advanced">Pre-advanced</option>',
                       '<option value="Advanced">Advanced</option>',
                     '</select>',
-                '</div>', 
+                '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label custom-approval"></label>',
@@ -93,7 +93,7 @@ templates.studentEditTpl = _.template([
                 '<button class = "save-changes fa fa-check-circle-o fa-3x btn-icon"></button>',
                 '<button class = "close-modal-window fa fa-times-circle-o fa-3x btn-icon"></button>',
             '</div>',
-            
+
         '</section>',
     '</section>',
 ].join(''));
@@ -135,7 +135,7 @@ templates.studentEditTpl = _.template([
 //                           '<option value="Pre-advanced (C1)">Pre-advanced</option>',
 //                           '<option value="Advanced (C2)">Advanced</option>',
 //                         '</select>',
-//                     '</div>', 
+//                     '</div>',
 
 //                     '<button class = "save-changes"></button>',
 //                 '</div>',
@@ -160,7 +160,7 @@ templates.studentEditTpl = _.template([
 //                           '<option value="Exptert #4">Exptert #4</option>',
 //                           '<option value="Exptert #5">Exptert #5</option>',
 //                         '</select>',
-//                     '</div>', 
+//                     '</div>',
 //                     '<div>',
 //                         '<span>CV</span>',
 //                         '<button class = "BrowseCV">Browse</button>',

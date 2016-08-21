@@ -6,7 +6,8 @@
             'Menu: Locations': 'showLocations',
             'Groups: saved': 'updateLastGroupNumber',
             'Locations: selected': 'setSelectedLocations',
-            'Locations student: selected': 'setSelectedLocations'
+            'Locations student: selected': 'setSelectedLocations',
+            'Locations schedule: selected': 'setSelectedLocations'
         },
 
         initialize: function () {

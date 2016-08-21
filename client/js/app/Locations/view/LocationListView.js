@@ -71,6 +71,7 @@
             app.mediator.publish('Locations: forRouter', this.collection.getCheckedLocationsNames());
             app.mediator.publish('Locations: selected', this.collection.getCheckedLocationsNames());
             app.mediator.publish('Locations student: selected', this.collection.getCheckedLocationsNames());
+            app.mediator.publish('Locations schedule: selected', this.collection.getCheckedLocationsNames());
 
             this.onClose();
         },

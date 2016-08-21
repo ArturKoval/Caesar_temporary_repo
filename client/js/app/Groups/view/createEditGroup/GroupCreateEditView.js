@@ -118,17 +118,22 @@
                 finishDate = moment(startDate, 'MM/DD/YYYY');
                 courseDurationDays = courseDurationWeeks * 7;
                 finishDate.add(courseDurationDays, 'days');
-                if ((finishDate.dayOfYear() === 1)                        // exclude New Year's Day
-                    || (finishDate.dayOfYear() === 7)                        // exclude Christmas
-                    || (finishDate.date() === 8 && finishDate.month() === 2)
-                    || (finishDate.date() === 1 && finishDate.month() === 4)
-                    || (finishDate.date() === 2 && finishDate.month() === 4)
-                    || (finishDate.date() === 9 && finishDate.month() === 4)
-                    || (finishDate.date() === 28 && finishDate.month() === 5)
-                    || (finishDate.date() === 24 && finishDate.month() === 7)
-                    || (finishDate.date() === 14 && finishDate.month() === 9)){
-                        finishDate.add(1, 'days');
+                var holydays = {
+                    newYear: {mounth:0, day:1},
+                    christmas: {mounth:0, day: 7},
+                    womansDay: {mounth:2, day: 8},
+                    may1: {mounth:4, day: 1},
+                    may2: {mounth:4, day: 2},
+                    victoryDay: {mounth:4, day: 9},
+                    constitutionDay: {mounth:5, day: 28},
+                    independanceDay: {mounth:7, day: 24},
+                    armyDay: {mounth:9, day: 14}
+                };
+                $.each(holydays, function (key, value){
+                    if (finishDate.date() === value.day && finishDate.month() === value.mounth){
+                         finishDate.add(1, 'days');
                     }
+                })
                 this.$el.find('[name=finishDate]').val(finishDate.format('MM/DD/YYYY'));
             }
         },

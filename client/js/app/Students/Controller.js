@@ -2,11 +2,13 @@
 
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
+
         subscribes: {
             'Students: edit-request': 'showForm',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
-            'Locations student: selected': 'render'
+            'Locations student: selected': 'render',
+            'Menu: changed-page': 'deleteView',
         },
 
         initialize: function () {
@@ -30,10 +32,6 @@
             this.approvalCheck();
         },
 
-        delete: function () {
-            //....
-        }, 
-
         start: function (locations) {
             app.mediator.publish('Locations student: selected', locations);       
         },
@@ -45,26 +43,20 @@
 
             $('.main-section').html(groupView.render().el);
             groupView.showStubView(action);
-            // console.dir("Need implementation -> you click on -> " + group.get('name'));
         },
 
         render: function () {
-            console.log('RENDER IN STUDENTS');
+            this.deleteView();
 
             this.contentView = new This.ContentView();
-            this.$content.html(this.contentView.render().el);
-            
-            if (this.groupListView) {
-                this.groupListView.remove();
-                // this.groupListView.paginatorView.remove();
-            }
+
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
+            this.$content.html(this.contentView.render().el);
             this.$sidebar.html(this.groupListView.render().el);
         },
-
 
         showGroupViewByRoute: function (locations, groupName, action) {
             if (this.showLocationByRoute(locations)) {
@@ -82,8 +74,6 @@
         },
 
         showLocationByRoute: function (arrLocations) {
-            // this.render();
-
             if (isLocation(arrLocations)) {
                 app.mediator.publish('Error: show-error-page', {
                     elem: this.$main,
@@ -110,7 +100,15 @@
             }
         },
 
-    // helper
+        deleteView: function () {
+            if (this.groupListView) {
+                this.groupListView.remove();
+            }
+
+            if (this.contentView) {
+                this.contentView.remove();
+            }
+        },
 
         modal: function (view) {
             $('#modal-window').html(view.render().el);
@@ -120,7 +118,6 @@
             var customApproval = "Custom",
                 customInput = $('.custom-approval');
 
-          
             $('.approvedBy').change(function () {
                 var customApprovalInput = $('.custom-approval-input');
 
