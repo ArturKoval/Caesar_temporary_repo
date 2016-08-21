@@ -11,43 +11,7 @@ var defaultData = {
         "name": "finished"
     }, {
         "name": "planned"
-    }],
-
-    teachers: [{
-        "name": "M. Demchyna"
-    }, {
-        "name": "M. Lopatynska"
-    }, {
-        "name": "M. Plesha"
-    }, {
-        "name": "V. Ryazhska"
-    }, {
-        "name": "L. Halamaha"
-    }, {
-        "name": "I. Kohut"
-    }, {
-        "name": "L. Klakovych"
-    }, {
-        "name": "V. Koldovskyy"
-    }, {
-        "name": "N. Romanenko"
-    }, {
-        "name": "A. Pertsov"
-    }, {
-        "name": "O. Shvets"
-    }, {
-        "name": "O. Reuta"
-    }, {
-        "name": "I. Tsvietkov"
-    }, {
-        "name": "Y. Bezgachnyuk"
-    }, {
-        "name": "D. Petin"
-    }, {
-        "name": "B. Yulian"
-    }, {
-        "name": "A. Korkuna"
-    }],
+    }],    
 
     directions: [{
         "name": "WebUI"
@@ -87,6 +51,30 @@ var defaultData = {
     }, {
         "name": "Administrator"
     }],
+	
+	englishLevels: [{
+	   "name": "Elementary"
+	}, {
+	   "name": "Pre-intermediate low"
+	}, {
+	   "name": "Pre-intermediate"
+	}, {
+	   "name": "Pre-intermediate strong"
+	}, {
+	   "name": "Intermediate low"
+	}, {
+	   "name": "Intermediate"
+	}, {
+	   "name": "Intermediate strong"
+	}, {
+	   "name": "Upper-intermediate low"
+	}, {
+	   "name": "Upper-intermediate"
+	}, { 
+	   "name": "Upper-intermediate strong"
+	}, {   
+	   "name": "Advanced"
+	}],
 
     users: [{
         "firstName": "Kirill",
@@ -362,6 +350,26 @@ var defaultData = {
         "stage": "in-process"
     }],
 
+	students: [{
+		groupId: 'DP-093-JS',
+		name: 'Vladyslava',
+		lastName: 'Tyschenko',
+		englishLevel: 'Upper-intermediate',
+		CvUrl: '',
+		imageUrl: '',
+		entryScore: '4.5',
+		approvedBy: 'N. Varenko'
+	}, {
+		groupId: 'DP-093-JS',
+		name: 'Denys',
+		lastName: 'Poznukhov',
+		englishLevel: 'Intermediate strong',
+		CvUrl: '',
+		imageUrl: '',
+		entryScore: '4',
+		approvedBy: 'N. Varenko'
+	}],
+	
     contributors: [{
         "nickname": "Team Doloto",
         "name": "Dp-080-UI",

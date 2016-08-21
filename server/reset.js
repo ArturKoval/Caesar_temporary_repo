@@ -17,10 +17,11 @@ function reset (defaultInfo) {
     
     resetTable('users', data.users);
     resetTable('groups', data.groups);
+    resetTable('students', data.students);
     resetTable('locations', data.locations);
     resetTable('roles', data.roles);
     resetTable('directions', data.directions);
-    resetTable('teachers', data.teachers);
+    resetTable('englishLevels', data.englishLevels);
     resetTable('stages', data.stages);
     resetTable('contributors', data.contributors);
 

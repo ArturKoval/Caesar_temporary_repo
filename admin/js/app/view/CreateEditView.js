@@ -62,12 +62,7 @@
 			if (this.model.isNew()) {								
 				this.model.urlRoot = map[this.module].settings.urlRoot;			    
 				this.collection.add(this.model);
-		    }
-            
-            //This is a crutch. Need fix map func in admin
-		    if (this.model.get('photo').length == 0 ) {
-		    	alert('No image found!')
-		    }
+		    }                       
 
 			this.model.save();
 
