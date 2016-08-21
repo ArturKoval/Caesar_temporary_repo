@@ -31,3 +31,9 @@
 .fa-trash:hover {
 	color: #3C78B5;	
 }
+
+.BrowseCV,
+.BrowsePhoto {
+	width: 120% !important;
+	margin-right: 157%;
+} 
