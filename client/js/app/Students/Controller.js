@@ -58,7 +58,6 @@
             this.$sidebar.html(this.groupListView.render().el);
         },
 
-
         showGroupViewByRoute: function (locations, groupName, action) {
             if (this.showLocationByRoute(locations)) {
                 if (store.groups.findGroupByName(groupName)) {

@@ -1,49 +1,52 @@
 'use strict';
 
+
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
 
         subscribes: {
-            'Menu: changed-page': 'deleteView',
-            'Locations: selected': 'groupsRender'
+            'Locations schedule: selected': 'render',
+            'Schedule: the only selected': 'renderScheduale',
+            'Menu: changed-page': 'deleteView'
         },
 
         initialize: function () {
             this.mediator = app.mediator;
+
             this.$content = $('#content-section');  
             this.$sidebar = $('#left-side-bar');
-            this.scheduleView = new This.ScheduleView();
+            this.$main = $('.main-section');                         
         },
 
-        start: function (locations) {        
-            this.trigger = true;
-            this.contentView = new CS.Groups.ContentView();
-            this.groupListView = new CS.Groups.GroupListView({
-                collection: store.groups
-            });
-            this.$content.html(this.contentView.render().$el);              
-            this.$sidebar.html(this.groupListView.render().el);              
-            this.$main = $('.main-section');                         
-            app.mediator.publish('Locations: selected', locations);                  
-            this.render();
-            $('#left-menu').css('display','block');
+        start: function (locations) {         
+            app.mediator.publish('Locations schedule: selected', locations);
         },
 
         render: function () {
+            this.deleteView();
+
+            this.contentView = new This.ContentView();
+
+            this.groupListView = new This.GroupListView({
+                collection: store.groups
+            });
+
+            this.$sidebar.html(this.groupListView.render().el);
+            this.$content.html(this.contentView.render().el);
+        },
+
+        renderScheduale: function (model) {
+            this.scheduleView = new This.ScheduleView();
+            
             $('.main-section').html(this.scheduleView.render().el);
         },
 
-        groupsRender: function() {
-            if (this.trigger) {
-                this.groupListView.renderGroups();
-                this.groupListView.render().el;
-            }
-        },
-
         deleteView: function () {
-            if (this.trigger) {
-                this.trigger = false;
+            if (this.contentView) {
                 this.contentView.remove();
+            }
+
+            if (this.groupListView) {
                 this.groupListView.remove();
             }
         }        
