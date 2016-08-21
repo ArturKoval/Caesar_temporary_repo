@@ -39,7 +39,7 @@
                 if (colNum === 2) {
                     addClassRange(rowsArray);
                     compare = function (rowA, rowB) {        
-                    return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                    return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
@@ -139,7 +139,7 @@
     
                 if (colNum === 2) {
                     compare = function (rowA, rowB) {        
-                    return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                    return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
