@@ -4,6 +4,7 @@
     This.Controller = Backbone.Controller.extend({
         subscribes: {
             'Students: edit-request': 'showForm',
+            'Students: secondEdit-request': 'showSecondForm',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
             'Locations student: selected': 'render'
@@ -15,12 +16,18 @@
             this.$content = $('#content-section');  
             this.$sidebar = $('#left-side-bar');
         },
-
         showForm: function (students) {
             this.editStudentListView = new This.EditStudentListView(students);
 
             this.modal(this.editStudentListView);
         },
+        //what should it take at parameters?
+        showSecondForm: function () {
+            this.secondEditStudentListView = new This.SecondEditStudentListView();
+
+            this.modal(this.secondEditStudentListView);
+        },
+
 
         createStudent: function () {
             this.createStudent = new This.CreateStudentView();

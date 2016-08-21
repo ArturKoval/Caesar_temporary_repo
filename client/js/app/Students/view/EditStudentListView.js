@@ -51,6 +51,10 @@
 
         },
 
+        showSecondStudList: function () {
+
+        },
+
         exit: function () {
             $(document).off('keydown');
             $(document).off('click');
