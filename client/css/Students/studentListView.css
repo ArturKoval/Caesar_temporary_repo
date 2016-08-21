@@ -31,6 +31,10 @@
     padding-left: 10px;
 }
 
+.students_list tbody tr:hover {
+    background: #DEDEDE;
+}
+
 .modal_editStudentlist {
     text-align: center;
 }
