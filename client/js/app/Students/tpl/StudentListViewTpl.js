@@ -18,7 +18,7 @@ templates.studentListViewTpl = _.template([
             '<td><%= student.englishLevel %></td>',
             '</tr>',
             '<% }); %>',
-    '</tdoby>',
+    '</tdoby>'
 ].join(''));
 
 templates.studentListModalViewTpl = _.template([
@@ -34,9 +34,9 @@ templates.studentListModalViewTpl = _.template([
                     '<th>Name</th>',
                     '<th>Photo</th>',
                     '<th>English level</th>',
-                    '<td></td>',
-                    '<td></td>',
-                    '<td></td>',
+                    '<th></th>',
+                    '<th></th>',
+                    '<th></th>',
                 '</tr>',
             '</thead>',
             '<tbody class = "tableBodyStudents">',
