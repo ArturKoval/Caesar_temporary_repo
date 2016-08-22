@@ -8,8 +8,8 @@
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
             'Students: edit request': 'editStudent',
-            'Locations student: selected': 'render'
-            'Menu: changed-page': 'deleteView',
+            'Locations student: selected': 'render',
+            'Menu: changed-page': 'deleteView'
         },
 
         initialize: function () {
