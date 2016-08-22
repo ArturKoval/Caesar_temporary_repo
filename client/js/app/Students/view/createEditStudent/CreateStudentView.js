@@ -21,7 +21,7 @@
             };
         },
 
-        createNewStudent: function () {
+        createNewStudent: function () { 
             var studentName = this.$el.find('[name=FirstName]').val(),
                 studentSurname = this.$el.find('[name=LastName]').val(),
                 englishLevel = this.$el.find('.englishLevel').val(),
@@ -66,7 +66,10 @@
                     entryScore: entryScore,
                     incomingScore: incomingScore,
                     approvedBy: approvedBy
-                }
+                };
+
+                var newServerStudent = new This.Student(newStudent);
+                store.students.add(newServerStudent).save();
 
                 students.push(newStudent);
                 $(document).off('keydown');

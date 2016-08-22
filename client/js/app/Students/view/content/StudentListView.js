@@ -14,7 +14,6 @@
             'click th': 'tableSort'
         },
 
-
         initialize: function () {
 
         },
