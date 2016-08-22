@@ -16,9 +16,7 @@
 
 
         initialize: function () {
-            // app.mediator.subscribe('Students: selected', this....);
 
-           // this.collection.on('change', this.render, this);
         },
 
         tableSort: function (e) {
@@ -67,7 +65,7 @@
 
                     valueClass.add(classNumbers[value]);
                 });
-            }
+                }
                 rowsArray.sort(compare);
 
                 $grid.removeChild(tbody);
@@ -104,3 +102,51 @@
 
     });
 })(CS.Students, app);
+
+
+var students = [
+    {'name': 'Anastasyia Serheeva',
+    'englishLevel': 'Upper-intermediate',
+    'incomingScore': 100,
+    'entryScore': 2,
+    'approvedBy':'D.Petin'},
+    {'name': 'Vladyslava Tyshchenko',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low',
+    'incomingScore': 300,
+    'entryScore': 3,
+    'approvedBy':'D.Petin'},
+    {'name':'Anna Hranovska',
+    'englishLevel': 'Advanced',
+    'incomingScore': 500,
+    'entryScore': 2,
+    'approvedBy':'D.Petin'},
+    {'name':'Denis Poznukhov',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low',
+    'incomingScore': 200,
+    'entryScore': 1,
+    'approvedBy':'D.Petin'},
+    {'name':'Yuryi Tataryntsev',
+    'avatar': 'photo url',
+    'englishLevel': 'Intermediate low',
+    'incomingScore': 200,
+    'entryScore': 2,
+    'approvedBy':'D.Petin'},
+    {'name':'Artem Zhylko',
+    'englishLevel': 'Advanced',
+    'incomingScore': 100,
+    'entryScore': 5,
+    'approvedBy':'D.Petin'},
+    {'name':'Anastasiia Manilnykova',
+    'avatar': 'photo url',
+    'englishLevel': 'Upper-intermediate',
+    'incomingScore': 500,
+    'entryScore': 2,
+    'approvedBy':'D.Petin'},
+    {'name':'Yana Sharipbaeva',
+    'englishLevel': 'Intermediate',
+    'incomingScore': 300,
+    'entryScore': 2,
+    'approvedBy':'D.Petin'}
+    ];

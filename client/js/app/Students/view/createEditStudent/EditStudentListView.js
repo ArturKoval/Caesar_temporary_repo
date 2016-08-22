@@ -17,8 +17,6 @@
             'click th': 'tableSort'
         },
         
-
-
         initialize: function (collection) {
             this.mediator = app.mediator;
         },
