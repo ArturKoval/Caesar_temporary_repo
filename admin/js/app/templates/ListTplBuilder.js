@@ -19,7 +19,7 @@ templates.collection.build = function (module) {
     tpl.push('<tbody>');
     tpl.push('</tbody>');
 	tpl.push('</table>');
-	tpl.push('<button id="add-new-user" class="btn btn-info" data-toggle="modal">Add user</button>');
+	tpl.push('<button id="add-new-user" class="btn btn-info" data-toggle="modal">Add ' + map[module].settings['item'] + '</button>');
 	
 	return _.template(tpl.join(''));
 };

@@ -24,25 +24,38 @@
         createNewStudent: function () {
             var studentName = this.$el.find('[name=FirstName]').val(),
                 studentSurname = this.$el.find('[name=LastName]').val(),
-                nameValidation = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/,
                 englishLevel = this.$el.find('.englishLevel').val(),
-                incomingScore = this.$el.find('.incomingTest').val(),
+                incomingScore = this.$el.find('[name=IncomingTest]').val(),
                 entryScore = this.$el.find('.entryScore').val(),
-                newStudent,
-                approvedBy;
+                showHints = this.showHints.bind(this),
+                context = this,
+                approvedBy,
+                validationDependencies,
+                isPassedValid = true,
+                newStudent;
 
-            if (!nameValidation.test(studentName) ) {
-                this.showHints(this, 'You can use only letters, space and "-" ', 'FirstName');
-            } if (!nameValidation.test(studentSurname)) {
-                  this.showHints(this, 'You can use only letters, space and "-" ', 'LastName');
-            } else if (nameValidation.test(studentSurname) && nameValidation.test(studentName)) {
-              
                 if( this.$el.find('.custom-approval-input').prop('disabled')) {
                     approvedBy = this.$el.find('.approvedBy').val();
                 } else {
                     approvedBy = this.$el.find('.custom-approval-input').val();
-                };
+                }
 
+            validationDependencies = {
+                studentName: [this.isName, studentName, 'You can use only letters, space and "-" ', 'FirstName'],
+                studentSurname: [this.isName, studentSurname, 'You can use only letters, space and "-" ', 'LastName'],
+                incomingScore: [this.isIncoming, incomingScore, 'You can use only numbers 0 - 1000', 'IncomingTest'],
+                entryScore: [this.isScore, entryScore, 'You can use only real numbers 2 - 5', 'EntryScore'],
+                approvedBy: [this.isName, approvedBy,  'You can use only letters, space and "-" ', 'CustomApproval']
+            }
+
+            $.each(validationDependencies, function (key, value) {
+                if(!value[0](value[1])){
+                    showHints(context, value[2], value[3]);
+                    isPassedValid = false;
+                }
+            })
+
+            if (isPassedValid) {
                 newStudent = {
                     groupId: '',
                     name: studentName,
@@ -55,15 +68,49 @@
                     approvedBy: approvedBy
                 }
 
-
                 students.push(newStudent);
                 $(document).off('keydown');
                 $(document).off('click');
                 this.remove();
 
                 this.mediator.publish('Students: edit-request', this.model);
-                // this.mediator.publish('Students: crud-request', 'edit');
             }
+        },
+
+        isName: function (value) {
+            var validator = /[A-Za-z]{1}[a-z]{1,9}[ -]{0,1}[A-Za-z]{1}[a-z]{1,9}/;
+            return validator.test(value);
+        },
+
+        isIncoming: function (value) {
+            value = parseInt(value);
+            return (value >= 0 && value <= 1000);
+        },
+
+        isScore: function (score) {
+            var result = true,
+                firstDigit, decimal;
+            if (isNaN(parseFloat(score))) {
+                result = false;
+            }
+            score = score.replace(',', '.');
+
+            if (score.indexOf(".") > 0){
+                firstDigit = score.slice(0, score.indexOf("."));
+                decimal =  score.slice(score.indexOf(".") + 1);
+            } else {
+                firstDigit= parseInt(score.charAt(0));
+                decimal = score.slice(1);
+            }
+            if (firstDigit < 2){
+                score = 2.0
+            } else if (firstDigit >= 5){
+                score = 5.0
+            } else {
+                score = firstDigit + '.' + decimal;
+                score = Math.round(parseFloat(score)*10)/10;
+            }
+            return result;
         },
 
         exit: function () {
@@ -77,8 +124,8 @@
                     name: input,
                     text: message
                 }];
-               
-            app.mediator.publish('Message', { 
+
+            app.mediator.publish('Message', {
                 type: 'hints',
                 $el: self.$el,
                 hints: hints

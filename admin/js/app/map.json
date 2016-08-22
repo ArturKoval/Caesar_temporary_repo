@@ -1,6 +1,7 @@
 var map = {
-    users: {
-	    settings: {
+    users: {	    
+		settings: {
+		    item: 'user',
 		    url: '/users',
 			urlRoot: '/users'
 		},
@@ -22,6 +23,7 @@ var map = {
 	},	
 	groups: {
 	    settings: {
+		    item: 'group',
 		    url: '/groups',
 			urlRoot: '/groups'
 		},
@@ -55,6 +57,38 @@ var map = {
 			    control: 'select',
 				options: ['planned', 'boarding', 'before-start', 'in-process', 'offering', 'finished']
 			}
+		}
+	},
+	students: {
+	    settings: {
+		    item: 'student',
+		    url: '/students',
+			urlRoot: '/students'		    
+		},
+		fields: {
+			groupId: '',
+			name: '',
+			lastName: '',
+			englishLevel: {
+			    control: 'select',
+				options: [
+				    'Elementary', 
+				    'Pre-intermediate low', 
+					'Pre-intermediate', 
+					'Pre-intermediate strong', 
+					'Intermediate low', 
+					'Intermediate', 
+					'Intermediate strong', 
+					'Upper-intermediate low', 
+					'Upper-intermediate', 
+					'Upper-intermediate strong', 
+					'Advanced'
+				]
+			},
+			CvUrl: '',
+			imageUrl: '',
+			entryScore: '',
+			approvedBy: ''
 		}
 	}
 };

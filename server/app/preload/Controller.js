@@ -1,12 +1,12 @@
 'use strict';
 var Rotor = require('rotor-backbone'),
     Directions = require('../directions/Models/DirectionsList'),
-	Locations = require('../locations/Models/CoursesList'),
-    Teachers = require('../teachers/Models/TeachersList'),
+	Locations = require('../locations/Models/CoursesList'),    
 	Groups = require('../groups/Models/GroupsList'),
     Stages = require('../stages/Models/StagesList'),
     Roles = require('../roles/Models/RolesList'),
     Users = require('../users/Models/UsersList'),
+    EnglishLevels = require('../englishLevels/Models/EnglishLevelsList'),
     lock = require('../../libs/lock');
 
 var Controller = Rotor.Controller.extend({
@@ -21,11 +21,11 @@ var Controller = Rotor.Controller.extend({
     preloadData: {
         users: '',
         locations: '',
-        groups: '',
-        teachers: '',
+        groups: '',        
         roles: '',
         directions: '',
-        stages: ''
+        stages: '',
+		englishLevels: ''
     },
 
 	initialize: function (req, resp, action, currSession) {
@@ -54,10 +54,10 @@ var Controller = Rotor.Controller.extend({
 
         this.getData(Groups, 'groups');
         this.getData(Locations, 'locations');
-        this.getData(Teachers, 'teachers');
         this.getData(Roles, 'roles');
         this.getData(Directions, 'directions');
         this.getData(Stages, 'stages');
+        this.getData(EnglishLevels, 'englishLevels');
 
         /**
             Use this count to fix the number of collections you want to preload

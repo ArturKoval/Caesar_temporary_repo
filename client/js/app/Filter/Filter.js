@@ -17,6 +17,7 @@
         app.mediator.subscribe('GroupList paginator: page-selected', onPageSelected);
         app.mediator.subscribe('Locations: selected', onLocationsSelect);
         app.mediator.subscribe('Locations student: selected', onLocationsSelect);
+        app.mediator.subscribe('Locations schedule: selected', onLocationsSelect);
         app.mediator.subscribe('MyGroups: selected', onMyGroups);
         app.mediator.subscribe('State: selected', onStateChange);
 

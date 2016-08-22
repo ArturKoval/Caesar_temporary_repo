@@ -30,8 +30,6 @@
                     rowsArray = [].slice.call(tbody.rows),
                     compare;
 
-                addClassRange(rowsArray);
-
                 if (colNum === 0) {
                     compare = function (rowA, rowB) {   
                     return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
@@ -39,41 +37,45 @@
                 }
     
                 if (colNum === 2) {
+                    addClassRange(rowsArray);
                     compare = function (rowA, rowB) {        
-                    return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                    return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
-                function addClassRange (rowsArray) {
-                    rowsArray.forEach(function(row) {
-                        var value = row.cells[colNum].innerHTML,
-                            valueClass = row.cells[colNum].classList;
+            function addClassRange (rowsArray) {
+                rowsArray.forEach(function(row) {
+                    var value = row.cells[colNum].innerHTML,
+                        valueClass = row.cells[colNum].classList,
+                        classNumbers;
 
-                        if (value === 'Beginer') {
-                            valueClass.add('0');
-                        } else if (value === 'Elementary') {
-                            valueClass.add('1');
-                        } else if (value === 'Pre-intermediate') {
-                            valueClass.add('2');
-                        } else if (value === 'Intermediate') {
-                            valueClass.add('3');
-                        } else if (value === 'Upper-intermediate') {
-                            valueClass.add('4');
-                        } else if (value === 'Advanced') {
-                            valueClass.add('5');
+                    classNumbers = {
+                        'Elementary':'0',
+                        'Pre-intermediate low':'1',
+                        'Pre-intermediate':'2',
+                        'Pre-intermediate strong':'3',
+                        'Intermediate low':'4',
+                        'Intermediate':'5',
+                        'Intermediate strong':'6',
+                        'Upper-intermediate low':'7',
+                        'Upper-intermediate':'8',
+                        'Upper-intermediate strong':'9',
+                        'Advanced':'a',
                         }
-                    });
-                }
 
-                rowsArray.sort(compare);
+                    valueClass.add(classNumbers[value]);
+                });
+            }
 
-                $grid.removeChild(tbody);
+            rowsArray.sort(compare);
 
-                for (var i = 0; i < rowsArray.length; i++) {
-                    tbody.appendChild(rowsArray[i]);
-                }
+            $grid.removeChild(tbody);
 
-                $grid.appendChild(tbody);
+            for (var i = 0; i < rowsArray.length; i++) {
+                tbody.appendChild(rowsArray[i]);
+            }
+
+            $grid.appendChild(tbody);
             }
 
         },
@@ -137,31 +139,33 @@
     
                 if (colNum === 2) {
                     compare = function (rowA, rowB) {        
-                    return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                    return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
                 function addClassRange (rowsArray) {
-                    rowsArray.forEach(function(row) {
-                        var value = row.cells[colNum].innerHTML,
-                            valueClass = row.cells[colNum].classList;
+                rowsArray.forEach(function(row) {
+                    var value = row.cells[colNum].innerHTML,
+                        valueClass = row.cells[colNum].classList,
+                        classNumbers;
 
-                        if (value === 'Beginer') {
-                            valueClass.add('0');
-                        } else if (value === 'Elementary') {
-                            valueClass.add('1');
-                        } else if (value === 'Pre-intermediate') {
-                            valueClass.add('2');
-                        } else if (value === 'Intermediate') {
-                            valueClass.add('3');
-                        } else if (value === 'Upper-intermediate') {
-                            valueClass.add('4');
-                        } else if (value === 'Advanced') {
-                            valueClass.add('5');
+                    classNumbers = {
+                        'Elementary':'0',
+                        'Pre-intermediate low':'1',
+                        'Pre-intermediate':'2',
+                        'Pre-intermediate strong':'3',
+                        'Intermediate low':'4',
+                        'Intermediate':'5',
+                        'Intermediate strong':'6',
+                        'Upper-intermediate low':'7',
+                        'Upper-intermediate':'8',
+                        'Upper-intermediate strong':'9',
+                        'Advanced':'a',
                         }
-                    });
-                }
 
+                    valueClass.add(classNumbers[value]);
+                });
+            }
                 rowsArray.sort(compare);
 
                 $grid.removeChild(tbody);
