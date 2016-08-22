@@ -90,7 +90,11 @@
                 $el = $('.'+ action + 'Btn'),
                 stubView;
 
-            stubView = new This[data.view]({model: this.model});
+            if (action === 'students') {
+                stubView = new This[data.view]({model: this.model.get('students')});
+            } else {
+                stubView = new This[data.view]({model: this.model});
+            }
 
             $groupContainer.empty();
             $groupContainer.append(stubView.render().$el);
