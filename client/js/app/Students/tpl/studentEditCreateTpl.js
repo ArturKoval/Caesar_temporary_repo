@@ -1,4 +1,4 @@
-templates.studentEditTpl = _.template([
+templates.studentCreateTpl = _.template([
     '<section class="modal-window modal_singleStudent">',
         '<section class="form-inline form-wrapper container">',
 

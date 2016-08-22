@@ -11,9 +11,9 @@
         events: {
             'click .createStudent': 'createStudent',
             'click .downloadCV': 'downloadCV',
-            'click .editStudent': 'editStudent',
+            'click .modal_editStudentlist': 'editStudent',
             'click .deleteStudent': 'deleteStudent',
-            'click .exit': 'exit'
+            'click .exit': 'exit',
         },
         
 
@@ -43,8 +43,24 @@
             
         },
 
-        editStudent: function () {
+        editStudent: function (event) {
+            var eventCLasses = event.target.className; 
 
+            if (eventCLasses.indexOf('editStudent') != -1) {
+                var choosenStudent = event.target.parentElement.parentElement,
+                    name = choosenStudent.querySelector('.name').value,
+                    englishLevel = choosenStudent.querySelector('.english-level').value,
+                    studentData;
+
+                debugger;   
+                // can't get value 
+                studentData = {
+                    name: name,
+                    englishLevel: englishLevel
+                };
+
+                this.mediator.publish('Students: edit request', studentData);
+            }
         },
 
         deleteStudent: function () {

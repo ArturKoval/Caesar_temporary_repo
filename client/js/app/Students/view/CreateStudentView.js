@@ -6,7 +6,7 @@
 
         className: 'backdrop',
 
-        template: templates.studentEditTpl,
+        template: templates.studentCreateTpl,
 
         events: {
             'click .close-modal-window': 'exit',
@@ -86,7 +86,7 @@
         },
 
         render: function () {
-            this.$el.html(this.template(this.student));
+            this.$el.html(this.template())  ;
 
             return this;
         }

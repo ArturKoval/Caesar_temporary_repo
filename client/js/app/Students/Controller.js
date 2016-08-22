@@ -6,6 +6,7 @@
             'Students: edit-request': 'showForm',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
+            'Students: edit request': 'editStudent',
             'Locations student: selected': 'render'
         },
 
@@ -28,6 +29,14 @@
             this.modal(this.createStudent);
 
             this.approvalCheck();
+        },
+
+        editStudent: function (student) {
+            this.createStudent = new This.CreateStudentView();
+            this.modal(this.createStudent);
+            this.approvalCheck();
+
+            console.log(student);
         },
 
         delete: function () {
@@ -131,6 +140,7 @@
                     customApprovalInput.prop('disabled', false);
                 } else if ( $('.approvedBy').val() !== customApproval) {
                     // customApprovalInput.html(''); doesn't clearing input
+                    customInput.html('');
                     customApprovalInput.prop('disabled', true);
                 }
 
