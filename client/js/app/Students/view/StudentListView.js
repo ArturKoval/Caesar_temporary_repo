@@ -91,9 +91,13 @@
         render: function () {
             this.$el.empty();
 
+            var students = [];
+
             this.model.forEach(function (student) {
-                this.$el.append(this.template(student.toJSON()));
-            }, this);
+                students.push(student.toJSON());
+            });
+
+            this.$el.append(this.template({students}));
 
             return this;
         }
