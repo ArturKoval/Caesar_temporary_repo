@@ -31,19 +31,8 @@
 .fa-trash:hover {
 	color: #3C78B5;	
 }
-.fa-chevron-left {
-	position: absolute;
-	font-size: x-large;
-	color: #3C78B5;	
-    left: 30px;
-    top: 50%;
-	
-}
-.fa-chevron-right {
-	position: absolute;
-	font-size: x-large;
-	color: #3C78B5;	
-	right: 30px;
-	top:50%;
-
-}
+.BrowseCV,
+.BrowsePhoto {
+	width: 120% !important;
+	margin-right: 157%;
+} 

@@ -2,12 +2,15 @@
 
 (function (This, app) {
     This.Controller = Backbone.Controller.extend({
+
         subscribes: {
             'Students: edit-request': 'showForm',
             'Students: secondEdit-request': 'showSecondForm',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
-            'Locations student: selected': 'render'
+            'Students: edit request': 'editStudent',
+            'Locations student: selected': 'render',
+            'Menu: changed-page': 'deleteView'
         },
 
         initialize: function () {
@@ -37,6 +40,14 @@
             this.approvalCheck();
         },
 
+        editStudent: function (student) {
+            this.createStudent = new This.CreateStudentView();
+            this.modal(this.createStudent);
+            this.approvalCheck();
+
+            console.log(student);
+        },
+
         delete: function () {
             //....
         }, 
@@ -52,26 +63,20 @@
 
             $('.main-section').html(groupView.render().el);
             groupView.showStubView(action);
-            // console.dir("Need implementation -> you click on -> " + group.get('name'));
         },
 
         render: function () {
-            console.log('RENDER IN STUDENTS');
+            this.deleteView();
 
             this.contentView = new This.ContentView();
-            this.$content.html(this.contentView.render().el);
-            
-            if (this.groupListView) {
-                this.groupListView.remove();
-                // this.groupListView.paginatorView.remove();
-            }
+
             this.groupListView = new This.GroupListView({
                 collection: store.groups
             });
 
+            this.$content.html(this.contentView.render().el);
             this.$sidebar.html(this.groupListView.render().el);
         },
-
 
         showGroupViewByRoute: function (locations, groupName, action) {
             if (this.showLocationByRoute(locations)) {
@@ -89,8 +94,6 @@
         },
 
         showLocationByRoute: function (arrLocations) {
-            // this.render();
-
             if (isLocation(arrLocations)) {
                 app.mediator.publish('Error: show-error-page', {
                     elem: this.$main,
@@ -117,7 +120,15 @@
             }
         },
 
-    // helper
+        deleteView: function () {
+            if (this.groupListView) {
+                this.groupListView.remove();
+            }
+
+            if (this.contentView) {
+                this.contentView.remove();
+            }
+        },
 
         modal: function (view) {
             $('#modal-window').html(view.render().el);
@@ -127,7 +138,6 @@
             var customApproval = "Custom",
                 customInput = $('.custom-approval');
 
-          
             $('.approvedBy').change(function () {
                 var customApprovalInput = $('.custom-approval-input');
 
@@ -138,6 +148,7 @@
                     customApprovalInput.prop('disabled', false);
                 } else if ( $('.approvedBy').val() !== customApproval) {
                     // customApprovalInput.html(''); doesn't clearing input
+                    customInput.html('');
                     customApprovalInput.prop('disabled', true);
                 }
 
