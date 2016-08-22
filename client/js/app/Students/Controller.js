@@ -34,12 +34,23 @@
         },
 
         editStudent: function (student) {
+            var self = this;
             this.createStudent = new This.CreateStudentView();
             this.modal(this.createStudent);
+
+            var $confirm = $('.save-changes');
+            $confirm.on('click', function () {
+
+
+                $(document).off('keydown');
+                $(document).off('click');
+                this.remove();
+
+                self.mediator.publish('Students: edit-request', this.model);
+            })
             this.approvalCheck();
 
             this.fillStudentInfo(student);
-            console.log(student);
         },
 
         fillStudentInfo: function (student) {
@@ -48,15 +59,17 @@
                     surname: $('.lastName'),
                     incomingTest: $('.incomingTest'),
                     entryScore: $('entryScore')
-                };
+                },
+                studentName = student.name.split(' ');
                 // student[name].split(' ');
-            // debugger;
 
             for (let key in data) {
                 data[key].val(student[key]);
             };
 
             $('.englishLevel').val(student.englishLevel.toLowerCase());
+            $('.firstName').val(studentName[0]);
+            $('.lastName').val(studentName[1]);
         },
 
         delete: function () {
