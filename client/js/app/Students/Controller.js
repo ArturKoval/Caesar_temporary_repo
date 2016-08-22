@@ -38,7 +38,25 @@
             this.modal(this.createStudent);
             this.approvalCheck();
 
+            this.fillStudentInfo(student);
             console.log(student);
+        },
+
+        fillStudentInfo: function (student) {
+            var data = {
+                    name: $('.firstName'),
+                    surname: $('.lastName'),
+                    incomingTest: $('.incomingTest'),
+                    entryScore: $('entryScore')
+                };
+                // student[name].split(' ');
+            // debugger;
+
+            for (let key in data) {
+                data[key].val(student[key]);
+            };
+
+            $('.englishLevel').val(student.englishLevel.toLowerCase());
         },
 
         delete: function () {

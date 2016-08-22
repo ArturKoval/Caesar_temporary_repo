@@ -117,6 +117,8 @@
             $(document).off('keydown');
             $(document).off('click');
             this.remove();
+
+            this.mediator.publish('Students: edit-request', this.model);
         },
 
         showHints: function (self, message, input) {

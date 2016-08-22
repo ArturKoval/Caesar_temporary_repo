@@ -17,7 +17,7 @@ templates.studentCreateTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
                     '<label class = "control-label">First name</label>',
-                    '<input name = "FirstName" class = "form-control">',
+                    '<input name = "FirstName" class = "form-control firstName">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
@@ -29,7 +29,7 @@ templates.studentCreateTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Last name</label>',
-                    '<input name = "LastName" class = "form-control">',
+                    '<input name = "LastName" class = "form-control lastName">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
