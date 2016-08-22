@@ -1,8 +1,9 @@
 'use strict';
 
 var System = (function () {
-    var ajax = new XMLHttpRequest(),
-        _constants = {
+            var ajax = new XMLHttpRequest();
+
+    var _constants = {
             ESC: 27,
             ENTER: 13
         };
@@ -19,29 +20,99 @@ var System = (function () {
         });
     }
 
-    function _preload () {
-        ajax.open("GET", '/preload', true);
-        ajax.send();
+
+    function _Request () {
+        var ajax = new XMLHttpRequest();
+        
+        this.send = function ({ URL:path='/preload'} = {}) {
+            ajax.open("GET", path, true);
+            ajax.send();
+
+            return this;
+        };
+
+        this.then = function (callback, options) {
+            ajax.addEventListener('readystatechange', function () {
+                if (ajax.readyState === 4 && ajax.status === 200) {
+                    var response = JSON.parse(ajax.responseText);
+
+                    for (var key in options) {
+                        if (key === 'users') {
+                            app.user = new options[key](response[key]);  
+
+                            setInfoBlocks(response);
+                        } else if (key === 'students') {
+                            store[key] = new options[key](response);
+                        } else {
+                            store[key] = new options[key](response[key]);
+                        }
+                    }
+
+                    if (typeof callback === 'function') {
+                        callback();
+                    }
+                }
+
+                return this;
+            }.bind(this), false);
+        };
 
         return this;
     }
 
-    function _then (callback) {
-        ajax.addEventListener('readystatechange', function () {
-            if (ajax.readyState === 4 && ajax.status === 200) {
-                var response = JSON.parse(ajax.responseText);
+    function _distribute () {
+        store.students.forEach(function (student) {
+            var groupId = student.get('groupId'); //Equal to group name
 
-                store.groups = new CS.Groups.GroupList(response.groups);
-                store.students = new CS.Students.Students(response.students);
-                store.locations = new CS.Locations.LocationList(response.locations);
-                app.user = new CS.User.User(response.users);
+            store.groups.forEach(function (group) {
+                if (group.get('name') === groupId) {
+                    let students = group.get('students');
 
-                setInfoBlocks(response);
+                    students.push(student);
 
-                callback();
-            }
-        }.bind(this), false);
+                    group.set('students', students);
+                }
+            });
+        });
     }
+
+
+    // function _preload ({ URL:path='/preload'} = {}) {
+    //     ajax.open("GET", path, true);
+    //     ajax.send();
+
+    //     return this;
+    // }
+
+    // function _then (callback) {
+    //     ajax.addEventListener('readystatechange', function () {
+    //         if (ajax.readyState === 4 && ajax.status === 200) {
+    //             var response = JSON.parse(ajax.responseText);
+
+    //             if (response.groups) {
+    //                 store.groups = new CS.Groups.GroupList(response.groups);
+    //             }
+
+    //             if (response.locations) {
+    //                 store.locations = new CS.Locations.LocationList(response.locations);
+    //             }
+
+    //             if (response.users) {
+    //                 app.user = new CS.User.User(response.users);
+    //             }
+
+    //             console.dir(response);
+
+    //             setInfoBlocks(response);
+
+    //             if (typeof callback === 'function') {
+    //                 callback();
+    //             }
+    //         }
+
+    //         return this;
+    //     }.bind(this), false);
+    // }
 
     function setInfoBlocks (response) {
         _registerArray(i, ['englishLevels', 'teachers', 'directions', 'roles', 'stages']);
@@ -75,15 +146,16 @@ var System = (function () {
                 collection = data.collection;
                 console.log(event.data);
         };
-            // fetch implementation here
     }
 
     return {
         constants: _constants,
         register: _register,
-        preload: _preload,
-        then: _then,
+        // preload: _preload,
+        // then: _then,
         setInfoBlock: _setInfoBlock,
-        startWebSocket: _startWebSocket
+        startWebSocket: _startWebSocket,
+        distribute: _distribute,
+        Request: _Request
     };
 })();
