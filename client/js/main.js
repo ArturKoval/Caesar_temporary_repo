@@ -12,11 +12,20 @@ System.register(CS, ['ErrorPage', 'Menu', 'Groups', 'Students', 'Schedule', 'Use
 System.register(app, ['mediator', 'filter', 'router', 'subRouters', 'notFound', 'user', 'userController', 'menuController', 'infoblock', 'preload']);
 
 $(function () {
-    System.startWebSocket();
-    System.preload().then(main);
+    new System.Request().send().then(main, {
+        groups: CS.Groups.GroupList,
+        locations: CS.Locations.LocationList,
+        users: CS.User.User
+    });
+
+    new System.Request().send({ URL: '/students'}).then(distribute, {
+        students: CS.Students.Students
+    });
+
+    // System.preload({ URL: '/preload'}).then(main);
+    // System.startWebSocket();
 
     function main () {
-
         app.mediator = new Mediator();
         app.filter = new CS.Filter();
         app.router = new CS.Router();
