@@ -49,12 +49,10 @@
 
             if (eventCLasses.indexOf('editStudent') != -1) {
                 var choosenStudent = event.target.parentElement.parentElement,
-                    name = choosenStudent.querySelector('.name').value,
-                    englishLevel = choosenStudent.querySelector('.english-level').value,
+                    name = choosenStudent.querySelector('.name').innerHTML,
+                    englishLevel = choosenStudent.querySelector('.english-level').innerHTML,
                     studentData;
 
-                debugger;   
-                // can't get value 
                 studentData = {
                     name: name,
                     englishLevel: englishLevel

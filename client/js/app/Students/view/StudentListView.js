@@ -13,7 +13,6 @@
             'click th': 'tableSort'
         },
 
-
         initialize: function () {
             // app.mediator.subscribe('Students: renderStudentList', this.render);
 
