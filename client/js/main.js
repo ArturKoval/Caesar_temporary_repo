@@ -18,7 +18,7 @@ $(function () {
         users: CS.User.User
     });
 
-    new System.Request().send({ URL: '/students'}).then(distribute, {
+    new System.Request().send({ URL: '/students'}).then(null, {
         students: CS.Students.Students
     });
 
