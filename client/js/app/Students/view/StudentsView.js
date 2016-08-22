@@ -15,7 +15,7 @@
         initialize: function () {
             this.mediator = app.mediator;
             this.listener = {
-                'list': {view: 'StudentListView'}, //тут нужна main view для студентов (CSWD )
+                'list': {view: 'StudentListView'}, 
                 'editStudent': {view: 'EditStudentListView'}
             };
 
@@ -64,7 +64,7 @@
             $buttons = this.$el.find('.active'),
             $el = $('.'+ action + 'Btn'),
 
-            stubView = new This[data.view]({model: this.model});
+            stubView = new This[data.view]({model: this.model.get('students')});
 
             $groupContainer.empty();
             $groupContainer.append(stubView.render().$el);

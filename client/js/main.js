@@ -18,14 +18,11 @@ $(function () {
         users: CS.User.User
     });
 
-    new System.Request().send({ URL: '/students'}).then(null, {
-        students: CS.Students.Students
-    });
-
-    // System.preload({ URL: '/preload'}).then(main);
-    // System.startWebSocket();
-
     function main () {
+        new System.Request().send({ URL: '/students'}).then(System.distribute, {
+            students: CS.Students.Students
+        });
+
         app.mediator = new Mediator();
         app.filter = new CS.Filter();
         app.router = new CS.Router();

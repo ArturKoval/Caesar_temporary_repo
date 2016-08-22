@@ -60,6 +60,22 @@ var System = (function () {
         return this;
     }
 
+    function _distribute () {
+        store.students.forEach(function (student) {
+            var groupId = student.get('groupId'); //Equal to group name
+
+            store.groups.forEach(function (group) {
+                if (group.get('name') === groupId) {
+                    let students = group.get('students');
+
+                    students.push(student);
+
+                    group.set('students', students);
+                }
+            });
+        });
+    }
+
 
     // function _preload ({ URL:path='/preload'} = {}) {
     //     ajax.open("GET", path, true);
@@ -139,6 +155,7 @@ var System = (function () {
         // then: _then,
         setInfoBlock: _setInfoBlock,
         startWebSocket: _startWebSocket,
+        distribute: _distribute,
         Request: _Request
     };
 })();

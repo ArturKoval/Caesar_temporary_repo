@@ -1,6 +1,5 @@
 'use strict';
 
-
 (function (This, app) {
     This.StudentListView = Backbone.View.extend({
         tagName: 'table',
@@ -16,9 +15,9 @@
 
 
         initialize: function () {
-            // app.mediator.subscribe('Students: selected', this....);
+            // app.mediator.subscribe('Students: renderStudentList', this.render);
 
-           // this.collection.on('change', this.render, this);
+           // this.model.on('change', this.render, this);
         },
 
         tableSort: function (e) {
@@ -31,8 +30,6 @@
                     rowsArray = [].slice.call(tbody.rows),
                     compare;
 
-                addClassRange(rowsArray);
-
                 if (colNum === 0) {
                     compare = function (rowA, rowB) {   
                     return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
@@ -40,12 +37,13 @@
                 }
     
                 if (colNum === 2) {
+                    addClassRange(rowsArray);
                     compare = function (rowA, rowB) {        
                     return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
                     };
                 }
                 
-                function addClassRange (rowsArray) {
+            function addClassRange (rowsArray) {
                 rowsArray.forEach(function(row) {
                     var value = row.cells[colNum].innerHTML,
                         valueClass = row.cells[colNum].classList,
@@ -68,15 +66,16 @@
                     valueClass.add(classNumbers[value]);
                 });
             }
-                rowsArray.sort(compare);
 
-                $grid.removeChild(tbody);
+            rowsArray.sort(compare);
 
-                for (var i = 0; i < rowsArray.length; i++) {
-                    tbody.appendChild(rowsArray[i]);
-                }
+            $grid.removeChild(tbody);
 
-                $grid.appendChild(tbody);
+            for (var i = 0; i < rowsArray.length; i++) {
+                tbody.appendChild(rowsArray[i]);
+            }
+
+            $grid.appendChild(tbody);
             }
 
         },
@@ -99,4 +98,4 @@
         }
 
     });
-})(CS.Students, app);
+})(CS.Groups, app);
