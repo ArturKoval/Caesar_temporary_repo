@@ -6,13 +6,14 @@
 
         className: 'backdrop',
 
-        template: templates.studentListModalViewTpl,
+        template: templates.studentListModalTpl,
 
         events: {
             'click .createStudent': 'createStudent',
             'click .downloadCV': 'downloadCV',
             'click .modal_editStudentlist': 'editStudent',
             'click .deleteStudent': 'deleteStudent',
+            'click .right': 'scoreStudentList',
             'click .exit': 'exit',
             'click th': 'tableSort'
         },
@@ -40,6 +41,10 @@
 
         downloadCV: function () {
             
+        },
+
+        scoreStudentList: function () {
+            this.mediator.publish('Students: score-request', this.model);
         },
 
         editStudent: function (event) {

@@ -25,17 +25,24 @@
     padding-left: 10px;
 }
 
-.students_list tbody tr td:nth-child(1),
+/*.students_list tbody tr td:nth-child(1),
 .students_list tbody tr td:nth-child(3) {
     text-align: left;
     padding-left: 10px;
+}*/
+
+.students_list tbody tr td:nth-child(2),
+.iconca {
+    text-align: center !important;
+    padding-left: 0 !important;
 }
 
 .students_list tbody tr:hover {
     background: #DEDEDE;
 }
 
-.modal_editStudentlist {
+.modal_editStudentlist,
+.modal_secondStudentlist {
     text-align: center;
 }
 .students_list thead>tr {

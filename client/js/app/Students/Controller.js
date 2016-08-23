@@ -5,6 +5,7 @@
 
         subscribes: {
             'Students: edit-request': 'showForm',
+            'Students: score-request': 'showScoreStudentList',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
             'Students: edit request': 'editStudent',
@@ -23,6 +24,12 @@
             this.editStudentListView = new This.EditStudentListView(students);
 
             this.modal(this.editStudentListView);
+        },
+
+        showScoreStudentList: function (students) {
+            this.scoreModalStudentListView = new This.ScoreModalStudentListView(students);
+
+            this.modal(this.scoreModalStudentListView);
         },
 
         createStudent: function () {

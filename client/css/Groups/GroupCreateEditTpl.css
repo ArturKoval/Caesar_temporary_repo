@@ -19,6 +19,7 @@
 .backdrop .form-wrapper {
     background-color: #fff;
     padding: 30px 50px 5px;
+    position: relative;
 }
 
 .backdrop .form-wrapper .control-label {

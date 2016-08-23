@@ -3,7 +3,8 @@
     margin-top: 60px;
 }
 
-.students_list thead tr td {
+.students_list thead tr td,
+.students_list tbody tr td {
     text-align: left;
     padding-left: 10px;
 }
@@ -37,3 +38,65 @@
 	width: 120% !important;
 	margin-right: 157%;
 } 
+
+.header-modal-editStudentlist > button {
+    font-size: 40px;
+    color: #3C78B5;
+}
+
+.header-modal-editStudentlist > button,
+.modal_editStudentlist > section > .exit,
+.modal_scoreStudentlist > section > .exit   {
+    float: right;
+    background: inherit;
+}
+
+.header-modal-editStudentlist > span,
+.header-modal-scoreStudentlist > span {
+    font-size: 30px;
+
+/*}*/
+
+/*th {
+    text-align: center;
+}
+*/
+    float: left;
+    clear: both;
+}
+
+
+.modal_editStudentlist > section > .exit,
+.modal_scoreStudentlist > section > .exit {
+    margin: 30px 200px 0 0;
+}
+
+.gear,
+.fa-download,
+.fa-trash {
+	padding: 0 10px;	
+}
+
+.fa-chevron-left {
+	position: absolute;
+	font-size: x-large;
+    background-color: initial;
+	color: #3C78B5;
+    left: 30px;
+    top: 50%;
+	
+}
+
+.fa-chevron-right {
+	position: absolute;
+	font-size: x-large;
+	color: #3C78B5;
+    background-color: initial;
+	right: 30px;
+	top:50%;
+}
+
+.fa-chevron-right:hover,
+.fa-chevron-left:hover {
+	color: #171B65;
+}

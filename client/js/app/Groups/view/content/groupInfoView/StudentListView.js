@@ -23,24 +23,66 @@
         tableSort: function (e) {
             var $grid = document.querySelector('.students_list');
 
-            sortGrid(e.target.cellIndex);
+            sortGrid(e.target.cellIndex, e.target, e.target.id);
 
-            function sortGrid (colNum) {
+            function sortGrid (colNum, element, idName) {
                 var tbody = $('tbody')[0],
-                    rowsArray = [].slice.call(tbody.rows),
-                    compare;
+                    rowsArray = [].slice.call(tbody.rows), //make an Array
+                    compare; //comparing function
 
                 if (colNum === 0) {
-                    compare = function (rowA, rowB) {   
-                    return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
-                    };
+                    if (idName==='sortUp') {
+                        element.removeAttribute('sortUp');
+                        element.setAttribute( 'id','sortDown');
+                        
+                        compare = function (rowA, rowB) {   
+                        return rowB.cells[colNum].innerHTML > rowA.cells[colNum].innerHTML ? 1 : -1;
+                        }
+    
+                    } else if (idName==='sortDown') {
+                        element.removeAttribute('sortDown');
+                        element.setAttribute('id','sortUp');
+                        
+                        compare = function (rowA, rowB) {   
+                        return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+                        }
+                    
+                    } else {
+                        element.setAttribute('id','sortUp');
+                            
+                        compare = function (rowA, rowB) {   
+                        return rowA.cells[colNum].innerHTML > rowB.cells[colNum].innerHTML ? 1 : -1;
+                        }
+                    }
                 }
     
                 if (colNum === 2) {
                     addClassRange(rowsArray);
-                    compare = function (rowA, rowB) {        
-                    return  rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
-                    };
+
+                    if (idName==='sortUp') {
+                        element.removeAttribute('sortUp');
+                        element.setAttribute( 'id','sortDown');
+                        
+                        compare = function (rowA, rowB) {   
+                        return rowA.cells[colNum].className > rowB.cells[colNum].className ? 1 : -1;
+                        }
+    
+                    } else if (idName==='sortDown') {
+                        element.removeAttribute('sortDown');
+                        element.setAttribute('id','sortUp');
+                        
+                        compare = function (rowA, rowB) {   
+                        return rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
+                        }
+                    
+                    } else {
+                        element.setAttribute('id','sortUp');
+        
+                        compare = function (rowA, rowB) {   
+                        return rowB.cells[colNum].className > rowA.cells[colNum].className ? 1 : -1;
+                        }
+                    }
+
                 }
                 
             function addClassRange (rowsArray) {
@@ -67,7 +109,7 @@
                 });
             }
 
-            rowsArray.sort(compare);
+            rowsArray.sort(compare); 
 
             $grid.removeChild(tbody);
 
