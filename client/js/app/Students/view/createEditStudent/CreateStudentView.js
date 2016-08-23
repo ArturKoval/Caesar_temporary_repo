@@ -130,7 +130,6 @@
 
                 if (colNum === 0) {
                     if (idName==='sortUp') {
-                        element.removeAttribute('sortUp');
                         element.setAttribute( 'id','sortDown');
                         
                         compare = function (rowA, rowB) {   
@@ -138,7 +137,6 @@
                         }
     
                     } else if (idName==='sortDown') {
-                        element.removeAttribute('sortDown');
                         element.setAttribute('id','sortUp');
                         
                         compare = function (rowA, rowB) {   
@@ -158,7 +156,6 @@
                     addClassRange(rowsArray);
 
                     if (idName==='sortUp') {
-                        element.removeAttribute('sortUp');
                         element.setAttribute( 'id','sortDown');
                         
                         compare = function (rowA, rowB) {   
@@ -166,7 +163,6 @@
                         }
     
                     } else if (idName==='sortDown') {
-                        element.removeAttribute('sortDown');
                         element.setAttribute('id','sortUp');
                         
                         compare = function (rowA, rowB) {   
