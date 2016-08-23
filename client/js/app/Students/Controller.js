@@ -7,8 +7,9 @@
             'Students: edit-request': 'showForm',
             'Students: create-request': 'createStudent',
             'Students: groups selected': 'showSelectedGroup',
+            'Students: edit request': 'editStudent',
             'Locations student: selected': 'render',
-            'Menu: changed-page': 'deleteView',
+            'Menu: changed-page': 'deleteView'
         },
 
         initialize: function () {
@@ -31,6 +32,49 @@
 
             this.approvalCheck();
         },
+
+        editStudent: function (student) {
+            var self = this;
+            this.createStudent = new This.CreateStudentView();
+            this.modal(this.createStudent);
+
+            var $confirm = $('.save-changes');
+            $confirm.on('click', function () {
+
+
+                $(document).off('keydown');
+                $(document).off('click');
+                this.remove();
+
+                self.mediator.publish('Students: edit-request', this.model);
+            })
+            this.approvalCheck();
+
+            this.fillStudentInfo(student);
+        },
+
+        fillStudentInfo: function (student) {
+            var data = {
+                    name: $('.firstName'),
+                    surname: $('.lastName'),
+                    incomingTest: $('.incomingTest'),
+                    entryScore: $('entryScore')
+                },
+                studentName = student.name.split(' ');
+                // student[name].split(' ');
+
+            for (let key in data) {
+                data[key].val(student[key]);
+            };
+
+            $('.englishLevel').val(student.englishLevel.toLowerCase());
+            $('.firstName').val(studentName[0]);
+            $('.lastName').val(studentName[1]);
+        },
+
+        delete: function () {
+            //....
+        }, 
 
         start: function (locations) {
             app.mediator.publish('Locations student: selected', locations);       
@@ -128,6 +172,7 @@
                     customApprovalInput.prop('disabled', false);
                 } else if ( $('.approvedBy').val() !== customApproval) {
                     // customApprovalInput.html(''); doesn't clearing input
+                    customInput.html('');
                     customApprovalInput.prop('disabled', true);
                 }
 

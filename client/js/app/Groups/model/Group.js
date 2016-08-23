@@ -20,6 +20,7 @@
                 finishDate: '',
                 teachers: [],
                 experts: [],
+                students: [],
                 stage: 'boarding'
             };
         },

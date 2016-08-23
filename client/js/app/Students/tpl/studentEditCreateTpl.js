@@ -1,4 +1,4 @@
-templates.studentEditTpl = _.template([
+templates.studentCreateTpl = _.template([
     '<section class="modal-window modal_singleStudent">',
         '<section class="form-inline form-wrapper container">',
 
@@ -17,7 +17,7 @@ templates.studentEditTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
                     '<label class = "control-label">First name</label>',
-                    '<input name = "FirstName" class = "form-control">',
+                    '<input name = "FirstName" class = "form-control firstName">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4 firstNameInput">',
@@ -29,7 +29,7 @@ templates.studentEditTpl = _.template([
             '<div class = "row">',
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">Last name</label>',
-                    '<input name = "LastName" class = "form-control">',
+                    '<input name = "LastName" class = "form-control lastName">',
                 '</div>',
 
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
@@ -50,12 +50,16 @@ templates.studentEditTpl = _.template([
                 '<div class = "form-group col-xs-6 col-xs-offset-0 col-md-5 col-md-offset-1 col-lg-4">',
                     '<label class = "control-label">English level</label>',
                     '<select class = "form-control englishLevel">',
-                      '<option value="Intermediate">Intermediate</option>',
-                      '<option value="Elementary">Elementary</option>',
-                      '<option value="Pre-intermediate">Pre-intermediate</option>',
-                      '<option value="Upper-intermediate">Upper-intermediate</option>',
-                      '<option value="Pre-advanced">Pre-advanced</option>',
-                      '<option value="Advanced">Advanced</option>',
+                      '<option value="pre-intermediate low">pre-intermediate low</option>',
+                      '<option value="pre-intermediate">pre-intermediate</option>',
+                      '<option value="pre-intermediate strong">pre-intermediate strong</option>',
+                      '<option value="intermediate low">intermediate low</option>',
+                      '<option value="intermediate">intermediate</option>',
+                      '<option value="intermediate strong">intermediate strong</option>',
+                      '<option value="upper-intermediate low">upper-intermediate low</option>',
+                      '<option value="upper-intermediate">upper-intermediate</option>',
+                      '<option value="upper-intermediate strong">upper-intermediate strong</option>',
+                      '<option value="advanced">advanced</option>',
                     '</select>',
                 '</div>',
 
