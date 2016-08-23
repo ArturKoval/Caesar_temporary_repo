@@ -121,7 +121,6 @@
             }
 
         },
-
         showStudent: function () {
             // this.showStudent = new This.StudentView({model: this.model});
             // $('#modal-window').html(this.showStudent.render().el);

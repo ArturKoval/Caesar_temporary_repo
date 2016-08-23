@@ -115,7 +115,7 @@
                         }
                     }.bind(this)
                 };
-
+                
             if (cruds[crud] && (!app.user.isRole('Coordinator')) && (!app.user.isRole('Teacher')) || (app.user.isRole('Coordinator')) && (app.user.isLocation(locations))) {
                 cruds[crud](modelGroup);
                 this.currentUrl = window.location.pathname;
